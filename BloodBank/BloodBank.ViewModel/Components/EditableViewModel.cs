@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using AutoMapper;
+using PropertyChanged;
 using Stylet;
 
 namespace BloodBank.ViewModel {
 
+    [ImplementPropertyChanged]
     public abstract class EditableViewModel<TModel> : Screen, IEditableViewModel<TModel> where TModel : class {
-        #region Constructors
 
+        #region Constructors
         protected EditableViewModel(IModelValidator<TModel> validator, TModel model = null) : base(validator) {
             Model = model;
             AutoValidate = true;
@@ -56,6 +58,8 @@ namespace BloodBank.ViewModel {
             if (!Validate()) return;
             if (!IsInitialized) {
                 Model = Mapper.Map<TModel>(this, MappingOpts);
+                // Fody can't weave other assemblies, so we have to manually raise this
+                NotifyOfPropertyChange(() => DisplayName);
             } else
                 Mapper.Map(this, Model);
             IsChanged = false;

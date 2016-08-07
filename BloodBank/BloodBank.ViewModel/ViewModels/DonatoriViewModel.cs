@@ -5,7 +5,7 @@ using Stylet;
 namespace BloodBank.ViewModel.ViewModels {
 
     [ImplementPropertyChanged]
-    public class DonatoriViewModel : Conductor<IScreen>.Collection.OneActive {
+    public class DonatoriViewModel : Conductor<TabWrapperViewModel>.Collection.OneActive {
         private readonly IEventAggregator _eventAggregator;
 
         #region Constructors
@@ -14,8 +14,8 @@ namespace BloodBank.ViewModel.ViewModels {
 
             DisplayName = "Donatori";
 
-            Items.Add(d1);
-            Items.Add(d2);
+            Items.Add(new TabWrapperViewModel(d1));
+            Items.Add(new TabWrapperViewModel(d2));
         }
         #endregion
 

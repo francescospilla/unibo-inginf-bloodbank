@@ -13,16 +13,16 @@ namespace BloodBank.ViewModel.ViewModels {
     [ImplementPropertyChanged]
     public class DonatoreViewModel : EditableViewModel<Donatore>, IDonatore {
         public override Action<IMappingOperationOptions> MappingOpts { get; }
-        
+
         #region Constructors
-        public DonatoreViewModel(IModelValidator<IDonatore> validator, Donatore donatore = null) : base(validator, donatore)
-        {
-            DisplayName = Nome + " " + Cognome;
+        public DonatoreViewModel(IModelValidator<IDonatore> validator, Donatore donatore = null) : base(validator, donatore) {
             MappingOpts = opts => opts.ConstructServicesUsing(type => new Donatore(new Contatto(Nome, Cognome, Sesso, DataNascita, CodiceFiscale, Indirizzo, Città, Stato, CodicePostale, Telefono, Email), GruppoSanguigno, Attivo));
         }
         #endregion
 
         #region Properties
+        public new string DisplayName => IsInitialized ? Nome + " " + Cognome : "Nuovo donatore";
+
         public string Nome { get; set; }
         public string Cognome { get; set; }
         public Sesso Sesso { get; set; }
@@ -42,6 +42,6 @@ namespace BloodBank.ViewModel.ViewModels {
         public IEnumerable<Sesso> SessoEnumerable { get; } = EnumExtensions.Values<Sesso>();
         public IEnumerable<GruppoSanguigno> GruppoSanguignoEnumerable { get; } = EnumExtensions.Values<GruppoSanguigno>();
         public IEnumerable<Idoneità> IdoneitàEnumerable { get; } = EnumExtensions.Values<Idoneità>();
-        public IEnumerable<bool> AttivoEnumerable { get; } = new[] {true, false};
+        public IEnumerable<bool> AttivoEnumerable { get; } = new[] { true, false };
     }
 }

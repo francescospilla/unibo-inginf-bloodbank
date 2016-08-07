@@ -38,7 +38,6 @@
 
                         <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Orientation="Horizontal" HorizontalAlignment="Right">
                             <TextBlock Text="Modifiche:" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,20,0" FontWeight="Bold" />
-                            <Button Style="{DynamicResource MaterialDesignFlatButton}" Content="VALIDA" Command="{s:Action ForceValidation}"  />
                             <Button Style="{DynamicResource MaterialDesignFlatButton}" Content="SALVA" Command="{s:Action Save}"  />
                             <Button Style="{DynamicResource MaterialDesignFlatButton}" Content="CANCELLA" Command="{s:Action Cancel}" />
                         </StackPanel>

@@ -12,12 +12,6 @@
 
     <DockPanel>
         <controls:AppBar Title="{Binding DisplayName}" NavMenuButtonClickAction="{s:Action OpenNavMenu}" Shadow="Depth0" DockPanel.Dock="Top" />
-        <dragablz:TabablzControl BorderThickness="0" ItemsSource="{Binding Items}" ShowDefaultCloseButton="True" DockPanel.Dock="Top">
-            <dragablz:TabablzControl.ContentTemplate>
-                <DataTemplate>
-                    <ContentControl s:View.Model="{Binding }" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" IsTabStop="False"/>
-                </DataTemplate>
-            </dragablz:TabablzControl.ContentTemplate>
-        </dragablz:TabablzControl>
+        <dragablz:TabablzControl Style="{StaticResource StyletConductorTabablzControl}" BorderThickness="0" ShowDefaultCloseButton="True" DockPanel.Dock="Top" />
     </DockPanel>
 </UserControl>

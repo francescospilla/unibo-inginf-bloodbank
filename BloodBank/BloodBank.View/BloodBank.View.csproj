@@ -90,6 +90,9 @@
     </Compile>
     <Compile Include="UserControls\IntegerTextBox.cs" />
     <Compile Include="UserControls\LayoutSetter.cs" />
+    <Compile Include="Views\TabWrapperView.xaml.cs">
+      <DependentUpon>TabWrapperView.xaml</DependentUpon>
+    </Compile>
     <Page Include="Views\DonatoreView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -119,6 +122,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="UserControls\AppBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TabWrapperView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

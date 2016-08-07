@@ -70,6 +70,7 @@
     <Compile Include="ShellViewModel.cs" />
     <Compile Include="ViewModels\DonatoreViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\TabWrapperViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BloodBank.Core\BloodBank.Core.csproj">
