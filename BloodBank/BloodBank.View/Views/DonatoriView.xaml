@@ -6,12 +6,40 @@
              xmlns:controls="clr-namespace:BloodBank.View.UserControls"
              xmlns:s="https://github.com/canton7/Stylet"
              xmlns:dragablz="http://dragablz.net/winfx/xaml/dragablz"
-             xmlns:views="clr-namespace:BloodBank.View.Views"
-             xmlns:viewModel="clr-namespace:BloodBank.ViewModel.ViewModels;assembly=BloodBank.ViewModel"
+             xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" d:DesignHeight="600" d:DesignWidth="800">
 
     <DockPanel>
-        <controls:AppBar Title="{Binding DisplayName}" NavMenuButtonClickAction="{s:Action OpenNavMenu}" Shadow="Depth0" DockPanel.Dock="Top" />
-        <dragablz:TabablzControl Style="{StaticResource StyletConductorTabablzControl}" BorderThickness="0" ShowDefaultCloseButton="True" DockPanel.Dock="Top" />
+        <controls:AppBar Title="{Binding DisplayName}" NavMenuButtonClickAction="{s:Action OpenNavMenu}" Shadow="Depth0" DockPanel.Dock="Top"  Panel.ZIndex="3"/>
+
+        <Grid DockPanel.Dock="Left">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <md:ColorZone Mode="Standard" Background="{DynamicResource PrimaryHueMidBrush}" Height="40" md:ShadowAssist.ShadowDepth="Depth2" Panel.ZIndex="1">
+                <TextBlock Text="Lista Donatori" Style="{DynamicResource MaterialDesignBody2TextBlock}" Foreground="{DynamicResource MaterialDesignDarkForeground}" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="18,0,0,6" />
+            </md:ColorZone>
+
+            <Border Grid.Row="1" Width="250" Background="{DynamicResource MaterialDesignPaper}" BorderThickness="0,0,1,0" BorderBrush="#DDDDDD" Padding="0 6 0 0">
+
+                <md:ColorZone Mode="Standard" Background="White" Margin="10 6 10 6" Padding="1" CornerRadius="2"  VerticalAlignment="Top" BorderThickness="1" BorderBrush="{DynamicResource PrimaryHueMidBrush}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Button Style="{DynamicResource MaterialDesignToolButton}" VerticalAlignment="Center">
+                            <md:PackIcon Kind="Magnify" Opacity=".56" />
+                        </Button>
+                        <TextBox Grid.Column="1" Margin="8 0 0 0" md:HintAssist.Hint="Ricerca" md:TextFieldAssist.DecorationVisibility="Hidden" BorderThickness="0" VerticalAlignment="Center" />
+                    </Grid>
+                </md:ColorZone>
+                
+            </Border>
+        </Grid>
+
+        <dragablz:TabablzControl x:Name="TabControl" HorizontalAlignment="Stretch" Style="{StaticResource StyletConductorTabablzControl}" BorderThickness="0" ShowDefaultCloseButton="True" DockPanel.Dock="Top" TabStripPlacement="Right" />
     </DockPanel>
 </UserControl>

@@ -19,6 +19,19 @@ namespace BloodBank.View.UserControls {
         public static readonly DependencyProperty TitleProperty =
             DependencyProperty.Register("Title", typeof (string), typeof (AppBar));
 
+
+
+        public ColorZoneMode Mode {
+            get { return (ColorZoneMode)GetValue(ModeProperty); }
+            set { SetValue(ModeProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for Mode.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ModeProperty =
+            DependencyProperty.Register("Mode", typeof(ColorZoneMode), typeof(AppBar), new PropertyMetadata(ColorZoneMode.PrimaryMid));
+
+
+
         public ShadowDepth Shadow {
             get { return (ShadowDepth)GetValue(ShadowProperty); }
             set { SetValue(ShadowProperty, value); }

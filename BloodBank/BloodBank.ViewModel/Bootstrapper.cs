@@ -13,7 +13,7 @@ namespace BloodBank.ViewModel {
             base.ConfigureIoC(builder);
             builder.Assemblies.AddRange(new[] {Assembly.Load("BloodBank.View"), Assembly.Load("BloodBank.Validation") });
             builder.Bind(typeof(IModelValidator<>)).To(typeof(FluentModelValidator<>));
-            builder.Bind(typeof(IValidator<>)).ToAllImplementations();
+            builder.Bind(typeof(IValidator<>)).ToAllImplementations().InSingletonScope();
         }
 
         protected override void Configure() {
