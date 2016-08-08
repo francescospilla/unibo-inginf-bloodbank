@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 
-namespace BloodBank.ViewModel {
+namespace BloodBank.View.UserControls {
 
     /// <summary>
     /// Class implements a <seealso cref="Selector"/> double click

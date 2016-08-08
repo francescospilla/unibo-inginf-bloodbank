@@ -37,10 +37,6 @@
       <HintPath>..\packages\AutoMapper.5.0.2\lib\net45\AutoMapper.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="FluentValidation, Version=6.2.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FluentValidation.6.2.1.0\lib\Net45\FluentValidation.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="PropertyChanged, Version=1.51.3.0, Culture=neutral, PublicKeyToken=ee3ee20bcf148ddd, processorArchitecture=MSIL">
@@ -64,7 +60,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bootstrapper.cs" />
-    <Compile Include="Components\DoubleClickSelectorItem.cs" />
     <Compile Include="Components\IViewModel.cs" />
     <Compile Include="Services\DataService.cs" />
     <Compile Include="Services\DonatoreService.cs" />
@@ -74,7 +69,6 @@
     <Compile Include="ViewModels\DonatoriViewModel.cs" />
     <Compile Include="Components\EditableViewModel.cs" />
     <Compile Include="Events\NavMenuEvent.cs" />
-    <Compile Include="Components\FluentModelValidator.cs" />
     <Compile Include="Components\IEditableViewModel.cs" />
     <Compile Include="Components\NavigationMenuItem.cs" />
     <Compile Include="ShellViewModel.cs" />
@@ -90,6 +84,10 @@
     <ProjectReference Include="..\BloodBank.Model\BloodBank.Model.csproj">
       <Project>{85debb74-1f91-474f-9f84-592a873573ba}</Project>
       <Name>BloodBank.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Stylet.FluentValidation\Stylet.FluentValidation.csproj">
+      <Project>{bc9bc04d-1d1a-43a3-be2d-d80509f03e3c}</Project>
+      <Name>Stylet.FluentValidation</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

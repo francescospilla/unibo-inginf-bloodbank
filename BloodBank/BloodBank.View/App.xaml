@@ -7,9 +7,8 @@
 			 xmlns:system="clr-namespace:System;assembly=mscorlib"
 			 xmlns:converters="clr-namespace:BloodBank.View.Converters"
 			 xmlns:s="https://github.com/canton7/Stylet"
-			 xmlns:v="clr-namespace:BloodBank.View"
-			 xmlns:vms="clr-namespace:BloodBank.ViewModel;assembly=BloodBank.ViewModel"
 			 xmlns:dragablz="http://dragablz.net/winfx/xaml/dragablz"
+			 xmlns:vm="clr-namespace:BloodBank.ViewModel;assembly=BloodBank.ViewModel"
 			 mc:Ignorable="d ignore">
 
     <Application.Resources>
@@ -19,7 +18,7 @@
                 <!-- Stylet Inizialization -->
                 <s:ApplicationLoader>
                     <s:ApplicationLoader.Bootstrapper>
-                        <vms:Bootstrapper />
+                        <vm:Bootstrapper />
                     </s:ApplicationLoader.Bootstrapper>
                 </s:ApplicationLoader>
 

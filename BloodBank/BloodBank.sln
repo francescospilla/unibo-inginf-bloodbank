@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BloodBank.ViewModel", "Bloo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BloodBank.View", "BloodBank.View\BloodBank.View.csproj", "{FAB8CC63-E622-4082-8550-178745DABD75}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stylet.FluentValidation", "Stylet.FluentValidation\Stylet.FluentValidation.csproj", "{BC9BC04D-1D1A-43A3-BE2D-D80509F03E3C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -40,6 +42,10 @@ Global
 		{FAB8CC63-E622-4082-8550-178745DABD75}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FAB8CC63-E622-4082-8550-178745DABD75}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FAB8CC63-E622-4082-8550-178745DABD75}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC9BC04D-1D1A-43A3-BE2D-D80509F03E3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC9BC04D-1D1A-43A3-BE2D-D80509F03E3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC9BC04D-1D1A-43A3-BE2D-D80509F03E3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC9BC04D-1D1A-43A3-BE2D-D80509F03E3C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

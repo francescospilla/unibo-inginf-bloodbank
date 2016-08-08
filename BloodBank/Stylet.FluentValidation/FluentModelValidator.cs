@@ -2,10 +2,9 @@
 using System.Linq;
 using System.Threading.Tasks;
 using FluentValidation;
-using Stylet;
 
 // Come da documentazione di Stylet: https://github.com/canton7/Stylet/wiki/FluentValidationAdapter
-namespace BloodBank.ViewModel
+namespace Stylet.FluentValidation
 {
     public class FluentModelValidator<T> : IModelValidator<T>
     {

@@ -3,8 +3,8 @@ using AutoMapper;
 using BloodBank.Model.Donatori;
 using BloodBank.ViewModel.Services;
 using BloodBank.ViewModel.ViewModels;
-using FluentValidation;
 using Stylet;
+using Stylet.FluentValidation;
 using StyletIoC;
 
 namespace BloodBank.ViewModel {
@@ -12,9 +12,8 @@ namespace BloodBank.ViewModel {
 
         protected override void ConfigureIoC(IStyletIoCBuilder builder) {
             base.ConfigureIoC(builder);
-            builder.Assemblies.AddRange(new[] {Assembly.Load("BloodBank.View"), Assembly.Load("BloodBank.Validation") });
-            builder.Bind(typeof(IModelValidator<>)).To(typeof(FluentModelValidator<>));
-            builder.Bind(typeof(IValidator<>)).ToAllImplementations().InSingletonScope();
+            builder.Assemblies.AddRange(new[] {Assembly.Load("BloodBank.View") });
+            builder.ConfigureForFluentValidation("BloodBank.Validation");
             builder.Bind(typeof(DataService<,>)).ToAllImplementations().InSingletonScope();
         }
 
