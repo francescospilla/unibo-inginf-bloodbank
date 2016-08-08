@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
 using AutoMapper;
 using BloodBank.Model.Donatori;
+using BloodBank.ViewModel.Services;
 using BloodBank.ViewModel.ViewModels;
 using FluentValidation;
 using Stylet;
@@ -14,10 +15,14 @@ namespace BloodBank.ViewModel {
             builder.Assemblies.AddRange(new[] {Assembly.Load("BloodBank.View"), Assembly.Load("BloodBank.Validation") });
             builder.Bind(typeof(IModelValidator<>)).To(typeof(FluentModelValidator<>));
             builder.Bind(typeof(IValidator<>)).ToAllImplementations().InSingletonScope();
+            builder.Bind(typeof(IDataService<,>)).ToAllImplementations();
         }
 
         protected override void Configure() {
             base.Configure();
+
+            IoC.GetInstance = Container.Get;
+            IoC.BuildUp = Container.BuildUp;
 
             ViewManager viewManager = Container.Get<ViewManager>();
             viewManager.ViewAssemblies.Add(Assembly.Load("BloodBank.View"));

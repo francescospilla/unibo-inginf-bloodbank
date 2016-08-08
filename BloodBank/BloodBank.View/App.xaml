@@ -8,7 +8,7 @@
 			 xmlns:converters="clr-namespace:BloodBank.View.Converters"
 			 xmlns:s="https://github.com/canton7/Stylet"
 			 xmlns:v="clr-namespace:BloodBank.View"
-			 xmlns:vm="clr-namespace:BloodBank.ViewModel;assembly=BloodBank.ViewModel"
+			 xmlns:vms="clr-namespace:BloodBank.ViewModel;assembly=BloodBank.ViewModel"
 			 xmlns:dragablz="http://dragablz.net/winfx/xaml/dragablz"
 			 mc:Ignorable="d ignore">
 
@@ -19,10 +19,10 @@
                 <!-- Stylet Inizialization -->
                 <s:ApplicationLoader>
                     <s:ApplicationLoader.Bootstrapper>
-                        <vm:Bootstrapper />
+                        <vms:Bootstrapper />
                     </s:ApplicationLoader.Bootstrapper>
                 </s:ApplicationLoader>
-                
+
                 <!-- Material Design theme XAML Resources -->
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/themes/generic.xaml" />
 
@@ -32,10 +32,15 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Yellow.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/Dragablz;component/Themes/materialdesign.xaml"/>
 
+                <!-- MahApps theme Resources -->
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml" />
+                
+                <!-- FilterControl theme Resources -->
+                <ResourceDictionary Source="Resources/FilterControl.xaml" />
 
             </ResourceDictionary.MergedDictionaries>
 
+            <!-- Material Design theme for MahApps -->
             <SolidColorBrush x:Key="HighlightBrush" Color="{DynamicResource Primary700}"/>
             <SolidColorBrush x:Key="AccentColorBrush" Color="{DynamicResource Primary500}"/>
             <SolidColorBrush x:Key="AccentColorBrush2" Color="{DynamicResource Primary400}"/>
@@ -67,9 +72,11 @@
             <Style TargetType="{x:Type dragablz:TabablzControl}" BasedOn="{StaticResource MaterialDesignTabablzControlStyle}">
                 <Setter Property="EmptyHeaderSizingHint" Value="PreviousTab" />
             </Style>
+
             <!-- Stylet support for Dragablz -->
             <Style BasedOn="{StaticResource {x:Type dragablz:TabablzControl}}" TargetType="dragablz:TabablzControl" x:Key="StyletConductorTabablzControl">
                 <Setter Property="ItemsSource" Value="{Binding Items}" />
+                <Setter Property="SelectedItem" Value="{Binding ActiveItem}" />
                 <Setter Property="HeaderItemTemplate">
                     <Setter.Value>
                         <DataTemplate>
@@ -84,6 +91,14 @@
                         </DataTemplate>
                     </Setter.Value>
                 </Setter>
+            </Style>
+
+            <!-- Remove extra padding on ListBox Items -->
+            <Style x:Key="NoPaddingMaterialDesignListBoxItem" BasedOn="{StaticResource MaterialDesignListBoxItem}" TargetType="{x:Type ListBoxItem}">
+                <Setter Property="Padding" Value="0" />
+            </Style>
+            <Style TargetType="{x:Type ListBox}" BasedOn="{StaticResource MaterialDesignListBox}">
+                <Setter Property="ItemContainerStyle" Value="{StaticResource NoPaddingMaterialDesignListBoxItem}"/>
             </Style>
 
 

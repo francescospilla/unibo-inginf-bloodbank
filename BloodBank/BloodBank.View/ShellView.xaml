@@ -32,7 +32,7 @@
                         <ListBox x:Name="MenuListBox" Grid.Row="2" ItemsSource="{Binding Items}" SelectedIndex="0" MouseLeftButtonUp="{s:Action CloseNavMenu}">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
+                                    <StackPanel Orientation="Horizontal" Margin="8">
                                         <md:PackIcon Kind="{Binding Icon, Converter={StaticResource StringToPackIcon}}" VerticalAlignment="Center" />
                                         <TextBlock Text="{Binding Name}" Margin="24 0" VerticalAlignment="Center"/>
                                     </StackPanel>

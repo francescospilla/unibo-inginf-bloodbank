@@ -21,7 +21,13 @@ namespace BloodBank.ViewModel.ViewModels {
         #endregion
 
         #region Properties
-        public new string DisplayName => IsInitialized ? Nome + " " + Cognome : "Nuovo donatore";
+        public new string DisplayName => IsInitialized ? NomeCognome : "Nuovo donatore";
+
+        public string NomeCognome => Nome + " " + Cognome;
+
+        // TODO: Aggiustare?
+        public string StringaRicerca
+            => NomeCognome + " " + "s:"+Sesso + " " + "cf:"+CodiceFiscale + " " + "gs:"+GruppoSanguigno + " " + "i:"+Idoneità + " " + (Attivo? "a:Attivo" : "a:NonAttivo") ;
 
         public string Nome { get; set; }
         public string Cognome { get; set; }
