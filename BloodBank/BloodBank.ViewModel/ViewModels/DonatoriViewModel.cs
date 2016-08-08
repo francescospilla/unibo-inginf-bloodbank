@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using BloodBank.Model.Donatori;
@@ -14,18 +15,19 @@ namespace BloodBank.ViewModel.ViewModels {
     [ImplementPropertyChanged]
     public class DonatoriViewModel : Conductor<TabWrapperViewModel>.Collection.OneActive {
         private readonly IEventAggregator _eventAggregator;
-        private readonly IDataService<IDonatore, DonatoreViewModel> _donatoreService;
+        private readonly IDataService<Donatore, DonatoreViewModel> _donatoreService;
 
         public BindableCollection<DonatoreViewModel> ListaDonatori { get; }
 
         #region Constructors
-        public DonatoriViewModel(IEventAggregator eventAggregator, IDataService<IDonatore, DonatoreViewModel> donatoreService) {
+        public DonatoriViewModel(IEventAggregator eventAggregator, DataService<Donatore, DonatoreViewModel> donatoreService) {
             _eventAggregator = eventAggregator;
             _donatoreService = donatoreService;
 
             DisplayName = "Donatori";
 
-            ListaDonatori = new BindableCollection<DonatoreViewModel>(_donatoreService.GetViewModels());
+            ListaDonatori = _donatoreService.GetViewModels();
+            Debug.Assert(ListaDonatori == _donatoreService.GetViewModels());
             AddDonatoreTab();
         }
         #endregion
@@ -34,14 +36,12 @@ namespace BloodBank.ViewModel.ViewModels {
         public void OpenNavMenu() {
             _eventAggregator.Publish(new NavMenuEvent(NavMenuEvent.NavMenuStates.Open));
         }
-        
-        public void AddDonatoreTab(DonatoreViewModel viewModel = null)
-        {
+
+        public void AddDonatoreTab(DonatoreViewModel viewModel = null) {
             TabWrapperViewModel donatoreTab = viewModel != null
                 ? TabWrapperFactory<DonatoreViewModel>.CreateTab(viewModel) : TabWrapperFactory<DonatoreViewModel>.CreateEmptyTab();
             ActivateItem(donatoreTab);
         }
-
         #endregion
 
     }

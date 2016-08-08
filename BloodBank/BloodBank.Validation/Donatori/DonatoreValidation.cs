@@ -4,9 +4,7 @@ using FluentValidation;
 
 namespace BloodBank.Validation.Donatori {
 
-    public class DonatoreValidator : ContattoValidator<IDonatore> {
-        private static DonatoreValidator _instance;
-        public static DonatoreValidator Instance => _instance ?? (_instance = new DonatoreValidator());
+    public class DonatoreValidator<T> : ContattoValidator<T> where T : IDonatore {
 
         public DonatoreValidator() {
             RuleFor(d => d.GruppoSanguigno).NotNull().IsInEnum();

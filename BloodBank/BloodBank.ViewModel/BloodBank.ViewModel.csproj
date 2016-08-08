@@ -65,6 +65,7 @@
   <ItemGroup>
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Components\DoubleClickSelectorItem.cs" />
+    <Compile Include="Components\IViewModel.cs" />
     <Compile Include="Services\DataService.cs" />
     <Compile Include="Services\DonatoreService.cs" />
     <Compile Include="Services\IDataService.cs" />

@@ -10,27 +10,46 @@ using BloodBank.ViewModel.ViewModels;
 using Stylet;
 
 namespace BloodBank.ViewModel.Services {
-    public abstract class DataService<TModel, TViewModel> :  IDataService<TModel, TViewModel> {
-        private readonly IList<TModel> _models;
+    public abstract class DataService<TModel, TViewModel> : IDataService<TModel, TViewModel>, IDataService where TModel : class where TViewModel : IViewModel<TModel> {
+        private readonly BindableCollection<TViewModel> _viewModels;
+        private readonly IEventAggregator _eventAggregator;
+        private readonly IModelValidator<TViewModel> _validator;
 
-        protected DataService(IList<TModel> models)
-        {
-            _models = models;
+        protected DataService(IEnumerable<TModel> models) {
+            _eventAggregator = IoC.Get<IEventAggregator>();
+            _validator = IoC.Get<IModelValidator<TViewModel>>();
+            _viewModels = new BindableCollection<TViewModel>(models.Select(CreateInstance));
         }
 
-        public ReadOnlyCollection<TModel> GetModels() { return new ReadOnlyCollection<TModel>(_models);}
-        
-        public IEnumerable<TViewModel> GetViewModels()
-        {
-            IEventAggregator eventAggregator = IoC.Get<IEventAggregator>();
-            IDataService<TModel, TViewModel> dataService = IoC.Get<IDataService<TModel, TViewModel>>();
-            IModelValidator<TModel> validator = IoC.Get<IModelValidator<TModel>>();
-
-            return
-                _models.Select(model => Activator.CreateInstance(typeof(TViewModel), new object[] {eventAggregator, dataService, validator, model }))
-                .Cast<TViewModel>().ToList();
+        private TViewModel CreateInstance(TModel model) {
+            return (TViewModel)Activator.CreateInstance(typeof(TViewModel), _eventAggregator, this, _validator, model);
         }
 
-        public void AddNewModel(TModel model) => _models.Add(model);
+        #region IDataService Non-Generic Implementation
+
+        void IDataService.AddNewModel(object model) {
+            AddNewModel(model as TModel);
+        }
+
+        IEnumerable<object> IDataService.GetModels() {
+            return GetModels();
+        }
+
+        IEnumerable<object> IDataService.GetViewModels() {
+            return GetViewModels().Cast<object>();
+        }
+
+        #endregion
+
+        public void AddNewModel(TModel model) {
+            _viewModels.Add(CreateInstance(model));
+        }
+
+        public ReadOnlyCollection<TModel> GetModels() { return new ReadOnlyCollection<TModel>(_viewModels.Select(vm => vm.Model).ToList()); }
+
+        public BindableCollection<TViewModel> GetViewModels() {
+            return _viewModels;
+        }
+
     }
 }

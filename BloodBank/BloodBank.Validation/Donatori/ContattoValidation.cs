@@ -8,6 +8,7 @@ using FluentValidation.Results;
 namespace BloodBank.Validation.Donatori {
 
     public abstract class ContattoValidator<T> : AbstractValidator<T> where T : IContatto {
+
         protected ContattoValidator() {
             RuleFor(c => c.Nome).NotEmpty();
             RuleFor(c => c.Cognome).NotEmpty();

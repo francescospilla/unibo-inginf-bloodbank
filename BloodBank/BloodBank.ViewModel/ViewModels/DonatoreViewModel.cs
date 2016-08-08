@@ -12,11 +12,11 @@ using Stylet;
 namespace BloodBank.ViewModel.ViewModels {
 
     [ImplementPropertyChanged]
-    public class DonatoreViewModel : EditableViewModel<IDonatore>, IDonatore {
+    public class DonatoreViewModel : EditableViewModel<Donatore>, IDonatore {
         public override Action<IMappingOperationOptions> MappingOpts { get; }
 
         #region Constructors
-        public DonatoreViewModel(IEventAggregator eventAggregator, IDataService<IDonatore, DonatoreViewModel> dataService, IModelValidator<IDonatore> validator, Donatore donatore = null) : base(eventAggregator, dataService, validator, donatore) {
+        public DonatoreViewModel(IEventAggregator eventAggregator, DataService<Donatore, DonatoreViewModel> dataService, IModelValidator<DonatoreViewModel> validator, Donatore donatore = null) : base(eventAggregator, dataService, validator, donatore) {
             MappingOpts = opts => opts.ConstructServicesUsing(type => new Donatore(new Contatto(Nome, Cognome, Sesso, DataNascita, CodiceFiscale, Indirizzo, Città, Stato, CodicePostale, Telefono, Email), GruppoSanguigno, Attivo));
         }
         #endregion

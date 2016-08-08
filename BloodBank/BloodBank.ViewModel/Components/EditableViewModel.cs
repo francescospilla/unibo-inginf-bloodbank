@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using AutoMapper;
 using BloodBank.ViewModel.Services;
+using BloodBank.ViewModel.ViewModels;
 using PropertyChanged;
 using Stylet;
 
@@ -10,10 +11,10 @@ namespace BloodBank.ViewModel {
     [ImplementPropertyChanged]
     public abstract class EditableViewModel<TModel> : Screen, IEditableViewModel<TModel> where TModel : class {
         private readonly IEventAggregator _eventAggregator;
-        private readonly IDataService<TModel, EditableViewModel<TModel>> _dataService;
+        private readonly IDataService _dataService;
 
         #region Constructors
-        protected EditableViewModel(IEventAggregator eventAggregator, IDataService<TModel, EditableViewModel<TModel>> dataService, IModelValidator<TModel> validator, TModel model = null) : base(validator) {
+        protected EditableViewModel(IEventAggregator eventAggregator, IDataService dataService, IModelValidator validator, TModel model = null) : base(validator) {
             _eventAggregator = eventAggregator;
             _dataService = dataService;
             Model = model;
@@ -66,6 +67,7 @@ namespace BloodBank.ViewModel {
                 Model = Mapper.Map<TModel>(this, MappingOpts);
                 // Fody can't weave other assemblies, so we have to manually raise this
                 NotifyOfPropertyChange(() => DisplayName);
+                _dataService.AddNewModel(Model);
             } else
                 Mapper.Map(this, Model);
             IsChanged = false;
