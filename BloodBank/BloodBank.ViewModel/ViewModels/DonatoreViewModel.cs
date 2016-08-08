@@ -5,17 +5,18 @@ using BloodBank.Core.Extensions;
 using BloodBank.Model;
 using BloodBank.Model.Donatori;
 using BloodBank.Model.Sangue;
+using BloodBank.ViewModel.Services;
 using PropertyChanged;
 using Stylet;
 
 namespace BloodBank.ViewModel.ViewModels {
 
     [ImplementPropertyChanged]
-    public class DonatoreViewModel : EditableViewModel<Donatore>, IDonatore {
+    public class DonatoreViewModel : EditableViewModel<IDonatore>, IDonatore {
         public override Action<IMappingOperationOptions> MappingOpts { get; }
 
         #region Constructors
-        public DonatoreViewModel(IModelValidator<IDonatore> validator, Donatore donatore = null) : base(validator, donatore) {
+        public DonatoreViewModel(IEventAggregator eventAggregator, IDataService<IDonatore, DonatoreViewModel> dataService, IModelValidator<IDonatore> validator, Donatore donatore = null) : base(eventAggregator, dataService, validator, donatore) {
             MappingOpts = opts => opts.ConstructServicesUsing(type => new Donatore(new Contatto(Nome, Cognome, Sesso, DataNascita, CodiceFiscale, Indirizzo, Città, Stato, CodicePostale, Telefono, Email), GruppoSanguigno, Attivo));
         }
         #endregion
@@ -24,6 +25,7 @@ namespace BloodBank.ViewModel.ViewModels {
         public new string DisplayName => IsInitialized ? NomeCognome : "Nuovo donatore";
 
         public string NomeCognome => Nome + " " + Cognome;
+        public string CognomeNome => Cognome + " " + Nome;
 
         // TODO: Aggiustare?
         public string StringaRicerca

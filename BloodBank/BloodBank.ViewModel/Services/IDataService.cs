@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Stylet;
 
 namespace BloodBank.ViewModel.Services {
-    public interface IDataService<out TModel, out TViewModel> where TViewModel : ValidatingModelBase {
-        IEnumerable<TModel> GetModels();
+    public interface IDataService<TModel, out TViewModel> {
+        void AddNewModel(TModel model);
+        ReadOnlyCollection<TModel> GetModels();
         IEnumerable<TViewModel> GetViewModels();
     }
 }

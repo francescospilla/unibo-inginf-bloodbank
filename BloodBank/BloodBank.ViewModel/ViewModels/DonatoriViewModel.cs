@@ -40,7 +40,6 @@ namespace BloodBank.ViewModel.ViewModels {
             TabWrapperViewModel donatoreTab = viewModel != null
                 ? TabWrapperFactory<DonatoreViewModel>.CreateTab(viewModel) : TabWrapperFactory<DonatoreViewModel>.CreateEmptyTab();
             ActivateItem(donatoreTab);
-            Console.WriteLine("Added donatore: " + ((DonatoreViewModel) donatoreTab.ActiveItem).StringaRicerca);
         }
 
         #endregion

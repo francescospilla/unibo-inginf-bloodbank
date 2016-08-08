@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using AutoMapper;
+using BloodBank.ViewModel.Services;
 using PropertyChanged;
 using Stylet;
 
@@ -8,12 +9,17 @@ namespace BloodBank.ViewModel {
 
     [ImplementPropertyChanged]
     public abstract class EditableViewModel<TModel> : Screen, IEditableViewModel<TModel> where TModel : class {
+        private readonly IEventAggregator _eventAggregator;
+        private readonly IDataService<TModel, EditableViewModel<TModel>> _dataService;
 
         #region Constructors
-        protected EditableViewModel(IModelValidator<TModel> validator, TModel model = null) : base(validator) {
+        protected EditableViewModel(IEventAggregator eventAggregator, IDataService<TModel, EditableViewModel<TModel>> dataService, IModelValidator<TModel> validator, TModel model = null) : base(validator) {
+            _eventAggregator = eventAggregator;
+            _dataService = dataService;
             Model = model;
             AutoValidate = true;
             Validate();
+            IsChanged = false;
         }
 
         #endregion
