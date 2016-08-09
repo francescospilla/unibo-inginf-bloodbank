@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using AutoMapper;
+using BloodBank.Model.Donatori;
+using BloodBank.ViewModel.Events;
 using BloodBank.ViewModel.Services;
 using BloodBank.ViewModel.ViewModels;
 using PropertyChanged;
@@ -10,30 +12,34 @@ namespace BloodBank.ViewModel {
 
     [ImplementPropertyChanged]
     public abstract class EditableViewModel<TModel> : Screen, IEditableViewModel<TModel> where TModel : class {
-        private readonly IEventAggregator _eventAggregator;
-        private readonly IDataService _dataService;
+        protected readonly IEventAggregator EventAggregator;
+        protected readonly IDataService<TModel> DataService;
+
+        #region Methods
+        public abstract void AddModel(TModel model);
+        #endregion
 
         #region Constructors
-        protected EditableViewModel(IEventAggregator eventAggregator, IDataService dataService, IModelValidator validator, TModel model = null) : base(validator) {
-            _eventAggregator = eventAggregator;
-            _dataService = dataService;
+        protected EditableViewModel(IEventAggregator eventAggregator, IDataService<TModel> dataService, IModelValidator validator, TModel model = null) : base(validator) {
+            EventAggregator = eventAggregator;
+            DataService = dataService;
             Model = model;
             AutoValidate = true;
             Validate();
             IsChanged = false;
         }
-
         #endregion
 
         #region Properties
         private TModel _model;
         public TModel Model {
             get { return _model; }
-            set {
+            private set {
                 _model = value;
                 Mapper.Map(_model, this);
             }
         }
+
         public bool IsInitialized { get { return Model != null; } }
 
         public bool IsChanged { get; set; }
@@ -67,7 +73,7 @@ namespace BloodBank.ViewModel {
                 Model = Mapper.Map<TModel>(this, MappingOpts);
                 // Fody can't weave other assemblies, so we have to manually raise this
                 NotifyOfPropertyChange(() => DisplayName);
-                _dataService.AddNewModel(Model);
+                AddModel(Model);
             } else
                 Mapper.Map(this, Model);
             IsChanged = false;

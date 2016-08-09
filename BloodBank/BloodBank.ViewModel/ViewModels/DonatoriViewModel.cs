@@ -13,21 +13,26 @@ using Stylet;
 namespace BloodBank.ViewModel.ViewModels {
 
     [ImplementPropertyChanged]
-    public class DonatoriViewModel : Conductor<TabWrapperViewModel>.Collection.OneActive {
+    public class DonatoriViewModel : Conductor<TabWrapperViewModel>.Collection.OneActive, IHandle<AddViewModelEvent<Donatore, DonatoreViewModel>> {
         private readonly IEventAggregator _eventAggregator;
-        private readonly IDataService<Donatore, DonatoreViewModel> _donatoreService;
+        private readonly IDataService<Donatore> _dataService;
+        private readonly ViewModelFactory<Donatore, DonatoreViewModel> _viewModelFactory;
 
         public BindableCollection<DonatoreViewModel> ListaDonatori { get; }
 
         #region Constructors
-        public DonatoriViewModel(IEventAggregator eventAggregator, DataService<Donatore, DonatoreViewModel> donatoreService) {
+        public DonatoriViewModel(IEventAggregator eventAggregator, DataService<Donatore> dataService, ViewModelFactory<Donatore, DonatoreViewModel> viewModelFactory) {
             _eventAggregator = eventAggregator;
-            _donatoreService = donatoreService;
+            _dataService = dataService;
+            _viewModelFactory = viewModelFactory;
 
+            _eventAggregator.Subscribe(this);
+            
             DisplayName = "Donatori";
 
-            ListaDonatori = _donatoreService.GetViewModels();
-            Debug.Assert(ListaDonatori == _donatoreService.GetViewModels());
+            IEnumerable<Donatore> models = _dataService.GetModels();
+            ListaDonatori = new BindableCollection<DonatoreViewModel>(_viewModelFactory.CreateViewModel(models.ToArray()));
+
             AddDonatoreTab();
         }
         #endregion
@@ -44,5 +49,13 @@ namespace BloodBank.ViewModel.ViewModels {
         }
         #endregion
 
+        public void Handle(AddViewModelEvent<Donatore, DonatoreViewModel> message) {
+            ListaDonatori.Add(message.ViewModel);
+        }
+
+        public void FaccioFintaDiFareQualcosa()
+        {
+            Console.WriteLine("Click");
+        }
     }
 }

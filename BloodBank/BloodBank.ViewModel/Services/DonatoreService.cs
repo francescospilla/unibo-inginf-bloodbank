@@ -8,7 +8,7 @@ using BloodBank.Model.Sangue;
 using BloodBank.ViewModel.ViewModels;
 
 namespace BloodBank.ViewModel.Services {
-    public class DonatoreService : DataService<Donatore, DonatoreViewModel> {
+    public class DonatoreService : DataService<Donatore> {
         static readonly IList<Donatore> Items = new List<Donatore>() {
                 new Donatore(new Contatto("Pasquale", "Cafiero", Sesso.Maschio, new DateTime(1971, 12, 24), "DQCSRN36T14A704A", "Via Capo di Monte, 33", "Bologna", "Italia", "12345" ), GruppoSanguigno.AB_Neg, true),
                 new Donatore(new Contatto("Ginevra", "Rossi", Sesso.Femmina, new DateTime(1994, 06, 12), "NDUYTG69C71H501J", "Sotto a un ponte", "Bologna", "Italia", "12341" ), GruppoSanguigno.O_Pos, false),

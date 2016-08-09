@@ -43,6 +43,7 @@ namespace BloodBank.ViewModel.ViewModels {
     }
 
     public static class TabWrapperFactory<TScreen> where TScreen : IScreen {
+
         public static Func<TabWrapperViewModel> CreateEmptyTab = () => {
             TScreen viewmodel = IoC.Get<TScreen>();
             return CreateTab(viewmodel);

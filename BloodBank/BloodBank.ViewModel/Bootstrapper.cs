@@ -14,7 +14,7 @@ namespace BloodBank.ViewModel {
             base.ConfigureIoC(builder);
             builder.Assemblies.AddRange(new[] {Assembly.Load("BloodBank.View") });
             builder.ConfigureForFluentValidation("BloodBank.Validation");
-            builder.Bind(typeof(DataService<,>)).ToAllImplementations().InSingletonScope();
+            builder.Bind(typeof(DataService<>)).ToAllImplementations().InSingletonScope();
         }
 
         protected override void Configure() {

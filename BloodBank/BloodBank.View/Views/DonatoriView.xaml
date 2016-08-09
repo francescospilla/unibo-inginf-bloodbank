@@ -51,9 +51,11 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <controls:FilterControl Header="Ricerca..."
+<!--                    <controls:FilterControl Header="Ricerca..."
                             TargetControl="{Binding ElementName=ListaDonatoriListBox}"
                             FilterTextBindingPath="StringaRicerca"/>
+                    -->
+                    <Button Command="{s:Action FaccioFintaDiFareQualcosa}">REFRESH</Button>
 
                     <ListBox Grid.Row="1" x:Name="ListaDonatoriListBox" ItemsSource="{Binding Source={StaticResource ListaDonatoriOrdinata}}" HorizontalContentAlignment="Stretch" Margin="0 10 0 0">
                         <ListBox.ItemTemplate>

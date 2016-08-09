@@ -8,7 +8,7 @@ using Stylet;
 namespace BloodBank.ViewModel {
 
     public interface IViewModel<TModel> : IScreen {
-        TModel Model { get; set; }
+        TModel Model { get; }
         bool IsInitialized { get; }
     }
 }

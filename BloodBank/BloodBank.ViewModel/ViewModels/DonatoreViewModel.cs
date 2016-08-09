@@ -5,6 +5,7 @@ using BloodBank.Core.Extensions;
 using BloodBank.Model;
 using BloodBank.Model.Donatori;
 using BloodBank.Model.Sangue;
+using BloodBank.ViewModel.Events;
 using BloodBank.ViewModel.Services;
 using PropertyChanged;
 using Stylet;
@@ -13,11 +14,20 @@ namespace BloodBank.ViewModel.ViewModels {
 
     [ImplementPropertyChanged]
     public class DonatoreViewModel : EditableViewModel<Donatore>, IDonatore {
-        public override Action<IMappingOperationOptions> MappingOpts { get; }
+
+        protected ViewModelFactory<Donatore, DonatoreViewModel> ViewModelFactory { get; }
+        public sealed override Action<IMappingOperationOptions> MappingOpts { get; }
+
+        public override void AddModel(Donatore model) {
+            DataService.AddModel(model);
+            DonatoreViewModel newViewModel = ViewModelFactory.CreateViewModel(model);
+            EventAggregator.PublishOnUIThread(new AddViewModelEvent<Donatore, DonatoreViewModel>(newViewModel));
+        }
 
         #region Constructors
-        public DonatoreViewModel(IEventAggregator eventAggregator, DataService<Donatore, DonatoreViewModel> dataService, IModelValidator<DonatoreViewModel> validator, Donatore donatore = null) : base(eventAggregator, dataService, validator, donatore) {
+        public DonatoreViewModel(IEventAggregator eventAggregator, DataService<Donatore> dataService, ViewModelFactory<Donatore, DonatoreViewModel> viewModelFactory, IModelValidator<DonatoreViewModel> validator, Donatore donatore = null) : base(eventAggregator, dataService, validator, donatore) {
             MappingOpts = opts => opts.ConstructServicesUsing(type => new Donatore(new Contatto(Nome, Cognome, Sesso, DataNascita, CodiceFiscale, Indirizzo, Città, Stato, CodicePostale, Telefono, Email), GruppoSanguigno, Attivo));
+            ViewModelFactory = viewModelFactory;
         }
         #endregion
 
@@ -29,7 +39,7 @@ namespace BloodBank.ViewModel.ViewModels {
 
         // TODO: Aggiustare?
         public string StringaRicerca
-            => NomeCognome + " " + "s:"+Sesso + " " + "cf:"+CodiceFiscale + " " + "gs:"+GruppoSanguigno + " " + "i:"+Idoneità + " " + (Attivo? "a:Attivo" : "a:NonAttivo") ;
+            => NomeCognome + " " + "s:" + Sesso + " " + "cf:" + CodiceFiscale + " " + "gs:" + GruppoSanguigno + " " + "i:" + Idoneità + " " + (Attivo ? "a:Attivo" : "a:NonAttivo");
 
         public string Nome { get; set; }
         public string Cognome { get; set; }
