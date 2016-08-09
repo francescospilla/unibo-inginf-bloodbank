@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
 using System.Linq;
 using BloodBank.Model.Donatori;
-using BloodBank.Model.Sangue;
 using BloodBank.ViewModel.Events;
 using BloodBank.ViewModel.Services;
 using PropertyChanged;

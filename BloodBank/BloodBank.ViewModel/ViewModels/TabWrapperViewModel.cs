@@ -1,5 +1,3 @@
-using System;
-using BloodBank.ViewModel.Services;
 using PropertyChanged;
 using Stylet;
 

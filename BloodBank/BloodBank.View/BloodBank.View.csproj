@@ -82,6 +82,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Behaviors\MultiSelectionBehavior.cs" />
     <Compile Include="Converters\StringToPackIconConverter.cs" />
     <Compile Include="UserControls\DoubleClickSelectorItem.cs" />
     <Compile Include="UserControls\FilterControl.cs" />
@@ -100,6 +101,9 @@
     </Compile>
     <Compile Include="UserControls\IntegerTextBox.cs" />
     <Compile Include="UserControls\LayoutSetter.cs" />
+    <Compile Include="Views\QuestionarioView.xaml.cs">
+      <DependentUpon>QuestionarioView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\TabWrapperView.xaml.cs">
       <DependentUpon>TabWrapperView.xaml</DependentUpon>
     </Compile>
@@ -139,6 +143,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\QuestionarioView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\TabWrapperView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -176,6 +184,10 @@
     <ProjectReference Include="..\BloodBank.Core\BloodBank.Core.csproj">
       <Project>{7fb4caf6-148f-424e-bfde-d117f13de185}</Project>
       <Name>BloodBank.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BloodBank.Model\BloodBank.Model.csproj">
+      <Project>{85DEBB74-1F91-474F-9F84-592A873573BA}</Project>
+      <Name>BloodBank.Model</Name>
     </ProjectReference>
     <ProjectReference Include="..\BloodBank.ViewModel\BloodBank.ViewModel.csproj">
       <Project>{D950CEA9-77F9-42D8-B7E2-B61748BB38A7}</Project>

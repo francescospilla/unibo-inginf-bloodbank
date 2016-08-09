@@ -2,10 +2,10 @@
 
 namespace BloodBank.View.Views {
     /// <summary>
-    /// Interaction logic for TabWrapperView.xaml
+    /// Interaction logic for QuestionarioView.xaml
     /// </summary>
-    public partial class TabWrapperView : UserControl {
-        public TabWrapperView() {
+    public partial class QuestionarioView : UserControl {
+        public QuestionarioView() {
             InitializeComponent();
         }
     }

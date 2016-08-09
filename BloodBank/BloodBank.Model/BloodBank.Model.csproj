@@ -49,6 +49,7 @@
     <Compile Include="Donazioni\Donazione.cs" />
     <Compile Include="Donazioni\TipoDonazione.cs" />
     <Compile Include="Idoneità.cs" />
+    <Compile Include="Indagini\IListaIndagini.cs" />
     <Compile Include="Indagini\Indagine.cs" />
     <Compile Include="Indagini\ListaIndagini.cs" />
     <Compile Include="Indagini\Tipi\IndagineBoolean.cs" />

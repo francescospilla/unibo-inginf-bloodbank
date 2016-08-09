@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="Donatori\ContattoValidation.cs" />
     <Compile Include="Donatori\DonatoreValidation.cs" />
+    <Compile Include="Indagini\ListaIndaginiValidation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -62,6 +63,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>

@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using AutoMapper;
 using BloodBank.Core.Extensions;
 using BloodBank.Model;
 using BloodBank.Model.Donatori;
 using BloodBank.Model.Sangue;
-using BloodBank.ViewModel.Events;
 using BloodBank.ViewModel.Services;
 using PropertyChanged;
 using Stylet;
@@ -14,7 +12,6 @@ namespace BloodBank.ViewModel.ViewModels {
 
     [ImplementPropertyChanged]
     public class DonatoreViewModel : EditableViewModel<Donatore>, IDonatore {
-        public sealed override Action<IMappingOperationOptions> MappingOpts { get; }
 
         public override void AddModel(Donatore model) {
             DataService.AddModel(model);
@@ -22,7 +19,6 @@ namespace BloodBank.ViewModel.ViewModels {
 
         #region Constructors
         public DonatoreViewModel(IEventAggregator eventAggregator, IDataService<Donatore> dataService, IModelValidator<IDonatore> validator, Donatore donatore = null) : base(eventAggregator, dataService, validator, donatore) {
-            MappingOpts = opts => opts.ConstructServicesUsing(type => new Donatore(new Contatto(Nome, Cognome, Sesso, DataNascita, CodiceFiscale, Indirizzo, Città, Stato, CodicePostale, Telefono, Email), GruppoSanguigno, Attivo));
         }
         #endregion
 
@@ -38,8 +34,8 @@ namespace BloodBank.ViewModel.ViewModels {
         public string Nome { get; set; }
         public string Cognome { get; set; }
         public Sesso Sesso { get; set; }
-        public string CodiceFiscale { get; set; }
         public DateTime DataNascita { get; set; } = DateTime.Today;
+        public string CodiceFiscale { get; set; }
         public string Indirizzo { get; set; }
         public string Città { get; set; }
         public string Stato { get; set; }
@@ -55,5 +51,40 @@ namespace BloodBank.ViewModel.ViewModels {
         public IEnumerable<GruppoSanguigno> GruppoSanguignoEnumerable { get; } = EnumExtensions.Values<GruppoSanguigno>();
         public IEnumerable<Idoneità> IdoneitàEnumerable { get; } = EnumExtensions.Values<Idoneità>();
         public IEnumerable<bool> AttivoEnumerable { get; } = new[] { true, false };
+
+        #region Mappings
+        protected override void SyncModelToViewModel()
+        {
+            Nome = Model.Nome;
+            Cognome = Model.Cognome;
+            Sesso = Model.Sesso;
+            DataNascita = Model.DataNascita;
+            CodiceFiscale = Model.CodiceFiscale;
+            Indirizzo = Model.Indirizzo;
+            Città = Model.Città;
+            Stato = Model.Stato;
+            CodicePostale = Model.CodicePostale;
+            Telefono = Model.Telefono;
+            Email = Model.Email;
+            GruppoSanguigno = Model.GruppoSanguigno;
+            Idoneità = Model.Idoneità;
+            Attivo = Model.Attivo;
+        }
+
+        protected override Donatore CreateModelFromViewModel() {
+            return new Donatore(new Contatto(Nome, Cognome, Sesso, DataNascita, CodiceFiscale, Indirizzo, Città, Stato, CodicePostale, Telefono, Email), GruppoSanguigno, Attivo);
+        }
+
+        protected override void SyncViewModelToModel() {
+            Model.Indirizzo = Indirizzo;
+            Model.Città = Città;
+            Model.Stato = Stato;
+            Model.CodicePostale = CodicePostale;
+            Model.Telefono = Telefono;
+            Model.Email = Email;
+            Model.Attivo = Attivo;
+        }
+        #endregion
+
     }
 }

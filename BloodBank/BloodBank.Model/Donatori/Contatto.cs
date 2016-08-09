@@ -13,8 +13,8 @@ namespace BloodBank.Model.Donatori {
             Nome = nome;
             Cognome = cognome;
             Sesso = sesso;
-            CodiceFiscale = codiceFiscale;
             DataNascita = dataNascita.Date;
+            CodiceFiscale = codiceFiscale;
             Indirizzo = indirizzo;
             Città = città;
             Stato = stato;
@@ -26,8 +26,8 @@ namespace BloodBank.Model.Donatori {
         public string Nome { get; }
         public string Cognome { get; }
         public Sesso Sesso { get; }
-        public string CodiceFiscale { get; }
         public DateTime DataNascita { get; }
+        public string CodiceFiscale { get; }
         public string Indirizzo { get; set; }
         public string Città { get; set; }
         public string Stato { get; set; }

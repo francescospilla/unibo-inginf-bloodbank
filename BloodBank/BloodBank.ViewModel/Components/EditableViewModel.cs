@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using AutoMapper;
-using BloodBank.Model.Donatori;
-using BloodBank.ViewModel.Events;
+﻿using System.Collections.Generic;
 using BloodBank.ViewModel.Services;
-using BloodBank.ViewModel.ViewModels;
 using PropertyChanged;
 using Stylet;
 
@@ -24,8 +19,10 @@ namespace BloodBank.ViewModel {
             EventAggregator = eventAggregator;
             DataService = dataService;
             Model = model;
-            AutoValidate = true;
-            Validate();
+            if (validator != null) {
+                AutoValidate = true;
+                Validate();
+            }
             IsChanged = false;
         }
         #endregion
@@ -36,15 +33,12 @@ namespace BloodBank.ViewModel {
             get { return _model; }
             set {
                 _model = value;
-                Mapper.Map(_model, this);
+                SyncModelToViewModel();
             }
         }
 
         public bool IsInitialized { get { return Model != null; } }
-
         public bool IsChanged { get; set; }
-        public abstract Action<IMappingOperationOptions> MappingOpts { get; }
-
         #endregion
 
         protected override void OnValidationStateChanged(IEnumerable<string> changedProperties) {
@@ -55,29 +49,26 @@ namespace BloodBank.ViewModel {
         }
 
         #region Actions
-
-        #region ForceValidation
-        public void ForceValidation() {
-            Validate();
-        }
-        #endregion
-
+        
         #region Save
         public bool CanSave {
             get { return IsChanged && !HasErrors; }
         }
 
         public void Save() {
-            if (!Validate()) return;
-            if (!IsInitialized) {
-                Model = Mapper.Map<TModel>(this, MappingOpts);
+            if (Validator != null && !Validate()) return;
+            if (!IsInitialized)
+            {
+                Model = CreateModelFromViewModel();
                 // Fody can't weave other assemblies, so we have to manually raise this
                 NotifyOfPropertyChange(() => DisplayName);
                 AddModel(Model);
-            } else
-                Mapper.Map(this, Model);
+            }
+            else
+                SyncViewModelToModel();
             IsChanged = false;
         }
+
         #endregion
 
         #region Cancel
@@ -85,10 +76,16 @@ namespace BloodBank.ViewModel {
             get { return IsInitialized && IsChanged; }
         }
 
-        public void Cancel() {
-            Mapper.Map(Model, this);
+        public void Cancel()
+        {
+            SyncModelToViewModel();
             IsChanged = false;
         }
+
+        protected abstract void SyncModelToViewModel();
+        protected abstract TModel CreateModelFromViewModel();
+        protected abstract void SyncViewModelToModel();
+
         #endregion
 
         #endregion

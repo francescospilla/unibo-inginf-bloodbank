@@ -6,15 +6,18 @@ using BloodBank.Model.Tests;
 
 namespace BloodBank.Model.Indagini {
 
-    public abstract class ListaIndagini : IEnumerable<Indagine> {
-
-        public List<Indagine> Indagini { get; }
+    public abstract class ListaIndagini : IEnumerable<Indagine>, IListaIndagini {
+        private readonly List<Indagine> _indagini;
 
         protected ListaIndagini(string nome) {
             Nome = nome;
-            Indagini = new List<Indagine>();
+            _indagini = new List<Indagine>();
             DataCreazione = DateTime.Now;
             DataUltimaModifica = DataCreazione;
+        }
+
+        public IEnumerable<Indagine> Indagini {
+            get { return _indagini; }
         }
 
         public string Nome { get; set; }
@@ -25,7 +28,7 @@ namespace BloodBank.Model.Indagini {
             if (Indagini.Contains(obj))
                 return false;
 
-            Indagini.Add(obj);
+            _indagini.Add(obj);
             DataUltimaModifica = DateTime.Now;
             return true;
         }
@@ -36,13 +39,13 @@ namespace BloodBank.Model.Indagini {
             if (indagini.All(obj => Indagini.Contains(obj)))
                 return false;
 
-            Indagini.AddRange(indagini);
+            _indagini.AddRange(indagini);
             DataUltimaModifica = DateTime.Now;
             return true;
         }
 
         public bool Remove(Indagine obj) {
-            if (!Indagini.Remove(obj))
+            if (!_indagini.Remove(obj))
                 return false;
 
             DataUltimaModifica = DateTime.Now;
@@ -50,7 +53,7 @@ namespace BloodBank.Model.Indagini {
         }
 
         public void Clear() {
-            Indagini.Clear();
+            _indagini.Clear();
             DataUltimaModifica = DateTime.Now;
         }
 
