@@ -16,22 +16,25 @@ namespace BloodBank.ViewModel.ViewModels {
     public class DonatoriViewModel : Conductor<TabWrapperViewModel>.Collection.OneActive, IHandle<AddViewModelEvent<Donatore, DonatoreViewModel>> {
         private readonly IEventAggregator _eventAggregator;
         private readonly IDataService<Donatore> _dataService;
-        private readonly ViewModelFactory<Donatore, DonatoreViewModel> _viewModelFactory;
+        private readonly Func<DonatoreViewModel> _viewModelFactory;
+        private readonly Func<TabWrapperViewModel> _tabFactory;
 
         public BindableCollection<DonatoreViewModel> ListaDonatori { get; }
 
         #region Constructors
-        public DonatoriViewModel(IEventAggregator eventAggregator, DataService<Donatore> dataService, ViewModelFactory<Donatore, DonatoreViewModel> viewModelFactory) {
+        public DonatoriViewModel(IEventAggregator eventAggregator, IDataService<Donatore> dataService, Func<DonatoreViewModel> viewModelFactory, Func<TabWrapperViewModel> tabFactory ) {
             _eventAggregator = eventAggregator;
             _dataService = dataService;
             _viewModelFactory = viewModelFactory;
+            _tabFactory = tabFactory;
 
             _eventAggregator.Subscribe(this);
-            
+
             DisplayName = "Donatori";
 
             IEnumerable<Donatore> models = _dataService.GetModels();
-            ListaDonatori = new BindableCollection<DonatoreViewModel>(_viewModelFactory.CreateViewModel(models.ToArray()));
+
+            ListaDonatori = new BindableCollection<DonatoreViewModel>(CreateViewModels(models.ToArray()));
 
             AddDonatoreTab();
         }
@@ -42,10 +45,11 @@ namespace BloodBank.ViewModel.ViewModels {
             _eventAggregator.Publish(new NavMenuEvent(NavMenuEvent.NavMenuStates.Open));
         }
 
-        public void AddDonatoreTab(DonatoreViewModel viewModel = null) {
-            TabWrapperViewModel donatoreTab = viewModel != null
-                ? TabWrapperFactory<DonatoreViewModel>.CreateTab(viewModel) : TabWrapperFactory<DonatoreViewModel>.CreateEmptyTab();
-            ActivateItem(donatoreTab);
+        public void AddDonatoreTab(DonatoreViewModel viewModel = null)
+        {
+            TabWrapperViewModel tab = _tabFactory();
+            tab.ActiveItem = viewModel ?? _viewModelFactory();
+            ActivateItem(tab);
         }
         #endregion
 
@@ -53,9 +57,16 @@ namespace BloodBank.ViewModel.ViewModels {
             ListaDonatori.Add(message.ViewModel);
         }
 
-        public void FaccioFintaDiFareQualcosa()
-        {
+        public void FaccioFintaDiFareQualcosa() {
             Console.WriteLine("Click");
+        }
+
+        private IEnumerable<DonatoreViewModel> CreateViewModels(params Donatore[] models) {
+            return models.Select(donatore => {
+                DonatoreViewModel vm = _viewModelFactory();
+                vm.Model = donatore;
+                return vm;
+            });
         }
     }
 }

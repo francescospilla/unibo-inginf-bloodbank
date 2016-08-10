@@ -65,9 +65,6 @@
     <Compile Include="Services\DataService.cs" />
     <Compile Include="Services\DonatoreService.cs" />
     <Compile Include="Services\IDataService.cs" />
-    <Compile Include="Services\IoC.cs" />
-    <Compile Include="Services\IViewModelFactory.cs" />
-    <Compile Include="Services\ViewModelFactory.cs" />
     <Compile Include="ViewModels\DonazioniViewModel.cs" />
     <Compile Include="ViewModels\DonatoriViewModel.cs" />
     <Compile Include="Components\EditableViewModel.cs" />

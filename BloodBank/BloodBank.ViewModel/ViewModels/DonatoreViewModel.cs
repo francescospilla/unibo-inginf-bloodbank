@@ -14,20 +14,15 @@ namespace BloodBank.ViewModel.ViewModels {
 
     [ImplementPropertyChanged]
     public class DonatoreViewModel : EditableViewModel<Donatore>, IDonatore {
-
-        protected ViewModelFactory<Donatore, DonatoreViewModel> ViewModelFactory { get; }
         public sealed override Action<IMappingOperationOptions> MappingOpts { get; }
 
         public override void AddModel(Donatore model) {
             DataService.AddModel(model);
-            DonatoreViewModel newViewModel = ViewModelFactory.CreateViewModel(model);
-            EventAggregator.PublishOnUIThread(new AddViewModelEvent<Donatore, DonatoreViewModel>(newViewModel));
         }
 
         #region Constructors
-        public DonatoreViewModel(IEventAggregator eventAggregator, DataService<Donatore> dataService, ViewModelFactory<Donatore, DonatoreViewModel> viewModelFactory, IModelValidator<DonatoreViewModel> validator, Donatore donatore = null) : base(eventAggregator, dataService, validator, donatore) {
+        public DonatoreViewModel(IEventAggregator eventAggregator, IDataService<Donatore> dataService, IModelValidator<DonatoreViewModel> validator, Donatore donatore = null) : base(eventAggregator, dataService, validator, donatore) {
             MappingOpts = opts => opts.ConstructServicesUsing(type => new Donatore(new Contatto(Nome, Cognome, Sesso, DataNascita, CodiceFiscale, Indirizzo, Città, Stato, CodicePostale, Telefono, Email), GruppoSanguigno, Attivo));
-            ViewModelFactory = viewModelFactory;
         }
         #endregion
 

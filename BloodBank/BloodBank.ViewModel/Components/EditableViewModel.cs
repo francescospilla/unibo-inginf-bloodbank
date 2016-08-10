@@ -34,7 +34,7 @@ namespace BloodBank.ViewModel {
         private TModel _model;
         public TModel Model {
             get { return _model; }
-            private set {
+            set {
                 _model = value;
                 Mapper.Map(_model, this);
             }

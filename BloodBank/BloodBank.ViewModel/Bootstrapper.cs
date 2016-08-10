@@ -14,14 +14,11 @@ namespace BloodBank.ViewModel {
             base.ConfigureIoC(builder);
             builder.Assemblies.AddRange(new[] {Assembly.Load("BloodBank.View") });
             builder.ConfigureForFluentValidation("BloodBank.Validation");
-            builder.Bind(typeof(DataService<>)).ToAllImplementations().InSingletonScope();
+            builder.Bind(typeof(IDataService<>)).ToAllImplementations().InSingletonScope();
         }
 
         protected override void Configure() {
             base.Configure();
-
-            IoC.GetInstance = Container.Get;
-            IoC.BuildUp = Container.BuildUp;
 
             ViewManager viewManager = Container.Get<ViewManager>();
             viewManager.ViewAssemblies.Add(Assembly.Load("BloodBank.View"));
