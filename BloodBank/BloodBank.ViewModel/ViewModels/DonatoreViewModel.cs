@@ -21,7 +21,7 @@ namespace BloodBank.ViewModel.ViewModels {
         }
 
         #region Constructors
-        public DonatoreViewModel(IEventAggregator eventAggregator, IDataService<Donatore> dataService, IModelValidator<DonatoreViewModel> validator, Donatore donatore = null) : base(eventAggregator, dataService, validator, donatore) {
+        public DonatoreViewModel(IEventAggregator eventAggregator, IDataService<Donatore> dataService, IModelValidator<IDonatore> validator, Donatore donatore = null) : base(eventAggregator, dataService, validator, donatore) {
             MappingOpts = opts => opts.ConstructServicesUsing(type => new Donatore(new Contatto(Nome, Cognome, Sesso, DataNascita, CodiceFiscale, Indirizzo, Città, Stato, CodicePostale, Telefono, Email), GruppoSanguigno, Attivo));
         }
         #endregion

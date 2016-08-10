@@ -7,16 +7,16 @@ using FluentValidation.Results;
 
 namespace BloodBank.Validation.Donatori {
 
-    public abstract class ContattoValidator<T> : AbstractValidator<T> where T : IContatto {
+    public class ContattoValidator : AbstractValidator<IContatto> {
 
-        protected ContattoValidator() {
+        public ContattoValidator(CodiceFiscaleValidator codiceFiscaleValidator) {
             RuleFor(c => c.Nome).NotEmpty();
             RuleFor(c => c.Cognome).NotEmpty();
             RuleFor(c => c.Sesso).NotNull().IsInEnum();
             RuleFor(c => c.CodiceFiscale)
                 .NotEmpty()
                 .Length(CodiceFiscaleValidator.ExpectedLength)
-                .SetValidator(CodiceFiscaleValidator.Instance);
+                .SetValidator(codiceFiscaleValidator);
             RuleFor(c => c.DataNascita).NotNull().LessThanOrEqualTo(DateTime.Now);
             RuleFor(c => c.Indirizzo).NotEmpty();
             RuleFor(c => c.Città).NotEmpty();
@@ -34,16 +34,14 @@ namespace BloodBank.Validation.Donatori {
     }
 
     public class CodiceFiscaleValidator : AbstractValidator<string> {
-        private static CodiceFiscaleValidator _instance;
-        public static CodiceFiscaleValidator Instance => _instance ?? (_instance = new CodiceFiscaleValidator());
 
-        private CodiceFiscaleValidator() {
+        public CodiceFiscaleValidator() {
             Custom(ValidateCodiceFiscale);
         }
 
-        public static readonly int ExpectedLength = 16;
+        public const int ExpectedLength = 16;
 
-        private static ValidationFailure ValidateCodiceFiscale(string codiceFiscale) {
+        private ValidationFailure ValidateCodiceFiscale(string codiceFiscale) {
 
             ValidationFailure errorResult = new ValidationFailure("Codice Fiscale", "Il codice fiscale non rispetta la validazione formale.");
 
