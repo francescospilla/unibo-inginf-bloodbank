@@ -51,10 +51,6 @@ namespace BloodBank.ViewModel.ViewModels {
         }
         #endregion
 
-        public void FaccioFintaDiFareQualcosa() {
-            Console.WriteLine("Click");
-        }
-
         private IEnumerable<DonatoreViewModel> CreateViewModels(params Donatore[] models) {
             return models.Select(donatore => {
                 DonatoreViewModel vm = _viewModelFactory();

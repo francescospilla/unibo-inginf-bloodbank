@@ -33,8 +33,7 @@ namespace BloodBank.ViewModel.ViewModels {
         public string CognomeNome => Cognome + " " + Nome;
 
         // TODO: Aggiustare?
-        public string StringaRicerca
-            => NomeCognome + " " + "s:" + Sesso + " " + "cf:" + CodiceFiscale + " " + "gs:" + GruppoSanguigno + " " + "i:" + Idoneità + " " + (Attivo ? "a:Attivo" : "a:NonAttivo");
+        public string StringaRicerca => DisplayName;
 
         public string Nome { get; set; }
         public string Cognome { get; set; }
