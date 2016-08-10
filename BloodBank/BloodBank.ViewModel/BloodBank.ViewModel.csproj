@@ -60,8 +60,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bootstrapper.cs" />
-    <Compile Include="Components\IViewModel.cs" />
-    <Compile Include="Events\AddViewModelEvent.cs" />
     <Compile Include="Services\DataService.cs" />
     <Compile Include="Services\DonatoreService.cs" />
     <Compile Include="Services\IDataService.cs" />
@@ -69,7 +67,6 @@
     <Compile Include="ViewModels\DonatoriViewModel.cs" />
     <Compile Include="Components\EditableViewModel.cs" />
     <Compile Include="Events\NavMenuEvent.cs" />
-    <Compile Include="Components\IEditableViewModel.cs" />
     <Compile Include="Components\NavigationMenuItem.cs" />
     <Compile Include="ShellViewModel.cs" />
     <Compile Include="ViewModels\DonatoreViewModel.cs" />

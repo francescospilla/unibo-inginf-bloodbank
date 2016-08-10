@@ -11,7 +11,7 @@ using Stylet;
 namespace BloodBank.ViewModel {
 
     [ImplementPropertyChanged]
-    public abstract class EditableViewModel<TModel> : Screen, IEditableViewModel<TModel> where TModel : class {
+    public abstract class EditableViewModel<TModel> : Screen where TModel : class {
         protected readonly IEventAggregator EventAggregator;
         protected readonly IDataService<TModel> DataService;
 

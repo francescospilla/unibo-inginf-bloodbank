@@ -13,7 +13,7 @@ using Stylet;
 namespace BloodBank.ViewModel.ViewModels {
 
     [ImplementPropertyChanged]
-    public class DonatoriViewModel : Conductor<TabWrapperViewModel>.Collection.OneActive, IHandle<AddViewModelEvent<Donatore, DonatoreViewModel>> {
+    public class DonatoriViewModel : Conductor<TabWrapperViewModel>.Collection.OneActive {
         private readonly IEventAggregator _eventAggregator;
         private readonly IDataService<Donatore> _dataService;
         private readonly Func<DonatoreViewModel> _viewModelFactory;
@@ -27,8 +27,6 @@ namespace BloodBank.ViewModel.ViewModels {
             _dataService = dataService;
             _viewModelFactory = viewModelFactory;
             _tabFactory = tabFactory;
-
-            _eventAggregator.Subscribe(this);
 
             DisplayName = "Donatori";
 
@@ -52,10 +50,6 @@ namespace BloodBank.ViewModel.ViewModels {
             ActivateItem(tab);
         }
         #endregion
-
-        public void Handle(AddViewModelEvent<Donatore, DonatoreViewModel> message) {
-            ListaDonatori.Add(message.ViewModel);
-        }
 
         public void FaccioFintaDiFareQualcosa() {
             Console.WriteLine("Click");
