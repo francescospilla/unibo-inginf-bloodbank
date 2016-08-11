@@ -44,7 +44,7 @@
                 </md:ColorZone>
             </Border>
 
-            <Border Grid.Row="1" Width="250" Background="{DynamicResource MaterialDesignPaper}" BorderThickness="0,0,1,0" BorderBrush="#DDDDDD" Padding="0 6 0 0">
+            <Border Grid.Row="1" Width="250" Background="{DynamicResource MaterialDesignPaper}" BorderThickness="0,0,1,0" BorderBrush="{DynamicResource PrimaryHueMidBrush}" Padding="0 6 0 0">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />

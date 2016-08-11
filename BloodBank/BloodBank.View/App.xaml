@@ -74,6 +74,7 @@
 
             <!-- Stylet support for Dragablz -->
             <Style BasedOn="{StaticResource {x:Type dragablz:TabablzControl}}" TargetType="dragablz:TabablzControl" x:Key="StyletConductorTabablzControl">
+                <Setter Property="Background" Value="Transparent" />
                 <Setter Property="ItemsSource" Value="{Binding Items}" />
                 <Setter Property="SelectedItem" Value="{Binding ActiveItem}" />
                 <Setter Property="HeaderItemTemplate">
