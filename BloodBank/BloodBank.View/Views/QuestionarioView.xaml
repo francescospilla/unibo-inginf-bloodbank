@@ -46,7 +46,7 @@
                             </StackPanel>
                         </Grid>
 
-                        <TextBox Grid.Row="2" Grid.ColumnSpan="4" Text="{Binding Nome, UpdateSourceTrigger=PropertyChanged}" md:HintAssist.Hint="Nome" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="16 0" />
+                        <TextBox Grid.Row="2" Grid.ColumnSpan="3" Text="{Binding Nome, UpdateSourceTrigger=PropertyChanged}" md:HintAssist.Hint="Nome" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10 0" />
 
                         <GroupBox Grid.Row="4" Grid.Column="0" Header="Disponibili:" Style="{DynamicResource MaterialDesignCardGroupBox}" Margin="16" Padding="0">
                             <GroupBox.HeaderTemplate>

@@ -4,7 +4,7 @@ using BloodBank.Core.Extensions;
 using BloodBank.Model;
 using BloodBank.Model.Donatori;
 using BloodBank.Model.Sangue;
-using BloodBank.ViewModel.Services;
+using BloodBank.Model.Service;
 using PropertyChanged;
 using Stylet;
 

@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using BloodBank.Model.Donatori;
 using BloodBank.Model.Sangue;
-using BloodBank.Model.Service;
 
-namespace BloodBank.ViewModel.Services {
+namespace BloodBank.Model.Service {
     public class DonatoreService : DataService<Donatore> {
         private static readonly IList<Donatore> Items = new List<Donatore>() {
                 new Donatore(new Contatto("Pasquale", "Cafiero", Sesso.Maschio, new DateTime(1971, 12, 24), "DQCSRN36T14A704A", "Via Capo di Monte, 33", "Bologna", "Italia", "12345" ), GruppoSanguigno.AB_Neg, true),

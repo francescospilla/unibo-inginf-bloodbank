@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using BloodBank.Model.Donatori;
+using BloodBank.Model.Service;
 using BloodBank.ViewModel.Events;
-using BloodBank.ViewModel.Services;
 using PropertyChanged;
 using Stylet;
 

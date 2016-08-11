@@ -1,8 +1,8 @@
 using System;
 using BloodBank.Core.Extensions;
 using BloodBank.Model.Donatori;
+using BloodBank.Model.Service;
 using BloodBank.Validation.Donatori.Rules;
-using BloodBank.ViewModel.Services;
 using FluentValidation;
 
 namespace BloodBank.Validation.Donatori {

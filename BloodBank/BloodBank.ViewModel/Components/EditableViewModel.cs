@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using BloodBank.ViewModel.Services;
+using BloodBank.Model.Service;
 using PropertyChanged;
 using Stylet;
 

@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using BloodBank.ViewModel.Services;
 
 namespace BloodBank.Model.Service {
 

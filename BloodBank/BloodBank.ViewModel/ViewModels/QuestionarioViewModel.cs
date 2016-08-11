@@ -1,6 +1,6 @@
 ﻿using BloodBank.Model.Indagini;
+using BloodBank.Model.Service;
 using BloodBank.Model.Tests;
-using BloodBank.ViewModel.Services;
 using Stylet;
 
 namespace BloodBank.ViewModel.ViewModels {

@@ -1,10 +1,8 @@
 ﻿using System.Collections.Generic;
-using BloodBank.Model;
 using BloodBank.Model.Indagini;
 using BloodBank.Model.Indagini.Tipi;
-using BloodBank.Model.Service;
 
-namespace BloodBank.ViewModel.Services {
+namespace BloodBank.Model.Service {
     public class IndagineService : DataService<Indagine> {
         private static readonly IList<Indagine> Items = new List<Indagine>() {
                 new IndagineBoolean("Domanda 1", Idoneità.NonIdoneo, true),

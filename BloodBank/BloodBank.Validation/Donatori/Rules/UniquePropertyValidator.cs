@@ -35,7 +35,7 @@ namespace BloodBank.Validation.Donatori.Rules {
             // multiple items match the supplied predicate
             // http://msdn.microsoft.com/en-us/library/vstudio/bb342451%28v=vs.100%29.aspx
             T matchingEntity = entities.SingleOrDefault(e => _propertyAccessorFunc(e) == propertyValue);
-            return matchingEntity == null;
+            return matchingEntity == null || matchingEntity.Equals(entity);
 
         }
     }

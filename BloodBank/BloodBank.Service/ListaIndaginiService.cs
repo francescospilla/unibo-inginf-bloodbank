@@ -2,10 +2,9 @@
 using System.Linq;
 using BloodBank.Core.Extensions;
 using BloodBank.Model.Indagini;
-using BloodBank.Model.Service;
 using BloodBank.Model.Tests;
 
-namespace BloodBank.ViewModel.Services {
+namespace BloodBank.Model.Service {
     public abstract class ListaIndaginiService<T> : DataService<ListaIndagini<T>> where T : ListaVoci {
         protected ListaIndaginiService(IList<ListaIndagini<T>> items) : base(items){}
     }

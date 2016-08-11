@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using BloodBank.Model.Indagini;
+using BloodBank.Model.Service;
 using BloodBank.Model.Tests;
-using BloodBank.ViewModel.Services;
 using PropertyChanged;
 using Stylet;
 

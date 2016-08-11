@@ -1,5 +1,5 @@
 ﻿using System.Reflection;
-using BloodBank.ViewModel.Services;
+using BloodBank.Model.Service;
 using Stylet;
 using Stylet.FluentValidation;
 using StyletIoC;
