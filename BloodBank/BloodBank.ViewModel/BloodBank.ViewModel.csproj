@@ -56,11 +56,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bootstrapper.cs" />
-    <Compile Include="Services\DataService.cs" />
-    <Compile Include="Services\ListaIndaginiService.cs" />
-    <Compile Include="Services\IndagineService.cs" />
-    <Compile Include="Services\DonatoreService.cs" />
-    <Compile Include="Services\IDataService.cs" />
     <Compile Include="ViewModels\DonazioniViewModel.cs" />
     <Compile Include="ViewModels\DonatoriViewModel.cs" />
     <Compile Include="Components\EditableViewModel.cs" />
@@ -81,6 +76,10 @@
     <ProjectReference Include="..\BloodBank.Model\BloodBank.Model.csproj">
       <Project>{85debb74-1f91-474f-9f84-592a873573ba}</Project>
       <Name>BloodBank.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BloodBank.Service\BloodBank.Model.Service.csproj">
+      <Project>{857a358a-2cf0-45f8-8ad9-2f63918aeba4}</Project>
+      <Name>BloodBank.Model.Service</Name>
     </ProjectReference>
     <ProjectReference Include="..\Stylet.FluentValidation\Stylet.FluentValidation.csproj">
       <Project>{bc9bc04d-1d1a-43a3-be2d-d80509f03e3c}</Project>
@@ -110,18 +109,15 @@
   </Target>
   -->
   <Target Name="AfterPackage" AfterTargets="CopyAllFilesToSingleFolderForPackage" />
-
-<ItemGroup>
+  <ItemGroup>
     <FluentValidationExcludedCultures Include="cs;da;de;en;es;fa;fi;fr;ko;mk;nl;pl;pt;ru;sv;tr;zh-CN">
-        <InProject>false</InProject>
+      <InProject>false</InProject>
     </FluentValidationExcludedCultures>
-</ItemGroup>
-
-<Target Name="RemoveTranslationsAfterBuild" AfterTargets="AfterBuild">
+  </ItemGroup>
+  <Target Name="RemoveTranslationsAfterBuild" AfterTargets="AfterBuild">
     <RemoveDir Directories="@(FluentValidationExcludedCultures->'$(OutputPath)%(Filename)')" />
-</Target>
-
-<Target Name="RemoveTranslationsAfterPackage" AfterTargets="AfterPackage">
+  </Target>
+  <Target Name="RemoveTranslationsAfterPackage" AfterTargets="AfterPackage">
     <RemoveDir Directories="@(FluentValidationExcludedCultures->'$(_PackageTempDir)\$(OutputPath)%(Filename)')" />
-</Target>
+  </Target>
 </Project>

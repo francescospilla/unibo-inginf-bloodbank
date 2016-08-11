@@ -10,9 +10,8 @@ namespace BloodBank.ViewModel {
 
         protected override void ConfigureIoC(IStyletIoCBuilder builder) {
             base.ConfigureIoC(builder);
-
-
-            builder.Assemblies.AddRange(new[] { _mainAssembly });
+            
+            builder.Assemblies.AddRange(new[] { _mainAssembly, Assembly.Load("BloodBank.Model.Service"),  });
             builder.ConfigureForFluentValidation("BloodBank.Validation");
             builder.Bind(typeof(IDataService<>)).ToAllImplementations().InSingletonScope();
         }

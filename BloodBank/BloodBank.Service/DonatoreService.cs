@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using BloodBank.Model.Donatori;
 using BloodBank.Model.Sangue;
+using BloodBank.Model.Service;
 
 namespace BloodBank.ViewModel.Services {
     public class DonatoreService : DataService<Donatore> {

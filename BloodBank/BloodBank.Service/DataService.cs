@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using BloodBank.ViewModel.Services;
 
-namespace BloodBank.ViewModel.Services {
+namespace BloodBank.Model.Service {
 
     public abstract class DataService<TModel> : IDataService<TModel> where TModel : class {
         protected readonly IList<TModel> _models;

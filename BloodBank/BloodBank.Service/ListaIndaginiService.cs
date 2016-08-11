@@ -2,6 +2,7 @@
 using System.Linq;
 using BloodBank.Core.Extensions;
 using BloodBank.Model.Indagini;
+using BloodBank.Model.Service;
 using BloodBank.Model.Tests;
 
 namespace BloodBank.ViewModel.Services {

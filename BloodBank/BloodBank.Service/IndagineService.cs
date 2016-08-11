@@ -2,6 +2,7 @@
 using BloodBank.Model;
 using BloodBank.Model.Indagini;
 using BloodBank.Model.Indagini.Tipi;
+using BloodBank.Model.Service;
 
 namespace BloodBank.ViewModel.Services {
     public class IndagineService : DataService<Indagine> {
