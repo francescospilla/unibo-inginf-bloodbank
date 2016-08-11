@@ -7,16 +7,18 @@ using Stylet;
 namespace BloodBank.ViewModel {
     [ImplementPropertyChanged]
     public class ShellViewModel : Conductor<NavigationMenuItem>.Collection.OneActive, IHandle<NavMenuEvent> {
-        public ShellViewModel(IEventAggregator eventAggregator, DonatoriViewModel donatoriViewModel, DonazioniViewModel donazioniViewModel, QuestionarioViewModel questionarioViewModel, DonatoreViewModel donatoreViewModel)
+        public ShellViewModel(IEventAggregator eventAggregator, DonatoriViewModel donatoriViewModel, DonazioniViewModel donazioniViewModel, QuestionariViewModel questionariViewModel, QuestionarioViewModel questionarioViewModel, AnalisiViewModel analisiViewModel, DonatoreViewModel donatoreViewModel)
         {
             eventAggregator.Subscribe(this);
 
             DisplayName = "BloodBank";
 
             Items.Add(new NavigationMenuItem("Donazioni", "Heart", donazioniViewModel));
+            Items.Add(new NavigationMenuItem("Questionari", "Heart", questionariViewModel));
             Items.Add(new NavigationMenuItem("Donatori", "AccountMultiple", donatoriViewModel));
             Items.Add(new NavigationMenuItem("Donatore", "Account", donatoreViewModel));
             Items.Add(new NavigationMenuItem("Questionario", "Heart", questionarioViewModel));
+            Items.Add(new NavigationMenuItem("Analisi", "Heart", analisiViewModel));
         }
 
         #region NavMenu

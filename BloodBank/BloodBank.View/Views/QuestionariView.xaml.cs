@@ -2,10 +2,10 @@
 
 namespace BloodBank.View.Views {
     /// <summary>
-    /// Interaction logic for QuestionarioView.xaml
+    /// Interaction logic for QuestionariView.xaml
     /// </summary>
-    public partial class QuestionarioView : UserControl {
-        public QuestionarioView() {
+    public partial class QuestionariView : UserControl {
+        public QuestionariView() {
             InitializeComponent();
         }
     }

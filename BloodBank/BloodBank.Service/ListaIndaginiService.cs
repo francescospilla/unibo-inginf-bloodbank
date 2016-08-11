@@ -9,6 +9,18 @@ namespace BloodBank.Model.Service {
         protected ListaIndaginiService(IList<ListaIndagini<T>> items) : base(items){}
     }
 
+    public class AnalisiService : ListaIndaginiService<Analisi> {
+        public AnalisiService(IDataService<Indagine> indagineService) : base(new List<ListaIndagini<Analisi>>()) {
+            Indagine[] indagini = indagineService.GetModels().ToArray();
+
+            for (int i = 0; i < 5; i++) {
+                ListaIndagini<Analisi> li = new ListaIndagini<Analisi>("Analisi #" + (i + 1));
+                li.AddRange(indagini.PickRandom(4));
+                _models.Add(li);
+            }
+        }
+    }
+
     public class QuestionarioService : ListaIndaginiService<Questionario>
     {
         public QuestionarioService(IDataService<Indagine> indagineService) : base(new List<ListaIndagini<Questionario>>())
