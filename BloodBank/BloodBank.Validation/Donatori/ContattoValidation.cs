@@ -4,6 +4,7 @@ using BloodBank.Core.Extensions;
 using BloodBank.Model.Donatori;
 using FluentValidation;
 using FluentValidation.Results;
+using FluentValidation.Validators;
 
 namespace BloodBank.Validation.Donatori {
 
@@ -33,17 +34,18 @@ namespace BloodBank.Validation.Donatori {
         }
     }
 
-    public class CodiceFiscaleValidator : AbstractValidator<string> {
-
-        public CodiceFiscaleValidator() {
-            Custom(ValidateCodiceFiscale);
-        }
-
+    public class CodiceFiscaleValidator : PropertyValidator {
         public const int ExpectedLength = 16;
 
-        private ValidationFailure ValidateCodiceFiscale(string codiceFiscale) {
+        public CodiceFiscaleValidator() : base("'{PropertyName}' non rispetta la validazione formale.") { }
 
-            ValidationFailure errorResult = new ValidationFailure("Codice Fiscale", "Il codice fiscale non rispetta la validazione formale.");
+        #region Overrides of PropertyValidator
+
+        protected override bool IsValid(PropertyValidatorContext context) {
+            string codiceFiscale = context.PropertyValue as string;
+
+            if (string.IsNullOrEmpty(codiceFiscale))
+                return false;
 
             string codicefiscale = codiceFiscale.ToUpper();
             const string listaPosizione = "A0B1C2D3E4F5G6H7I8J9KLMNOPQRSTUVWXYZ";
@@ -54,18 +56,20 @@ namespace BloodBank.Validation.Donatori {
             Regex regex = new Regex(@"^[A-Z]{6}[\d]{2}[A-Z][\d]{2}[A-Z][\d]{3}[A-Z]$");
             Match m = regex.Match(codicefiscale);
 
-            if (!m.Success) return errorResult;
+            if (!m.Success) return false;
             int somma = 0;
             for (int i = 0; i < 15; i++) {
                 char[] c = codicefiscale.Substring(i, 1).ToCharArray();
                 int j = listaPosizione.IndexOf(c[0]);
                 if (j < 0)
-                    return errorResult;
+                    return false;
 
                 somma = (i + 1) % 2 == 0 ? somma + listaPari[j] : somma + listaDispari[j];
             }
-            return listaControllo[somma % 26].ToString() == codicefiscale.Substring(15, 1) ? null : errorResult;
+            return listaControllo[somma % 26].ToString() == codicefiscale.Substring(15, 1) ? true : false;
         }
+
+        #endregion
     }
 
 }

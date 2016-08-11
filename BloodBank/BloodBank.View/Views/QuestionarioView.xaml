@@ -12,99 +12,109 @@
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="800">
     <Grid>
-        <Grid userControls:LayoutSetter.Margin="10 0 10 30"  MaxWidth="1000" MinHeight="400">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="1*" />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition />
-            </Grid.RowDefinitions>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel Margin="0 10">
 
-            <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
-                
-                <TextBox Grid.Column="0" Text="{Binding Nome, UpdateSourceTrigger=PropertyChanged}" FontSize="24" />
-                <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="10 0 0 0">
-                    <TextBlock Text="Modifiche:" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 0 20 0" FontWeight="Bold" />
-                    <Button Style="{DynamicResource MaterialDesignFlatButton}" Content="SALVA" Command="{s:Action Save}"  />
-                    <Button Style="{DynamicResource MaterialDesignFlatButton}" Content="CANCELLA" Command="{s:Action Cancel}" />
-                </StackPanel>
-            </Grid>
+                <md:Card Margin="20 10" Padding="10 0 10 30" MaxWidth="1000">
+                    <Grid userControls:LayoutSetter.Margin="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="20"/>
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
 
-            <GroupBox Grid.Row="2" Grid.Column="0" Header="Disponibili:" Style="{DynamicResource MaterialDesignCardGroupBox}" Margin="16" Padding="0">
-                <GroupBox.HeaderTemplate>
-                    <DataTemplate>
-                        <TextBlock VerticalAlignment="Center" Style="{StaticResource MaterialDesignSubheadingTextBlock}" Text="{Binding}" TextTrimming="CharacterEllipsis" Margin="6"/>
-                    </DataTemplate>
-                </GroupBox.HeaderTemplate>
+                        <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
 
-                <ListBox x:Name="OggettiIndagineNotSelezionateListBox" ItemsSource="{Binding IndaginiNonSelezionate}" SelectionMode="Extended" Background="{DynamicResource MaterialDesignBackground}">
-                    <i:Interaction.Behaviors>
-                        <behaviors:MultiSelectionBehavior SelectedItems="{Binding IndaginiNonSelezionateSelectedItems}" />
-                    </i:Interaction.Behaviors>
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <Grid Margin="8">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition SharedSizeGroup="Checkerz" />
-                                    <ColumnDefinition />
-                                </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Type}" Style="{StaticResource MaterialDesignDisplay1TextBlock}" />
+                            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="10 0 0 0">
+                                <TextBlock Text="Modifiche:" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 0 20 0" FontWeight="Bold" />
+                                <Button Style="{DynamicResource MaterialDesignFlatButton}" Content="SALVA" Command="{s:Action Save}"  />
+                                <Button Style="{DynamicResource MaterialDesignFlatButton}" Content="CANCELLA" Command="{s:Action Cancel}" />
+                            </StackPanel>
+                        </Grid>
 
-                                <CheckBox Grid.Column="0" VerticalAlignment="Center" IsChecked="{Binding IsSelected, RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}, Mode=FindAncestor}}"/>
-                                <TextBlock Grid.Column="1" Text="{Binding ''}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" Margin="4 0 0 0"/>
-                            </Grid>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
-            </GroupBox>
+                        <TextBox Grid.Row="2" Grid.ColumnSpan="4" Text="{Binding Nome, UpdateSourceTrigger=PropertyChanged}" md:HintAssist.Hint="Nome" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="16 0" />
 
-            <GroupBox Grid.Row="2" Grid.Column="2" Header="Selezionati:" Style="{DynamicResource MaterialDesignCardGroupBox}" Margin="10.5,0,10,30" Padding="0">
-                <GroupBox.HeaderTemplate>
-                    <DataTemplate>
-                        <TextBlock VerticalAlignment="Center" Style="{StaticResource MaterialDesignSubheadingTextBlock}" Text="{Binding}" TextTrimming="CharacterEllipsis" Margin="6"/>
-                    </DataTemplate>
-                </GroupBox.HeaderTemplate>
+                        <GroupBox Grid.Row="4" Grid.Column="0" Header="Disponibili:" Style="{DynamicResource MaterialDesignCardGroupBox}" Margin="16" Padding="0">
+                            <GroupBox.HeaderTemplate>
+                                <DataTemplate>
+                                    <TextBlock VerticalAlignment="Center" Style="{StaticResource MaterialDesignSubheadingTextBlock}" Text="{Binding}" TextTrimming="CharacterEllipsis" Margin="6"/>
+                                </DataTemplate>
+                            </GroupBox.HeaderTemplate>
 
-                <ListBox x:Name="OggettiIndaginiListBox" ItemsSource="{Binding Indagini}" SelectionMode="Extended" Background="{DynamicResource MaterialDesignBackground}">
-                    <i:Interaction.Behaviors>
-                        <behaviors:MultiSelectionBehavior SelectedItems="{Binding IndaginiSelectedItems}" />
-                    </i:Interaction.Behaviors>
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <Grid Margin="8">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition SharedSizeGroup="Checkerz" />
-                                    <ColumnDefinition />
-                                </Grid.ColumnDefinitions>
+                            <ListBox x:Name="OggettiIndagineNotSelezionateListBox" ItemsSource="{Binding IndaginiNonSelezionate}" SelectionMode="Extended" Background="{DynamicResource MaterialDesignBackground}">
+                                <i:Interaction.Behaviors>
+                                    <behaviors:MultiSelectionBehavior SelectedItems="{Binding IndaginiNonSelezionateSelectedItems}" />
+                                </i:Interaction.Behaviors>
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid Margin="8">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition SharedSizeGroup="Checkerz" />
+                                                <ColumnDefinition />
+                                            </Grid.ColumnDefinitions>
 
-                                <CheckBox Grid.Column="0" VerticalAlignment="Center" IsChecked="{Binding IsSelected, RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}, Mode=FindAncestor}}"/>
-                                <TextBlock Grid.Column="1" Text="{Binding }" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" Margin="4 0 0 0"/>
-                            </Grid>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
-            </GroupBox>
+                                            <CheckBox Grid.Column="0" VerticalAlignment="Center" IsChecked="{Binding IsSelected, RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}, Mode=FindAncestor}}"/>
+                                            <TextBlock Grid.Column="1" Text="{Binding ''}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" Margin="4 0 0 0"/>
+                                        </Grid>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                        </GroupBox>
+
+                        <GroupBox Grid.Row="4" Grid.Column="2" Header="Selezionati:" Style="{DynamicResource MaterialDesignCardGroupBox}" Margin="16" Padding="0">
+                            <GroupBox.HeaderTemplate>
+                                <DataTemplate>
+                                    <TextBlock VerticalAlignment="Center" Style="{StaticResource MaterialDesignSubheadingTextBlock}" Text="{Binding}" TextTrimming="CharacterEllipsis" Margin="6"/>
+                                </DataTemplate>
+                            </GroupBox.HeaderTemplate>
+
+                            <ListBox x:Name="OggettiIndaginiListBox" ItemsSource="{Binding Indagini}" SelectionMode="Extended" Background="{DynamicResource MaterialDesignBackground}">
+                                <i:Interaction.Behaviors>
+                                    <behaviors:MultiSelectionBehavior SelectedItems="{Binding IndaginiSelectedItems}" />
+                                </i:Interaction.Behaviors>
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid Margin="8">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition SharedSizeGroup="Checkerz" />
+                                                <ColumnDefinition />
+                                            </Grid.ColumnDefinitions>
+
+                                            <CheckBox Grid.Column="0" VerticalAlignment="Center" IsChecked="{Binding IsSelected, RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}, Mode=FindAncestor}}"/>
+                                            <TextBlock Grid.Column="1" Text="{Binding }" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" Margin="4 0 0 0"/>
+                                        </Grid>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                        </GroupBox>
 
 
-            <StackPanel Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,140,9.5,170">
-                <Button ToolTip="Seleziona" Margin="10" Content="&gt;" Command="{s:Action TrasferisciIndaginiDa}" />
-                <Button ToolTip="Deseleziona" Margin="10" Content="&lt;" Command="{s:Action TrasferisciIndaginiA}" />
+                        <StackPanel Grid.Row="4" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,140,9.5,170">
+                            <Button ToolTip="Seleziona" Margin="10" Content="&gt;" Command="{s:Action TrasferisciIndaginiDa}" />
+                            <Button ToolTip="Deseleziona" Margin="10" Content="&lt;" Command="{s:Action TrasferisciIndaginiA}" />
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="4" Grid.Column="3"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,140,10,170">
+                            <Button ToolTip="Sposta su" Margin="10" Content="∧" Command="{s:Action MoveUpIndagini}" />
+                            <Button ToolTip="Sposta giù" Margin="10" Content="∨" Command="{s:Action MoveDownIndagini}" />
+                        </StackPanel>
+
+                    </Grid>
+                </md:Card>
             </StackPanel>
-
-            <StackPanel Grid.Row="2" Grid.Column="3"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,140,10,170">
-                <Button ToolTip="Sposta su" Margin="10" Content="∧" Command="{s:Action MoveUpIndagini}" />
-                <Button ToolTip="Sposta giù" Margin="10" Content="∨" Command="{s:Action MoveDownIndagini}" />
-            </StackPanel>
-
-        </Grid>
-
+        </ScrollViewer>
     </Grid>
 </UserControl>

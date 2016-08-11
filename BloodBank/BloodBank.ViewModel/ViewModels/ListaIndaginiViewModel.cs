@@ -24,7 +24,6 @@ namespace BloodBank.ViewModel.ViewModels {
         }
 
         #region Private Methods
-
         private void NotifyOfPropertyChangedOnCollectionChanged() {
             IndaginiNonSelezionateSelectedItems.CollectionChanged += (sender, args) => {
                 NotifyOfPropertyChange(() => CanTrasferisciIndaginiDa);
@@ -41,7 +40,6 @@ namespace BloodBank.ViewModel.ViewModels {
                 ValidateProperty(() => Indagini);
             };
         }
-
         #endregion
 
         public override void AddModel(ListaIndagini<T> model) {
@@ -61,8 +59,10 @@ namespace BloodBank.ViewModel.ViewModels {
         #endregion
 
         #region Other Properties
+        public string Type => typeof(T).ToString().Split('.').Last();
         public BindableCollection<Indagine> IndaginiNonSelezionate { get; } = new BindableCollection<Indagine>();
 
+        // Necessarie perchè WPF non supporta il binding su SelectedItems delle ListBox. Si rimedia con il MultiSelectionBehavior.
         public ObservableCollection<Indagine> IndaginiSelectedItems { get; } = new BindableCollection<Indagine>();
         public ObservableCollection<Indagine> IndaginiNonSelezionateSelectedItems { get; } = new BindableCollection<Indagine>();
         #endregion
