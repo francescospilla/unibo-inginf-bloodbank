@@ -8,7 +8,7 @@
              xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:s="https://github.com/canton7/Stylet"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-             xmlns:behaviors="clr-namespace:BloodBank.View.Behaviors"
+             xmlns:components="clr-namespace:BloodBank.View.Components"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="800">
     
@@ -17,7 +17,7 @@
             <StackPanel Margin="0 10">
 
                 <md:Card Margin="20 10" Padding="10 0 10 30" MaxWidth="1000">
-                    <Grid userControls:LayoutSetter.Margin="10">
+                    <Grid components:LayoutSetter.Margin="10">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="1*" />
                             <ColumnDefinition Width="Auto" />
@@ -55,10 +55,10 @@
                                 </DataTemplate>
                             </GroupBox.HeaderTemplate>
 
-                            <ListBox x:Name="OggettiIndagineNotSelezionateListBox" ItemsSource="{Binding IndaginiNonSelezionate}" SelectionMode="Extended" Background="{DynamicResource MaterialDesignBackground}">
-                                <i:Interaction.Behaviors>
-                                    <behaviors:MultiSelectionBehavior SelectedItems="{Binding IndaginiNonSelezionateSelectedItems}" />
-                                </i:Interaction.Behaviors>
+                            <ListBox x:Name="OggettiIndagineNotSelezionateListBox" ItemsSource="{Binding IndaginiNonSelezionate}" SelectionMode="Extended" Background="{DynamicResource MaterialDesignBackground}" SelectionChanged="{s:Action NotifySelectionChanged}">
+                                <components:PushBindingManager.PushBindings>
+                                    <components:PushBinding TargetProperty="SelectedItems" Path="IndaginiNonSelezionateSelectedItems"/>
+                                </components:PushBindingManager.PushBindings>
                                 <ListBox.ItemTemplate>
                                     <DataTemplate>
                                         <Grid Margin="8">
@@ -68,7 +68,7 @@
                                             </Grid.ColumnDefinitions>
 
                                             <CheckBox Grid.Column="0" VerticalAlignment="Center" IsChecked="{Binding IsSelected, RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}, Mode=FindAncestor}}"/>
-                                            <TextBlock Grid.Column="1" Text="{Binding ''}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" Margin="4 0 0 0"/>
+                                            <TextBlock Grid.Column="1" Text="{Binding }" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" Margin="4 0 0 0"/>
                                         </Grid>
                                     </DataTemplate>
                                 </ListBox.ItemTemplate>
@@ -82,10 +82,10 @@
                                 </DataTemplate>
                             </GroupBox.HeaderTemplate>
 
-                            <ListBox x:Name="OggettiIndaginiListBox" ItemsSource="{Binding Indagini}" SelectionMode="Extended" Background="{DynamicResource MaterialDesignBackground}">
-                                <i:Interaction.Behaviors>
-                                    <behaviors:MultiSelectionBehavior SelectedItems="{Binding IndaginiSelectedItems}" />
-                                </i:Interaction.Behaviors>
+                            <ListBox x:Name="OggettiIndaginiListBox" ItemsSource="{Binding Indagini}" SelectionMode="Extended" Background="{DynamicResource MaterialDesignBackground}" SelectionChanged="{s:Action NotifySelectionChanged}">
+                                <components:PushBindingManager.PushBindings>
+                                    <components:PushBinding TargetProperty="SelectedItems" Path="IndaginiSelectedItems"/>
+                                </components:PushBindingManager.PushBindings>
                                 <ListBox.ItemTemplate>
                                     <DataTemplate>
                                         <Grid Margin="8">

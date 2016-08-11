@@ -97,9 +97,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Behaviors\MultiSelectionBehavior.cs" />
+    <Compile Include="Components\DoubleClickSelectorItem.cs" />
+    <Compile Include="Components\LayoutSetter.cs" />
+    <Compile Include="Components\PushBinding\FreezableBinding.cs" />
+    <Compile Include="Components\PushBinding\PushBinding.cs" />
+    <Compile Include="Components\PushBinding\PushBindingCollection.cs" />
+    <Compile Include="Components\PushBinding\PushBindingManager.cs" />
     <Compile Include="Converters\StringToPackIconConverter.cs" />
-    <Compile Include="UserControls\DoubleClickSelectorItem.cs" />
     <Compile Include="UserControls\FilterControl.cs" />
     <Compile Include="Views\DonazioniView.xaml.cs">
       <DependentUpon>DonazioniView.xaml</DependentUpon>
@@ -115,7 +119,6 @@
       <DependentUpon>AppBar.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\IntegerTextBox.cs" />
-    <Compile Include="UserControls\LayoutSetter.cs" />
     <Compile Include="Views\QuestionarioView.xaml.cs">
       <DependentUpon>QuestionarioView.xaml</DependentUpon>
     </Compile>

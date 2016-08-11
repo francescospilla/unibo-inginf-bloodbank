@@ -3,7 +3,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace BloodBank.View.UserControls {
+namespace BloodBank.View.Components {
 
     public class LayoutSetter {
 

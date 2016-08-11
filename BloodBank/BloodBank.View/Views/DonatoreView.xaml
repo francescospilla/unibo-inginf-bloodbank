@@ -7,6 +7,7 @@
              xmlns:converters="clr-namespace:BloodBank.View.Converters"
              xmlns:controls="clr-namespace:BloodBank.View.UserControls"
              xmlns:s="https://github.com/canton7/Stylet"
+             xmlns:components="clr-namespace:BloodBank.View.Components"
              mc:Ignorable="d" d:DesignHeight="600" d:DesignWidth="800">
 
     <UserControl.Resources>
@@ -18,7 +19,7 @@
 
             <md:Card Margin="20 10" Padding="10 0 10 30" MaxWidth="1000">
                 <StackPanel>
-                    <Grid controls:LayoutSetter.Margin="10">
+                    <Grid components:LayoutSetter.Margin="10">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="2*" />
@@ -115,7 +116,7 @@
                                  Text="{Binding Path=Email, UpdateSourceTrigger=PropertyChanged}">
                         </TextBox>
 
-                        <Grid Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="4" controls:LayoutSetter.Margin="10">
+                        <Grid Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="4" components:LayoutSetter.Margin="10">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="1*" MinWidth="90"/>
                                 <ColumnDefinition Width="2*" />

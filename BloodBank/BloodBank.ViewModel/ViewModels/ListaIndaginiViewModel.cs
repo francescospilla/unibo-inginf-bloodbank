@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -20,19 +21,12 @@ namespace BloodBank.ViewModel.ViewModels {
             _indagineDataService = indagineDataService;
 
             RefreshCollections();
-            NotifyOfPropertyChangedOnCollectionChanged();
+            NotifyPropertyChangedOnCollectionChanged();
         }
 
         #region Private Methods
-        private void NotifyOfPropertyChangedOnCollectionChanged() {
-            IndaginiNonSelezionateSelectedItems.CollectionChanged += (sender, args) => {
-                NotifyOfPropertyChange(() => CanTrasferisciIndaginiDa);
-            };
-            IndaginiSelectedItems.CollectionChanged += (sender, args) => {
-                NotifyOfPropertyChange(() => CanTrasferisciIndaginiA);
-                NotifyOfPropertyChange(() => CanMoveUpIndagini);
-                NotifyOfPropertyChange(() => CanMoveDownIndagini);
-            };
+
+        private void NotifyPropertyChangedOnCollectionChanged() {
             _indagini.CollectionChanged += (sender, args) => {
                 NotifyOfPropertyChange(() => CanMoveUpIndagini);
                 NotifyOfPropertyChange(() => CanMoveDownIndagini);
@@ -62,34 +56,44 @@ namespace BloodBank.ViewModel.ViewModels {
         public string Type => typeof(T).ToString().Split('.').Last();
         public BindableCollection<Indagine> IndaginiNonSelezionate { get; } = new BindableCollection<Indagine>();
 
-        // Necessarie perchè WPF non supporta il binding su SelectedItems delle ListBox. Si rimedia con il MultiSelectionBehavior.
-        public ObservableCollection<Indagine> IndaginiSelectedItems { get; } = new BindableCollection<Indagine>();
-        public ObservableCollection<Indagine> IndaginiNonSelezionateSelectedItems { get; } = new BindableCollection<Indagine>();
+        public IList IndaginiSelectedItems { get; set; }
+        public IList IndaginiNonSelezionateSelectedItems { get; set; }
         #endregion
 
         #region Actions
+
+        public void NotifySelectionChanged(object sender, EventArgs e) {
+            NotifyOfPropertyChange(() => CanTrasferisciIndaginiDa);
+            NotifyOfPropertyChange(() => CanTrasferisciIndaginiA);
+            NotifyOfPropertyChange(() => CanMoveUpIndagini);
+            NotifyOfPropertyChange(() => CanMoveDownIndagini);
+        }
 
         #region TrasferisciIndagini
 
         public bool CanTrasferisciIndaginiDa => CanExecuteTrasferisciIndagini(IndaginiNonSelezionateSelectedItems);
 
         public void TrasferisciIndaginiDa() {
-            ExecuteTrasferisciIndagini(IndaginiNonSelezionate, _indagini, IndaginiNonSelezionateSelectedItems);
+            ExecuteTrasferisciIndagini(IndaginiNonSelezionate, _indagini, IndaginiNonSelezionateSelectedItems.Cast<Indagine>().ToList());
         }
 
         public bool CanTrasferisciIndaginiA => CanExecuteTrasferisciIndagini(IndaginiSelectedItems);
 
         public void TrasferisciIndaginiA() {
-            ExecuteTrasferisciIndagini(_indagini, IndaginiNonSelezionate, IndaginiSelectedItems);
+            ExecuteTrasferisciIndagini(_indagini, IndaginiNonSelezionate, IndaginiSelectedItems.Cast<Indagine>().ToList());
         }
 
-        private bool CanExecuteTrasferisciIndagini(ICollection<Indagine> selected) {
+        private bool CanExecuteTrasferisciIndagini(IList selected) {
             return selected?.Count > 0;
         }
 
         private void ExecuteTrasferisciIndagini(ICollection<Indagine> collectionFrom, ICollection<Indagine> collectionTo,
-            IEnumerable<Indagine> selected) {
-            foreach (Indagine oi in selected.ToList()) {
+            List<Indagine> selected) {
+
+            var indexedItems = collectionFrom.Select((item, index) => new KeyValuePair<int, Indagine>(index, item)); // indexed items of the original collection
+            selected = selected.OrderBy(t => indexedItems.Single(t2 => t2.Value.Equals(t)).Key).ToList(); // selected items in the subcollection in the right order
+
+            foreach (Indagine oi in selected) {
                 collectionFrom.Remove(oi);
                 collectionTo.Add(oi);
             }
@@ -104,7 +108,7 @@ namespace BloodBank.ViewModel.ViewModels {
         }
 
         public void MoveUpIndagini() {
-            ExecuteMoveIndagini(IndaginiSelectedItems, true);
+            ExecuteMoveIndagini(IndaginiSelectedItems.Cast<Indagine>().ToList(), true);
         }
 
         public bool CanMoveDownIndagini {
@@ -112,10 +116,13 @@ namespace BloodBank.ViewModel.ViewModels {
         }
 
         public void MoveDownIndagini() {
-            ExecuteMoveIndagini(IndaginiSelectedItems, false);
+            ExecuteMoveIndagini(IndaginiSelectedItems.Cast<Indagine>().ToList(), false);
         }
 
-        private void ExecuteMoveIndagini(IList<Indagine> selected, bool toUp) {
+        private void ExecuteMoveIndagini(List<Indagine> selected, bool toUp) {
+            var indexedItems = Indagini.Select((item, index) => new KeyValuePair<int, Indagine>(index, item)); // indexed items of the original collection
+            selected = selected.OrderBy(t => indexedItems.Single(t2 => t2.Value.Equals(t)).Key).ToList(); // selected items in the subcollection in the right order
+
             if (toUp) {
                 for (int index = 0; index < selected.Count; index++) {
                     Indagine oi = selected[index];
@@ -133,12 +140,14 @@ namespace BloodBank.ViewModel.ViewModels {
             }
         }
 
-        private bool CanExecuteMoveIndagini(ICollection<Indagine> selected, bool toUp) {
+        private bool CanExecuteMoveIndagini(IList selected, bool toUp) {
             if (selected == null)
                 return false;
 
-            return selected.Count > 0 &&
-                   !selected.Select(oi => _indagini.IndexOf(oi))
+            IEnumerable<Indagine> enumerable = selected.Cast<Indagine>().ToList();
+
+            return enumerable.Any() &&
+                   !enumerable.Select(oi => _indagini.IndexOf(oi))
                        .Any(oldIndex => toUp ? oldIndex - 1 < 0 : oldIndex + 1 > _indagini.Count - 1);
         }
 
