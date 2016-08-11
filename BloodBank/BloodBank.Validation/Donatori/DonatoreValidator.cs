@@ -1,6 +1,8 @@
 using System;
 using BloodBank.Core.Extensions;
 using BloodBank.Model.Donatori;
+using BloodBank.Validation.Donatori.Rules;
+using BloodBank.ViewModel.Services;
 using FluentValidation;
 
 namespace BloodBank.Validation.Donatori {
@@ -21,27 +23,28 @@ namespace BloodBank.Validation.Donatori {
                 }
         */
 
-        public DonatoreValidator(CodiceFiscaleValidator codiceFiscaleValidator) {
-            RuleFor(c => c.Nome).NotEmpty();
-            RuleFor(c => c.Cognome).NotEmpty();
-            RuleFor(c => c.Sesso).NotNull().IsInEnum();
-            RuleFor(c => c.CodiceFiscale)
+        public DonatoreValidator(CodiceFiscaleValidator codiceFiscaleValidator, IDataService<Donatore> donatoreService) {
+            RuleFor(d => d.Nome).NotEmpty();
+            RuleFor(d => d.Cognome).NotEmpty();
+            RuleFor(d => d.Sesso).NotNull().IsInEnum();
+            RuleFor(d => d.CodiceFiscale)
                 .NotEmpty()
                 .Length(CodiceFiscaleValidator.ExpectedLength)
-                .SetValidator(codiceFiscaleValidator);
-            RuleFor(c => c.DataNascita).NotNull().LessThanOrEqualTo(DateTime.Now);
-            RuleFor(c => c.Indirizzo).NotEmpty();
-            RuleFor(c => c.Città).NotEmpty();
-            RuleFor(c => c.Stato).NotEmpty();
-            RuleFor(c => c.CodicePostale)
+                .SetValidator(codiceFiscaleValidator)
+                .MustBeUnique(d => d.CodiceFiscale, donatoreService.GetModels);
+            RuleFor(d => d.DataNascita).NotNull().LessThanOrEqualTo(DateTime.Now);
+            RuleFor(d => d.Indirizzo).NotEmpty();
+            RuleFor(d => d.Città).NotEmpty();
+            RuleFor(d => d.Stato).NotEmpty();
+            RuleFor(d => d.CodicePostale)
                 .NotEmpty()
                 .Must(ParsingExtensions.IsPositiveIntegerNumber)
                 .Length(5);
-            RuleFor(c => c.Telefono)
+            RuleFor(d => d.Telefono)
                 .NotEmpty()
                 .Length(6, 11)
                 .Must(ParsingExtensions.IsPositiveIntegerNumber).Unless(c => string.IsNullOrEmpty(c.Telefono));
-            RuleFor(c => c.Email).NotEmpty().EmailAddress().Unless(c => string.IsNullOrEmpty(c.Email));
+            RuleFor(d => d.Email).NotEmpty().EmailAddress().Unless(c => string.IsNullOrEmpty(c.Email));
             RuleFor(d => d.GruppoSanguigno).NotNull().IsInEnum();
             RuleFor(d => d.DataNascita)
                 .Must(

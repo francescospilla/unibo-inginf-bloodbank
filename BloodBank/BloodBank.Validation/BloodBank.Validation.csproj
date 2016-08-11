@@ -45,8 +45,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Donatori\ContattoValidation.cs" />
-    <Compile Include="Donatori\DonatoreValidation.cs" />
+    <Compile Include="Donatori\CodiceFiscaleValidator.cs" />
+    <Compile Include="Donatori\ContattoValidator.cs" />
+    <Compile Include="Donatori\DonatoreValidator.cs" />
+    <Compile Include="Donatori\Rules\UniquePropertyValidator.cs" />
+    <Compile Include="Donatori\ValidatorExtensions.cs" />
     <Compile Include="Indagini\ListaIndaginiValidation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -58,6 +61,10 @@
     <ProjectReference Include="..\BloodBank.Model\BloodBank.Model.csproj">
       <Project>{85DEBB74-1F91-474F-9F84-592A873573BA}</Project>
       <Name>BloodBank.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BloodBank.Service\BloodBank.Model.Service.csproj">
+      <Project>{857A358A-2CF0-45F8-8AD9-2F63918AEBA4}</Project>
+      <Name>BloodBank.Model.Service</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

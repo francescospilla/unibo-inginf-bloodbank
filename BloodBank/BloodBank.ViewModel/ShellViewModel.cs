@@ -12,10 +12,10 @@ namespace BloodBank.ViewModel {
             eventAggregator.Subscribe(this);
 
             DisplayName = "BloodBank";
-            
+
+            Items.Add(new NavigationMenuItem("Donazioni", "Heart", donazioniViewModel));
             Items.Add(new NavigationMenuItem("Donatori", "AccountMultiple", donatoriViewModel));
             Items.Add(new NavigationMenuItem("Donatore", "Account", donatoreViewModel));
-            Items.Add(new NavigationMenuItem("Donazioni", "Heart", donazioniViewModel));
             Items.Add(new NavigationMenuItem("Questionario", "Heart", questionarioViewModel));
         }
 
