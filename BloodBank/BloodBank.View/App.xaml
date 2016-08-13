@@ -9,6 +9,7 @@
 			 xmlns:s="https://github.com/canton7/Stylet"
 			 xmlns:dragablz="http://dragablz.net/winfx/xaml/dragablz"
 			 xmlns:viewModel="clr-namespace:BloodBank.ViewModel;assembly=BloodBank.ViewModel"
+			 xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
 			 mc:Ignorable="d ignore">
 
     <Application.Resources>
@@ -33,7 +34,7 @@
 
                 <!-- MahApps theme Resources -->
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml" />
-                
+
                 <!-- FilterControl theme Resources -->
                 <ResourceDictionary Source="Resources/FilterControl.xaml" />
 
@@ -99,6 +100,25 @@
             </Style>
             <Style TargetType="{x:Type ListBox}" BasedOn="{StaticResource MaterialDesignListBox}">
                 <Setter Property="ItemContainerStyle" Value="{StaticResource NoPaddingMaterialDesignListBoxItem}"/>
+            </Style>
+
+            <!-- EditableViewModel Helper Icon -->
+            <Style x:Key="EditableHelperIconStyle" TargetType="{x:Type md:PackIcon}" >
+                <Setter Property="Visibility" Value="Hidden" />
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding IsChanged}" Value="True">
+                        <Setter Property="Visibility" Value="Visible" />
+                        <Setter Property="Kind" Value="Alert"/>
+                        <Setter Property="Foreground" Value="Orange"/>
+                        <Setter Property="ToolTip" Value="Modifiche in sospeso" />
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding HasErrors}" Value="True">
+                        <Setter Property="Visibility" Value="Visible" />
+                        <Setter Property="Kind" Value="Alert"/>
+                        <Setter Property="Foreground" Value="Red"/>
+                        <Setter Property="ToolTip" Value="Errori da risolvere" />
+                    </DataTrigger>
+                </Style.Triggers>
             </Style>
 
         </ResourceDictionary>

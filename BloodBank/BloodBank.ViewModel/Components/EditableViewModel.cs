@@ -20,7 +20,9 @@ namespace BloodBank.ViewModel {
             DataService = dataService;
             if (validator != null) {
                 AutoValidate = true;
+                Validate();
             }
+            IsChanged = false;
         }
         #endregion
 

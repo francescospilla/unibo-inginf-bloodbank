@@ -68,27 +68,7 @@
                                             <TextBlock FontWeight="Bold" Text="{Binding NomeCognome}" />
                                             <TextBlock Text="{Binding CodiceFiscale}" />
                                         </StackPanel>
-                                        <md:PackIcon Grid.Column="1" Margin="16 8" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                            <md:PackIcon.Style>
-                                                <Style TargetType="{x:Type md:PackIcon}">
-                                                    <Setter Property="Visibility" Value="Hidden" />
-                                                    <Style.Triggers>
-                                                        <DataTrigger Binding="{Binding IsChanged}" Value="True">
-                                                            <Setter Property="Visibility" Value="Visible" />
-                                                            <Setter Property="Kind" Value="Alert"/>
-                                                            <Setter Property="Foreground" Value="Orange"/>
-                                                            <Setter Property="ToolTip" Value="Modifiche in sospeso" />
-                                                        </DataTrigger>
-                                                        <DataTrigger Binding="{Binding HasErrors}" Value="True">
-                                                            <Setter Property="Visibility" Value="Visible" />
-                                                            <Setter Property="Kind" Value="Alert"/>
-                                                            <Setter Property="Foreground" Value="Red"/>
-                                                            <Setter Property="ToolTip" Value="Errori da risolvere" />
-                                                        </DataTrigger>
-                                                    </Style.Triggers>
-                                                </Style>
-                                            </md:PackIcon.Style>
-                                        </md:PackIcon>
+                                        <md:PackIcon Grid.Column="1" Margin="16 8" Style="{StaticResource EditableHelperIconStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" />
                                     </Grid>
                                     <Border.InputBindings>
                                         <MouseBinding MouseAction="LeftDoubleClick" Command="{s:Action AddDonatoreTab}" CommandParameter="{Binding }"/>

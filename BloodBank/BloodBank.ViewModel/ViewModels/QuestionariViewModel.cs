@@ -30,6 +30,7 @@ namespace BloodBank.ViewModel.ViewModels {
                 vm.Model = questionario;
                 Items.Add(vm);
             }
+            
         }
         #endregion
 

@@ -30,7 +30,7 @@ namespace BloodBank.Validation {
                 .NotEmpty()
                 .Length(CodiceFiscaleValidator.ExpectedLength)
                 .SetValidator(codiceFiscaleValidator)
-                .MustBeUnique(d => d.CodiceFiscale, donatoreService.GetModels);
+                /*.MustBeUnique(d => d.CodiceFiscale, donatoreService.GetModels)*/;
             RuleFor(d => d.DataNascita).NotNull().LessThanOrEqualTo(DateTime.Now);
             RuleFor(d => d.Indirizzo).NotEmpty();
             RuleFor(d => d.Città).NotEmpty();
