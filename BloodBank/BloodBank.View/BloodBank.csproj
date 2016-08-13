@@ -203,10 +203,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\Source\Repos\Stylet\Stylet\Stylet.csproj">
-      <Project>{2435BD00-AC12-48B0-AD36-9BAB2FDEC3F5}</Project>
-      <Name>Stylet</Name>
-    </ProjectReference>
     <ProjectReference Include="..\BloodBank.Core\BloodBank.Core.csproj">
       <Project>{7fb4caf6-148f-424e-bfde-d117f13de185}</Project>
       <Name>BloodBank.Core</Name>
@@ -218,6 +214,10 @@
     <ProjectReference Include="..\BloodBank.ViewModel\BloodBank.ViewModel.csproj">
       <Project>{D950CEA9-77F9-42D8-B7E2-B61748BB38A7}</Project>
       <Name>BloodBank.ViewModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Stylet\Stylet.csproj">
+      <Project>{2435bd00-ac12-48b0-ad36-9bab2fdec3f5}</Project>
+      <Name>Stylet</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

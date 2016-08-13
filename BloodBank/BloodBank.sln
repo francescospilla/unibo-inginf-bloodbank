@@ -17,7 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stylet.FluentValidation", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BloodBank.Model.Service", "BloodBank.Service\BloodBank.Model.Service.csproj", "{857A358A-2CF0-45F8-8AD9-2F63918AEBA4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stylet", "..\..\..\..\Source\Repos\Stylet\Stylet\Stylet.csproj", "{2435BD00-AC12-48B0-AD36-9BAB2FDEC3F5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stylet", "Stylet\Stylet.csproj", "{2435BD00-AC12-48B0-AD36-9BAB2FDEC3F5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
