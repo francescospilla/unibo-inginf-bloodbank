@@ -1,10 +1,4 @@
-using System;
-using BloodBank.Core.Extensions;
-using BloodBank.Model.Donatori;
-using FluentValidation;
-using FluentValidation.Results;
-
-namespace BloodBank.Validation.Donatori {
+namespace BloodBank.Validation {
 
 /*    public class ContattoValidator : AbstractValidator<IContatto> {
 

@@ -48,8 +48,8 @@
     <Compile Include="Donatori\CodiceFiscaleValidator.cs" />
     <Compile Include="Donatori\ContattoValidator.cs" />
     <Compile Include="Donatori\DonatoreValidator.cs" />
-    <Compile Include="Donatori\Rules\UniquePropertyValidator.cs" />
-    <Compile Include="Donatori\ValidatorExtensions.cs" />
+    <Compile Include="Rules\UniquePropertyValidator.cs" />
+    <Compile Include="ValidatorExtensions.cs" />
     <Compile Include="Indagini\ListaIndaginiValidation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

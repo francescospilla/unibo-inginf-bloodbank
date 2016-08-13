@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using FluentValidation.Validators;
 
 // From https://stackoverflow.com/questions/27374091/writing-a-generic-fluentvalidation-custom-validator-to-check-unique-constraint
-namespace BloodBank.Validation.Donatori.Rules {
+namespace BloodBank.Validation.Rules {
 
     public class UniquePropertyValidator<T> : PropertyValidator {
         private readonly Func<T, string> _propertyAccessorFunc;

@@ -2,10 +2,9 @@ using System;
 using BloodBank.Core.Extensions;
 using BloodBank.Model.Donatori;
 using BloodBank.Model.Service;
-using BloodBank.Validation.Donatori.Rules;
 using FluentValidation;
 
-namespace BloodBank.Validation.Donatori {
+namespace BloodBank.Validation {
 
     public class DonatoreValidator : AbstractValidator<IDonatore> {
 
