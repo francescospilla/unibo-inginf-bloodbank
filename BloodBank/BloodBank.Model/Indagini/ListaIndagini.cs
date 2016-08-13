@@ -9,7 +9,7 @@ namespace BloodBank.Model.Indagini {
     public abstract class ListaIndagini : IEnumerable<Indagine>, IListaIndagini {
         private readonly List<Indagine> _indagini;
 
-        protected ListaIndagini(string nome) {
+        protected ListaIndagini(string nome = null) {
             Nome = nome;
             _indagini = new List<Indagine>();
             DataCreazione = DateTime.Now;
@@ -83,7 +83,7 @@ namespace BloodBank.Model.Indagini {
     public class ListaIndagini<T> : ListaIndagini where T : ListaVoci {
         public Type Tipo { get; } = typeof(T);
 
-        public ListaIndagini(string nome) : base(nome) {
+        public ListaIndagini(string nome = null) : base(nome) {
         }
     }
 

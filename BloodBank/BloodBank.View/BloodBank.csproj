@@ -67,10 +67,6 @@
       <HintPath>..\packages\MaterialDesignThemes.2.0.0.638\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Stylet, Version=1.1.15.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Stylet.1.1.15\lib\net45\Stylet.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -125,7 +121,6 @@
     <Compile Include="Views\ListaIndaginiView.xaml.cs">
       <DependentUpon>ListaIndaginiView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\AnalisiView.cs" />
     <Compile Include="Views\QuestionarioView.cs" />
     <Compile Include="Views\TabWrapperView.xaml.cs">
       <DependentUpon>TabWrapperView.xaml</DependentUpon>
@@ -208,6 +203,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\Source\Repos\Stylet\Stylet\Stylet.csproj">
+      <Project>{2435BD00-AC12-48B0-AD36-9BAB2FDEC3F5}</Project>
+      <Name>Stylet</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BloodBank.Core\BloodBank.Core.csproj">
       <Project>{7fb4caf6-148f-424e-bfde-d117f13de185}</Project>
       <Name>BloodBank.Core</Name>

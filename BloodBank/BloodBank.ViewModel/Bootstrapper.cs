@@ -1,26 +1,33 @@
 ﻿using System.Reflection;
+using BloodBank.Model.Donatori;
 using BloodBank.Model.Service;
+using StructureMap;
 using Stylet;
 using Stylet.FluentValidation;
 using StyletIoC;
 
 namespace BloodBank.ViewModel {
-    public class Bootstrapper : Bootstrapper<ShellViewModel> {
-        private readonly Assembly _mainAssembly = Assembly.Load("BloodBank");
+    public class Bootstrapper : StructureMapBootstrapper<ShellViewModel> {
+        private readonly Assembly _viewAssembly = Assembly.Load("BloodBank");
 
-        protected override void ConfigureIoC(IStyletIoCBuilder builder) {
-            base.ConfigureIoC(builder);
+        protected override void ConfigureIoC(ConfigurationExpression config) {
+            base.ConfigureIoC(config);
+
+            config.Scan(x =>
+            {
+                x.AddAllTypesOf(typeof (IDataService<>));
+                x.Assembly("BloodBank.Model.Service");
+                x.WithDefaultConventions();
+            });
             
-            builder.Assemblies.AddRange(new[] { _mainAssembly, Assembly.Load("BloodBank.Model.Service"),  });
-            builder.ConfigureForFluentValidation("BloodBank.Validation");
-            builder.Bind(typeof(IDataService<>)).ToAllImplementations().InSingletonScope();
+            config.ConfigureForFluentValidation("BloodBank.Validation");
         }
 
         protected override void Configure() {
             base.Configure();
 
-            ViewManager viewManager = Container.Get<ViewManager>();
-            viewManager.ViewAssemblies.Add(_mainAssembly);
+            ViewManager viewManager = (ViewManager) GetInstance(typeof(IViewManager));
+            viewManager.ViewAssemblies.Add(_viewAssembly);
         }
 
 

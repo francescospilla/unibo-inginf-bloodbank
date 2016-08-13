@@ -16,8 +16,8 @@ namespace BloodBank.ViewModel.ViewModels {
         private readonly IDataService<Indagine> _indagineDataService;
 
         public ListaIndaginiViewModel(IEventAggregator eventAggregator, IDataService<Indagine> indagineDataService,
-            IDataService<ListaIndagini<T>> dataService, IModelValidator<IListaIndagini> validator, ListaIndagini<T> model = null)
-            : base(eventAggregator, dataService, validator, model) {
+            IDataService<ListaIndagini<T>> dataService, IModelValidator<IListaIndagini> validator)
+            : base(eventAggregator, dataService, validator) {
             _indagineDataService = indagineDataService;
 
             RefreshCollections();
@@ -178,7 +178,8 @@ namespace BloodBank.ViewModel.ViewModels {
         }
 
         protected override ListaIndagini<T> CreateModelFromViewModel() {
-            ListaIndagini<T> model = new ListaIndagini<T>(Nome);
+            ListaIndagini<T> model = new ListaIndagini<T>();
+            model.Nome = Nome;
             model.Clear();
             model.AddRange(Indagini);
             return model;

@@ -34,6 +34,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\FluentValidation.6.2.1.0\lib\Net45\FluentValidation.dll</HintPath>
     </Reference>
+    <Reference Include="StructureMap, Version=4.3.0.449, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\StructureMap.4.4.0\lib\net45\StructureMap.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Stylet, Version=1.1.15.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Stylet.1.1.15\lib\net45\Stylet.dll</HintPath>
@@ -61,18 +65,18 @@
   </Target>
   -->
   <Target Name="AfterPackage" AfterTargets="CopyAllFilesToSingleFolderForPackage" />
-
-<ItemGroup>
+  <ItemGroup>
     <FluentValidationExcludedCultures Include="cs;da;de;en;es;fa;fi;fr;ko;mk;nl;pl;pt;ru;sv;tr;zh-CN">
-        <InProject>false</InProject>
+      <InProject>false</InProject>
     </FluentValidationExcludedCultures>
-</ItemGroup>
-
-<Target Name="RemoveTranslationsAfterBuild" AfterTargets="AfterBuild">
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Target Name="RemoveTranslationsAfterBuild" AfterTargets="AfterBuild">
     <RemoveDir Directories="@(FluentValidationExcludedCultures->'$(OutputPath)%(Filename)')" />
-</Target>
-
-<Target Name="RemoveTranslationsAfterPackage" AfterTargets="AfterPackage">
+  </Target>
+  <Target Name="RemoveTranslationsAfterPackage" AfterTargets="AfterPackage">
     <RemoveDir Directories="@(FluentValidationExcludedCultures->'$(_PackageTempDir)\$(OutputPath)%(Filename)')" />
-</Target>
+  </Target>
 </Project>

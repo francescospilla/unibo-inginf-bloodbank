@@ -28,7 +28,7 @@ namespace BloodBank.Model.Service {
             Indagine[] indagini = indagineService.GetModels().ToArray();
 
             for (int i = 0; i < 5; i++) {
-                ListaIndagini<Questionario> li = new ListaIndagini<Questionario>("Questionario #" + (i+1));
+                ListaIndagini<Questionario> li = new ListaIndagini<Questionario>("Questionario #" + (i + 1));
                 li.AddRange(indagini.PickRandom(4));
                 _models.Add(li);
             }

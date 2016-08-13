@@ -15,15 +15,12 @@ namespace BloodBank.ViewModel {
         #endregion
 
         #region Constructors
-        protected EditableViewModel(IEventAggregator eventAggregator, IDataService<TModel> dataService, IModelValidator validator, TModel model = null) : base(validator) {
+        protected EditableViewModel(IEventAggregator eventAggregator, IDataService<TModel> dataService, IModelValidator validator) : base(validator) {
             EventAggregator = eventAggregator;
             DataService = dataService;
-            Model = model;
             if (validator != null) {
                 AutoValidate = true;
-                Validate();
             }
-            IsChanged = false;
         }
         #endregion
 
@@ -34,6 +31,7 @@ namespace BloodBank.ViewModel {
             set {
                 _model = value;
                 SyncModelToViewModel();
+                IsChanged = false;
             }
         }
 
