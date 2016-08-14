@@ -4,7 +4,7 @@ using BloodBank.Core.Extensions;
 using BloodBank.Model;
 using BloodBank.Model.Donatori;
 using BloodBank.Model.Sangue;
-using BloodBank.Model.Service;
+using BloodBank.ViewModel.Service;
 using BloodBank.ViewModel.Components;
 using PropertyChanged;
 using Stylet;
@@ -14,12 +14,8 @@ namespace BloodBank.ViewModel {
     [ImplementPropertyChanged]
     public class DonatoreViewModel : EditableViewModel<Donatore>, IDonatore {
 
-        public override void AddModel(Donatore model) {
-            DataService.AddModel(model);
-        }
-
         #region Constructors
-        public DonatoreViewModel(IEventAggregator eventAggregator, IDataService<Donatore> dataService, IModelValidator<IDonatore> validator) : base(eventAggregator, dataService, validator) {
+        public DonatoreViewModel(IEventAggregator eventAggregator, DataService<Donatore, DonatoreViewModel> dataService, IModelValidator<IDonatore> validator) : base(eventAggregator, dataService, validator) {
         }
         #endregion
 

@@ -29,7 +29,7 @@ namespace BloodBank.ViewModel {
         /// </summary>
         protected virtual void DefaultConfigureIoC(ConfigurationExpression config) {
             var viewManagerConfig = new ViewManagerConfig();
-            viewManagerConfig.ViewAssemblies = new List<Assembly>() { this.GetType().Assembly };
+            viewManagerConfig.ViewAssemblies = new List<Assembly> { this.GetType().Assembly };
             viewManagerConfig.ViewFactory = this.GetInstance;
 
             var viewManager = new ViewManager(viewManagerConfig);

@@ -2,14 +2,15 @@
 using FluentValidation;
 using StructureMap;
 using StructureMap.Pipeline;
+using BloodBank.Validation;
 
 namespace Stylet.FluentValidation {
     public static class ConfigureIoC {
-        public static void ConfigureForFluentValidation(this ConfigurationExpression config, string validationAssembly) {
+        public static void ConfigureForFluentValidation(this ConfigurationExpression config) {
 
             config.Scan(x => {
-                x.AddAllTypesOf(typeof(IValidator<>));
-                x.Assembly(validationAssembly);
+                x.AssemblyContainingType(typeof(ValidatorExtensions));
+                x.ConnectImplementationsToTypesClosing(typeof(IValidator<>)).OnAddedPluginTypes(c => c.Singleton());
                 x.WithDefaultConventions();
             });
 

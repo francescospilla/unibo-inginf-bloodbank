@@ -8,20 +8,6 @@ namespace BloodBank.Validation {
 
     public class DonatoreValidator : AbstractValidator<IDonatore> {
 
-        /*       TODO: Include() non funziona per ragioni oscure...
-
-                 public DonatoreValidator(ContattoValidator contattoValidator) {
-                    Include(contattoValidator);
-                    RuleFor(d => d.GruppoSanguigno).NotNull().IsInEnum();
-                    RuleFor(d => d.DataNascita)
-                        .Must(
-                            dataNascita => {
-                                int età = dataNascita.Age();
-                                return età >= Donatore.RangeEtà.Item1 && età <= Donatore.RangeEtà.Item2;
-                            }).WithMessage("L'età deve essere compresa tra i " + Donatore.RangeEtà.Item1 + " e " + Donatore.RangeEtà.Item2 + " anni.");
-                }
-        */
-
         public DonatoreValidator(CodiceFiscaleValidator codiceFiscaleValidator, IDataService<Donatore> donatoreService) {
             RuleFor(d => d.Nome).NotEmpty();
             RuleFor(d => d.Cognome).NotEmpty();

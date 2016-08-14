@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using BloodBank.Model.Indagini;
 using BloodBank.Model.Service;
+using BloodBank.ViewModel.Service;
 using BloodBank.Model.Tests;
 using BloodBank.ViewModel.Components;
 using PropertyChanged;
@@ -17,7 +18,7 @@ namespace BloodBank.ViewModel {
         private readonly IDataService<Indagine> _indagineDataService;
 
         public ListaIndaginiViewModel(IEventAggregator eventAggregator, IDataService<Indagine> indagineDataService,
-            IDataService<ListaIndagini<T>> dataService, IModelValidator<IListaIndagini> validator)
+            IDataService<ListaIndagini<T>, EditableViewModel<ListaIndagini<T>>> dataService, IModelValidator<IListaIndagini> validator)
             : base(eventAggregator, dataService, validator) {
             _indagineDataService = indagineDataService;
 
@@ -36,11 +37,6 @@ namespace BloodBank.ViewModel {
             };
         }
         #endregion
-
-        public override void AddModel(ListaIndagini<T> model) {
-            DataService.AddModel(model);
-            // TODO:
-        }
 
         #region Model Properties
         public string Nome { get; set; }

@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using BloodBank.Model.Service;
+using BloodBank.ViewModel.Service;
 using PropertyChanged;
 using Stylet;
 
@@ -8,14 +8,10 @@ namespace BloodBank.ViewModel.Components {
     [ImplementPropertyChanged]
     public abstract class EditableViewModel<TModel> : Screen where TModel : class {
         protected readonly IEventAggregator EventAggregator;
-        protected readonly IDataService<TModel> DataService;
-
-        #region Methods
-        public abstract void AddModel(TModel model);
-        #endregion
+        protected readonly IDataService<TModel, EditableViewModel<TModel>> DataService;
 
         #region Constructors
-        protected EditableViewModel(IEventAggregator eventAggregator, IDataService<TModel> dataService, IModelValidator validator) : base(validator) {
+        protected EditableViewModel(IEventAggregator eventAggregator, IDataService<TModel, EditableViewModel<TModel>> dataService, IModelValidator validator) : base(validator) {
             EventAggregator = eventAggregator;
             DataService = dataService;
             if (validator != null) {
@@ -62,7 +58,7 @@ namespace BloodBank.ViewModel.Components {
                 Model = CreateModelFromViewModel();
                 // Fody can't weave other assemblies, so we have to manually raise this
                 NotifyOfPropertyChange(() => DisplayName);
-                AddModel(Model);
+                DataService.AddModelAndExistingViewModel(Model, this);
             }
             else
                 SyncViewModelToModel();

@@ -2,32 +2,34 @@
 using System.Collections.Generic;
 using System.Linq;
 using BloodBank.Model.Donatori;
-using BloodBank.Model.Service;
 using BloodBank.ViewModel.Events;
 using PropertyChanged;
 using Stylet;
+using BloodBank.ViewModel.Service;
 
 namespace BloodBank.ViewModel {
 
     [ImplementPropertyChanged]
-    public class DonatoriViewModel : Conductor<DonatoreViewModel>.Collection.OneActive {
+    public class DonatoriViewModel : Conductor<DonatoreViewModel>.Collection.OneActive, IHandle<ViewModelCollectionChangedEvent<DonatoreViewModel>> {
         private readonly IEventAggregator _eventAggregator;
-        private readonly IDataService<Donatore> _dataService;
+        private readonly IDataService<Donatore, DonatoreViewModel> _dataService;
         private readonly Func<DonatoreViewModel> _viewModelFactory;
 
         public BindableCollection<DonatoreViewModel> ListaDonatori { get; }
 
         #region Constructors
-        public DonatoriViewModel(IEventAggregator eventAggregator, IDataService<Donatore> dataService, Func<DonatoreViewModel> viewModelFactory) {
+        public DonatoriViewModel(IEventAggregator eventAggregator, DataService<Donatore, DonatoreViewModel> dataService, Func<DonatoreViewModel> viewModelFactory) {
             _eventAggregator = eventAggregator;
             _dataService = dataService;
             _viewModelFactory = viewModelFactory;
+
+            _eventAggregator.Subscribe(this);
 
             DisplayName = "Donatori";
 
             IEnumerable<Donatore> models = _dataService.GetModels();
 
-            ListaDonatori = new BindableCollection<DonatoreViewModel>(CreateViewModels(models.ToArray()));
+            ListaDonatori = new BindableCollection<DonatoreViewModel>(_dataService.GetViewModels());
 
             AddDonatoreTab();
         }
@@ -42,14 +44,11 @@ namespace BloodBank.ViewModel {
         {
             ActivateItem(viewModel ?? _viewModelFactory());
         }
+
+        public void Handle(ViewModelCollectionChangedEvent<DonatoreViewModel> message) {
+            ListaDonatori.Add(message.ViewModel);
+        }
         #endregion
 
-        private IEnumerable<DonatoreViewModel> CreateViewModels(params Donatore[] models) {
-            return models.Select(donatore => {
-                DonatoreViewModel vm = _viewModelFactory();
-                vm.Model = donatore;
-                return vm;
-            });
-        }
     }
 }
