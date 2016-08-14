@@ -10,20 +10,18 @@ using Stylet;
 namespace BloodBank.ViewModel.ViewModels {
 
     [ImplementPropertyChanged]
-    public class DonatoriViewModel : Conductor<TabWrapperViewModel>.Collection.OneActive {
+    public class DonatoriViewModel : Conductor<DonatoreViewModel>.Collection.OneActive {
         private readonly IEventAggregator _eventAggregator;
         private readonly IDataService<Donatore> _dataService;
         private readonly Func<DonatoreViewModel> _viewModelFactory;
-        private readonly Func<TabWrapperViewModel> _tabFactory;
 
         public BindableCollection<DonatoreViewModel> ListaDonatori { get; }
 
         #region Constructors
-        public DonatoriViewModel(IEventAggregator eventAggregator, IDataService<Donatore> dataService, Func<DonatoreViewModel> viewModelFactory, Func<TabWrapperViewModel> tabFactory ) {
+        public DonatoriViewModel(IEventAggregator eventAggregator, IDataService<Donatore> dataService, Func<DonatoreViewModel> viewModelFactory) {
             _eventAggregator = eventAggregator;
             _dataService = dataService;
             _viewModelFactory = viewModelFactory;
-            _tabFactory = tabFactory;
 
             DisplayName = "Donatori";
 
@@ -42,9 +40,7 @@ namespace BloodBank.ViewModel.ViewModels {
 
         public void AddDonatoreTab(DonatoreViewModel viewModel = null)
         {
-            TabWrapperViewModel tab = _tabFactory();
-            tab.ActiveItem = viewModel ?? _viewModelFactory();
-            ActivateItem(tab);
+            ActivateItem(viewModel ?? _viewModelFactory());
         }
         #endregion
 
