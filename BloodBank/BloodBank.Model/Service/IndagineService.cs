@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
-using BloodBank.Model.Indagini;
+﻿using BloodBank.Model.Indagini;
 using BloodBank.Model.Indagini.Tipi;
+using System.Collections.Generic;
 
 namespace BloodBank.Model.Service {
+
     public class IndagineService : DataService<Indagine> {
+
         private static readonly IList<Indagine> Items = new List<Indagine>() {
                 new IndagineBoolean("Domanda 1", Idoneità.NonIdoneo, true),
                 new IndagineBoolean("Domanda 2", Idoneità.Idoneo, true),
@@ -17,6 +19,7 @@ namespace BloodBank.Model.Service {
                 new IndagineRange<int>("Domanda 10", Idoneità.NonIdoneo, 0, 10),
             };
 
-        public IndagineService() : base(Items){}
+        public IndagineService() : base(Items) {
+        }
     }
 }

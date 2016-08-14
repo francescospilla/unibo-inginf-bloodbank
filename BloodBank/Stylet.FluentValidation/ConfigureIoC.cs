@@ -1,11 +1,12 @@
-﻿using System;
-using FluentValidation;
+﻿using FluentValidation;
 using StructureMap;
+using System;
 
 namespace Stylet.FluentValidation {
-    public static class ConfigureIoC {
-        public static void ConfigureForFluentValidation(this ConfigurationExpression config, Type typeToScanFor) {
 
+    public static class ConfigureIoC {
+
+        public static void ConfigureForFluentValidation(this ConfigurationExpression config, Type typeToScanFor) {
             config.Scan(x => {
                 x.AssemblyContainingType(typeToScanFor);
                 x.ConnectImplementationsToTypesClosing(typeof(IValidator<>)).OnAddedPluginTypes(c => c.Singleton());

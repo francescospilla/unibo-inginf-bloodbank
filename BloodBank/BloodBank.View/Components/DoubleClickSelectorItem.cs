@@ -9,29 +9,32 @@ namespace BloodBank.View.Components {
     /// to command binding attached behaviour.
     /// </summary>
     public class DoubleClickSelectorItem {
+
         #region fields
+
         public static readonly DependencyProperty DoubleClickItemCommandProperty =
             DependencyProperty.RegisterAttached("DoubleClickItemCommand",
                                                 typeof(ICommand),
                                                 typeof(DoubleClickSelectorItem),
                                                 new PropertyMetadata(null,
                                                 DoubleClickSelectorItem.OnDoubleClickItemCommand));
+
         #endregion fields
 
         #region constructor
+
         /// <summary>
         /// Class constructor
         /// </summary>
         public DoubleClickSelectorItem() {
-
         }
+
         #endregion constructor
 
-        #region properties
-        #endregion properties
-
         #region methods
+
         #region attached dependency property methods
+
         public static ICommand GetDoubleClickItemCommand(DependencyObject obj) {
             return (ICommand)obj.GetValue(DoubleClickItemCommandProperty);
         }
@@ -39,6 +42,7 @@ namespace BloodBank.View.Components {
         public static void SetDoubleClickItemCommand(DependencyObject obj, ICommand value) {
             obj.SetValue(DoubleClickItemCommandProperty, value);
         }
+
         #endregion attached dependency property methods
 
         private static void OnDoubleClickItemCommand(DependencyObject d, DependencyPropertyChangedEventArgs e) {
@@ -81,6 +85,7 @@ namespace BloodBank.View.Components {
                 doubleclickCommand.Execute(uiElement.SelectedItem);
             }
         }
+
         #endregion methods
     }
 }

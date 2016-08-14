@@ -1,7 +1,9 @@
 ﻿using System;
 
 namespace BloodBank.Core.Extensions {
+
     public static class DateTimeExtensions {
+
         /// <summary>
         /// Calculates the age in years of the current System.DateTime object today.
         /// </summary>

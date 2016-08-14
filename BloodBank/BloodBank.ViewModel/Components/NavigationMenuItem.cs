@@ -1,9 +1,8 @@
 ﻿using Stylet;
 
-namespace BloodBank.ViewModel.Components
-{
-    public class NavigationMenuItem
-    {
+namespace BloodBank.ViewModel.Components {
+
+    public class NavigationMenuItem {
         public string Name { get; }
         public string Icon { get; }
         public IScreen Content { get; }

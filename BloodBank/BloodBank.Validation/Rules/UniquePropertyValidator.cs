@@ -1,9 +1,7 @@
-﻿using System;
+﻿using FluentValidation.Validators;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FluentValidation.Validators;
 
 // From https://stackoverflow.com/questions/27374091/writing-a-generic-fluentvalidation-custom-validator-to-check-unique-constraint
 namespace BloodBank.Validation.Rules {
@@ -17,11 +15,10 @@ namespace BloodBank.Validation.Rules {
             _collectionAccessorFunc = collectionAccessorFunc;
         }
 
-        protected override bool IsValid(PropertyValidatorContext context)
-        {
+        protected override bool IsValid(PropertyValidatorContext context) {
             if (!(context.Instance is T))
                 return false;
-            T entity = (T) context.Instance;
+            T entity = (T)context.Instance;
 
             // Get all the entities by executing the lambda
             IEnumerable<T> entities = _collectionAccessorFunc();
@@ -29,14 +26,13 @@ namespace BloodBank.Validation.Rules {
             // Get the value of the entity that we are validating by executing the lambda
             string propertyValue = _propertyAccessorFunc(entity);
 
-            // Find the matching entity by executing the propertyAccessorFunc against the 
-            // entities in the collection and comparing that with the result of the entity 
+            // Find the matching entity by executing the propertyAccessorFunc against the
+            // entities in the collection and comparing that with the result of the entity
             // that is being validated. Warning SingleOrDefault will throw an exception if
             // multiple items match the supplied predicate
             // http://msdn.microsoft.com/en-us/library/vstudio/bb342451%28v=vs.100%29.aspx
             T matchingEntity = entities.SingleOrDefault(e => _propertyAccessorFunc(e) == propertyValue);
             return matchingEntity == null || matchingEntity.Equals(entity);
-
         }
     }
 }

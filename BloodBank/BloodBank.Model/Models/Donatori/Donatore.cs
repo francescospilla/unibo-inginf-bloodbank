@@ -1,17 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using BloodBank.Model.Donazioni;
+﻿using BloodBank.Model.Donazioni;
 using BloodBank.Model.Sangue;
 using BloodBank.Model.Tests;
+using System;
+using System.Collections.Generic;
 
 namespace BloodBank.Model.Donatori {
+
     public class Donatore : IDonatore {
         public static readonly Tuple<int, int> RangeEtà = new Tuple<int, int>(16, 80);
-        
+
         private readonly List<Donazione> _listaDonazioni;
         private readonly List<Test> _listaTest;
 
         public Contatto Contatto { get; }
+
         #region Contatto delegated properties
 
         public string Città {
@@ -64,10 +66,9 @@ namespace BloodBank.Model.Donatori {
             set { Contatto.Telefono = value; }
         }
 
-        #endregion
+        #endregion Contatto delegated properties
 
         public Donatore(Contatto contatto, GruppoSanguigno gruppoSanguigno, bool attivo) {
-
             Contatto = contatto;
             GruppoSanguigno = gruppoSanguigno;
             Attivo = attivo;
@@ -102,6 +103,6 @@ namespace BloodBank.Model.Donatori {
             return Contatto.ToString();
         }
 
-        #endregion
+        #endregion Overrides
     }
 }

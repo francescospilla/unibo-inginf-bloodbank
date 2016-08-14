@@ -1,15 +1,19 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using BloodBank.Core.Extensions;
+﻿using BloodBank.Core.Extensions;
 using BloodBank.Model.Indagini;
 using BloodBank.Model.Tests;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace BloodBank.Model.Service {
+
     public abstract class ListaIndaginiService<T> : DataService<ListaIndagini<T>> where T : ListaVoci {
-        protected ListaIndaginiService(IList<ListaIndagini<T>> items) : base(items){}
+
+        protected ListaIndaginiService(IList<ListaIndagini<T>> items) : base(items) {
+        }
     }
 
     public class AnalisiService : ListaIndaginiService<Analisi> {
+
         public AnalisiService(IDataService<Indagine> indagineService) : base(new List<ListaIndagini<Analisi>>()) {
             Indagine[] indagini = indagineService.GetModels().ToArray();
 
@@ -21,10 +25,9 @@ namespace BloodBank.Model.Service {
         }
     }
 
-    public class QuestionarioService : ListaIndaginiService<Questionario>
-    {
-        public QuestionarioService(IDataService<Indagine> indagineService) : base(new List<ListaIndagini<Questionario>>())
-        {
+    public class QuestionarioService : ListaIndaginiService<Questionario> {
+
+        public QuestionarioService(IDataService<Indagine> indagineService) : base(new List<ListaIndagini<Questionario>>()) {
             Indagine[] indagini = indagineService.GetModels().ToArray();
 
             for (int i = 0; i < 5; i++) {

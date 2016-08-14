@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using BloodBank.Model.Indagini;
-using BloodBank.Model.Service;
+﻿using BloodBank.Model.Indagini;
 using BloodBank.Model.Tests;
 using BloodBank.ViewModel.Events;
 using BloodBank.ViewModel.Service;
@@ -16,6 +13,7 @@ namespace BloodBank.ViewModel {
         private readonly IDataService<ListaIndagini<Questionario>, QuestionarioViewModel> _dataService;
 
         #region Constructors
+
         public QuestionariViewModel(IEventAggregator eventAggregator, DataService<ListaIndagini<Questionario>, QuestionarioViewModel> dataService) {
             _eventAggregator = eventAggregator;
             _dataService = dataService;
@@ -23,24 +21,24 @@ namespace BloodBank.ViewModel {
             DisplayName = "Questionari";
 
             Items.AddRange(dataService.GetViewModels());
-
-            
         }
-        #endregion
+
+        #endregion Constructors
 
         #region Actions
+
         public void OpenNavMenu() {
             _eventAggregator.Publish(new NavMenuEvent(NavMenuEvent.NavMenuStates.Open));
         }
-        #endregion
+
+        #endregion Actions
 
         #region Implementation of IHandle<in ViewModelCollectionChangedEvent<QuestionarioViewModel>>
 
-        public void Handle(ViewModelCollectionChangedEvent<QuestionarioViewModel> message)
-        {
-           Items.Add(message.ViewModel);
+        public void Handle(ViewModelCollectionChangedEvent<QuestionarioViewModel> message) {
+            Items.Add(message.ViewModel);
         }
 
-        #endregion
+        #endregion Implementation of IHandle<in ViewModelCollectionChangedEvent<QuestionarioViewModel>>
     }
 }

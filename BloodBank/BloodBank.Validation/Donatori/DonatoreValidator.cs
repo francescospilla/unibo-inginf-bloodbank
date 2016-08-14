@@ -1,8 +1,8 @@
-using System;
 using BloodBank.Core.Extensions;
 using BloodBank.Model.Donatori;
 using BloodBank.Model.Service;
 using FluentValidation;
+using System;
 
 namespace BloodBank.Validation {
 
@@ -38,6 +38,5 @@ namespace BloodBank.Validation {
                         return età >= Donatore.RangeEtà.Item1 && età <= Donatore.RangeEtà.Item2;
                     }).WithMessage("'Età' deve essere compresa tra i " + Donatore.RangeEtà.Item1 + " e " + Donatore.RangeEtà.Item2 + " anni.");
         }
-
     }
 }

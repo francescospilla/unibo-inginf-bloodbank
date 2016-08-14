@@ -1,8 +1,8 @@
-﻿using System;
+﻿using BloodBank.Model.Tests;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using BloodBank.Model.Tests;
 
 namespace BloodBank.Model.Indagini {
 
@@ -57,8 +57,8 @@ namespace BloodBank.Model.Indagini {
             DataUltimaModifica = DateTime.Now;
         }
 
-
         public IEnumerator<Indagine> GetEnumerator() => Indagini.GetEnumerator();
+
         IEnumerator IEnumerable.GetEnumerator() => Indagini.GetEnumerator();
 
         protected bool Equals(ListaIndagini other) {
@@ -86,5 +86,4 @@ namespace BloodBank.Model.Indagini {
         public ListaIndagini(string nome = null) : base(nome) {
         }
     }
-
 }

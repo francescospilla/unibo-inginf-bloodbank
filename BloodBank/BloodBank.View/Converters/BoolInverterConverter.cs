@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Windows.Data;
 
 namespace BloodBank.View.Converters {
-    
+
     public class BoolInverterConverter : IValueConverter {
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture) {
@@ -17,6 +17,5 @@ namespace BloodBank.View.Converters {
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) {
             return !(value as bool?);
         }
-        
     }
 }

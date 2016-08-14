@@ -55,8 +55,6 @@ namespace BloodBank.Model.Donatori {
             return Nome + " " + Cognome;
         }
 
-        #endregion
+        #endregion Overrides
     }
-
-
 }

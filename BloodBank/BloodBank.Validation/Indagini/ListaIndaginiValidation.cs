@@ -1,5 +1,3 @@
-using System;
-using System.Linq;
 using BloodBank.Model.Indagini;
 using FluentValidation;
 

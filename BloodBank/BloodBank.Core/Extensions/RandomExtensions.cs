@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 
 namespace BloodBank.Core.Extensions {
+
     public static class RandomExtensions {
         private static Random _rand;
 
         public static List<T> PickRandom<T>(this T[] values, int numValues) {
-
             // Create the Random object if it doesn't exist.
             if (_rand == null) _rand = new Random();
 
@@ -39,5 +39,4 @@ namespace BloodBank.Core.Extensions {
             return results;
         }
     }
-
 }

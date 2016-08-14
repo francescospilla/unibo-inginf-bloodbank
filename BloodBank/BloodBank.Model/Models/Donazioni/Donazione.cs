@@ -1,16 +1,17 @@
-﻿using System;
+﻿using BloodBank.Model.Donatori;
+using BloodBank.Model.Sangue;
+using BloodBank.Model.Tests;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Linq;
-using BloodBank.Model.Donatori;
-using BloodBank.Model.Sangue;
-using BloodBank.Model.Tests;
 
 namespace BloodBank.Model.Donazioni {
+
     public class Donazione {
+
         public Donazione(Donatore donatore, TipoDonazione tipoDonazione, DateTime data, VisitaMedica visitaMedica,
             Analisi analisi, Questionario questionario) {
-
             Contract.Requires<ArgumentNullException>(donatore != null && data != null && visitaMedica != null && analisi != null && questionario != null, "Tutti i parametri devono essere diversi da null.");
 
             if (donatore.Idoneità != Idoneità.Idoneo)
@@ -46,7 +47,6 @@ namespace BloodBank.Model.Donazioni {
         public DateTime DataProssimaDonazioneConsentita { get; }
 
         public void EffettuaPrelievo() {
-
             Contract.Requires<InvalidOperationException>(SaccheSangue.Count == 0, "SaccheSangue.Count == 0");
 
             foreach (ComponenteEmatico componente in TipoDonazione.ComponentiDerivati)
@@ -54,36 +54,30 @@ namespace BloodBank.Model.Donazioni {
                     TipoDonazione.QuantitàComponente(componente)));
 
             Contract.Ensures(SaccheSangue.Count > 0, "SaccheSangue.Count > 0");
-
         }
 
         private static bool AreDateTestValide(DateTime dataDonazione, IEnumerable<DateTime> dateTest) {
             return dateTest.All(data => data.Date.Equals(dataDonazione.Date) && data.TimeOfDay < dataDonazione.TimeOfDay);
         }
 
-        protected bool Equals(Donazione other)
-        {
+        protected bool Equals(Donazione other) {
             return Equals(Donatore, other.Donatore) && Data.Date.Equals(other.Data.Date);
         }
 
-        public override bool Equals(object obj)
-        {
+        public override bool Equals(object obj) {
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
             Donazione other = obj as Donazione;
             return other != null && Equals(other);
         }
 
-        public override int GetHashCode()
-        {
-            unchecked
-            {
-                return ((Donatore?.GetHashCode() ?? 0)*397) ^ Data.Date.GetHashCode();
+        public override int GetHashCode() {
+            unchecked {
+                return ((Donatore?.GetHashCode() ?? 0) * 397) ^ Data.Date.GetHashCode();
             }
         }
 
-        public override string ToString()
-        {
+        public override string ToString() {
             return "Donatore: " + Donatore + ", Data: " + Data + ", Tipo: " + TipoDonazione;
         }
     }

@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using BloodBank.Model.Donatori;
+﻿using BloodBank.Model.Donatori;
 using BloodBank.ViewModel.Events;
+using BloodBank.ViewModel.Service;
 using PropertyChanged;
 using Stylet;
-using BloodBank.ViewModel.Service;
+using System;
+using System.Collections.Generic;
 
 namespace BloodBank.ViewModel {
 
@@ -18,6 +17,7 @@ namespace BloodBank.ViewModel {
         public BindableCollection<DonatoreViewModel> ListaDonatori { get; }
 
         #region Constructors
+
         public DonatoriViewModel(IEventAggregator eventAggregator, DataService<Donatore, DonatoreViewModel> dataService, Func<DonatoreViewModel> viewModelFactory) {
             _eventAggregator = eventAggregator;
             _dataService = dataService;
@@ -33,22 +33,23 @@ namespace BloodBank.ViewModel {
 
             AddDonatoreTab();
         }
-        #endregion
+
+        #endregion Constructors
 
         #region Actions
+
         public void OpenNavMenu() {
             _eventAggregator.Publish(new NavMenuEvent(NavMenuEvent.NavMenuStates.Open));
         }
 
-        public void AddDonatoreTab(DonatoreViewModel viewModel = null)
-        {
+        public void AddDonatoreTab(DonatoreViewModel viewModel = null) {
             ActivateItem(viewModel ?? _viewModelFactory());
         }
 
         public void Handle(ViewModelCollectionChangedEvent<DonatoreViewModel> message) {
             ListaDonatori.Add(message.ViewModel);
         }
-        #endregion
 
+        #endregion Actions
     }
 }

@@ -1,74 +1,65 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.ComponentModel;
 using System.Windows;
-using System.ComponentModel;
 using System.Windows.Data;
 
 // From https://stackoverflow.com/a/7224866
 namespace BloodBank.View.Components {
 
-    public class PushBinding : FreezableBinding
-    {
+    public class PushBinding : FreezableBinding {
+
         #region Dependency Properties
 
         public static DependencyProperty TargetPropertyMirrorProperty =
             DependencyProperty.Register("TargetPropertyMirror",
                                         typeof(object),
                                         typeof(PushBinding));
+
         public static DependencyProperty TargetPropertyListenerProperty =
             DependencyProperty.Register("TargetPropertyListener",
                                         typeof(object),
                                         typeof(PushBinding),
                                         new UIPropertyMetadata(null, OnTargetPropertyListenerChanged));
 
-        private static void OnTargetPropertyListenerChanged(object sender, DependencyPropertyChangedEventArgs e)
-        {
+        private static void OnTargetPropertyListenerChanged(object sender, DependencyPropertyChangedEventArgs e) {
             PushBinding pushBinding = sender as PushBinding;
             pushBinding.TargetPropertyValueChanged();
         }
 
-        #endregion // Dependency Properties
+        #endregion Dependency Properties
 
         #region Constructor
 
-        public PushBinding()
-        {
+        public PushBinding() {
             Mode = BindingMode.OneWayToSource;
         }
 
-        #endregion // Constructor
+        #endregion Constructor
 
         #region Properties
 
-        public object TargetPropertyMirror
-        {
+        public object TargetPropertyMirror {
             get { return GetValue(TargetPropertyMirrorProperty); }
             set { SetValue(TargetPropertyMirrorProperty, value); }
         }
-        public object TargetPropertyListener
-        {
+
+        public object TargetPropertyListener {
             get { return GetValue(TargetPropertyListenerProperty); }
             set { SetValue(TargetPropertyListenerProperty, value); }
         }
-        
+
         [DefaultValue(null)]
-        public string TargetProperty
-        {
+        public string TargetProperty {
             get;
             set;
         }
 
-        #endregion // Properties
+        #endregion Properties
 
-        public void SetupTargetBinding(FrameworkElement targetObject)
-        {
-            if (targetObject == null)
-            {
+        public void SetupTargetBinding(FrameworkElement targetObject) {
+            if (targetObject == null) {
                 return;
             }
-            
+
             // Prevent the designer from reporting exceptions since
             // changes will be made of a Binding in use if it is set
             if (DesignerProperties.GetIsInDesignMode(this) == true)
@@ -76,8 +67,7 @@ namespace BloodBank.View.Components {
 
             // Bind to the selected TargetProperty, e.g. ActualHeight and get
             // notified about changes in OnTargetPropertyListenerChanged
-            Binding listenerBinding = new Binding
-            {
+            Binding listenerBinding = new Binding {
                 Source = targetObject,
                 Path = new PropertyPath(TargetProperty),
                 Mode = BindingMode.OneWay
@@ -91,8 +81,7 @@ namespace BloodBank.View.Components {
             TargetPropertyValueChanged();
         }
 
-        private void TargetPropertyValueChanged()
-        {
+        private void TargetPropertyValueChanged() {
             object targetPropertyValue = GetValue(TargetPropertyListenerProperty);
             this.SetValue(TargetPropertyMirrorProperty, targetPropertyValue);
         }

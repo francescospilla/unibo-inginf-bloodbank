@@ -1,18 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using StructureMap;
+﻿using StructureMap;
 using StructureMap.Pipeline;
 using Stylet;
+using System;
+using System.Collections.Generic;
+using System.Reflection;
 
 namespace BloodBank.ViewModel {
+
     public class StructureMapBootstrapper<TRootViewModel> : BootstrapperBase where TRootViewModel : class {
         private IContainer container;
 
         private object _rootViewModel;
+
         protected virtual object RootViewModel {
             get { return this._rootViewModel ?? (this._rootViewModel = this.GetInstance(typeof(TRootViewModel))); }
         }

@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using BloodBank.Model.Indagini;
+﻿using BloodBank.Model.Indagini;
 using BloodBank.Model.Service;
-using BloodBank.ViewModel.Service;
 using BloodBank.Model.Tests;
 using BloodBank.ViewModel.Components;
+using BloodBank.ViewModel.Service;
 using PropertyChanged;
 using Stylet;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace BloodBank.ViewModel {
 
@@ -36,26 +35,32 @@ namespace BloodBank.ViewModel {
                 ValidateProperty(() => Indagini);
             };
         }
-        #endregion
+
+        #endregion Private Methods
 
         #region Model Properties
+
         public string Nome { get; set; }
         private readonly BindableCollection<Indagine> _indagini = new BindableCollection<Indagine>();
+
         public IEnumerable<Indagine> Indagini {
             get { return _indagini; }
         }
 
         public DateTime DataCreazione { get; private set; }
         public DateTime DataUltimaModifica { get; private set; }
-        #endregion
+
+        #endregion Model Properties
 
         #region Other Properties
+
         public string Type => typeof(T).ToString().Split('.').Last();
         public BindableCollection<Indagine> IndaginiNonSelezionate { get; } = new BindableCollection<Indagine>();
 
         public IList IndaginiSelectedItems { get; set; }
         public IList IndaginiNonSelezionateSelectedItems { get; set; }
-        #endregion
+
+        #endregion Other Properties
 
         #region Actions
 
@@ -86,7 +91,6 @@ namespace BloodBank.ViewModel {
 
         private void ExecuteTrasferisciIndagini(ICollection<Indagine> collectionFrom, ICollection<Indagine> collectionTo,
             List<Indagine> selected) {
-
             var indexedItems = collectionFrom.Select((item, index) => new KeyValuePair<int, Indagine>(index, item)); // indexed items of the original collection
             selected = selected.OrderBy(t => indexedItems.Single(t2 => t2.Value.Equals(t)).Key).ToList(); // selected items in the subcollection in the right order
 
@@ -96,7 +100,7 @@ namespace BloodBank.ViewModel {
             }
         }
 
-        #endregion
+        #endregion TrasferisciIndagini
 
         #region MoveIndagini
 
@@ -148,9 +152,9 @@ namespace BloodBank.ViewModel {
                        .Any(oldIndex => toUp ? oldIndex - 1 < 0 : oldIndex + 1 > _indagini.Count - 1);
         }
 
-        #endregion
+        #endregion MoveIndagini
 
-        #endregion
+        #endregion Actions
 
         #region Mappings
 
@@ -187,6 +191,7 @@ namespace BloodBank.ViewModel {
             Model.Clear();
             Model.AddRange(Indagini);
         }
-        #endregion
+
+        #endregion Mappings
     }
 }

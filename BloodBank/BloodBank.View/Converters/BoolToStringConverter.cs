@@ -1,5 +1,5 @@
-namespace BloodBank.View.Converters
-{
+namespace BloodBank.View.Converters {
+
     public class BoolToStringConverter : BoolToValueConverter<string> {
     }
 }

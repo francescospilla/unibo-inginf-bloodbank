@@ -8,9 +8,11 @@ using System.Windows.Data;
 namespace BloodBank.View.Components {
 
     public class FreezableBinding : Freezable {
+
         #region Properties
 
         private Binding _binding;
+
         protected Binding Binding {
             get {
                 if (_binding == null) {
@@ -145,7 +147,7 @@ namespace BloodBank.View.Components {
             get { return Binding.ValidationRules; }
         }
 
-        #endregion // Properties
+        #endregion Properties
 
         protected override Freezable CreateInstanceCore() {
             return new FreezableBinding();

@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using BloodBank.Core.Extensions;
+﻿using BloodBank.Core.Extensions;
 using BloodBank.Model;
 using BloodBank.Model.Donatori;
 using BloodBank.Model.Sangue;
-using BloodBank.ViewModel.Service;
 using BloodBank.ViewModel.Components;
+using BloodBank.ViewModel.Service;
 using PropertyChanged;
 using Stylet;
+using System;
+using System.Collections.Generic;
 
 namespace BloodBank.ViewModel {
 
@@ -15,11 +15,14 @@ namespace BloodBank.ViewModel {
     public class DonatoreViewModel : EditableViewModel<Donatore>, IDonatore {
 
         #region Constructors
+
         public DonatoreViewModel(IEventAggregator eventAggregator, DataService<Donatore, DonatoreViewModel> dataService, IModelValidator<IDonatore> validator) : base(eventAggregator, dataService, validator) {
         }
-        #endregion
+
+        #endregion Constructors
 
         #region Properties
+
         public new string DisplayName => IsInitialized ? NomeCognome : "Nuovo donatore";
 
         public string NomeCognome => Nome + " " + Cognome;
@@ -42,7 +45,8 @@ namespace BloodBank.ViewModel {
         public GruppoSanguigno GruppoSanguigno { get; set; }
         public Idoneità? Idoneità { get; set; }
         public bool Attivo { get; set; }
-        #endregion
+
+        #endregion Properties
 
         public IEnumerable<Sesso> SessoEnumerable { get; } = EnumExtensions.Values<Sesso>();
         public IEnumerable<GruppoSanguigno> GruppoSanguignoEnumerable { get; } = EnumExtensions.Values<GruppoSanguigno>();
@@ -50,8 +54,8 @@ namespace BloodBank.ViewModel {
         public IEnumerable<bool> AttivoEnumerable { get; } = new[] { true, false };
 
         #region Mappings
-        protected override void SyncModelToViewModel()
-        {
+
+        protected override void SyncModelToViewModel() {
             Nome = Model.Nome;
             Cognome = Model.Cognome;
             Sesso = Model.Sesso;
@@ -81,7 +85,7 @@ namespace BloodBank.ViewModel {
             Model.Email = Email;
             Model.Attivo = Attivo;
         }
-        #endregion
 
+        #endregion Mappings
     }
 }

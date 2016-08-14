@@ -1,12 +1,13 @@
-using System.Text.RegularExpressions;
 using FluentValidation.Validators;
+using System.Text.RegularExpressions;
 
-namespace BloodBank.Validation
-{
+namespace BloodBank.Validation {
+
     public class CodiceFiscaleValidator : PropertyValidator {
         public const int ExpectedLength = 16;
 
-        public CodiceFiscaleValidator() : base("'{PropertyName}' non rispetta la validazione formale.") { }
+        public CodiceFiscaleValidator() : base("'{PropertyName}' non rispetta la validazione formale.") {
+        }
 
         protected override bool IsValid(PropertyValidatorContext context) {
             string codiceFiscale = context.PropertyValue as string;
@@ -35,6 +36,5 @@ namespace BloodBank.Validation
             }
             return listaControllo[somma % 26].ToString() == codicefiscale.Substring(15, 1) ? true : false;
         }
-        
     }
 }

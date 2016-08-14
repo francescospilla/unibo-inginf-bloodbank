@@ -1,18 +1,16 @@
 using System;
 
-namespace BloodBank.Model.Indagini
-{
-    public abstract class Voce
-    {
+namespace BloodBank.Model.Indagini {
+
+    public abstract class Voce {
         public abstract Idoneità Idoneità { get; }
         public abstract string TestoIndagine { get; }
         public abstract string TestoRisultato { get; }
     }
 
-    public class Voce<T> : Voce where T : IComparable<T>
-    {
-        public Voce(Indagine<T> indagine, T risultato)
-        {
+    public class Voce<T> : Voce where T : IComparable<T> {
+
+        public Voce(Indagine<T> indagine, T risultato) {
             Indagine = indagine;
             Risultato = risultato;
             Idoneità = Indagine.GetIdoneitàFromRisultato(risultato);
@@ -25,8 +23,7 @@ namespace BloodBank.Model.Indagini
         public override string TestoIndagine => Indagine.Testo;
         public override string TestoRisultato => Risultato.ToString();
 
-        public override string ToString()
-        {
+        public override string ToString() {
             return "Voce: " + TestoIndagine + ", Risultato: " + TestoRisultato;
         }
     }

@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using BloodBank.ViewModel.Service;
+﻿using BloodBank.ViewModel.Service;
 using PropertyChanged;
 using Stylet;
+using System.Collections.Generic;
 
 namespace BloodBank.ViewModel.Components {
 
@@ -11,6 +11,7 @@ namespace BloodBank.ViewModel.Components {
         protected readonly IDataService<TModel, EditableViewModel<TModel>> DataService;
 
         #region Constructors
+
         protected EditableViewModel(IEventAggregator eventAggregator, IDataService<TModel, EditableViewModel<TModel>> dataService, IModelValidator validator) : base(validator) {
             EventAggregator = eventAggregator;
             DataService = dataService;
@@ -20,10 +21,13 @@ namespace BloodBank.ViewModel.Components {
             }
             IsChanged = false;
         }
-        #endregion
+
+        #endregion Constructors
 
         #region Properties
+
         private TModel _model;
+
         public TModel Model {
             get { return _model; }
             set {
@@ -35,7 +39,8 @@ namespace BloodBank.ViewModel.Components {
 
         public bool IsInitialized { get { return Model != null; } }
         public bool IsChanged { get; set; }
-        #endregion
+
+        #endregion Properties
 
         protected override void OnValidationStateChanged(IEnumerable<string> changedProperties) {
             base.OnValidationStateChanged(changedProperties);
@@ -45,45 +50,46 @@ namespace BloodBank.ViewModel.Components {
         }
 
         #region Actions
-        
+
         #region Save
+
         public bool CanSave {
             get { return IsChanged && !HasErrors; }
         }
 
         public void Save() {
             if (Validator != null && !Validate()) return;
-            if (!IsInitialized)
-            {
+            if (!IsInitialized) {
                 Model = CreateModelFromViewModel();
                 // Fody can't weave other assemblies, so we have to manually raise this
                 NotifyOfPropertyChange(() => DisplayName);
                 DataService.AddModelAndExistingViewModel(Model, this);
-            }
-            else
+            } else
                 SyncViewModelToModel();
             IsChanged = false;
         }
 
-        #endregion
+        #endregion Save
 
         #region Cancel
+
         public bool CanCancel {
             get { return IsInitialized && IsChanged; }
         }
 
-        public void Cancel()
-        {
+        public void Cancel() {
             SyncModelToViewModel();
             IsChanged = false;
         }
 
         protected abstract void SyncModelToViewModel();
+
         protected abstract TModel CreateModelFromViewModel();
+
         protected abstract void SyncViewModelToModel();
 
-        #endregion
+        #endregion Cancel
 
-        #endregion
+        #endregion Actions
     }
 }

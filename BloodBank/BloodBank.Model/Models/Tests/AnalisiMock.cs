@@ -1,16 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using BloodBank.Model.Donatori;
+﻿using BloodBank.Model.Donatori;
 using BloodBank.Model.Indagini;
 using BloodBank.Model.Indagini.Tipi;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace BloodBank.Model.Tests {
+
     public class AnalisiMock {
         private int _count;
 
-        public Analisi GetAnalisi(Donatore donatore)
-        {
+        public Analisi GetAnalisi(Donatore donatore) {
             _count++;
             DateTime data = !donatore.ListaTest.Any() ? DateTime.Now : donatore.ListaTest.Last().Data.AddDays(_count);
 

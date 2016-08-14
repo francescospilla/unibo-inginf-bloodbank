@@ -1,10 +1,12 @@
-﻿using System;
+﻿using MaterialDesignThemes.Wpf;
+using System;
 using System.Globalization;
 using System.Windows.Data;
-using MaterialDesignThemes.Wpf;
 
 namespace BloodBank.View.Converters {
+
     public class StringToPackIconConverter : IValueConverter {
+
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture) {
             string iconName = value as string;
             if (iconName == null)

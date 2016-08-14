@@ -1,16 +1,14 @@
 ﻿using BloodBank.Model.Service;
 using BloodBank.ViewModel.Components;
 using BloodBank.ViewModel.Events;
-using StructureMap.Attributes;
 using Stylet;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BloodBank.ViewModel.Service {
+
     public class DataService<TModel, TViewModel> : IDataService<TModel, TViewModel> where TModel : class where TViewModel : EditableViewModel<TModel> {
         private readonly IEventAggregator _eventAggregator;
         private readonly IDataService<TModel> _modelService;
@@ -34,7 +32,6 @@ namespace BloodBank.ViewModel.Service {
                     foreach (object item in e.NewItems) {
                         _eventAggregator.PublishOnUIThread(new ViewModelCollectionChangedEvent<TViewModel>((TViewModel)item));
                     }
-
                 };
             }
         }

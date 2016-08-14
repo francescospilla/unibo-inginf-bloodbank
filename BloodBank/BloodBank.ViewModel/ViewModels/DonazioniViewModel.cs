@@ -9,17 +9,20 @@ namespace BloodBank.ViewModel {
         private readonly IEventAggregator _eventAggregator;
 
         #region Constructors
-        public DonazioniViewModel(IEventAggregator eventAggregator){
+
+        public DonazioniViewModel(IEventAggregator eventAggregator) {
             _eventAggregator = eventAggregator;
             DisplayName = "Donazioni";
         }
-        #endregion
+
+        #endregion Constructors
 
         #region Actions
+
         public void OpenNavMenu() {
             _eventAggregator.Publish(new NavMenuEvent(NavMenuEvent.NavMenuStates.Open));
         }
-        #endregion
 
+        #endregion Actions
     }
 }

@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 
 namespace BloodBank.Model.Sangue {
+
     public sealed class ComponenteEmatico {
+
         #region Private Constructor
 
         private ComponenteEmatico(string nome, int durataGiorni,
@@ -14,14 +16,14 @@ namespace BloodBank.Model.Sangue {
             ValuesSet.Add(this);
         }
 
-        #endregion
+        #endregion Private Constructor
 
         #region Static Members (Values)
 
         private static readonly HashSet<ComponenteEmatico> ValuesSet = new HashSet<ComponenteEmatico>();
         public static IReadOnlyCollection<ComponenteEmatico> Values => ValuesSet;
 
-        #endregion
+        #endregion Static Members (Values)
 
         #region Instance Members
 
@@ -29,7 +31,7 @@ namespace BloodBank.Model.Sangue {
         private int DurataGiorni { get; }
         private readonly Dictionary<GruppoSanguigno, IReadOnlyCollection<GruppoSanguigno>> _compatibilità;
 
-        #endregion
+        #endregion Instance Members
 
         #region Methods
 
@@ -43,7 +45,7 @@ namespace BloodBank.Model.Sangue {
 
         public override string ToString() => Nome;
 
-        #endregion
+        #endregion Methods
 
         #region Public Static Instances
 
@@ -218,6 +220,6 @@ namespace BloodBank.Model.Sangue {
 
         public static readonly ComponenteEmatico Piastrine = new ComponenteEmatico("Piastrine", 72, null);
 
-        #endregion
+        #endregion Public Static Instances
     }
 }

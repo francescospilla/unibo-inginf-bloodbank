@@ -1,7 +1,7 @@
 ﻿<UserControl x:Class="BloodBank.View.DonatoriView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:controls="clr-namespace:BloodBank.View.UserControls"
              xmlns:s="https://github.com/canton7/Stylet"
@@ -19,14 +19,14 @@
                 <system:String>CodiceFiscale</system:String>
             </CollectionViewSource.LiveSortingProperties>
             <CollectionViewSource.SortDescriptions>
-                <componentModel:SortDescription  PropertyName="CognomeNome"/>
-                <componentModel:SortDescription  PropertyName="CodiceFiscale"/>
+                <componentModel:SortDescription  PropertyName="CognomeNome" />
+                <componentModel:SortDescription  PropertyName="CodiceFiscale" />
             </CollectionViewSource.SortDescriptions>
         </CollectionViewSource>
     </UserControl.Resources>
 
     <DockPanel>
-        <controls:AppBar Title="{Binding DisplayName}" NavMenuButtonClickAction="{s:Action OpenNavMenu}" Shadow="Depth0" DockPanel.Dock="Top"  Panel.ZIndex="1"/>
+        <controls:AppBar Title="{Binding DisplayName}" NavMenuButtonClickAction="{s:Action OpenNavMenu}" Shadow="Depth0" DockPanel.Dock="Top"  Panel.ZIndex="1" />
 
         <Grid DockPanel.Dock="Left">
             <Grid.RowDefinitions>
@@ -47,12 +47,12 @@
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
-                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
 
                     <controls:FilterControl Header="Ricerca..."
                             TargetControl="{Binding ElementName=ListaDonatoriListBox}"
-                            FilterTextBindingPath="StringaRicerca"/>
+                            FilterTextBindingPath="StringaRicerca" />
 
                     <ListBox Grid.Row="1" x:Name="ListaDonatoriListBox" ItemsSource="{Binding Source={StaticResource ListaDonatoriOrdinata}}" HorizontalContentAlignment="Stretch" Margin="0 10 0 0">
                         <ListBox.ItemTemplate>
@@ -70,21 +70,20 @@
                                         <md:PackIcon Grid.Column="1" Margin="16 8" Style="{StaticResource EditableHelperIconStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" />
                                     </Grid>
                                     <Border.InputBindings>
-                                        <MouseBinding MouseAction="LeftDoubleClick" Command="{s:Action AddDonatoreTab}" CommandParameter="{Binding }"/>
+                                        <MouseBinding MouseAction="LeftDoubleClick" Command="{s:Action AddDonatoreTab}" CommandParameter="{Binding }" />
                                     </Border.InputBindings>
                                 </Border>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
-
                 </Grid>
             </Border>
         </Grid>
 
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="13*"/>
-                <RowDefinition Height="171*"/>
+                <RowDefinition Height="13*" />
+                <RowDefinition Height="171*" />
             </Grid.RowDefinitions>
             <dragablz:TabablzControl Style="{StaticResource StyletConductorTabablzControl}" BorderThickness="0" ShowDefaultCloseButton="True" Grid.RowSpan="2" />
 
@@ -93,5 +92,4 @@
             </Button>
         </Grid>
     </DockPanel>
-
 </UserControl>
