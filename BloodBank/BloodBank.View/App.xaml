@@ -105,6 +105,7 @@
             <!-- EditableViewModel Helper Icon -->
             <Style x:Key="EditableHelperIconStyle" TargetType="{x:Type md:PackIcon}" >
                 <Setter Property="Visibility" Value="Hidden" />
+                <Setter Property="Kind" Value="CheckCircleOutline" />
                 <Style.Triggers>
                     <DataTrigger Binding="{Binding IsChanged}" Value="True">
                         <Setter Property="Visibility" Value="Visible" />

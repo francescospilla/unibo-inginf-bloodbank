@@ -9,7 +9,7 @@
              mc:Ignorable="d" d:DesignHeight="600" d:DesignWidth="800">
 
     <DockPanel>
-        <controls:AppBar Title="{Binding DisplayName}" NavMenuButtonClickAction="{s:Action OpenNavMenu}" DockPanel.Dock="Top" />
+        <controls:AppBar Title="{Binding DisplayName}" NavMenuButtonClickAction="{s:Action OpenNavMenu}" DockPanel.Dock="Top" Panel.ZIndex="1" />
 
         <Border DockPanel.Dock="Left" Width="250" Background="{DynamicResource MaterialDesignPaper}" BorderThickness="0,0,1,0" BorderBrush="{DynamicResource PrimaryHueMidBrush}" Padding="0 6 0 0" HorizontalAlignment="Left">
             <Grid>
