@@ -1,6 +1,6 @@
 ﻿using Stylet;
 
-namespace BloodBank.ViewModel
+namespace BloodBank.ViewModel.Components
 {
     public class NavigationMenuItem
     {

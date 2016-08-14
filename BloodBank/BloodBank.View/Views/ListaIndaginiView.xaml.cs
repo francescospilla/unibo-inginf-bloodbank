@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace BloodBank.View.Views {
+namespace BloodBank.View {
     /// <summary>
     /// Interaction logic for ListaIndaginiView.xaml
     /// </summary>

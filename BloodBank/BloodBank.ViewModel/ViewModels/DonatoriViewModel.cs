@@ -7,7 +7,7 @@ using BloodBank.ViewModel.Events;
 using PropertyChanged;
 using Stylet;
 
-namespace BloodBank.ViewModel.ViewModels {
+namespace BloodBank.ViewModel {
 
     [ImplementPropertyChanged]
     public class DonatoriViewModel : Conductor<DonatoreViewModel>.Collection.OneActive {

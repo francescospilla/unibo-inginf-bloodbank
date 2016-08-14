@@ -3,7 +3,7 @@ using BloodBank.Model.Service;
 using BloodBank.Model.Tests;
 using Stylet;
 
-namespace BloodBank.ViewModel.ViewModels {
+namespace BloodBank.ViewModel {
     
     public class QuestionarioViewModel : ListaIndaginiViewModel<Questionario>
     {

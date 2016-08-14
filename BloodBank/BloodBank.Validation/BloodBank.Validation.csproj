@@ -62,10 +62,6 @@
       <Project>{85DEBB74-1F91-474F-9F84-592A873573BA}</Project>
       <Name>BloodBank.Model</Name>
     </ProjectReference>
-    <ProjectReference Include="..\BloodBank.Service\BloodBank.Model.Service.csproj">
-      <Project>{857A358A-2CF0-45F8-8AD9-2F63918AEBA4}</Project>
-      <Name>BloodBank.Model.Service</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

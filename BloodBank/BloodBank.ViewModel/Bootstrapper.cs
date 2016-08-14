@@ -16,7 +16,7 @@ namespace BloodBank.ViewModel {
             config.Scan(x =>
             {
                 x.AddAllTypesOf(typeof (IDataService<>));
-                x.Assembly("BloodBank.Model.Service");
+                x.Assembly("BloodBank.Model");
                 x.WithDefaultConventions();
             });
             

@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="BloodBank.View.Views.DonatoriView"
+﻿<UserControl x:Class="BloodBank.View.DonatoriView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -7,7 +7,6 @@
              xmlns:s="https://github.com/canton7/Stylet"
              xmlns:dragablz="http://dragablz.net/winfx/xaml/dragablz"
              xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
-             xmlns:vms="clr-namespace:BloodBank.ViewModel.ViewModels;assembly=BloodBank.ViewModel"
              xmlns:vm="clr-namespace:BloodBank.ViewModel;assembly=BloodBank.ViewModel"
              xmlns:componentModel="clr-namespace:System.ComponentModel;assembly=WindowsBase"
              xmlns:system="clr-namespace:System;assembly=mscorlib"

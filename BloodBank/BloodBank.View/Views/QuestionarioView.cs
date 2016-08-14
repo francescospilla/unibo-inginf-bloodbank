@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BloodBank.View.Views {
+namespace BloodBank.View {
     public class QuestionarioView : ListaIndaginiView {
     }
 }
