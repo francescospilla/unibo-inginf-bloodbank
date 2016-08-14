@@ -1,15 +1,13 @@
-﻿using System.Reflection;
+﻿using System;
 using FluentValidation;
 using StructureMap;
-using StructureMap.Pipeline;
-using BloodBank.Validation;
 
 namespace Stylet.FluentValidation {
     public static class ConfigureIoC {
-        public static void ConfigureForFluentValidation(this ConfigurationExpression config) {
+        public static void ConfigureForFluentValidation(this ConfigurationExpression config, Type typeToScanFor) {
 
             config.Scan(x => {
-                x.AssemblyContainingType(typeof(ValidatorExtensions));
+                x.AssemblyContainingType(typeToScanFor);
                 x.ConnectImplementationsToTypesClosing(typeof(IValidator<>)).OnAddedPluginTypes(c => c.Singleton());
                 x.WithDefaultConventions();
             });

@@ -1,5 +1,7 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Reflection;
 using BloodBank.Model.Service;
+using BloodBank.Validation;
 using BloodBank.ViewModel.Service;
 using StructureMap;
 using Stylet;
@@ -20,7 +22,9 @@ namespace BloodBank.ViewModel {
                 x.WithDefaultConventions();
             });
 
-            config.ConfigureForFluentValidation();
+            config.Policies.SetAllProperties(policy => policy.Matching(info => info.Name.EndsWith("FactoryFunc") && info.CanWrite));
+
+            config.ConfigureForFluentValidation(typeof(ValidatorExtensions));
         }
 
         protected override void Configure() {

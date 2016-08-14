@@ -71,10 +71,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BloodBank.Validation\BloodBank.Validation.csproj">
-      <Project>{80cc87ca-cc0a-43b1-9803-c82260924569}</Project>
-      <Name>BloodBank.Validation</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Stylet\Stylet.csproj">
       <Project>{2435BD00-AC12-48B0-AD36-9BAB2FDEC3F5}</Project>
       <Name>Stylet</Name>

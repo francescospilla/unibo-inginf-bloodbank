@@ -12,12 +12,12 @@ using System.Threading.Tasks;
 
 namespace BloodBank.ViewModel.Service {
     public class DataService<TModel, TViewModel> : IDataService<TModel, TViewModel> where TModel : class where TViewModel : EditableViewModel<TModel> {
-        private IEventAggregator _eventAggregator;
-        private IDataService<TModel> _modelService;
+        private readonly IEventAggregator _eventAggregator;
+        private readonly IDataService<TModel> _modelService;
         private ObservableCollection<TViewModel> _viewModelList;
 
-        [SetterProperty]
-        public Func<TViewModel> ViewModelFactory { get; set; }
+        // Deve essere inizializzata, preferibilmente con un IoC container.
+        public Func<TViewModel> ViewModelFactoryFunc { get; set; }
 
         public DataService(IEventAggregator eventAggregator, IDataService<TModel> modelService) {
             _eventAggregator = eventAggregator;
@@ -25,6 +25,9 @@ namespace BloodBank.ViewModel.Service {
         }
 
         private void Inizialize() {
+            if (ViewModelFactoryFunc == null)
+                throw new ArgumentNullException("La proprietà '" + nameof(ViewModelFactoryFunc) + "' non è stata assegnata.");
+
             if (_viewModelList == null) {
                 _viewModelList = new ObservableCollection<TViewModel>(_modelService.GetModels().Select(CreateViewModel));
                 _viewModelList.CollectionChanged += (sender, e) => {
@@ -63,7 +66,7 @@ namespace BloodBank.ViewModel.Service {
         }
 
         private TViewModel CreateViewModel(TModel model) {
-            var viewModel = ViewModelFactory();
+            TViewModel viewModel = ViewModelFactoryFunc();
             viewModel.Model = model;
             return viewModel;
         }
