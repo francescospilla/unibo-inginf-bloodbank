@@ -1,5 +1,4 @@
 ﻿using BloodBank.Model.Service;
-using BloodBank.ViewModel.Components;
 using BloodBank.ViewModel.Events;
 using Stylet;
 using System;

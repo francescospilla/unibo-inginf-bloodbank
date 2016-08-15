@@ -1,9 +1,9 @@
-﻿using BloodBank.ViewModel.Service;
+﻿using System.Collections.Generic;
+using BloodBank.ViewModel.Service;
 using PropertyChanged;
 using Stylet;
-using System.Collections.Generic;
 
-namespace BloodBank.ViewModel.Components {
+namespace BloodBank.ViewModel {
 
     [ImplementPropertyChanged]
     public abstract class EditableViewModel<TModel> : Screen where TModel : class {

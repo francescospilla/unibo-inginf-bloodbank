@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace BloodBank.Model.Donatori {
 
-    public class Donatore : IDonatore {
+    public class Donatore {
         public static readonly Tuple<int, int> RangeEtà = new Tuple<int, int>(16, 80);
 
         private readonly List<Donazione> _listaDonazioni;

@@ -1,14 +1,17 @@
+using System;
 using BloodBank.Core.Extensions;
 using BloodBank.Model.Donatori;
 using BloodBank.Model.Service;
+using BloodBank.ViewModel.Service;
+using BloodBank.ViewModel.Validation.Rules;
 using FluentValidation;
-using System;
+using BloodBank.ViewModel.Validation;
 
-namespace BloodBank.Validation {
+namespace BloodBank.ViewModel.Validation.Donatori {
 
-    public class DonatoreValidator : AbstractValidator<IDonatore> {
+    public class DonatoreValidator : AbstractValidator<DonatoreViewModel> {
 
-        public DonatoreValidator(CodiceFiscaleValidator codiceFiscaleValidator, IDataService<Donatore> donatoreService) {
+        public DonatoreValidator(CodiceFiscaleValidator codiceFiscaleValidator, IDataService<Donatore> dataService) {
             RuleFor(d => d.Nome).NotEmpty();
             RuleFor(d => d.Cognome).NotEmpty();
             RuleFor(d => d.Sesso).NotNull().IsInEnum();
@@ -16,7 +19,7 @@ namespace BloodBank.Validation {
                 .NotEmpty()
                 .Length(CodiceFiscaleValidator.ExpectedLength)
                 .SetValidator(codiceFiscaleValidator)
-                /*.MustBeUnique(d => d.CodiceFiscale, donatoreService.GetModels)*/;
+                .MustBeUnique(m => m.CodiceFiscale, vm => vm.CodiceFiscale, vm => vm.Model, dataService.GetModels, vm => vm.IsInitialized);
             RuleFor(d => d.DataNascita).NotNull().LessThanOrEqualTo(DateTime.Now);
             RuleFor(d => d.Indirizzo).NotEmpty();
             RuleFor(d => d.Città).NotEmpty();

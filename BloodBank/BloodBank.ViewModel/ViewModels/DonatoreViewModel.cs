@@ -2,7 +2,6 @@
 using BloodBank.Model;
 using BloodBank.Model.Donatori;
 using BloodBank.Model.Sangue;
-using BloodBank.ViewModel.Components;
 using BloodBank.ViewModel.Service;
 using PropertyChanged;
 using Stylet;
@@ -12,11 +11,11 @@ using System.Collections.Generic;
 namespace BloodBank.ViewModel {
 
     [ImplementPropertyChanged]
-    public class DonatoreViewModel : EditableViewModel<Donatore>, IDonatore {
+    public class DonatoreViewModel : EditableViewModel<Donatore> {
 
         #region Constructors
 
-        public DonatoreViewModel(IEventAggregator eventAggregator, IDataService<Donatore, DonatoreViewModel> dataService, IModelValidator<IDonatore> validator) : base(eventAggregator, dataService, validator) {
+        public DonatoreViewModel(IEventAggregator eventAggregator, IDataService<Donatore, DonatoreViewModel> dataService, IModelValidator<DonatoreViewModel> validator) : base(eventAggregator, dataService, validator) {
         }
 
         #endregion Constructors

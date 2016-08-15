@@ -33,6 +33,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FluentValidation, Version=6.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\FluentValidation.6.2.1.0\lib\Net45\FluentValidation.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="PropertyChanged, Version=1.51.3.0, Culture=neutral, PublicKeyToken=ee3ee20bcf148ddd, processorArchitecture=MSIL">
@@ -60,6 +64,11 @@
     <Compile Include="Service\DataService.cs" />
     <Compile Include="Service\IDataService.cs" />
     <Compile Include="StructureMapBootstrapper.cs" />
+    <Compile Include="Validation\Donatori\CodiceFiscaleValidator.cs" />
+    <Compile Include="Validation\Donatori\DonatoreValidator.cs" />
+    <Compile Include="Validation\Indagini\ListaIndaginiValidation.cs" />
+    <Compile Include="Validation\Rules\UniquePropertyValidator.cs" />
+    <Compile Include="Validation\ValidatorExtensions.cs" />
     <Compile Include="ViewModels\QuestionariViewModel.cs" />
     <Compile Include="ViewModels\DonazioniViewModel.cs" />
     <Compile Include="ViewModels\DonatoriViewModel.cs" />
@@ -80,10 +89,6 @@
     <ProjectReference Include="..\BloodBank.Model\BloodBank.Model.csproj">
       <Project>{85debb74-1f91-474f-9f84-592a873573ba}</Project>
       <Name>BloodBank.Model</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\BloodBank.Validation\BloodBank.Validation.csproj">
-      <Project>{80CC87CA-CC0A-43B1-9803-C82260924569}</Project>
-      <Name>BloodBank.Validation</Name>
     </ProjectReference>
     <ProjectReference Include="..\Stylet.FluentValidation\Stylet.FluentValidation.csproj">
       <Project>{bc9bc04d-1d1a-43a3-be2d-d80509f03e3c}</Project>

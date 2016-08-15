@@ -44,8 +44,6 @@
   <ItemGroup>
     <Compile Include="Models\Donatori\Contatto.cs" />
     <Compile Include="Models\Donatori\Donatore.cs" />
-    <Compile Include="Models\Donatori\IContatto.cs" />
-    <Compile Include="Models\Donatori\IDonatore.cs" />
     <Compile Include="Models\Donazioni\Donazione.cs" />
     <Compile Include="Models\Donazioni\TipoDonazione.cs" />
     <Compile Include="Models\Idoneità.cs" />

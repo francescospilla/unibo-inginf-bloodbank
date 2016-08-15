@@ -1,7 +1,7 @@
 using BloodBank.Model.Indagini;
 using FluentValidation;
 
-namespace BloodBank.Validation.Indagini {
+namespace BloodBank.ViewModel.Validation.Indagini {
 
     public class ListaIndaginiValidator : AbstractValidator<IListaIndagini> {
 

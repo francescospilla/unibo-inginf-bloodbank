@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BloodBank.Model", "BloodBan
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BloodBank.Core", "BloodBank.Core\BloodBank.Core.csproj", "{7FB4CAF6-148F-424E-BFDE-D117F13DE185}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BloodBank.Validation", "BloodBank.Validation\BloodBank.Validation.csproj", "{80CC87CA-CC0A-43B1-9803-C82260924569}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BloodBank.ViewModel", "BloodBank.ViewModel\BloodBank.ViewModel.csproj", "{D950CEA9-77F9-42D8-B7E2-B61748BB38A7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BloodBank", "BloodBank.View\BloodBank.csproj", "{FAB8CC63-E622-4082-8550-178745DABD75}"
@@ -32,10 +30,6 @@ Global
 		{7FB4CAF6-148F-424E-BFDE-D117F13DE185}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7FB4CAF6-148F-424E-BFDE-D117F13DE185}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7FB4CAF6-148F-424E-BFDE-D117F13DE185}.Release|Any CPU.Build.0 = Release|Any CPU
-		{80CC87CA-CC0A-43B1-9803-C82260924569}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{80CC87CA-CC0A-43B1-9803-C82260924569}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{80CC87CA-CC0A-43B1-9803-C82260924569}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{80CC87CA-CC0A-43B1-9803-C82260924569}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D950CEA9-77F9-42D8-B7E2-B61748BB38A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D950CEA9-77F9-42D8-B7E2-B61748BB38A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D950CEA9-77F9-42D8-B7E2-B61748BB38A7}.Release|Any CPU.ActiveCfg = Release|Any CPU

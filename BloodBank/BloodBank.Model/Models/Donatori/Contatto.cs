@@ -7,7 +7,7 @@ namespace BloodBank.Model.Donatori {
         Femmina
     }
 
-    public class Contatto : IContatto {
+    public class Contatto {
 
         public Contatto(string nome, string cognome, Sesso sesso, DateTime dataNascita, string codiceFiscale, string indirizzo, string città, string stato, string codicePostale, string telefono = null, string email = null) {
             Nome = nome;

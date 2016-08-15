@@ -1,7 +1,6 @@
 ﻿using BloodBank.Model.Indagini;
 using BloodBank.Model.Service;
 using BloodBank.Model.Tests;
-using BloodBank.ViewModel.Components;
 using BloodBank.ViewModel.Service;
 using PropertyChanged;
 using Stylet;

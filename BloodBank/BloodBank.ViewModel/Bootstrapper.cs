@@ -1,11 +1,11 @@
 ﻿using BloodBank.Model.Service;
-using BloodBank.Validation;
 using BloodBank.ViewModel.Service;
 using StructureMap;
 using Stylet;
 using Stylet.FluentValidation;
 using System.Reflection;
 using StructureMap.Pipeline;
+using ValidatorExtensions = BloodBank.ViewModel.Validation.ValidatorExtensions;
 
 namespace BloodBank.ViewModel {
 
