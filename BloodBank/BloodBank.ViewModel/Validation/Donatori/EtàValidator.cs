@@ -11,7 +11,7 @@ namespace BloodBank.ViewModel.Validation.Donatori {
         private readonly int _minRange;
         private readonly int _maxRange;
 
-        public EtàValidator(int minRange, int maxRange) : base("'{PropertyName}' deve essere compresa tra i " + minRange + " e " + maxRange + " anni.") {
+        public EtàValidator(int minRange, int maxRange) : base("'Età' deve essere compresa tra i " + minRange + " e " + maxRange + " anni.") {
             _minRange = minRange;
             _maxRange = maxRange;
         }

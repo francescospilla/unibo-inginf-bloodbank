@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using BloodBank.Core.Attributes;
 using BloodBank.Core.Extensions;
 using BloodBank.Model;
 using BloodBank.Model.Donatori;
@@ -28,21 +29,33 @@ namespace BloodBank.ViewModel.ViewModels {
         public string NomeCognome => Nome + " " + Cognome;
         public string CognomeNome => Cognome + " " + Nome;
 
-        // TODO: Aggiustare?
-        public string StringaRicerca => DisplayName;
+        public string StringaRicerca => this.PropertyList(typeof(SearchableAttribute));
 
+        [Searchable]
         public string Nome { get; set; }
+        [Searchable]
         public string Cognome { get; set; }
+        [Searchable]
         public Sesso Sesso { get; set; }
+        [Searchable]
         public DateTime DataNascita { get; set; } = DateTime.Today;
+        [Searchable]
         public string CodiceFiscale { get; set; }
+        [Searchable]
         public string Indirizzo { get; set; }
+        [Searchable]
         public string Città { get; set; }
+        [Searchable]
         public string Stato { get; set; }
+        [Searchable]
         public string CodicePostale { get; set; }
+        [Searchable]
         public string Telefono { get; set; }
+        [Searchable]
         public string Email { get; set; }
+        [Searchable]
         public GruppoSanguigno GruppoSanguigno { get; set; }
+        [Searchable]
         public Idoneità? Idoneità { get; set; }
         public bool Attivo { get; set; }
 

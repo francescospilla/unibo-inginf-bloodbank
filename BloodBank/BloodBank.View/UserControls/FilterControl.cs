@@ -1,13 +1,15 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Linq;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Threading;
+using BloodBank.Core.Extensions;
 
-// From http://www.codeproject.com/Articles/170095/WPF-Custom-Control-FilterControl-for-ListBox-ListV
+// From http://www.codeproject.com/Articles/170095/WPF-Custom-Control-FilterControl-for-ListBox-ListV, leggermente modificato
 namespace BloodBank.View.UserControls {
 
     public delegate void FilterRoutedEventHandler(object sender, FilterEventArgs e);
@@ -225,7 +227,19 @@ namespace BloodBank.View.UserControls {
                 throw new InvalidOperationException("FilterTextBindingPath is not set.");
             }
 
-            collectionView.Filter = (m => (GetDataValue<string>(m, this.FilterTextBindingPath).IndexOf(this.FilterText, StringComparison.InvariantCultureIgnoreCase) > -1));
+            collectionView.Filter = (m =>
+            {
+                /*  return (GetDataValue<string>(m, this.FilterTextBindingPath)
+                        .IndexOf(this.FilterText, StringComparison.InvariantCultureIgnoreCase) > -1);*/
+
+                /* Permette il confronto substringa per substringa, dove ogni substringa è delimitata da whitespace, e in qualunque ordine e casing */
+                string searchPropertyValue = GetDataValue<string>(m, FilterTextBindingPath);
+                string[] propertySubStrings = searchPropertyValue.ToLower().Split((char[]) null, StringSplitOptions.RemoveEmptyEntries);
+                string[] filterSubStrings = FilterText.ToLower().Split((char[]) null, StringSplitOptions.RemoveEmptyEntries);
+
+                return filterSubStrings.IsSubstringWiseSubsetOf(propertySubStrings);
+
+            });
         }
 
         private void ClearFilterOnTarget() {
