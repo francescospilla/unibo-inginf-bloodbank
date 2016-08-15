@@ -119,6 +119,19 @@
                     </DataTrigger>
                 </Style.Triggers>
             </Style>
+
+            <Style x:Key="EditableInitializedHelperIconStyle" TargetType="{x:Type md:PackIcon}">
+                <Setter Property="Visibility" Value="Visible" />
+                <Setter Property="Kind" Value="ContentSave" />
+                <Setter Property="Foreground" Value="Red" />
+                <Setter Property="ToolTip" Value="Mai salvato" />
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding IsInitialized}" Value="True">
+                        <Setter Property="Visibility" Value="Hidden" />
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+            
         </ResourceDictionary>
     </Application.Resources>
 </Application>

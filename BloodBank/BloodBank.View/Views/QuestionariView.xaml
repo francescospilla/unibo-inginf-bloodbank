@@ -30,12 +30,14 @@
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*" />
                                         <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
                                     <StackPanel Grid.Column="0" Margin="8">
                                         <TextBlock FontWeight="Bold" Text="{Binding Nome}" />
-                                        <TextBlock Text="{Binding DataUltimaModifica, StringFormat={}Ultima modifica: {0}}" />
+                                        <TextBlock Text="{Binding CountElementi, StringFormat={}{0} elementi}" />
                                     </StackPanel>
-                                    <md:PackIcon Grid.Column="1" Margin="16 8" Style="{StaticResource EditableHelperIconStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                    <md:PackIcon Grid.Column="1" Margin="8" Style="{StaticResource EditableInitializedHelperIconStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                    <md:PackIcon Grid.Column="2" Margin="8 8 16 8" Style="{StaticResource EditableHelperIconStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" />
                                 </Grid>
                             </Border>
                         </DataTemplate>
@@ -44,6 +46,13 @@
             </Grid>
         </Border>
 
-        <ContentControl s:View.Model="{Binding ActiveItem}"></ContentControl>
+        <Grid>
+            <ContentControl s:View.Model="{Binding ActiveItem}"></ContentControl>
+
+            <Button ToolTip="Aggiungi questionario" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,20,20" Command="{s:Action AddQuestionario}">
+                <md:PackIcon Kind="Plus" Height="24" Width="24" />
+            </Button>
+        </Grid>
+
     </DockPanel>
 </UserControl>

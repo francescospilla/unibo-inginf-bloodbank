@@ -1,4 +1,6 @@
-﻿using BloodBank.Model.Indagini;
+﻿using System;
+using System.Linq;
+using BloodBank.Model.Indagini;
 using BloodBank.Model.Tests;
 using BloodBank.ViewModel.Events;
 using BloodBank.ViewModel.Service;
@@ -8,19 +10,21 @@ using Stylet;
 namespace BloodBank.ViewModel {
 
     [ImplementPropertyChanged]
-    public class QuestionariViewModel : Conductor<QuestionarioViewModel>.Collection.OneActive, IHandle<ViewModelCollectionChangedEvent<QuestionarioViewModel>> {
+    public class QuestionariViewModel : Conductor<QuestionarioViewModel>.Collection.OneActive {
         private readonly IEventAggregator _eventAggregator;
         private readonly IDataService<ListaIndagini<Questionario>, QuestionarioViewModel> _dataService;
+        private readonly Func<QuestionarioViewModel> _viewModelFactory;
 
         #region Constructors
 
-        public QuestionariViewModel(IEventAggregator eventAggregator, IDataService<ListaIndagini<Questionario>, QuestionarioViewModel> dataService) {
+        public QuestionariViewModel(IEventAggregator eventAggregator, IDataService<ListaIndagini<Questionario>, QuestionarioViewModel> dataService, Func<QuestionarioViewModel> viewModelFactory) {
             _eventAggregator = eventAggregator;
             _dataService = dataService;
+            _viewModelFactory = viewModelFactory;
 
             DisplayName = "Questionari";
 
-            Items.AddRange(dataService.GetViewModels());
+            Items.AddRange(_dataService.GetViewModels());
         }
 
         #endregion Constructors
@@ -31,14 +35,22 @@ namespace BloodBank.ViewModel {
             _eventAggregator.Publish(new NavMenuEvent(NavMenuEvent.NavMenuStates.Open));
         }
 
-        #endregion Actions
+        public void AddQuestionario()
+        {
+            if (Items.All(vm => vm.IsInitialized))
+            {
+                QuestionarioViewModel vm = _viewModelFactory();
+                vm.Nome = "Questionario #" + (Items.Count + 1);
+                ActivateItem(vm);
+            }
+            else
+            {
+                QuestionarioViewModel emptyViewModel = Items.Single(vm => !vm.IsInitialized);
+                ActivateItem(emptyViewModel);
+            }
 
-        #region Implementation of IHandle<in ViewModelCollectionChangedEvent<QuestionarioViewModel>>
-
-        public void Handle(ViewModelCollectionChangedEvent<QuestionarioViewModel> message) {
-            Items.Add(message.ViewModel);
         }
 
-        #endregion Implementation of IHandle<in ViewModelCollectionChangedEvent<QuestionarioViewModel>>
+        #endregion Actions
     }
 }

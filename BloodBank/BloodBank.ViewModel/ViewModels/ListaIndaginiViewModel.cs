@@ -30,6 +30,7 @@ namespace BloodBank.ViewModel {
             _indagini.CollectionChanged += (sender, args) => {
                 NotifyOfPropertyChange(() => CanMoveUpIndagini);
                 NotifyOfPropertyChange(() => CanMoveDownIndagini);
+                NotifyOfPropertyChange(() => CountElementi);
                 IsChanged = true;
                 ValidateProperty(() => Indagini);
             };
@@ -58,6 +59,8 @@ namespace BloodBank.ViewModel {
 
         public IList IndaginiSelectedItems { get; set; }
         public IList IndaginiNonSelezionateSelectedItems { get; set; }
+
+        public int CountElementi => Indagini.Count();
 
         #endregion Other Properties
 
@@ -178,8 +181,7 @@ namespace BloodBank.ViewModel {
         }
 
         protected override ListaIndagini<T> CreateModelFromViewModel() {
-            ListaIndagini<T> model = new ListaIndagini<T>();
-            model.Nome = Nome;
+            ListaIndagini<T> model = new ListaIndagini<T> {Nome = Nome};
             model.Clear();
             model.AddRange(Indagini);
             return model;
