@@ -4,7 +4,7 @@ using BloodBank.Model.Tests;
 using BloodBank.ViewModel.Service;
 using Stylet;
 
-namespace BloodBank.ViewModel {
+namespace BloodBank.ViewModel.ViewModels {
 
     public class QuestionarioViewModel : ListaIndaginiViewModel<Questionario> {
 

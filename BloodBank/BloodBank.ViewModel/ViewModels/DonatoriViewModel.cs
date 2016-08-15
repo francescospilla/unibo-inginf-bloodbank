@@ -1,12 +1,12 @@
-﻿using BloodBank.Model.Donatori;
+﻿using System;
+using System.Collections.Generic;
+using BloodBank.Model.Donatori;
 using BloodBank.ViewModel.Events;
 using BloodBank.ViewModel.Service;
 using PropertyChanged;
 using Stylet;
-using System;
-using System.Collections.Generic;
 
-namespace BloodBank.ViewModel {
+namespace BloodBank.ViewModel.ViewModels {
 
     [ImplementPropertyChanged]
     public class DonatoriViewModel : Conductor<DonatoreViewModel>.Collection.OneActive, IHandle<ViewModelCollectionChangedEvent<DonatoreViewModel>> {

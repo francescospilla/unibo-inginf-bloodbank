@@ -1,14 +1,15 @@
-﻿using BloodBank.Core.Extensions;
+﻿using System;
+using System.Collections.Generic;
+using BloodBank.Core.Extensions;
 using BloodBank.Model;
 using BloodBank.Model.Donatori;
 using BloodBank.Model.Sangue;
+using BloodBank.ViewModel.Components;
 using BloodBank.ViewModel.Service;
 using PropertyChanged;
 using Stylet;
-using System;
-using System.Collections.Generic;
 
-namespace BloodBank.ViewModel {
+namespace BloodBank.ViewModel.ViewModels {
 
     [ImplementPropertyChanged]
     public class DonatoreViewModel : EditableViewModel<Donatore> {

@@ -2,6 +2,8 @@
 using PropertyChanged;
 using Stylet;
 using System;
+using BloodBank.ViewModel.Components;
+using BloodBank.ViewModel.ViewModels;
 
 namespace BloodBank.ViewModel {
 

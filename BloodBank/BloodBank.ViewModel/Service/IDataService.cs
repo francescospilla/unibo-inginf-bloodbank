@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using BloodBank.ViewModel.Components;
 
 namespace BloodBank.ViewModel.Service {
 

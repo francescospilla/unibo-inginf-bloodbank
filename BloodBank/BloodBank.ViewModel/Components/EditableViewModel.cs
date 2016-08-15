@@ -3,7 +3,7 @@ using BloodBank.ViewModel.Service;
 using PropertyChanged;
 using Stylet;
 
-namespace BloodBank.ViewModel {
+namespace BloodBank.ViewModel.Components {
 
     [ImplementPropertyChanged]
     public abstract class EditableViewModel<TModel> : Screen where TModel : class {

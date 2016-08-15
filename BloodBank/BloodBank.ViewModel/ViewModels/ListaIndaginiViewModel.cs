@@ -1,15 +1,16 @@
-﻿using BloodBank.Model.Indagini;
-using BloodBank.Model.Service;
-using BloodBank.Model.Tests;
-using BloodBank.ViewModel.Service;
-using PropertyChanged;
-using Stylet;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using BloodBank.Model.Indagini;
+using BloodBank.Model.Service;
+using BloodBank.Model.Tests;
+using BloodBank.ViewModel.Components;
+using BloodBank.ViewModel.Service;
+using PropertyChanged;
+using Stylet;
 
-namespace BloodBank.ViewModel {
+namespace BloodBank.ViewModel.ViewModels {
 
     [ImplementPropertyChanged]
     public class ListaIndaginiViewModel<T> : EditableViewModel<ListaIndagini<T>>, IListaIndagini where T : ListaVoci {

@@ -7,7 +7,7 @@ using BloodBank.ViewModel.Service;
 using PropertyChanged;
 using Stylet;
 
-namespace BloodBank.ViewModel {
+namespace BloodBank.ViewModel.ViewModels {
 
     [ImplementPropertyChanged]
     public class QuestionariViewModel : Conductor<QuestionarioViewModel>.Collection.OneActive {
