@@ -58,7 +58,9 @@ namespace BloodBank.ViewModel.ViewModels {
         public string Type => typeof(T).ToString().Split('.').Last();
         public BindableCollection<Indagine> IndaginiNonSelezionate { get; } = new BindableCollection<Indagine>();
 
+        [DoNotSetChanged]
         public IList IndaginiSelectedItems { get; set; }
+        [DoNotSetChanged]
         public IList IndaginiNonSelezionateSelectedItems { get; set; }
 
         public int CountElementi => Indagini.Count();
