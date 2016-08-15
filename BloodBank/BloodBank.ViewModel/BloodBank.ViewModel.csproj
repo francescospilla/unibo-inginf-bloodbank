@@ -66,6 +66,7 @@
     <Compile Include="StructureMapBootstrapper.cs" />
     <Compile Include="Validation\Donatori\CodiceFiscaleValidator.cs" />
     <Compile Include="Validation\Donatori\DonatoreValidator.cs" />
+    <Compile Include="Validation\Donatori\EtàValidator.cs" />
     <Compile Include="Validation\Indagini\ListaIndaginiValidation.cs" />
     <Compile Include="Validation\Rules\UniquePropertyValidator.cs" />
     <Compile Include="Validation\ValidatorExtensions.cs" />

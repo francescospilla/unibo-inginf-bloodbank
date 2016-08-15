@@ -7,19 +7,20 @@ using BloodBank.ViewModel.Validation.Rules;
 using FluentValidation;
 using BloodBank.ViewModel.Validation;
 using BloodBank.ViewModel.ViewModels;
+using FluentValidation.Validators;
 
 namespace BloodBank.ViewModel.Validation.Donatori {
 
     public class DonatoreValidator : AbstractValidator<DonatoreViewModel> {
 
-        public DonatoreValidator(CodiceFiscaleValidator codiceFiscaleValidator, IDataService<Donatore> dataService) {
+        public DonatoreValidator(IDataService<Donatore> dataService) {
             RuleFor(d => d.Nome).NotEmpty();
             RuleFor(d => d.Cognome).NotEmpty();
             RuleFor(d => d.Sesso).NotNull().IsInEnum();
             RuleFor(d => d.CodiceFiscale)
                 .NotEmpty()
                 .Length(CodiceFiscaleValidator.ExpectedLength)
-                .SetValidator(codiceFiscaleValidator)
+                .SetValidator(new CodiceFiscaleValidator())
                 .MustBeUnique(m => m.CodiceFiscale, vm => vm.CodiceFiscale, vm => vm.Model, dataService.GetModels, vm => vm.IsInitialized);
             RuleFor(d => d.DataNascita).NotNull().LessThanOrEqualTo(DateTime.Now);
             RuleFor(d => d.Indirizzo).NotEmpty();
@@ -35,12 +36,7 @@ namespace BloodBank.ViewModel.Validation.Donatori {
                 .Must(ParsingExtensions.IsPositiveIntegerNumber).Unless(c => string.IsNullOrEmpty(c.Telefono));
             RuleFor(d => d.Email).NotEmpty().EmailAddress().Unless(c => string.IsNullOrEmpty(c.Email));
             RuleFor(d => d.GruppoSanguigno).NotNull().IsInEnum();
-            RuleFor(d => d.DataNascita)
-                .Must(
-                    dataNascita => {
-                        int et‡ = dataNascita.Age();
-                        return et‡ >= Donatore.RangeEt‡.Item1 && et‡ <= Donatore.RangeEt‡.Item2;
-                    }).WithMessage("'Et‡' deve essere compresa tra i " + Donatore.RangeEt‡.Item1 + " e " + Donatore.RangeEt‡.Item2 + " anni.");
+            RuleFor(d => d.DataNascita).SetValidator(new Et‡Validator(Donatore.RangeEt‡.Item1, Donatore.RangeEt‡.Item2));
         }
     }
 }
