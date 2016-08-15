@@ -18,7 +18,7 @@ namespace BloodBank.ViewModel {
 
         #region Constructors
 
-        public DonatoriViewModel(IEventAggregator eventAggregator, DataService<Donatore, DonatoreViewModel> dataService, Func<DonatoreViewModel> viewModelFactory) {
+        public DonatoriViewModel(IEventAggregator eventAggregator, IDataService<Donatore, DonatoreViewModel> dataService, Func<DonatoreViewModel> viewModelFactory) {
             _eventAggregator = eventAggregator;
             _dataService = dataService;
             _viewModelFactory = viewModelFactory;

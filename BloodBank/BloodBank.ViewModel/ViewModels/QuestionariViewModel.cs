@@ -14,7 +14,7 @@ namespace BloodBank.ViewModel {
 
         #region Constructors
 
-        public QuestionariViewModel(IEventAggregator eventAggregator, DataService<ListaIndagini<Questionario>, QuestionarioViewModel> dataService) {
+        public QuestionariViewModel(IEventAggregator eventAggregator, IDataService<ListaIndagini<Questionario>, QuestionarioViewModel> dataService) {
             _eventAggregator = eventAggregator;
             _dataService = dataService;
 

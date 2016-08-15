@@ -5,6 +5,7 @@ using StructureMap;
 using Stylet;
 using Stylet.FluentValidation;
 using System.Reflection;
+using StructureMap.Pipeline;
 
 namespace BloodBank.ViewModel {
 
@@ -16,13 +17,11 @@ namespace BloodBank.ViewModel {
             config.Scan(x => {
                 x.AssemblyContainingType(typeof(IDataService<>));
                 x.ConnectImplementationsToTypesClosing(typeof(IDataService<>)).OnAddedPluginTypes(c => c.Singleton());
-                x.AssemblyContainingType(typeof(IDataService<,>));
-                x.ConnectImplementationsToTypesClosing(typeof(IDataService<,>)).OnAddedPluginTypes(c => c.Singleton());
                 x.WithDefaultConventions();
             });
 
             config.Policies.SetAllProperties(policy => policy.Matching(info => info.Name.EndsWith("FactoryFunc") && info.CanWrite));
-
+            config.For(typeof (IDataService<,>)).Use(typeof (DataService<,>)).LifecycleIs<SingletonLifecycle>();
             config.ConfigureForFluentValidation(typeof(ValidatorExtensions));
         }
 
