@@ -1,4 +1,4 @@
-﻿namespace BloodBank.View {
+﻿namespace BloodBank.View.Views {
 
     public class QuestionarioView : ListaIndaginiView {
     }
