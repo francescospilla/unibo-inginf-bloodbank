@@ -11,15 +11,19 @@ using BloodBank.ViewModel.Components;
 using BloodBank.ViewModel.Service;
 using Stylet;
 using BloodBank.Model.Donatori;
+using BloodBank.Model.Service;
 
 namespace BloodBank.ViewModel.ViewModels
 {
-    class VisitaMedicaViewModel : EditableViewModel<VisitaMedica>
+    public class VisitaMedicaViewModel : EditableViewModel<VisitaMedica>
     {
+        private readonly IDataService<Donatore> _donatoreDataService;
+
         #region Constructors
 
-        public VisitaMedicaViewModel(IEventAggregator eventAggregator, IDataService<VisitaMedica, EditableViewModel<VisitaMedica>> dataService, IModelValidator validator) : base(eventAggregator, dataService, validator)
+        public VisitaMedicaViewModel(IEventAggregator eventAggregator, IDataService<Donatore> donatoreDataService, IDataService<VisitaMedica, EditableViewModel<VisitaMedica>> dataService, IModelValidator validator) : base(eventAggregator, dataService, validator)
         {
+            _donatoreDataService = donatoreDataService;
         }
 
         #endregion Constructors
@@ -37,6 +41,7 @@ namespace BloodBank.ViewModel.ViewModels
         #endregion Properties
 
         public IEnumerable<Idoneità> IdoneitàEnumerable { get; } = EnumExtensions.Values<Idoneità>();
+        public IEnumerable<Donatore> DonatoreEnumerable { get; } = EnumExtensions.Values<Donatore>();
 
         #region Mappings
 

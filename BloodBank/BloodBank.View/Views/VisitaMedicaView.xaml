@@ -4,14 +4,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:md="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
-             xmlns:converters="clr-namespace:BloodBank.View.Converters"
-             xmlns:controls="clr-namespace:BloodBank.View.UserControls"
              xmlns:s="https://github.com/canton7/Stylet"
              xmlns:components="clr-namespace:BloodBank.View.Components"
              mc:Ignorable="d" d:DesignHeight="600" d:DesignWidth="800">
 
     <UserControl.Resources>
-        <converters:BoolToStringConverter x:Key="AttivoToString" TrueValue="Attivo" FalseValue="Non attivo" />
     </UserControl.Resources>
 
     <ScrollViewer VerticalScrollBarVisibility="Auto">
@@ -30,9 +27,6 @@
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="30" />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
 
@@ -61,14 +55,19 @@
                                     SelectedDate="{Binding Path=Data, UpdateSourceTrigger=PropertyChanged}">
                         </DatePicker>
 
-                        <md:PackIcon Grid.Row="2" Grid.Column="0" Kind="Pencil" Foreground="{Binding ElementName=TextBoxDescrizioneBreve, Path=BorderBrush}" VerticalAlignment="Bottom" Margin="0 0 0 7" HorizontalAlignment="Center" />
-                        <TextBox Grid.Row="2" Grid.Column="1" x:Name="TextBoxDescrizioneBreve" md:HintAssist.Hint="Referto Visita" Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsEnabled="{Binding IsInitialized, Converter={StaticResource BoolInverter}}"
+                        <md:PackIcon Grid.Row="2" Grid.Column="0" Kind="Account" Foreground="{Binding ElementName=TextBoxNomeDonatore, Path=BorderBrush}" VerticalAlignment="Bottom" Margin="0 0 0 7" HorizontalAlignment="Center" />
+                        <TextBox Grid.Row="2" Grid.Column="1" x:Name="TextBoxNomeDonatore" md:HintAssist.Hint="Nome Paziente" Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsEnabled="{Binding IsInitialized, Converter={StaticResource BoolInverter}}"
+                                 Text="{Binding Path=DonatoreEnumerable, UpdateSourceTrigger=PropertyChanged}">
+                        </TextBox>
+
+                        <md:PackIcon Grid.Row="3" Grid.Column="0" Kind="Pencil" Foreground="{Binding ElementName=TextBoxDescrizioneBreve, Path=BorderBrush}" VerticalAlignment="Bottom" Margin="0 0 0 7" HorizontalAlignment="Center" />
+                        <TextBox Grid.Row="3" Grid.Column="1" x:Name="TextBoxDescrizioneBreve" md:HintAssist.Hint="Referto Visita" Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsEnabled="{Binding IsInitialized, Converter={StaticResource BoolInverter}}"
                                  Text="{Binding Path=DescrizioneBreve, UpdateSourceTrigger=PropertyChanged}">
                         </TextBox>
 
                         <md:PackIcon Grid.Row="2" Grid.Column="2" Kind="ThumbsUpDown" Foreground="{Binding ElementName=ComboBoxIdoneità, Path=BorderBrush}" VerticalAlignment="Bottom" Margin="0 0 0 7" HorizontalAlignment="Center" />
                         <ComboBox Grid.Row="2" Grid.Column="3" x:Name="ComboBoxIdoneità" md:HintAssist.Hint="Idoneità Risultante" ItemsSource="{Binding Path=IdoneitàEnumerable}" IsEnabled="{Binding IsInitialized, Converter={StaticResource BoolInverter}}"
-                                  SelectedItem="{Binding Path=Idoneità, UpdateSourceTrigger=PropertyChanged}">
+                                  SelectedItem="{Binding Path=IdoneitàEnumerable, UpdateSourceTrigger=PropertyChanged}">
                         </ComboBox>
 
                     </Grid>
