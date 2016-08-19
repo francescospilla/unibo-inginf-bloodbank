@@ -18,6 +18,7 @@ namespace BloodBank.ViewModel.Validation.Tests
         public VisitaMedicaValidator(IDataService<VisitaMedica> dataService)
         {
             RuleFor(vm => vm.Donatore).NotEmpty();
+            RuleFor(vm => vm.NomeMedico).NotEmpty();
             RuleFor(vm => vm.DescrizioneBreve).NotEmpty();
             RuleFor(vm => vm.Idoneità).NotNull().IsInEnum();
             RuleFor(vm => vm.Data).GreaterThan(vm => vm.Donatore.ListaTest.Last().Data).When(vm => vm.Donatore != null && vm.Donatore.ListaTest.Any());
