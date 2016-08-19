@@ -14,7 +14,7 @@ namespace BloodBank.Model.Service
         private static readonly IList<VisitaMedica> Items = new List<VisitaMedica>() { 
             
             };
-        public VisitaMedicaService(IList<VisitaMedica> models) : base(Items)
+        public VisitaMedicaService() : base(Items)
         {
         }
     }

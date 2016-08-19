@@ -22,9 +22,10 @@ namespace BloodBank.ViewModel.ViewModels
 
         #region Constructors
 
-        public VisitaMedicaViewModel(IEventAggregator eventAggregator, IDataService<Donatore> donatoreDataService, IDataService<VisitaMedica, EditableViewModel<VisitaMedica>> dataService, IModelValidator<VisitaMedicaViewModel> validator) : base(eventAggregator, dataService, validator)
+        public VisitaMedicaViewModel(IEventAggregator eventAggregator, IDataService<Donatore> donatoreDataService, IDataService<VisitaMedica, VisitaMedicaViewModel> dataService, IModelValidator<VisitaMedicaViewModel> validator) : base(eventAggregator, dataService, validator)
         {
             _donatoreDataService = donatoreDataService;
+            DonatoreEnumerable = _donatoreDataService.GetModels();
         }
 
         #endregion Constructors
@@ -42,7 +43,7 @@ namespace BloodBank.ViewModel.ViewModels
         #endregion Properties
 
         public IEnumerable<Idoneità> IdoneitàEnumerable { get; } = EnumExtensions.Values<Idoneità>();
-        public IEnumerable<Donatore> DonatoreEnumerable { get; } = EnumExtensions.Values<Donatore>();
+        public IEnumerable<Donatore> DonatoreEnumerable { get; }
 
         #region Mappings
 
