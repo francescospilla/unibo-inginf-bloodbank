@@ -83,6 +83,7 @@
     <Compile Include="ViewModels\QuestionarioViewModel.cs" />
     <Compile Include="ViewModels\ListaIndaginiViewModel.cs" />
     <Compile Include="ViewModels\VisitaMedicaViewModel.cs" />
+    <Compile Include="ViewModels\VisiteMedicheViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BloodBank.Core\BloodBank.Core.csproj">

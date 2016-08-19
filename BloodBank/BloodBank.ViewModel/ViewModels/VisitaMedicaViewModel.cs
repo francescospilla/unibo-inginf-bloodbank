@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,6 +32,11 @@ namespace BloodBank.ViewModel.ViewModels
         #endregion Constructors
 
         #region Properties
+
+        public new string DisplayName => IsInitialized ? NomeCognomeIdoneità : "Nuova Visita Medica";
+
+        public string NomeCognomeIdoneità => Donatore.Nome + " " + Donatore.Cognome + " (" + Idoneità + ")";
+        public string CognomeNome =>  Donatore.Cognome + " " + Donatore.Nome;
 
         public string StringaRicerca => this.PropertyList(typeof(SearchableAttribute));
 
