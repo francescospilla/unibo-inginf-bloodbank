@@ -45,9 +45,9 @@
                                 <ColumnDefinition Width="10" />
                             </Grid.ColumnDefinitions>
 
-                            <TextBox Grid.Column="0" x:Name="TextBoxNome" md:HintAssist.Hint="Nome Medico" Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsEnabled="{Binding IsInitialized, Converter={StaticResource BoolInverter}}"
-                                     Text="{Binding Path=Nome, UpdateSourceTrigger=PropertyChanged}">
-                            </TextBox>
+                            <ComboBox Grid.Row="0" Grid.Column="0" x:Name="ComboBoxNomeMedico" md:HintAssist.Hint="Nome Medico" ItemsSource="{Binding Path=NomeMedicoEnumerable}" IsEnabled="{Binding IsInitialized, Converter={StaticResource BoolInverter}}"
+                                  SelectedItem="{Binding Path=NomeMedico, UpdateSourceTrigger=PropertyChanged}">
+                            </ComboBox>
                         </Grid>
 
                         <md:PackIcon Grid.Row="1" Grid.Column="2" Kind="Calendar" Foreground="{Binding ElementName=DatePickerDatVisitaMedica, Path=BorderBrush}" VerticalAlignment="Bottom" Margin="0 0 0 7" HorizontalAlignment="Center" />
@@ -55,19 +55,19 @@
                                     SelectedDate="{Binding Path=Data, UpdateSourceTrigger=PropertyChanged}">
                         </DatePicker>
 
-                        <md:PackIcon Grid.Row="2" Grid.Column="0" Kind="Account" Foreground="{Binding ElementName=TextBoxNomeDonatore, Path=BorderBrush}" VerticalAlignment="Bottom" Margin="0 0 0 7" HorizontalAlignment="Center" />
-                        <TextBox Grid.Row="2" Grid.Column="1" x:Name="TextBoxNomeDonatore" md:HintAssist.Hint="Nome Paziente" Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsEnabled="{Binding IsInitialized, Converter={StaticResource BoolInverter}}"
-                                 Text="{Binding Path=DonatoreEnumerable, UpdateSourceTrigger=PropertyChanged}">
-                        </TextBox>
-
+                        <md:PackIcon Grid.Row="2" Grid.Column="0" Kind="Account" Foreground="{Binding ElementName=ComboBoxNomeDonatore, Path=BorderBrush}" VerticalAlignment="Bottom" Margin="0 0 0 7" HorizontalAlignment="Center" />
+                       <ComboBox Grid.Row="2" Grid.Column="1" x:Name="ComboBoxNomeDonatore" md:HintAssist.Hint="Nome Paziente" ItemsSource="{Binding Path=DonatoreEnumerable}" IsEnabled="{Binding IsInitialized, Converter={StaticResource BoolInverter}}"
+                                  SelectedItem="{Binding Path=Donatore, UpdateSourceTrigger=PropertyChanged}">
+                        </ComboBox>
+                        
                         <md:PackIcon Grid.Row="3" Grid.Column="0" Kind="Pencil" Foreground="{Binding ElementName=TextBoxDescrizioneBreve, Path=BorderBrush}" VerticalAlignment="Bottom" Margin="0 0 0 7" HorizontalAlignment="Center" />
-                        <TextBox Grid.Row="3" Grid.Column="1" x:Name="TextBoxDescrizioneBreve" md:HintAssist.Hint="Referto Visita" Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsEnabled="{Binding IsInitialized, Converter={StaticResource BoolInverter}}"
+                        <TextBox Grid.Row="3" Grid.Column="1" x:Name="TextBoxDescrizioneBreve" md:HintAssist.Hint="Referto Visita"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsEnabled="{Binding IsInitialized, Converter={StaticResource BoolInverter}}"
                                  Text="{Binding Path=DescrizioneBreve, UpdateSourceTrigger=PropertyChanged}">
                         </TextBox>
 
                         <md:PackIcon Grid.Row="2" Grid.Column="2" Kind="ThumbsUpDown" Foreground="{Binding ElementName=ComboBoxIdoneità, Path=BorderBrush}" VerticalAlignment="Bottom" Margin="0 0 0 7" HorizontalAlignment="Center" />
                         <ComboBox Grid.Row="2" Grid.Column="3" x:Name="ComboBoxIdoneità" md:HintAssist.Hint="Idoneità Risultante" ItemsSource="{Binding Path=IdoneitàEnumerable}" IsEnabled="{Binding IsInitialized, Converter={StaticResource BoolInverter}}"
-                                  SelectedItem="{Binding Path=IdoneitàEnumerable, UpdateSourceTrigger=PropertyChanged}">
+                                  SelectedItem="{Binding Path=Idoneità, UpdateSourceTrigger=PropertyChanged}">
                         </ComboBox>
 
                     </Grid>

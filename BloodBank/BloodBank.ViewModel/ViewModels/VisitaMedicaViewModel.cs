@@ -37,27 +37,30 @@ namespace BloodBank.ViewModel.ViewModels
         [Searchable]
         public Donatore Donatore { get; set; }
         public string DescrizioneBreve { get; set;  }
-        public DateTime Data { get; set;  }
+        public DateTime Data { get; set;  } = DateTime.Now;
         public Idoneità Idoneità { get; set;  }
+        public string NomeMedico { get; set; }
 
         #endregion Properties
 
         public IEnumerable<Idoneità> IdoneitàEnumerable { get; } = EnumExtensions.Values<Idoneità>();
         public IEnumerable<Donatore> DonatoreEnumerable { get; }
+        public IEnumerable<string> NomeMedicoEnumerable { get; } = new List<string>(){ "Medico1", "Medico2", "Medico3"};
 
-        #region Mappings
+    #region Mappings
 
-        protected override void SyncModelToViewModel()
+    protected override void SyncModelToViewModel()
         {
             Donatore = Model.Donatore;
             DescrizioneBreve = Model.DescrizioneBreve;
             Data = Model.Data;
             Idoneità = Model.Idoneità;
+            NomeMedico = Model._nomeMedico;
         }
 
         protected override VisitaMedica CreateModelFromViewModel()
         {
-            return new VisitaMedica(Donatore, DescrizioneBreve, Data, Idoneità);
+            return new VisitaMedica(Donatore, DescrizioneBreve, Data, Idoneità, NomeMedico);
         }
 
         protected override void SyncViewModelToModel()
