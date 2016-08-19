@@ -12,6 +12,7 @@ using BloodBank.ViewModel.Service;
 using Stylet;
 using BloodBank.Model.Donatori;
 using BloodBank.Model.Service;
+using BloodBank.ViewModel.Validation.Tests;
 
 namespace BloodBank.ViewModel.ViewModels
 {
@@ -21,7 +22,7 @@ namespace BloodBank.ViewModel.ViewModels
 
         #region Constructors
 
-        public VisitaMedicaViewModel(IEventAggregator eventAggregator, IDataService<Donatore> donatoreDataService, IDataService<VisitaMedica, EditableViewModel<VisitaMedica>> dataService, IModelValidator validator) : base(eventAggregator, dataService, validator)
+        public VisitaMedicaViewModel(IEventAggregator eventAggregator, IDataService<Donatore> donatoreDataService, IDataService<VisitaMedica, EditableViewModel<VisitaMedica>> dataService, IModelValidator<VisitaMedicaViewModel> validator) : base(eventAggregator, dataService, validator)
         {
             _donatoreDataService = donatoreDataService;
         }

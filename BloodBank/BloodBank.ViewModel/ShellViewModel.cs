@@ -18,7 +18,7 @@ namespace BloodBank.ViewModel {
             Items.Add(new NavigationMenuItem("Donatori", "AccountMultiple", donatoriViewModel));
             Items.Add(new NavigationMenuItem("Donazioni", "Heart", donazioniViewModel));
             Items.Add(new NavigationMenuItem("Questionari", "Heart", questionariViewModel));
-            Items.Add(new NavigationMenuItem("Visita Medica", "Hospital", visitaMedicaViewModel));
+            Items.Add(new NavigationMenuItem("Visita Medica", "Heart", visitaMedicaViewModel));
         }
 
         #region NavMenu

@@ -69,6 +69,7 @@
     <Compile Include="Validation\Donatori\EtàValidator.cs" />
     <Compile Include="Validation\Indagini\ListaIndaginiValidation.cs" />
     <Compile Include="Validation\Rules\UniquePropertyValidator.cs" />
+    <Compile Include="Validation\Tests\VisitaMedicaValidator.cs" />
     <Compile Include="Validation\ValidatorExtensions.cs" />
     <Compile Include="ViewModels\QuestionariViewModel.cs" />
     <Compile Include="ViewModels\DonazioniViewModel.cs" />
