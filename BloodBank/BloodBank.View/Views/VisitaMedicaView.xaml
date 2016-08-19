@@ -62,7 +62,7 @@
                         
                         <md:PackIcon Grid.Row="3" Grid.Column="0" Kind="Pencil" Foreground="{Binding ElementName=TextBoxDescrizioneBreve, Path=BorderBrush}" VerticalAlignment="Bottom" Margin="0 0 0 7" HorizontalAlignment="Center" />
                         <TextBox Grid.Row="3" Grid.Column="1" x:Name="TextBoxDescrizioneBreve" md:HintAssist.Hint="Referto Visita"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsEnabled="{Binding IsInitialized, Converter={StaticResource BoolInverter}}"
-                                 Text="{Binding Path=DescrizioneBreve, UpdateSourceTrigger=PropertyChanged}">
+                                 Text="{Binding Path=DescrizioneBreve, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True">
                         </TextBox>
 
                         <md:PackIcon Grid.Row="2" Grid.Column="2" Kind="ThumbsUpDown" Foreground="{Binding ElementName=ComboBoxIdoneità, Path=BorderBrush}" VerticalAlignment="Bottom" Margin="0 0 0 7" HorizontalAlignment="Center" />
