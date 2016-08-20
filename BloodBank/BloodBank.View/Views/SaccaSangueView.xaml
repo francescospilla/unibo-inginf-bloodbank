@@ -68,7 +68,7 @@
                         </TextBox>
 
                         <StackPanel Grid.Column="3" Grid.Row="5" HorizontalAlignment="Right" VerticalAlignment="Center">
-                            <Button ToolTip="Deseleziona" Margin="10" Content="PRELEVA SACCA" Command="{s:Action PrelevaSacca}" />
+                            <Button ToolTip="Preleva" Margin="10" Content="PRELEVA SACCA" Command="{s:Action PrelevaSacca}" />
                         </StackPanel>
                     </Grid>
                 </StackPanel>
