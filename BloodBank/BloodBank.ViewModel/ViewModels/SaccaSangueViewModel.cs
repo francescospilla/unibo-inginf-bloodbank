@@ -63,7 +63,7 @@ namespace BloodBank.ViewModel.ViewModels {
         }
 
         protected override SaccaSangue CreateModelFromViewModel() {
-            return new SaccaSangue(Donazione, Gruppo, Componente, DataPrelievo);
+            throw new InvalidOperationException();
         }
 
         protected override void SyncViewModelToModel() {

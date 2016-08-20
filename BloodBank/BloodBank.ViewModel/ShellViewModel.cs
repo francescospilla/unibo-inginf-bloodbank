@@ -2,6 +2,8 @@
 using PropertyChanged;
 using Stylet;
 using System;
+using BloodBank.Model.Donazioni;
+using BloodBank.Model.Sangue;
 using BloodBank.ViewModel.Components;
 using BloodBank.ViewModel.ViewModels;
 
@@ -14,6 +16,9 @@ namespace BloodBank.ViewModel {
             eventAggregator.Subscribe(this);
 
             DisplayName = "BloodBank";
+
+            var saccaSangue = new SaccaSangue(null, GruppoSanguigno.AB_Neg, ComponenteEmatico.GlobuliRossi, DateTime.Now.AddDays(-3).AddHours(2));
+            saccaSangueViewModel.Model = saccaSangue;
 
             Items.Add(new NavigationMenuItem("Donatori", "AccountMultiple", donatoriViewModel));
             Items.Add(new NavigationMenuItem("Donazioni", "Heart", donazioniViewModel));
