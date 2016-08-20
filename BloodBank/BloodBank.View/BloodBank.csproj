@@ -101,9 +101,8 @@
     <Compile Include="Components\PushBinding\PushBindingManager.cs" />
     <Compile Include="Converters\StringToPackIconConverter.cs" />
     <Compile Include="UserControls\FilterControl.cs" />
-    <Compile Include="Views\AnalisiView.cs" />
-    <Compile Include="Views\QuestionariView.xaml.cs">
-      <DependentUpon>QuestionariView.xaml</DependentUpon>
+    <Compile Include="Views\ListeIndaginiQuestionarioView.xaml.cs">
+      <DependentUpon>ListeIndaginiQuestionarioView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\DonazioniView.xaml.cs">
       <DependentUpon>DonazioniView.xaml</DependentUpon>
@@ -122,7 +121,7 @@
     <Compile Include="Views\ListaIndaginiView.xaml.cs">
       <DependentUpon>ListaIndaginiView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\QuestionarioView.cs" />
+    <Compile Include="Views\ListaIndaginiQuestionarioView.cs" />
     <Page Include="Resources\FilterControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -143,7 +142,7 @@
     <Compile Include="Views\DonatoreView.xaml.cs">
       <DependentUpon>DonatoreView.xaml</DependentUpon>
     </Compile>
-    <Page Include="Views\QuestionariView.xaml">
+    <Page Include="Views\ListeIndaginiQuestionarioView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
