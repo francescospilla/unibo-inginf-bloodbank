@@ -43,7 +43,7 @@ namespace BloodBank.ViewModel.ViewModels {
         [Searchable]
         public ComponenteEmatico Componente { get; set; }
         [Searchable]
-        public bool Disponibile => Model != null && Model.Disponibile;
+        public bool Disponibile { get; set; }
 
         #endregion
 
@@ -60,6 +60,7 @@ namespace BloodBank.ViewModel.ViewModels {
             DataScadenza = Model.DataScadenza;
             Gruppo = Model.Gruppo;
             Componente = Model.Componente;
+            Disponibile = Model.Disponibile;
         }
 
         #endregion
@@ -69,8 +70,7 @@ namespace BloodBank.ViewModel.ViewModels {
         public bool CanPrelevaSacca => Disponibile;
         public void PrelevaSacca() {
             Model.Preleva();
-            NotifyOfPropertyChange(() => Disponibile);
-            NotifyOfPropertyChange(() => CanPrelevaSacca);
+            SyncModelToViewModel();
         }
 
         #endregion

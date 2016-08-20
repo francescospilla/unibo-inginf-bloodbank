@@ -39,17 +39,17 @@
 
                         <md:PackIcon Grid.Row="1" Grid.Column="0" Kind="Fingerprint" Foreground="{Binding ElementName=TextBoxId, Path=BorderBrush}" VerticalAlignment="Bottom" Margin="0 0 0 7" HorizontalAlignment="Center" />
                         <TextBox Grid.Row="1" Grid.Column="1" x:Name="TextBoxId" md:HintAssist.Hint="Id" Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsEnabled="False"
-                                     Text="{Binding Path=Id, UpdateSourceTrigger=PropertyChanged}">
+                                     Text="{Binding Path=Id, Mode=OneWay}">
                         </TextBox>
                         
                         <md:PackIcon Grid.Row="2" Grid.Column="0" Kind="Calendar" Foreground="{Binding ElementName=TextBoxDataPrelievo, Path=BorderBrush}" VerticalAlignment="Bottom" Margin="0 0 0 7" HorizontalAlignment="Center" />
                         <TextBox Grid.Row="2" Grid.Column="1" x:Name="TextBoxDataPrelievo" md:HintAssist.Hint="Data Prelievo" Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsEnabled="False"
-                                 Text="{Binding Path=DataPrelievo, UpdateSourceTrigger=PropertyChanged}">
+                                 Text="{Binding Path=DataPrelievo, Mode=OneWay}">
                         </TextBox>
 
                         <md:PackIcon Grid.Row="3" Grid.Column="0" Kind="CupWater" Foreground="{Binding ElementName=TextBoxComponente, Path=BorderBrush}" VerticalAlignment="Bottom" Margin="0 0 0 7" HorizontalAlignment="Center" />
                         <TextBox Grid.Row="3" Grid.Column="1" x:Name="TextBoxComponente" md:HintAssist.Hint="Componente Ematico" Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsEnabled="False"
-                                 Text="{Binding Path=Componente, Converter={StaticResource EnumToString}, UpdateSourceTrigger=PropertyChanged}">
+                                 Text="{Binding Path=Componente, Converter={StaticResource EnumToString}, Mode=OneWay}">
                         </TextBox>
 
                         <md:PackIcon Grid.Row="1" Grid.Column="2" Kind="Pocket" Foreground="{Binding ElementName=TextBoxDisponibile, Path=BorderBrush}" VerticalAlignment="Bottom" Margin="0 0 0 7" HorizontalAlignment="Center" />
@@ -59,12 +59,12 @@
 
                         <md:PackIcon Grid.Row="2" Grid.Column="2" Kind="CalendarClock" Foreground="{Binding ElementName=TextBoxDataScadenza, Path=BorderBrush}" VerticalAlignment="Bottom" Margin="0 0 0 7" HorizontalAlignment="Center" />
                         <TextBox Grid.Row="2" Grid.Column="3" x:Name="TextBoxDataScadenza" md:HintAssist.Hint="Data Scadenza" Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsEnabled="False"
-                                 Text="{Binding Path=DataScadenza, StringFormat=d, UpdateSourceTrigger=PropertyChanged}">
+                                 Text="{Binding Path=DataScadenza, StringFormat=d, Mode=OneWay}">
                         </TextBox>
 
                         <md:PackIcon Grid.Row="3" Grid.Column="2" Kind="Water" Foreground="{Binding ElementName=TextBoxGruppo, Path=BorderBrush}" VerticalAlignment="Bottom" Margin="0 0 0 7" HorizontalAlignment="Center" />
                         <TextBox Grid.Row="3" Grid.Column="3" x:Name="TextBoxGruppo" md:HintAssist.Hint="Gruppo Sanguigno" Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsEnabled="False"
-                                 Text="{Binding Path=Gruppo, Converter={StaticResource EnumToString}, UpdateSourceTrigger=PropertyChanged}">
+                                 Text="{Binding Path=Gruppo, Converter={StaticResource EnumToString}, Mode=OneWay}">
                         </TextBox>
 
                         <StackPanel Grid.Column="3" Grid.Row="5" HorizontalAlignment="Right" VerticalAlignment="Center">
