@@ -9,10 +9,12 @@ using BloodBank.Model.Donazioni;
 using BloodBank.Model.Sangue;
 using BloodBank.ViewModel.Components;
 using BloodBank.ViewModel.Service;
+using PropertyChanged;
 using Stylet;
 
 namespace BloodBank.ViewModel.ViewModels {
 
+    [ImplementPropertyChanged]
     public class SaccaSangueViewModel : EditableViewModel<SaccaSangue> {
 
         #region Constructors
@@ -41,7 +43,7 @@ namespace BloodBank.ViewModel.ViewModels {
         [Searchable]
         public ComponenteEmatico Componente { get; set; }
         [Searchable]
-        public bool Disponibile { get; set; }
+        public bool Disponibile => Model != null && Model.Disponibile;
 
         #endregion
 
@@ -51,15 +53,13 @@ namespace BloodBank.ViewModel.ViewModels {
 
         #region Mappings
 
-        protected override void SyncModelToViewModel()
-        {
+        protected override void SyncModelToViewModel() {
             Id = Model.Id;
             Donazione = Model.Donazione;
             DataPrelievo = Model.DataPrelievo;
             DataScadenza = Model.DataScadenza;
             Gruppo = Model.Gruppo;
             Componente = Model.Componente;
-            Disponibile = Model.Disponibile;
         }
 
         protected override SaccaSangue CreateModelFromViewModel() {
@@ -68,6 +68,17 @@ namespace BloodBank.ViewModel.ViewModels {
 
         protected override void SyncViewModelToModel() {
             throw new InvalidOperationException();
+        }
+
+        #endregion
+
+        #region Actions
+
+        public bool CanPrelevaSacca => Disponibile;
+        public void PrelevaSacca() {
+            Model.Preleva();
+            NotifyOfPropertyChange(() => Disponibile);
+            NotifyOfPropertyChange(() => CanPrelevaSacca);
         }
 
         #endregion

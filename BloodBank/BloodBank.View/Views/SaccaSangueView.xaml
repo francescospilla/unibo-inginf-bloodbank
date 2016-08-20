@@ -54,7 +54,7 @@
 
                         <md:PackIcon Grid.Row="1" Grid.Column="2" Kind="Pocket" Foreground="{Binding ElementName=TextBoxDisponibile, Path=BorderBrush}" VerticalAlignment="Bottom" Margin="0 0 0 7" HorizontalAlignment="Center" />
                         <TextBox Grid.Row="1" Grid.Column="3" x:Name="TextBoxDisponibile" md:HintAssist.Hint="Disponibilità" Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsEnabled="False"
-                                 Text="{Binding Converter={StaticResource DisponibileToString}, Path=Disponibile, UpdateSourceTrigger=PropertyChanged}">
+                                 Text="{Binding Converter={StaticResource DisponibileToString}, Path=Disponibile, Mode=OneWay}">
                         </TextBox>
 
                         <md:PackIcon Grid.Row="2" Grid.Column="2" Kind="CalendarClock" Foreground="{Binding ElementName=TextBoxDataScadenza, Path=BorderBrush}" VerticalAlignment="Bottom" Margin="0 0 0 7" HorizontalAlignment="Center" />
