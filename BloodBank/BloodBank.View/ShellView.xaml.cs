@@ -1,4 +1,6 @@
-﻿using MahApps.Metro.Controls;
+﻿using System.Threading;
+using System.Windows.Markup;
+using MahApps.Metro.Controls;
 
 namespace BloodBank.View {
 
@@ -9,6 +11,7 @@ namespace BloodBank.View {
 
         public ShellView() {
             InitializeComponent();
+            this.Language = XmlLanguage.GetLanguage(Thread.CurrentThread.CurrentCulture.Name);
         }
     }
 }
