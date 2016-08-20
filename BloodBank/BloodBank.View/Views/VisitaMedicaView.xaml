@@ -16,7 +16,24 @@
 
             <md:Card Margin="20 10" Padding="10 0 10 30" MaxWidth="1000">
                 <StackPanel>
-                    <Grid components:LayoutSetter.Margin="15">
+                    <Grid Margin="10">
+                        <Grid.Resources>
+                            <Style TargetType="{x:Type DatePicker}" BasedOn="{StaticResource MaterialDesignDatePicker}">
+                                <Setter Property="Margin" Value="10 10 10 7" />
+                                <Setter Property="VerticalAlignment" Value="Bottom" />
+                            </Style>
+                            <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource MaterialDesignComboBox}">
+                                <Setter Property="Margin" Value="10 10 10 7" />
+                            </Style>
+                            <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignFloatingHintTextBox}">
+                                <Setter Property="Margin" Value="10 10 10 7" />
+                            </Style>
+                            <Style TargetType="{x:Type md:PackIcon}">
+                                <Setter Property="Margin" Value="10 10 10 12"  />
+                                <Setter Property="VerticalAlignment" Value="Bottom" />
+                                <Setter Property="HorizontalAlignment" Value="Center" />
+                            </Style>
+                        </Grid.Resources>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="2*" />
@@ -27,40 +44,45 @@
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
+                            <RowDefinition Height="20"/>
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
 
-                        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Orientation="Horizontal" HorizontalAlignment="Right">
+                        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Orientation="Horizontal" HorizontalAlignment="Right" Visibility="{Binding IsInitialized, Converter={StaticResource BoolToVisibilityInverted}}">
                             <TextBlock Text="Modifiche:" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,20,0" FontWeight="Bold" />
                             <Button Style="{DynamicResource MaterialDesignFlatButton}" Content="SALVA" Command="{s:Action Save}" />
-                            <Button Style="{DynamicResource MaterialDesignFlatButton}" Content="CANCELLA" Command="{s:Action Cancel}" />
                         </StackPanel>
 
                         <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="Visita Medica" Style="{StaticResource MaterialDesignDisplay1TextBlock}" />
 
-                        <md:PackIcon Grid.Row="1" Grid.Column="0" Kind="Stethoscope" Foreground="{Binding ElementName=ComboBoxNomeMedico, Path=BorderBrush}" VerticalAlignment="Bottom" Margin="0 0 0 7" HorizontalAlignment="Center" />
-                        <ComboBox Grid.Row="1" Grid.Column="1" x:Name="ComboBoxNomeMedico" md:HintAssist.Hint="Nome Medico" ItemsSource="{Binding Path=NomeMedicoEnumerable}" IsEnabled="{Binding IsI4nitialized, Converter={StaticResource BoolInverter}}"
+                        <md:PackIcon Grid.Row="1" Grid.Column="0" Kind="Stethoscope" Foreground="{Binding ElementName=ComboBoxNomeMedico, Path=BorderBrush}" />
+                        <ComboBox Grid.Row="1" Grid.Column="1" x:Name="ComboBoxNomeMedico" md:HintAssist.Hint="Nome Medico" ItemsSource="{Binding Path=NomeMedicoEnumerable}" IsEnabled="{Binding IsInitialized, Converter={StaticResource BoolInverter}}"
                                   SelectedItem="{Binding Path=NomeMedico, UpdateSourceTrigger=PropertyChanged}">
-                            </ComboBox>
+                        </ComboBox>
 
-                            <md:PackIcon Grid.Row="1" Grid.Column="2" Kind="Calendar" Foreground="{Binding ElementName=DatePickerDatVisitaMedica, Path=BorderBrush}" VerticalAlignment="Bottom" Margin="0 0 0 7" HorizontalAlignment="Center" />
-                        <DatePicker Grid.Row="1" Grid.Column="3" x:Name="DatePickerDatVisitaMedica" md:HintAssist.Hint="Data della Visita" VerticalAlignment="Bottom" IsEnabled="{Binding IsInitialized, Converter={StaticResource BoolInverter}}"
+                        <md:PackIcon Grid.Row="1" Grid.Column="2" Kind="Calendar" Foreground="{Binding ElementName=DatePickerDatVisitaMedica, Path=BorderBrush}" />
+                        <DatePicker Grid.Row="1" Grid.Column="3" x:Name="DatePickerDatVisitaMedica" md:HintAssist.Hint="Data della Visita"  IsEnabled="{Binding IsInitialized, Converter={StaticResource BoolInverter}}"
                                     SelectedDate="{Binding Path=Data, UpdateSourceTrigger=PropertyChanged}">
                         </DatePicker>
 
-                        <md:PackIcon Grid.Row="2" Grid.Column="0" Kind="Account" Foreground="{Binding ElementName=ComboBoxNomeDonatore, Path=BorderBrush}" VerticalAlignment="Bottom" Margin="0 0 0 7" HorizontalAlignment="Center" />
-                       <ComboBox Grid.Row="2" Grid.Column="1" x:Name="ComboBoxNomeDonatore" md:HintAssist.Hint="Nome Paziente" ItemsSource="{Binding Path=DonatoreEnumerable}" IsEnabled="{Binding IsInitialized, Converter={StaticResource BoolInverter}}"
+                        <md:PackIcon Grid.Row="2" Grid.Column="0" Kind="Account" Foreground="{Binding ElementName=ComboBoxNomeDonatore, Path=BorderBrush}" />
+                        <ComboBox Grid.Row="2" Grid.Column="1" x:Name="ComboBoxNomeDonatore" md:HintAssist.Hint="Nome Paziente" ItemsSource="{Binding Path=DonatoreEnumerable}" IsEnabled="{Binding IsInitialized, Converter={StaticResource BoolInverter}}"
                                   SelectedItem="{Binding Path=Donatore, UpdateSourceTrigger=PropertyChanged}">
                         </ComboBox>
-                        
-                        <md:PackIcon Grid.Row="3" Grid.Column="0" Kind="Pencil" Foreground="{Binding ElementName=TextBoxDescrizioneBreve, Path=BorderBrush}" VerticalAlignment="Bottom" Margin="0 0 0 7" HorizontalAlignment="Center" />
-                        <TextBox Grid.Row="3" Grid.Column="1" x:Name="TextBoxDescrizioneBreve" md:HintAssist.Hint="Referto Visita"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsEnabled="{Binding IsInitialized, Converter={StaticResource BoolInverter}}"
-                                 Text="{Binding Path=DescrizioneBreve, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True">
+
+                        <md:PackIcon Grid.Row="4" Grid.Column="0" Kind="Pencil" Foreground="{Binding ElementName=TextBoxDescrizioneBreve, Path=BorderBrush}" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="10,25,10,0" />
+                        <TextBox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" MinLines="4" x:Name="TextBoxDescrizioneBreve" md:HintAssist.Hint="Referto Visita" IsEnabled="{Binding IsInitialized, Converter={StaticResource BoolInverter}}"
+                                 Text="{Binding Path=DescrizioneBreve, UpdateSourceTrigger=PropertyChanged}" VerticalContentAlignment="Top"  TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True">
                         </TextBox>
 
-                        <md:PackIcon Grid.Row="2" Grid.Column="2" Kind="ThumbsUpDown" Foreground="{Binding ElementName=ComboBoxIdoneità, Path=BorderBrush}" VerticalAlignment="Bottom" Margin="0 0 0 7" HorizontalAlignment="Center" />
+                        <md:PackIcon Grid.Row="2" Grid.Column="2" Kind="ThumbsUpDown" Foreground="{Binding ElementName=ComboBoxIdoneità, Path=BorderBrush}" />
                         <ComboBox Grid.Row="2" Grid.Column="3" x:Name="ComboBoxIdoneità" md:HintAssist.Hint="Idoneità Risultante" ItemsSource="{Binding Path=IdoneitàEnumerable}" IsEnabled="{Binding IsInitialized, Converter={StaticResource BoolInverter}}"
                                   SelectedItem="{Binding Path=Idoneità, UpdateSourceTrigger=PropertyChanged}">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Converter={StaticResource EnumToString}}" />
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
                         </ComboBox>
 
                     </Grid>
