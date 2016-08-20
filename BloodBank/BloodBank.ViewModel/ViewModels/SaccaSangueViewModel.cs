@@ -15,10 +15,10 @@ using Stylet;
 namespace BloodBank.ViewModel.ViewModels {
 
     [ImplementPropertyChanged]
-    public class SaccaSangueViewModel : EditableViewModel<SaccaSangue> {
+    public class SaccaSangueViewModel : ViewModel<SaccaSangue> {
 
         #region Constructors
-        public SaccaSangueViewModel(IEventAggregator eventAggregator, IDataService<SaccaSangue, EditableViewModel<SaccaSangue>> dataService) : base(eventAggregator, dataService, null) {
+        public SaccaSangueViewModel(IEventAggregator eventAggregator) : base(eventAggregator) {
         }
         #endregion
 
@@ -60,14 +60,6 @@ namespace BloodBank.ViewModel.ViewModels {
             DataScadenza = Model.DataScadenza;
             Gruppo = Model.Gruppo;
             Componente = Model.Componente;
-        }
-
-        protected override SaccaSangue CreateModelFromViewModel() {
-            throw new InvalidOperationException();
-        }
-
-        protected override void SyncViewModelToModel() {
-            throw new InvalidOperationException();
         }
 
         #endregion
