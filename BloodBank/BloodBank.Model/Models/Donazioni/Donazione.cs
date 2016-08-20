@@ -49,9 +49,10 @@ namespace BloodBank.Model.Donazioni {
         public void EffettuaPrelievo() {
             Contract.Requires<InvalidOperationException>(SaccheSangue.Count == 0, "SaccheSangue.Count == 0");
 
-            foreach (ComponenteEmatico componente in TipoDonazione.ComponentiDerivati)
-                SaccheSangue.Add(new SaccaSangue(this, Donatore.GruppoSanguigno, componente, Data,
-                    TipoDonazione.QuantitàComponente(componente)));
+            foreach (ComponenteEmatico componente in TipoDonazione.ComponentiDerivati) {
+                for(int i=0 ; i<TipoDonazione.QuantitàComponente(componente); i++)
+                    SaccheSangue.Add(new SaccaSangue(this, Donatore.GruppoSanguigno, componente, Data));
+            }
 
             Contract.Ensures(SaccheSangue.Count > 0, "SaccheSangue.Count > 0");
         }

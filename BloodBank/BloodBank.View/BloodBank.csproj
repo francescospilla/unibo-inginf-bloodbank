@@ -122,6 +122,9 @@
       <DependentUpon>ListaIndaginiView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\QuestionarioView.cs" />
+    <Compile Include="Views\SaccaSangueView.xaml.cs">
+      <DependentUpon>SaccaSangueView.xaml</DependentUpon>
+    </Compile>
     <Page Include="Resources\FilterControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -165,6 +168,10 @@
     <Page Include="Views\ListaIndaginiView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\SaccaSangueView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
