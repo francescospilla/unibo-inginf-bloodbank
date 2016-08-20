@@ -37,7 +37,7 @@
 
                         <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="Dati Sacca" Style="{StaticResource MaterialDesignDisplay1TextBlock}" />
 
-                        <md:PackIcon Grid.Row="1" Grid.Column="0" Kind="At" Foreground="{Binding ElementName=TextBoxId, Path=BorderBrush}" VerticalAlignment="Bottom" Margin="0 0 0 7" HorizontalAlignment="Center" />
+                        <md:PackIcon Grid.Row="1" Grid.Column="0" Kind="Fingerprint" Foreground="{Binding ElementName=TextBoxId, Path=BorderBrush}" VerticalAlignment="Bottom" Margin="0 0 0 7" HorizontalAlignment="Center" />
                         <TextBox Grid.Row="1" Grid.Column="1" x:Name="TextBoxId" md:HintAssist.Hint="Id" Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsEnabled="False"
                                      Text="{Binding Path=Id, UpdateSourceTrigger=PropertyChanged}">
                         </TextBox>
@@ -47,17 +47,17 @@
                                  Text="{Binding Path=DataPrelievo, UpdateSourceTrigger=PropertyChanged}">
                         </TextBox>
 
-                        <md:PackIcon Grid.Row="3" Grid.Column="0" Kind="Watermark" Foreground="{Binding ElementName=TextBoxComponente, Path=BorderBrush}" VerticalAlignment="Bottom" Margin="0 0 0 7" HorizontalAlignment="Center" />
+                        <md:PackIcon Grid.Row="3" Grid.Column="0" Kind="CupWater" Foreground="{Binding ElementName=TextBoxComponente, Path=BorderBrush}" VerticalAlignment="Bottom" Margin="0 0 0 7" HorizontalAlignment="Center" />
                         <TextBox Grid.Row="3" Grid.Column="1" x:Name="TextBoxComponente" md:HintAssist.Hint="Componente Ematico" Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsEnabled="False"
                                  Text="{Binding Path=Componente, Converter={StaticResource EnumToString}, UpdateSourceTrigger=PropertyChanged}">
                         </TextBox>
 
-                        <md:PackIcon Grid.Row="1" Grid.Column="2" Kind="AvTimer" Foreground="{Binding ElementName=TextBoxDisponibile, Path=BorderBrush}" VerticalAlignment="Bottom" Margin="0 0 0 7" HorizontalAlignment="Center" />
+                        <md:PackIcon Grid.Row="1" Grid.Column="2" Kind="Pocket" Foreground="{Binding ElementName=TextBoxDisponibile, Path=BorderBrush}" VerticalAlignment="Bottom" Margin="0 0 0 7" HorizontalAlignment="Center" />
                         <TextBox Grid.Row="1" Grid.Column="3" x:Name="TextBoxDisponibile" md:HintAssist.Hint="Disponibilità" Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsEnabled="False"
                                  Text="{Binding Converter={StaticResource DisponibileToString}, Path=Disponibile, UpdateSourceTrigger=PropertyChanged}">
                         </TextBox>
 
-                        <md:PackIcon Grid.Row="2" Grid.Column="2" Kind="Calendar" Foreground="{Binding ElementName=TextBoxDataScadenza, Path=BorderBrush}" VerticalAlignment="Bottom" Margin="0 0 0 7" HorizontalAlignment="Center" />
+                        <md:PackIcon Grid.Row="2" Grid.Column="2" Kind="CalendarClock" Foreground="{Binding ElementName=TextBoxDataScadenza, Path=BorderBrush}" VerticalAlignment="Bottom" Margin="0 0 0 7" HorizontalAlignment="Center" />
                         <TextBox Grid.Row="2" Grid.Column="3" x:Name="TextBoxDataScadenza" md:HintAssist.Hint="Data Scadenza" Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsEnabled="False"
                                  Text="{Binding Path=DataScadenza, StringFormat=d, UpdateSourceTrigger=PropertyChanged}">
                         </TextBox>
