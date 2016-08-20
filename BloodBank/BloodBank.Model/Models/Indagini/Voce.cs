@@ -1,4 +1,5 @@
 using System;
+using BloodBank.Model.Tests;
 
 namespace BloodBank.Model.Indagini {
 
@@ -8,15 +9,15 @@ namespace BloodBank.Model.Indagini {
         public abstract string TestoRisultato { get; }
     }
 
-    public class Voce<T> : Voce where T : IComparable<T> {
+    public class Voce<U, T> : Voce where T : IComparable<T> where U : ListaVoci {
 
-        public Voce(Indagine<T> indagine, T risultato) {
+        public Voce(Indagine<U, T> indagine, T risultato) {
             Indagine = indagine;
             Risultato = risultato;
             Idoneit‡ = Indagine.GetIdoneit‡FromRisultato(risultato);
         }
 
-        private Indagine<T> Indagine { get; }
+        private Indagine<U, T> Indagine { get; }
         private T Risultato { get; }
 
         public override Idoneit‡ Idoneit‡ { get; }

@@ -6,15 +6,15 @@ using System.Linq;
 
 namespace BloodBank.Model.Service {
 
-    public abstract class ListaIndaginiService<T> : DataService<ListaIndagini<T>> where T : ListaVoci {
+    public abstract class ListaIndaginiService<U> : DataService<ListaIndagini<U>> where U : ListaVoci {
 
-        protected ListaIndaginiService(IList<ListaIndagini<T>> items) : base(items) {
+        protected ListaIndaginiService(IList<ListaIndagini<U>> items) : base(items) {
         }
     }
 
     public class AnalisiService : ListaIndaginiService<Analisi> {
 
-        public AnalisiService(IDataService<Indagine> indagineService) : base(new List<ListaIndagini<Analisi>>()) {
+        public AnalisiService(IDataService<Indagine<Analisi>> indagineService) : base(new List<ListaIndagini<Analisi>>()) {
             Indagine[] indagini = indagineService.GetModels().ToArray();
 
             for (int i = 0; i < 5; i++) {
@@ -27,7 +27,7 @@ namespace BloodBank.Model.Service {
 
     public class QuestionarioService : ListaIndaginiService<Questionario> {
 
-        public QuestionarioService(IDataService<Indagine> indagineService) : base(new List<ListaIndagini<Questionario>>()) {
+        public QuestionarioService(IDataService<Indagine<Questionario>> indagineService) : base(new List<ListaIndagini<Questionario>>()) {
             Indagine[] indagini = indagineService.GetModels().ToArray();
 
             for (int i = 0; i < 5; i++) {
