@@ -5,7 +5,7 @@ namespace BloodBank.ViewModel.Service {
 
     public interface IDataService<TModel, out TViewModel>
         where TModel : class
-        where TViewModel : EditableViewModel<TModel> {
+        where TViewModel : ViewModel<TModel> {
 
         void AddModel(TModel model);
 

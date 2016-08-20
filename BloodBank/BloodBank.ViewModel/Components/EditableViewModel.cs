@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using BloodBank.ViewModel.Service;
 using PropertyChanged;
 using Stylet;
@@ -6,14 +8,12 @@ using Stylet;
 namespace BloodBank.ViewModel.Components {
 
     [ImplementPropertyChanged]
-    public abstract class EditableViewModel<TModel> : Screen where TModel : class {
-        protected readonly IEventAggregator EventAggregator;
-        protected readonly IDataService<TModel, EditableViewModel<TModel>> DataService;
+    public abstract class EditableViewModel<TModel> : ViewModel<TModel> where TModel : class {
+        protected readonly IDataService<TModel, ViewModel<TModel>> DataService;
 
         #region Constructors
 
-        protected EditableViewModel(IEventAggregator eventAggregator, IDataService<TModel, EditableViewModel<TModel>> dataService, IModelValidator validator) : base(validator) {
-            EventAggregator = eventAggregator;
+        protected EditableViewModel(IEventAggregator eventAggregator, IDataService<TModel, ViewModel<TModel>> dataService, IModelValidator validator = null) : base(eventAggregator, validator) {
             DataService = dataService;
             if (validator != null) {
                 AutoValidate = true;
@@ -24,30 +24,27 @@ namespace BloodBank.ViewModel.Components {
 
         #endregion Constructors
 
-        #region Properties
-
-        private TModel _model;
-
-        public TModel Model {
-            get { return _model; }
-            set {
-                _model = value;
-                SyncModelToViewModel();
-                IsChanged = false;
-            }
-        }
-
-        public bool IsInitialized { get { return Model != null; } }
-        public bool IsChanged { get; set; }
-
-        #endregion Properties
-
         protected override void OnValidationStateChanged(IEnumerable<string> changedProperties) {
             base.OnValidationStateChanged(changedProperties);
             // Fody can't weave other assemblies, so we have to manually raise this
             NotifyOfPropertyChange(() => CanSave);
             NotifyOfPropertyChange(() => CanCancel);
         }
+
+        #region Properties
+        
+        [DoNotSetChanged]
+        public override TModel Model {
+            get { return base.Model; }
+            set {
+                base.Model = value;
+                IsChanged = false;
+            }
+        }
+
+        public bool IsChanged { get; set; }
+
+        #endregion
 
         #region Actions
 
@@ -81,8 +78,6 @@ namespace BloodBank.ViewModel.Components {
             SyncModelToViewModel();
             IsChanged = false;
         }
-
-        protected abstract void SyncModelToViewModel();
 
         protected abstract TModel CreateModelFromViewModel();
 

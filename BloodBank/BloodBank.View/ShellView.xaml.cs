@@ -11,7 +11,6 @@ namespace BloodBank.View {
 
         public ShellView() {
             InitializeComponent();
-            this.Language = XmlLanguage.GetLanguage(Thread.CurrentThread.CurrentCulture.Name);
         }
     }
 }
