@@ -80,8 +80,8 @@ namespace BloodBank.Model.Indagini {
         }
     }
 
-    public class ListaIndagini<T> : ListaIndagini where T : ListaVoci {
-        public Type Tipo { get; } = typeof(T);
+    public class ListaIndagini<U> : ListaIndagini where U : ListaVoci {
+        public Type Tipo { get; } = typeof(U);
 
         public ListaIndagini(string nome = null) : base(nome) {
         }

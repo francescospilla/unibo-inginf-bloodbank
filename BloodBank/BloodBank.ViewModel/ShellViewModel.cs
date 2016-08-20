@@ -10,7 +10,7 @@ namespace BloodBank.ViewModel {
     [ImplementPropertyChanged]
     public class ShellViewModel : Conductor<NavigationMenuItem>.Collection.OneActive, IHandle<NavMenuEvent> {
 
-        public ShellViewModel(IEventAggregator eventAggregator, DonatoriViewModel donatoriViewModel, DonazioniViewModel donazioniViewModel, QuestionariViewModel questionariViewModel, SaccaSangueViewModel saccaSangueViewModel) {
+        public ShellViewModel(IEventAggregator eventAggregator, DonatoriViewModel donatoriViewModel, DonazioniViewModel donazioniViewModel, QuestionariViewModel questionariViewModel, AnalisiViewModel analisiViewModel, VisiteMedicheViewModel visiteMedicheViewModel, SaccaSangueViewModel saccaSangueViewModel) {
             eventAggregator.Subscribe(this);
 
             DisplayName = "BloodBank";
@@ -18,6 +18,8 @@ namespace BloodBank.ViewModel {
             Items.Add(new NavigationMenuItem("Donatori", "AccountMultiple", donatoriViewModel));
             Items.Add(new NavigationMenuItem("Donazioni", "Heart", donazioniViewModel));
             Items.Add(new NavigationMenuItem("Questionari", "Heart", questionariViewModel));
+            Items.Add(new NavigationMenuItem("Analisi", "Heart", analisiViewModel));
+            Items.Add(new NavigationMenuItem("Visite Mediche", "Hospital", visiteMedicheViewModel));
             Items.Add(new NavigationMenuItem("Sacche di Sangue", "Water", saccaSangueViewModel));
         }
 

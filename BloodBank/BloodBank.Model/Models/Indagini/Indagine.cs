@@ -1,4 +1,5 @@
 ﻿using System;
+using BloodBank.Model.Tests;
 
 namespace BloodBank.Model.Indagini {
 
@@ -30,7 +31,14 @@ namespace BloodBank.Model.Indagini {
         }
     }
 
-    public abstract class Indagine<T> : Indagine where T : IComparable<T> {
+    public abstract class Indagine<U> : Indagine where U : ListaVoci {
+
+        protected Indagine(string testo, Idoneità idoneitàFallimento) : base(testo, idoneitàFallimento)
+        {
+        }
+    }
+
+    public abstract class Indagine<U, T> : Indagine<U> where T : IComparable<T> where U : ListaVoci {
 
         internal abstract Idoneità GetIdoneitàFromRisultato(T risultato);
 

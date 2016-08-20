@@ -8,7 +8,7 @@ namespace BloodBank.ViewModel.ViewModels {
 
     public class QuestionarioViewModel : ListaIndaginiViewModel<Questionario> {
 
-        public QuestionarioViewModel(IEventAggregator eventAggregator, IDataService<Indagine> indagineDataService, IDataService<ListaIndagini<Questionario>, QuestionarioViewModel> dataService, IModelValidator<IListaIndagini> validator) : base(eventAggregator, indagineDataService, dataService, validator) {
+        public QuestionarioViewModel(IEventAggregator eventAggregator, IDataService<Indagine<Questionario>> indagineDataService, IDataService<ListaIndagini<Questionario>, QuestionarioViewModel> dataService, IModelValidator<IListaIndagini> validator) : base(eventAggregator, indagineDataService, dataService, validator) {
         }
     }
 }

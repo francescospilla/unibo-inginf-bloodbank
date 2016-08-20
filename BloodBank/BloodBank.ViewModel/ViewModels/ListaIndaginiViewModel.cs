@@ -13,11 +13,11 @@ using Stylet;
 namespace BloodBank.ViewModel.ViewModels {
 
     [ImplementPropertyChanged]
-    public class ListaIndaginiViewModel<T> : EditableViewModel<ListaIndagini<T>>, IListaIndagini where T : ListaVoci {
-        private readonly IDataService<Indagine> _indagineDataService;
+    public class ListaIndaginiViewModel<U> : EditableViewModel<ListaIndagini<U>>, IListaIndagini where U : ListaVoci {
+        private readonly IDataService<Indagine<U>> _indagineDataService;
 
-        public ListaIndaginiViewModel(IEventAggregator eventAggregator, IDataService<Indagine> indagineDataService,
-            IDataService<ListaIndagini<T>, EditableViewModel<ListaIndagini<T>>> dataService, IModelValidator<IListaIndagini> validator)
+        public ListaIndaginiViewModel(IEventAggregator eventAggregator, IDataService<Indagine<U>> indagineDataService,
+            IDataService<ListaIndagini<U>, EditableViewModel<ListaIndagini<U>>> dataService, IModelValidator<IListaIndagini> validator)
             : base(eventAggregator, dataService, validator) {
             _indagineDataService = indagineDataService;
 
@@ -55,7 +55,7 @@ namespace BloodBank.ViewModel.ViewModels {
 
         #region Other Properties
 
-        public string Type => typeof(T).ToString().Split('.').Last();
+        public string Type => typeof(U).ToString().Split('.').Last();
         public BindableCollection<Indagine> IndaginiNonSelezionate { get; } = new BindableCollection<Indagine>();
 
         [DoNotSetChanged]
@@ -183,8 +183,8 @@ namespace BloodBank.ViewModel.ViewModels {
             RefreshCollections();
         }
 
-        protected override ListaIndagini<T> CreateModelFromViewModel() {
-            ListaIndagini<T> model = new ListaIndagini<T> {Nome = Nome};
+        protected override ListaIndagini<U> CreateModelFromViewModel() {
+            ListaIndagini<U> model = new ListaIndagini<U> {Nome = Nome};
             model.Clear();
             model.AddRange(Indagini);
             return model;

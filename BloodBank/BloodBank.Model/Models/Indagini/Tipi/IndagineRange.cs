@@ -1,8 +1,9 @@
 ﻿using System;
+using BloodBank.Model.Tests;
 
 namespace BloodBank.Model.Indagini.Tipi {
 
-    public class IndagineRange<T> : Indagine<T> where T : IComparable<T> {
+    public class IndagineRange<U, T> : Indagine<U, T> where T : IComparable<T> where U : ListaVoci{
 
         public IndagineRange(string testo, Idoneità idoneitàFallimento, T rangeMin, T rangeMax) : base(testo, idoneitàFallimento) {
             RangeMin = rangeMin;
