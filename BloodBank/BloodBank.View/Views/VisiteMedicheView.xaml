@@ -12,7 +12,7 @@
              mc:Ignorable="d" d:DesignHeight="600" d:DesignWidth="800">
 
     <UserControl.Resources>
-        <CollectionViewSource IsLiveSortingRequested="True" Source="{Binding ListaVisiteMediche}" x:Key="ListaVisiteMedicheOrdinata">
+        <CollectionViewSource IsLiveSortingRequested="True" Source="{Binding ListItems}" x:Key="ListaVisiteMedicheOrdinata">
             <CollectionViewSource.LiveSortingProperties>
                 <system:String>CognomeNome</system:String>
             </CollectionViewSource.LiveSortingProperties>
@@ -66,7 +66,7 @@
                                         <md:PackIcon Grid.Column="1" Margin="16 8" Style="{StaticResource EditableHelperIconStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" />
                                     </Grid>
                                     <Border.InputBindings>
-                                        <MouseBinding MouseAction="LeftDoubleClick" Command="{s:Action AddVisitaMedicaTab}" CommandParameter="{Binding }" />
+                                        <MouseBinding MouseAction="LeftDoubleClick" Command="{s:Action AddTab}" CommandParameter="{Binding }" />
                                     </Border.InputBindings>
                                 </Border>
                             </DataTemplate>
@@ -83,7 +83,7 @@
             </Grid.RowDefinitions>
             <dragablz:TabablzControl Style="{StaticResource StyletConductorTabablzControl}" BorderThickness="0" ShowDefaultCloseButton="True" Grid.RowSpan="2" />
 
-            <Button ToolTip="Aggiungi Visita Medica" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,20,20" Command="{s:Action AddVisitaMedicaTab}" Grid.Row="1">
+            <Button ToolTip="Aggiungi Visita Medica" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,20,20" Command="{s:Action AddTab}" Grid.Row="1">
                 <md:PackIcon Kind="Plus" Height="24" Width="24" />
             </Button>
         </Grid>
