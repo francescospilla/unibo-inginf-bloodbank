@@ -1,6 +1,7 @@
 ﻿using System.Globalization;
 using System.Threading;
 using System.Windows;
+using System.Windows.Markup;
 
 namespace BloodBank.View {
 
@@ -14,6 +15,8 @@ namespace BloodBank.View {
             CultureInfo culture = CultureInfo.CreateSpecificCulture("it-IT");
             Thread.CurrentThread.CurrentCulture = culture;
             Thread.CurrentThread.CurrentUICulture = culture;
+
+            FrameworkElement.LanguageProperty.OverrideMetadata(typeof(FrameworkElement), new FrameworkPropertyMetadata(XmlLanguage.GetLanguage(CultureInfo.CurrentCulture.IetfLanguageTag)));
 
             base.OnStartup(e);
         }
