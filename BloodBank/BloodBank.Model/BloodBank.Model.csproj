@@ -64,7 +64,6 @@
     <Compile Include="Service\IndagineService.cs" />
     <Compile Include="Service\ListaIndaginiService.cs" />
     <Compile Include="Models\Tests\Analisi.cs" />
-    <Compile Include="Models\Tests\AnalisiMock.cs" />
     <Compile Include="Models\Tests\ListaVoci.cs" />
     <Compile Include="Models\Tests\Questionario.cs" />
     <Compile Include="Models\Tests\Test.cs" />

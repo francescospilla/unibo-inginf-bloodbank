@@ -70,6 +70,7 @@
     <Compile Include="Validation\Indagini\ListaIndaginiValidation.cs" />
     <Compile Include="Validation\Rules\UniquePropertyValidator.cs" />
     <Compile Include="Validation\ValidatorExtensions.cs" />
+    <Compile Include="ViewModels\AnalisiViewModel.cs" />
     <Compile Include="ViewModels\QuestionariViewModel.cs" />
     <Compile Include="ViewModels\DonazioniViewModel.cs" />
     <Compile Include="ViewModels\DonatoriViewModel.cs" />

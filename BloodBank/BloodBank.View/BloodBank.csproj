@@ -101,6 +101,7 @@
     <Compile Include="Components\PushBinding\PushBindingManager.cs" />
     <Compile Include="Converters\StringToPackIconConverter.cs" />
     <Compile Include="UserControls\FilterControl.cs" />
+    <Compile Include="Views\AnalisiView.cs" />
     <Compile Include="Views\QuestionariView.xaml.cs">
       <DependentUpon>QuestionariView.xaml</DependentUpon>
     </Compile>

@@ -1,6 +1,8 @@
-﻿namespace BloodBank.Model.Indagini.Tipi {
+﻿using BloodBank.Model.Tests;
 
-    public class IndagineBoolean : Indagine<bool> {
+namespace BloodBank.Model.Indagini.Tipi {
+
+    public class IndagineBoolean<U> : Indagine<U, bool> where U : ListaVoci {
 
         public IndagineBoolean(string testo, Idoneità idoneitàFallimento, bool risultatoCorretto) : base(testo, idoneitàFallimento) {
             RisultatoCorretto = risultatoCorretto;
