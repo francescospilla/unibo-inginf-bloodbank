@@ -16,7 +16,7 @@ namespace BloodBank.ViewModel.ViewModels {
     public class SaccaSangueViewModel : EditableViewModel<SaccaSangue> {
 
         #region Constructors
-        public SaccaSangueViewModel(IEventAggregator eventAggregator, IDataService<SaccaSangue, EditableViewModel<SaccaSangue>> dataService, IModelValidator validator) : base(eventAggregator, dataService, validator) {
+        public SaccaSangueViewModel(IEventAggregator eventAggregator, IDataService<SaccaSangue, EditableViewModel<SaccaSangue>> dataService) : base(eventAggregator, dataService, null) {
         }
         #endregion
 
@@ -41,13 +41,13 @@ namespace BloodBank.ViewModel.ViewModels {
         [Searchable]
         public ComponenteEmatico Componente { get; set; }
         [Searchable]
-        public bool Disponibile { get; private set; }
+        public bool Disponibile { get; set; }
 
         #endregion
 
         public IEnumerable<GruppoSanguigno> GruppoSanguignoEnumerable { get; } = EnumExtensions.Values<GruppoSanguigno>();
         public IEnumerable<bool> DisponibileEnumerable { get; } = new[] { true, false };
-        public IEnumerable<ComponenteEmatico> ComponenteEmaticoEnumerable { get; } = EnumExtensions.Values<ComponenteEmatico>();
+        public IEnumerable<ComponenteEmatico> ComponenteEmaticoEnumerable { get; } = ComponenteEmatico.Values;
 
         #region Mappings
 

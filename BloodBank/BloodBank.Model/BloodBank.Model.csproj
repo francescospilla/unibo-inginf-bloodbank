@@ -69,6 +69,7 @@
     <Compile Include="Models\Tests\Questionario.cs" />
     <Compile Include="Models\Tests\Test.cs" />
     <Compile Include="Models\Tests\VisitaMedica.cs" />
+    <Compile Include="Service\SaccaSangueService.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
