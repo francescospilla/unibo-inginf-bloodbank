@@ -17,7 +17,7 @@ namespace BloodBank.ViewModel.ViewModels
 {
     public class ListaVociViewModel : ViewModel<ListaVoci>
     {
-        public ListaVociViewModel(IEventAggregator eventAggregator, IModelValidator validator = null) : base(eventAggregator, validator)
+        public ListaVociViewModel(IEventAggregator eventAggregator) : base(eventAggregator)
         {
         }
 
