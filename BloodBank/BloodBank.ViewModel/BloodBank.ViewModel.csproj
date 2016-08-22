@@ -73,6 +73,7 @@
     <Compile Include="Validation\Rules\UniquePropertyValidator.cs" />
     <Compile Include="Validation\Tests\VisitaMedicaValidator.cs" />
     <Compile Include="Validation\ValidatorExtensions.cs" />
+    <Compile Include="ViewModels\ListaVociViewModel.cs" />
     <Compile Include="ViewModels\ListeIndaginiQuestionarioViewModel.cs" />
     <Compile Include="ViewModels\DonazioniViewModel.cs" />
     <Compile Include="ViewModels\DonatoriViewModel.cs" />
