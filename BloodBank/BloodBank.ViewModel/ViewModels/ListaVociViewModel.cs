@@ -21,9 +21,10 @@ namespace BloodBank.ViewModel.ViewModels
         {
         }
 
-        public Idoneità Idoneità { get; set; }
+        public Donatore Donatore { get; set; }
+        public string DescrizioneBreve { get; set; }
         public IEnumerable<Voce> Voci { get; set; }
-        public Donatore Donatore { get; set;  }
+        public Idoneità Idoneità { get; set; }
 
         protected override void SyncModelToViewModel()
         {
