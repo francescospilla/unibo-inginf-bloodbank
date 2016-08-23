@@ -7,11 +7,12 @@ using System.Threading.Tasks;
 using BloodBank.Core.Attributes;
 using BloodBank.Core.Extensions;
 using BloodBank.Model;
-using BloodBank.Model.Tests;
+using BloodBank.Model.Models;
+using BloodBank.Model.Models.Donatori;
+using BloodBank.Model.Models.Tests;
 using BloodBank.ViewModel.Components;
 using BloodBank.ViewModel.Service;
 using Stylet;
-using BloodBank.Model.Donatori;
 using BloodBank.Model.Service;
 using BloodBank.ViewModel.Validation.Tests;
 

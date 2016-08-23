@@ -1,4 +1,4 @@
-using BloodBank.Model.Indagini;
+using BloodBank.Model.Models.Indagini;
 using FluentValidation;
 
 namespace BloodBank.ViewModel.Validation.Indagini {

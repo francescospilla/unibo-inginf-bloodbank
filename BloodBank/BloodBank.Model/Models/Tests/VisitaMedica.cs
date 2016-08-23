@@ -1,7 +1,7 @@
-﻿using BloodBank.Model.Donatori;
-using System;
+﻿using System;
+using BloodBank.Model.Models.Donatori;
 
-namespace BloodBank.Model.Tests {
+namespace BloodBank.Model.Models.Tests {
 
     public class VisitaMedica : Test {
 

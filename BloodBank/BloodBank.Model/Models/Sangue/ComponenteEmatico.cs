@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace BloodBank.Model.Sangue {
+namespace BloodBank.Model.Models.Sangue {
 
     public sealed class ComponenteEmatico {
 

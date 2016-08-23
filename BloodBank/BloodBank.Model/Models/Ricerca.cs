@@ -1,8 +1,8 @@
-﻿using BloodBank.Model.Sangue;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using BloodBank.Model.Models.Sangue;
 
-namespace BloodBank.Model {
+namespace BloodBank.Model.Models {
 
     public static class Ricerca {
 

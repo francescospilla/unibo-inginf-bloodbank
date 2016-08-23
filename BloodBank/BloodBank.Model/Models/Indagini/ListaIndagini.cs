@@ -1,10 +1,10 @@
-﻿using BloodBank.Model.Tests;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using BloodBank.Model.Models.Tests;
 
-namespace BloodBank.Model.Indagini {
+namespace BloodBank.Model.Models.Indagini {
 
     public abstract class ListaIndagini : IEnumerable<Indagine>, IListaIndagini {
         private readonly List<Indagine> _indagini;

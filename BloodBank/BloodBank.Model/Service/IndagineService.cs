@@ -1,7 +1,8 @@
-﻿using BloodBank.Model.Indagini;
-using BloodBank.Model.Indagini.Tipi;
-using System.Collections.Generic;
-using BloodBank.Model.Tests;
+﻿using System.Collections.Generic;
+using BloodBank.Model.Models;
+using BloodBank.Model.Models.Indagini;
+using BloodBank.Model.Models.Indagini.Tipi;
+using BloodBank.Model.Models.Tests;
 
 namespace BloodBank.Model.Service {
 

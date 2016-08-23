@@ -1,6 +1,6 @@
-﻿using BloodBank.Model.Tests;
+﻿using BloodBank.Model.Models.Tests;
 
-namespace BloodBank.Model.Indagini.Tipi {
+namespace BloodBank.Model.Models.Indagini.Tipi {
 
     public class IndagineBoolean<U> : Indagine<U, bool> where U : ListaVoci {
 

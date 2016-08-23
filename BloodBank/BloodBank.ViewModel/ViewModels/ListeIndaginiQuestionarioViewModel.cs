@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
-using BloodBank.Model.Indagini;
-using BloodBank.Model.Tests;
+using BloodBank.Model.Models.Indagini;
+using BloodBank.Model.Models.Tests;
 using BloodBank.ViewModel.Components;
 using BloodBank.ViewModel.Events;
 using BloodBank.ViewModel.Service;

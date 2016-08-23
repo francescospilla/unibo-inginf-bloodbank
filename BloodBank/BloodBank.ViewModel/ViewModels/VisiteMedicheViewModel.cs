@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BloodBank.Model.Tests;
+using BloodBank.Model.Models.Tests;
 using BloodBank.ViewModel.Components;
 using BloodBank.ViewModel.Events;
 using BloodBank.ViewModel.Service;

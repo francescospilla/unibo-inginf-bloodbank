@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using BloodBank.Model.Donatori;
+using BloodBank.Model.Models.Donatori;
 using BloodBank.ViewModel.Components;
 using BloodBank.ViewModel.Events;
 using BloodBank.ViewModel.Service;

@@ -1,10 +1,10 @@
-﻿using BloodBank.Model.Donazioni;
-using BloodBank.Model.Sangue;
-using BloodBank.Model.Tests;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using BloodBank.Model.Models.Donazioni;
+using BloodBank.Model.Models.Sangue;
+using BloodBank.Model.Models.Tests;
 
-namespace BloodBank.Model.Donatori {
+namespace BloodBank.Model.Models.Donatori {
 
     public class Donatore {
         public static readonly Tuple<int, int> RangeEtà = new Tuple<int, int>(16, 80);

@@ -1,12 +1,12 @@
-﻿using BloodBank.Model.Donatori;
-using BloodBank.Model.Sangue;
-using BloodBank.Model.Tests;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Linq;
+using BloodBank.Model.Models.Donatori;
+using BloodBank.Model.Models.Sangue;
+using BloodBank.Model.Models.Tests;
 
-namespace BloodBank.Model.Donazioni {
+namespace BloodBank.Model.Models.Donazioni {
 
     public class Donazione {
 
@@ -21,7 +21,7 @@ namespace BloodBank.Model.Donazioni {
 
             if (data <= donatore.ListaDonazioni.LastOrDefault()?.Data)
                 throw new ArgumentException("Sono già presenti donazioni successive a questa data");
-            if (!AreDateTestValide(data, new[] { visitaMedica.Data, analisi.Data, questionario.Data }))
+            if (!AreDateTestValide(data, visitaMedica.Data, analisi.Data, questionario.Data))
                 throw new ArgumentException("Non si può effettuare la donazione se i test associati non sono stati effettuati il giorno stesso");
 
             Donatore = donatore;
@@ -56,7 +56,7 @@ namespace BloodBank.Model.Donazioni {
             Contract.Ensures(SaccheSangue.Count > 0, "SaccheSangue.Count > 0");
         }
 
-        private static bool AreDateTestValide(DateTime dataDonazione, IEnumerable<DateTime> dateTest) {
+        private static bool AreDateTestValide(DateTime dataDonazione, params DateTime[] dateTest) {
             return dateTest.All(data => data.Date.Equals(dataDonazione.Date) && data.TimeOfDay < dataDonazione.TimeOfDay);
         }
 

@@ -1,9 +1,9 @@
-﻿using BloodBank.Model.Donatori;
-using BloodBank.Model.Indagini;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using BloodBank.Model.Models.Donatori;
+using BloodBank.Model.Models.Indagini;
 
-namespace BloodBank.Model.Tests {
+namespace BloodBank.Model.Models.Tests {
 
     public class Analisi : ListaVoci {
 

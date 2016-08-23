@@ -1,6 +1,6 @@
 using System;
 using BloodBank.Core.Extensions;
-using BloodBank.Model.Donatori;
+using BloodBank.Model.Models.Donatori;
 using BloodBank.Model.Service;
 using BloodBank.ViewModel.Service;
 using BloodBank.ViewModel.Validation.Rules;
