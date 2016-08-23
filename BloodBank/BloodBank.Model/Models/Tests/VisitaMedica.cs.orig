@@ -1,5 +1,11 @@
+<<<<<<< HEAD
 ﻿using System;
+using BloodBank.Model.Models.Donatori;
+=======
+﻿using BloodBank.Model.Donatori;
+using System;
 using BloodBank.Model.Models.Persone;
+>>>>>>> 0c0f101... aggiunta medico all around
 
 namespace BloodBank.Model.Models.Tests {
 

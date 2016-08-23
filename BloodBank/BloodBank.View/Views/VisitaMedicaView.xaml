@@ -55,9 +55,9 @@
 
                         <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="Visita Medica" Style="{StaticResource MaterialDesignDisplay1TextBlock}" />
 
-                        <md:PackIcon Grid.Row="1" Grid.Column="0" Kind="Stethoscope" Foreground="{Binding ElementName=ComboBoxNomeMedico, Path=BorderBrush}" />
-                        <ComboBox Grid.Row="1" Grid.Column="1" x:Name="ComboBoxNomeMedico" md:HintAssist.Hint="Nome Medico" ItemsSource="{Binding Path=NomeMedicoEnumerable}" IsEnabled="{Binding IsInitialized, Converter={StaticResource BoolInverter}}"
-                                  SelectedItem="{Binding Path=NomeMedico, UpdateSourceTrigger=PropertyChanged}">
+                        <md:PackIcon Grid.Row="1" Grid.Column="0" Kind="Stethoscope" Foreground="{Binding ElementName=ComboBoxMedico, Path=BorderBrush}" />
+                        <ComboBox Grid.Row="1" Grid.Column="1" x:Name="ComboBoxMedico" md:HintAssist.Hint="Nome Medico" ItemsSource="{Binding Path=MedicoEnumerable}" IsEnabled="{Binding IsInitialized, Converter={StaticResource BoolInverter}}"
+                                  SelectedItem="{Binding Path=Medico, UpdateSourceTrigger=PropertyChanged}">
                         </ComboBox>
 
                         <md:PackIcon Grid.Row="1" Grid.Column="2" Kind="Calendar" Foreground="{Binding ElementName=DatePickerDatVisitaMedica, Path=BorderBrush}" />

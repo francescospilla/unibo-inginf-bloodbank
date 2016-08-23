@@ -1,14 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using BloodBank.Core.Attributes;
 using BloodBank.Core.Extensions;
+using BloodBank.Model;
 using BloodBank.Model.Models;
+using BloodBank.Model.Models.Donatori;
 using BloodBank.Model.Models.Tests;
 using BloodBank.ViewModel.Components;
 using BloodBank.ViewModel.Service;
 using Stylet;
+<<<<<<< HEAD
+=======
+using BloodBank.Model.Donatori;
 using BloodBank.Model.Models.Persone;
+>>>>>>> 0c0f101... aggiunta medico all around
 using BloodBank.Model.Service;
+using BloodBank.ViewModel.Validation.Tests;
 
 namespace BloodBank.ViewModel.ViewModels
 {
@@ -22,8 +33,8 @@ namespace BloodBank.ViewModel.ViewModels
         public VisitaMedicaViewModel(IEventAggregator eventAggregator, IDataService<Donatore> donatoreDataService, IDataService<VisitaMedica, VisitaMedicaViewModel> dataService, IDataService<Medico> medicoDataService, IModelValidator<VisitaMedicaViewModel> validator) : base(eventAggregator, dataService, validator)
         {
             _donatoreDataService = donatoreDataService;
-            _medicoDataService = medicoDataService;
             DonatoreEnumerable = _donatoreDataService.GetModels();
+            _medicoDataService = medicoDataService;
             MedicoEnumerable = _medicoDataService.GetModels();
         }
 

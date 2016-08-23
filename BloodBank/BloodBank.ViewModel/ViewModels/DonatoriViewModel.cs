@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using BloodBank.Model.Models.Donatori;
+using BloodBank.Model.Models.Persone;
 using BloodBank.ViewModel.Components;
-using BloodBank.ViewModel.Events;
 using BloodBank.ViewModel.Service;
 using PropertyChanged;
 using Stylet;

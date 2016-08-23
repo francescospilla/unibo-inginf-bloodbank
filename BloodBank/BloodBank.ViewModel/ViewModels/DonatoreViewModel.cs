@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using BloodBank.Core.Attributes;
 using BloodBank.Core.Extensions;
-using BloodBank.Model;
 using BloodBank.Model.Models;
-using BloodBank.Model.Models.Donatori;
+using BloodBank.Model.Models.Persone;
 using BloodBank.Model.Models.Sangue;
 using BloodBank.ViewModel.Components;
 using BloodBank.ViewModel.Service;

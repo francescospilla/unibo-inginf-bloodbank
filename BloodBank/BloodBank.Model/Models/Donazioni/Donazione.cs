@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Linq;
-using BloodBank.Model.Models.Donatori;
+using BloodBank.Model.Models.Persone;
 using BloodBank.Model.Models.Sangue;
 using BloodBank.Model.Models.Tests;
 

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using BloodBank.Model.Models.Donatori;
+using BloodBank.Model.Models.Persone;
 using BloodBank.Model.Models.Sangue;
 
 namespace BloodBank.Model.Service {

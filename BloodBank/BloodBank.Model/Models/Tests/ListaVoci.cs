@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using BloodBank.Model.Models.Donatori;
 using BloodBank.Model.Models.Indagini;
+using BloodBank.Model.Models.Persone;
 
 namespace BloodBank.Model.Models.Tests {
 

@@ -1,6 +1,6 @@
 using System;
 
-namespace BloodBank.Model.Models.Donatori {
+namespace BloodBank.Model.Models.Persone {
 
     public enum Sesso {
         Maschio,

@@ -4,7 +4,7 @@ using BloodBank.Model.Models.Donazioni;
 using BloodBank.Model.Models.Sangue;
 using BloodBank.Model.Models.Tests;
 
-namespace BloodBank.Model.Models.Donatori {
+namespace BloodBank.Model.Models.Persone {
 
     public class Donatore {
         public static readonly Tuple<int, int> RangeEtà = new Tuple<int, int>(16, 80);

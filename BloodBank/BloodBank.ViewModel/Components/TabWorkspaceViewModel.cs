@@ -1,8 +1,6 @@
 using System;
-using System.Collections.Generic;
 using BloodBank.ViewModel.Events;
 using BloodBank.ViewModel.Service;
-using BloodBank.ViewModel.ViewModels;
 using PropertyChanged;
 using Stylet;
 
