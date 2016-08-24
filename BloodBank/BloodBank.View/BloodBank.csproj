@@ -142,6 +142,10 @@
     <Compile Include="Views\DonatoreView.xaml.cs">
       <DependentUpon>DonatoreView.xaml</DependentUpon>
     </Compile>
+    <Page Include="Views\ListaVociView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ListeIndaginiQuestionarioView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
