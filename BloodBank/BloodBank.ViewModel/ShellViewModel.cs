@@ -3,12 +3,12 @@ using PropertyChanged;
 using Stylet;
 using System;
 using System.Collections.Generic;
-using BloodBank.Model;
-using BloodBank.Model.Donatori;
-using BloodBank.Model.Indagini;
-using BloodBank.Model.Indagini.Tipi;
-using BloodBank.Model.Sangue;
-using BloodBank.Model.Tests;
+using BloodBank.Model.Models;
+using BloodBank.Model.Models.Indagini;
+using BloodBank.Model.Models.Indagini.Tipi;
+using BloodBank.Model.Models.Persone;
+using BloodBank.Model.Models.Sangue;
+using BloodBank.Model.Models.Tests;
 using BloodBank.ViewModel.Components;
 using BloodBank.ViewModel.ViewModels;
 

@@ -3,7 +3,6 @@ using BloodBank.Core.Extensions;
 using BloodBank.Model.Models.Persone;
 using BloodBank.Model.Service;
 using FluentValidation;
-using BloodBank.ViewModel.Validation;
 using BloodBank.ViewModel.ViewModels;
 
 namespace BloodBank.ViewModel.Validation.Donatori {

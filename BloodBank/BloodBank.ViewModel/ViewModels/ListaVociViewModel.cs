@@ -1,16 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using BloodBank.Core.Extensions;
-using BloodBank.Model;
-using BloodBank.Model.Donatori;
-using BloodBank.Model.Indagini;
-using BloodBank.Model.Service;
-using BloodBank.Model.Tests;
+using BloodBank.Model.Models;
+using BloodBank.Model.Models.Indagini;
+using BloodBank.Model.Models.Persone;
+using BloodBank.Model.Models.Tests;
 using BloodBank.ViewModel.Components;
-using BloodBank.ViewModel.Service;
 using Stylet;
 using PropertyChanged;
 
