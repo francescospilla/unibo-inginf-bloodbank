@@ -44,6 +44,7 @@ namespace BloodBank.ViewModel.ViewModels
         public DateTime Data { get; set;  } = DateTime.Now;
         public Idoneità Idoneità { get; set;  }
         public Medico Medico { get; set; }
+        public string Referto { get; set; }
 
         #endregion Properties
 
@@ -60,11 +61,12 @@ namespace BloodBank.ViewModel.ViewModels
             Data = Model.Data;
             Idoneità = Model.Idoneità;
             Medico = Model.Medico;
+            Referto = Model.Referto;
         }
 
         protected override VisitaMedica CreateModelFromViewModel()
         {
-            return new VisitaMedica(Donatore, DescrizioneBreve, Data, Idoneità, Medico);
+            return new VisitaMedica(Donatore, DescrizioneBreve, Data, Idoneità, Medico, Referto);
         }
 
         protected override void SyncViewModelToModel()

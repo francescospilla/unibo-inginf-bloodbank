@@ -45,6 +45,7 @@
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="20"/>
+                            <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
 
@@ -70,9 +71,14 @@
                                   SelectedItem="{Binding Path=Donatore, UpdateSourceTrigger=PropertyChanged}">
                         </ComboBox>
 
-                        <md:PackIcon Grid.Row="4" Grid.Column="0" Kind="Pencil" Foreground="{Binding ElementName=TextBoxDescrizioneBreve, Path=BorderBrush}" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="10,25,10,0" />
-                        <TextBox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" MinLines="4" x:Name="TextBoxDescrizioneBreve" md:HintAssist.Hint="Referto Visita" IsEnabled="{Binding IsInitialized, Converter={StaticResource BoolInverter}}"
-                                 Text="{Binding Path=DescrizioneBreve, UpdateSourceTrigger=PropertyChanged}" VerticalContentAlignment="Top"  TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True">
+                        <md:PackIcon Grid.Row="4" Grid.Column="0" Kind="FormatTitle" Foreground="{Binding ElementName=TextBoxDescrizioneBreve, Path=BorderBrush}" />
+                        <TextBox Grid.Row="4" Grid.Column="1" x:Name="TextBoxDescrizioneBreve" md:HintAssist.Hint="Descrizione Breve" IsEnabled="{Binding IsInitialized, Converter={StaticResource BoolInverter}}"
+                                 Text="{Binding Path=DescrizioneBreve, UpdateSourceTrigger=PropertyChanged}">
+                        </TextBox>
+
+                        <md:PackIcon Grid.Row="5" Grid.Column="0" Kind="Pencil" Foreground="{Binding ElementName=TextBoxReferto, Path=BorderBrush}" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="10,25,10,0" />
+                        <TextBox Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3" MinLines="4" x:Name="TextBoxReferto" md:HintAssist.Hint="Referto Visita" IsEnabled="{Binding IsInitialized, Converter={StaticResource BoolInverter}}"
+                                 Text="{Binding Path=Referto, UpdateSourceTrigger=PropertyChanged}" VerticalContentAlignment="Top"  TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True">
                         </TextBox>
 
                         <md:PackIcon Grid.Row="2" Grid.Column="2" Kind="ThumbsUpDown" Foreground="{Binding ElementName=ComboBoxIdoneità, Path=BorderBrush}" />
