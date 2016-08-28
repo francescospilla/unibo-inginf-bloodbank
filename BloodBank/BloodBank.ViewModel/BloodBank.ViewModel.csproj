@@ -47,6 +47,10 @@
       <HintPath>..\packages\StructureMap.4.4.0\lib\net45\StructureMap.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Stylet, Version=1.1.16.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stylet.1.1.16\lib\net45\Stylet.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xaml" />
@@ -101,10 +105,6 @@
     <ProjectReference Include="..\Stylet.FluentValidation\Stylet.FluentValidation.csproj">
       <Project>{bc9bc04d-1d1a-43a3-be2d-d80509f03e3c}</Project>
       <Name>Stylet.FluentValidation</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Stylet\Stylet.csproj">
-      <Project>{2435BD00-AC12-48B0-AD36-9BAB2FDEC3F5}</Project>
-      <Name>Stylet</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
