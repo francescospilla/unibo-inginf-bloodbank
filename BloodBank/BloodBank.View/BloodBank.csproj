@@ -151,6 +151,9 @@
       <DependentUpon>ListaIndaginiView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ListaIndaginiQuestionarioView.cs" />
+    <Compile Include="Views\NewListaVociView.xaml.cs">
+      <DependentUpon>NewListaVociView.xaml</DependentUpon>
+    </Compile>
     <Page Include="Resources\FilterControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -198,6 +201,10 @@
     <Page Include="Views\ListaIndaginiView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\NewListaVociView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\VisitaMedicaView.xaml">
       <SubType>Designer</SubType>
