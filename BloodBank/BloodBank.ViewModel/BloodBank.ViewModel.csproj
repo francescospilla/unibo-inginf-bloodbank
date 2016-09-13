@@ -74,6 +74,7 @@
     <Compile Include="Validation\Donatori\DonatoreValidator.cs" />
     <Compile Include="Validation\Donatori\EtàValidator.cs" />
     <Compile Include="Validation\Indagini\ListaIndaginiValidation.cs" />
+    <Compile Include="Validation\Indagini\NuovaIndagineValidator.cs" />
     <Compile Include="Validation\Rules\UniquePropertyValidator.cs" />
     <Compile Include="Validation\Tests\VisitaMedicaValidator.cs" />
     <Compile Include="Validation\ValidatorExtensions.cs" />
@@ -90,6 +91,8 @@
     <Compile Include="ViewModels\ListaIndaginiQuestionarioViewModel.cs" />
     <Compile Include="ViewModels\ListaIndaginiViewModel.cs" />
     <Compile Include="Components\TabWorkspaceViewModel.cs" />
+    <Compile Include="ViewModels\NuovaIndagineBooleanDialogViewModel.cs" />
+    <Compile Include="ViewModels\NuovaIndagineRangeDialogViewModel.cs" />
     <Compile Include="ViewModels\VisitaMedicaViewModel.cs" />
     <Compile Include="ViewModels\VisiteMedicheViewModel.cs" />
   </ItemGroup>
