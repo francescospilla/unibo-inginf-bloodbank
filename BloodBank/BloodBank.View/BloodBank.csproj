@@ -103,6 +103,7 @@
     <Compile Include="Components\PushBinding\PushBinding.cs" />
     <Compile Include="Components\PushBinding\PushBindingCollection.cs" />
     <Compile Include="Components\PushBinding\PushBindingManager.cs" />
+    <Compile Include="Components\ReadOnlyPanel.cs" />
     <Compile Include="Converters\StringToPackIconConverter.cs" />
     <Compile Include="UserControls\FilterControl.cs" />
     <Compile Include="Views\ListeIndaginiQuestionarioView.xaml.cs">
