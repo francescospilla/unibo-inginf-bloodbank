@@ -47,7 +47,7 @@
         </Border>
 
         <Grid>
-            <ContentControl s:View.Model="{Binding ActiveItem}"></ContentControl>
+            <ContentControl Style="{StaticResource CardContentControlStyle}" s:View.Model="{Binding ActiveItem}" />
 
             <Button ToolTip="Aggiungi questionario" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,20,20" Command="{s:Action Add}">
                 <md:PackIcon Kind="Plus" Height="24" Width="24" />
