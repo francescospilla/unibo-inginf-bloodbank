@@ -103,6 +103,8 @@
     <Compile Include="Components\PushBinding\PushBinding.cs" />
     <Compile Include="Components\PushBinding\PushBindingCollection.cs" />
     <Compile Include="Components\PushBinding\PushBindingManager.cs" />
+    <Compile Include="Converters\CollectionToDataTableConverter.cs" />
+    <Compile Include="Converters\ObjectToDictionaryConverter.cs" />
     <Compile Include="Converters\StringToPackIconConverter.cs" />
     <Compile Include="UserControls\FilterControl.cs" />
     <Compile Include="Views\IndaginiView.xaml.cs">

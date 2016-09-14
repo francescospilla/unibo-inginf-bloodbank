@@ -20,6 +20,8 @@ namespace BloodBank.View.Views {
     public partial class IndaginiView : UserControl {
         public IndaginiView() {
             InitializeComponent();
+
+
         }
     }
 }

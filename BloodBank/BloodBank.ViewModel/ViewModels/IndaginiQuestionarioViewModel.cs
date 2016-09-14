@@ -10,7 +10,7 @@ using Stylet;
 
 namespace BloodBank.ViewModel.ViewModels {
 
-    public class IndaginiQuestionarioViewModel : IndaginiViewModel<Questionario, bool> {
+    public class IndaginiQuestionarioViewModel : IndaginiViewModel<Questionario> {
         public IndaginiQuestionarioViewModel(IEventAggregator eventAggregator, IDataService<Indagine<Questionario>> dataService) : base(eventAggregator, dataService) {
         }
     }

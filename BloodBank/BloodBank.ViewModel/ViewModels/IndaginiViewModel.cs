@@ -13,7 +13,7 @@ using Stylet;
 namespace BloodBank.ViewModel.ViewModels {
 
     [ImplementPropertyChanged]
-    public class IndaginiViewModel<U, T> : Conductor<Indagine<U, T>>.Collection.AllActive where U : ListaVoci where T : IComparable<T> {
+    public class IndaginiViewModel<U> : Conductor<Indagine<U>>.Collection.AllActive where U : ListaVoci {
         private IEventAggregator _eventAggregator;
         private IDataService<Indagine<U>> _dataService;
 
@@ -23,7 +23,7 @@ namespace BloodBank.ViewModel.ViewModels {
 
             DisplayName = typeof(Indagine).Name;
 
-            Items.AddRange(_dataService.GetModels().Where(model => model is Indagine<U, T>).Cast<Indagine<U, T>>());
+            Items.AddRange(_dataService.GetModels());
         }
 
     }

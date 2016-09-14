@@ -63,6 +63,7 @@
             <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityInverted" TrueValue="Collapsed" FalseValue="Visible" />
             <converters:BoolToStringConverter x:Key="BoolToSiNo" TrueValue="Sì" FalseValue="No" />
             <converters:EnumDisplayAttributeOrHumanizeConverter x:Key="EnumToString" />
+            <converters:CollectionToDataTableConverter x:Key="CollectionToDataTable" />
 
             <system:Boolean x:Key="True">True</system:Boolean>
             <system:Boolean x:Key="False">False</system:Boolean>
