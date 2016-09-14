@@ -8,6 +8,7 @@ using BloodBank.Model.Models.Persone;
 using BloodBank.Model.Models.Tests;
 using BloodBank.ViewModel.Components;
 using BloodBank.ViewModel.Service;
+using BloodBank.ViewModel.ViewModels.Persone;
 using Stylet;
 
 namespace BloodBank.ViewModel.ViewModels {

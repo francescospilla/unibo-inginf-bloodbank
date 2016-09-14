@@ -4,6 +4,7 @@ using BloodBank.Model.Models.Persone;
 using BloodBank.Model.Service;
 using FluentValidation;
 using BloodBank.ViewModel.ViewModels;
+using BloodBank.ViewModel.ViewModels.Persone;
 
 namespace BloodBank.ViewModel.Validation.Donatori {
 

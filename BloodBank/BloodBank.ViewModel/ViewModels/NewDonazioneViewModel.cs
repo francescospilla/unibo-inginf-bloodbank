@@ -11,6 +11,8 @@ using BloodBank.Model.Models.Tests;
 using BloodBank.Model.Service;
 using BloodBank.ViewModel.Components;
 using BloodBank.ViewModel.Service;
+using BloodBank.ViewModel.ViewModels.Persone;
+using BloodBank.ViewModel.ViewModels.Tests;
 using PropertyChanged;
 using Stylet;
 
@@ -23,12 +25,13 @@ namespace BloodBank.ViewModel.ViewModels
         private readonly IDataService<Donatore, DonatoreViewModel> _donatoreDataService;
 
         private readonly IDataService<VisitaMedica, VisitaMedicaViewModel> _visitaMedicaDataService;
-        private IDataService<ListaVoci<Questionario>, ViewModel<ListaVoci<Questionario>>> _listaIndaginiQuestionarioDataService;
-        private IDataService<ListaVoci<Analisi>, ViewModel<ListaVoci<Analisi>>> _listaIndaginiAnalisiDataService;
+        private IDataService<ListaVoci<Questionario>, ListaVociQuestionarioViewModel> _listaIndaginiQuestionarioDataService;
+        private IDataService<ListaVoci<Analisi>, ListaVociAnalisiViewModel> _listaIndaginiAnalisiDataService;
 
         public NewDonazioneViewModel(IEventAggregator eventAggregator,
             IDataService<Donatore, DonatoreViewModel> donatoreDataService,
-            IDataService<ListaVoci<Questionario>, ViewModel<ListaVoci<Questionario>>> listaIndaginiQuestionarioDataService, IDataService<ListaVoci<Analisi>, ViewModel<ListaVoci<Analisi>>> listaIndaginiAnalisiDataService,
+            IDataService<ListaVoci<Questionario>, ListaVociQuestionarioViewModel> listaIndaginiQuestionarioDataService,
+            IDataService<ListaVoci<Analisi>, ListaVociAnalisiViewModel> listaIndaginiAnalisiDataService,
             IDataService<VisitaMedica, VisitaMedicaViewModel> visitaMedicaDataService)
         {
             _eventAggregator = eventAggregator;
@@ -54,8 +57,8 @@ namespace BloodBank.ViewModel.ViewModels
         #endregion
 
         public IEnumerable<DonatoreViewModel> DonatoreEnumerable { get; }
-        public IEnumerable<ViewModel<ListaVoci<Questionario>>> ListaIndaginiQuestionarioEnumerable { get; }
-        public IEnumerable<ViewModel<ListaVoci<Analisi>>> ListaIndaginiAnalisiEnumerable { get; }
+        public IEnumerable<ListaVociQuestionarioViewModel> ListaIndaginiQuestionarioEnumerable { get; }
+        public IEnumerable<ListaVociAnalisiViewModel> ListaIndaginiAnalisiEnumerable { get; }
         public IEnumerable<VisitaMedicaViewModel> VisitaMedicaEnumerable { get; }
         public IEnumerable<TipoDonazione> TipoDonazioneEnumerable => TipoDonazione.Values;
     }

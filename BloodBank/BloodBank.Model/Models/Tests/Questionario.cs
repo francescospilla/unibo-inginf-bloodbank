@@ -7,7 +7,7 @@ namespace BloodBank.Model.Models.Tests {
 
     public class Questionario : ListaVoci<Questionario> {
 
-        public Questionario(Donatore donatore, string descrizioneBreve, DateTime data, List<Voce> listaIndagini)
+        public Questionario(Donatore donatore, string descrizioneBreve, DateTime data, IEnumerable<Voce> listaIndagini)
             : base(donatore, descrizioneBreve, data, listaIndagini) {
         }
     }

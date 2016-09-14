@@ -7,9 +7,9 @@ using BloodBank.Model.Models.Persone;
 namespace BloodBank.Model.Models.Tests {
 
     public abstract class ListaVoci : Test {
-        private readonly List<Voce> _listaVoci;
+        private readonly IEnumerable<Voce> _listaVoci;
 
-        protected ListaVoci(Donatore donatore, string descrizioneBreve, DateTime data, List<Voce> listaVoci)
+        protected ListaVoci(Donatore donatore, string descrizioneBreve, DateTime data, IEnumerable<Voce> listaVoci)
             : base(donatore, data, descrizioneBreve) {
             _listaVoci = listaVoci;
             Idoneità = _listaVoci.Select(e => e.Idoneità).CalculateIdoneitàFromList();
@@ -38,7 +38,7 @@ namespace BloodBank.Model.Models.Tests {
 
     public class ListaVoci<U> : ListaVoci where U : ListaVoci
     {
-        public ListaVoci(Donatore donatore, string descrizioneBreve, DateTime data, List<Voce> listaVoci) : base(donatore, descrizioneBreve, data, listaVoci)
+        public ListaVoci(Donatore donatore, string descrizioneBreve, DateTime data, IEnumerable<Voce> listaVoci) : base(donatore, descrizioneBreve, data, listaVoci)
         {
         }
     }
