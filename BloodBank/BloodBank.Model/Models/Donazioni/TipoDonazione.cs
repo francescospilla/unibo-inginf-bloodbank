@@ -12,8 +12,8 @@ namespace BloodBank.Model.Models.Donazioni {
         #region Private Constructor
 
         private TipoDonazione(string nome, int giorniDiRiposo, IDictionary<ComponenteEmatico, int> componentiDerivati) {
-            Contract.Requires<ArgumentOutOfRangeException>(giorniDiRiposo > 0, "Il parametro " + nameof(giorniDiRiposo) + " deve essere un intero positivo.");
-            Contract.Requires<ArgumentOutOfRangeException>(componentiDerivati.Values.All(quantità => quantità > 0), "Ogni parametro " + nameof(componentiDerivati.Values) + " deve essere un intero positivo.");
+            //Contract.Requires<ArgumentOutOfRangeException>(giorniDiRiposo > 0, "Il parametro " + nameof(giorniDiRiposo) + " deve essere un intero positivo.");
+           // Contract.Requires<ArgumentOutOfRangeException>(componentiDerivati.Values.All(quantità => quantità > 0), "Ogni parametro " + nameof(componentiDerivati.Values) + " deve essere un intero positivo.");
 
             Nome = nome;
             GiorniDiRiposo = giorniDiRiposo;

@@ -7,10 +7,12 @@
              xmlns:components="clr-namespace:BloodBank.View.Components"
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:userControls="clr-namespace:BloodBank.View.UserControls"
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="500">
-
-    <xctk:Wizard>
+    <StackPanel>
+        <userControls:AppBar NavMenuButtonClickAction="{s:Action OpenNavMenu}" />
+    <xctk:Wizard Next="{s:Action RefreshComboBoxes}">
         <xctk:WizardPage Title="Selezione Donatore">
             <Grid>
                 <Grid.RowDefinitions>
@@ -43,8 +45,8 @@
                 </Grid.ColumnDefinitions>
 
                 <Label Grid.Row="0" Grid.Column="0" Margin="10 20">Questionario:</Label>
-                <ComboBox Grid.Row="0" Grid.Column="1" DisplayMemberPath="Model" ItemsSource="{Binding ListaIndaginiQuestionarioEnumerable}" SelectedItem="{Binding SelectedListaIndaginiQuestionario}" />
-                <ContentControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" s:View.Model="{Binding SelectedListaIndaginiQuestionario}" components:ReadOnlyPanel.IsReadOnly="True" Margin="20"/>
+                <ComboBox Grid.Row="0" Grid.Column="1" DisplayMemberPath="Model" ItemsSource="{Binding listaVociQuestionarioEnumerable}" SelectedItem="{Binding SelectedlistaVociQuestionario}" />
+                <ContentControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" s:View.Model="{Binding SelectedlistaVociQuestionario}" components:ReadOnlyPanel.IsReadOnly="True" Margin="20"/>
             </Grid>
         </xctk:WizardPage>
         <xctk:WizardPage Title="Seleziona Analisi">
@@ -61,8 +63,8 @@
                 </Grid.ColumnDefinitions>
 
                 <Label Grid.Row="0" Grid.Column="0" Margin="10 20">Analisi:</Label>
-                <ComboBox Grid.Row="0" Grid.Column="1" DisplayMemberPath="Model" ItemsSource="{Binding ListaIndaginiAnalisiEnumerable}" SelectedItem="{Binding SelectedListaIndaginiAnalisi}" />
-                <ContentControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" s:View.Model="{Binding SelectedListaIndaginiAnalisi}" components:ReadOnlyPanel.IsReadOnly="True" Margin="20"/>
+                <ComboBox Grid.Row="0" Grid.Column="1" DisplayMemberPath="Model" ItemsSource="{Binding listaVociAnalisiEnumerable}" SelectedItem="{Binding SelectedlistaVociAnalisi}" />
+                <ContentControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" s:View.Model="{Binding SelectedlistaVociAnalisi}" components:ReadOnlyPanel.IsReadOnly="True" Margin="20"/>
             </Grid>
         </xctk:WizardPage>
         <xctk:WizardPage Title="Seleziona Visita Medica">
@@ -97,10 +99,10 @@
                 </Grid.ColumnDefinitions>
 
                 <Label Grid.Row="0" Grid.Column="0" Margin="10 20">Tipo di Donazione:</Label>
-                <ComboBox Grid.Row="0" Grid.Column="1" DisplayMemberPath="Model" x:Name="ComboBoxTipoDonazione" materialDesign:HintAssist.Hint="Tipo Donazione" ItemsSource="{Binding Path=SelectedTipoDonazione}" IsEnabled="{Binding IsInitialized, Converter={StaticResource BoolInverter}}"
-                                  SelectedItem="{Binding Path=Idoneità, UpdateSourceTrigger=PropertyChanged}"/>
+                <ComboBox Grid.Row="0" Grid.Column="1" x:Name="ComboBoxTipoDonazione" materialDesign:HintAssist.Hint="Tipo Donazione" ItemsSource="{Binding Path=TipoDonazioneEnumerable}" IsEnabled="{Binding IsInitialized, Converter={StaticResource BoolInverter}}"
+                                  SelectedItem="{Binding Path=SelectedTipoDonazione, UpdateSourceTrigger=PropertyChanged}"/>
             </Grid>
         </xctk:WizardPage>
     </xctk:Wizard>
-
+    </StackPanel>
 </UserControl>

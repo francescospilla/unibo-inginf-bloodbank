@@ -8,7 +8,7 @@ namespace BloodBank.Mock
 {
     public class VisitaMedicaService : DataService<VisitaMedica>
     {
-        internal static VisitaMedica V1 = new VisitaMedica(DonatoreService.D1, "Descrizione breve", new DateTime(2016, 09, 13), Idoneità.Idoneo, MedicoService.M1, "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
+        internal static VisitaMedica V1 = new VisitaMedica(DonatoreService.D1, "Descrizione breve", DateTime.Today, Idoneità.Idoneo, MedicoService.M1, "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
         internal static VisitaMedica V2 = new VisitaMedica(DonatoreService.D2, "Descrizione brevissima", new DateTime(2016, 08,23), Idoneità.Idoneo, MedicoService.M2, "Lorem ipsum dolor sit amet.");
         internal static VisitaMedica V3 = new VisitaMedica(DonatoreService.D3, "Descrizione corta", new DateTime(2016, 05, 15), Idoneità.Idoneo, MedicoService.M3, "Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?");
         internal static VisitaMedica V4 = new VisitaMedica(DonatoreService.D4, "Descrizione breve", new DateTime(2016, 07, 02), Idoneità.Idoneo, MedicoService.M5, "Lorem ipsum dolor sit amet.");

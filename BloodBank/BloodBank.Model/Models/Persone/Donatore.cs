@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using BloodBank.Model.Models.Donazioni;
 using BloodBank.Model.Models.Sangue;
 using BloodBank.Model.Models.Tests;
@@ -77,7 +78,7 @@ namespace BloodBank.Model.Models.Persone {
         }
 
         public GruppoSanguigno GruppoSanguigno { get; }
-        public Idoneità? Idoneità { get; private set; }
+        public Idoneità? Idoneità => _listaTest.LastOrDefault()?.Idoneità;
         public bool Attivo { get; set; }
 
         public IEnumerable<Test> ListaTest => _listaTest;
@@ -104,5 +105,10 @@ namespace BloodBank.Model.Models.Persone {
         }
 
         #endregion Overrides
+
+        public void AggiungiTest(Test test)
+        {
+            _listaTest.Add(test);
+        }
     }
 }

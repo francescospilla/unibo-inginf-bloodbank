@@ -9,13 +9,12 @@ namespace BloodBank.Model.Models.Tests {
         protected Test(Donatore donatore, DateTime data, string descrizioneBreve) {
             if (donatore.Idoneità == Idoneità.NonIdoneo)
                 throw new ArgumentException("Non si può effettuare il test se il donatore è " + Idoneità.NonIdoneo);
-
-            if (data <= donatore.ListaTest.LastOrDefault()?.Data)
-                throw new ArgumentException("Sono già presenti test successivi a questa data");
-
+            
             DescrizioneBreve = descrizioneBreve;
             Data = data;
             Donatore = donatore;
+
+            Donatore.AggiungiTest(this);
         }
 
         public Donatore Donatore { get; }
