@@ -1,9 +1,10 @@
 ﻿using System;
 using BloodBank.Model.Models.Tests;
+using PropertyChanged;
 
 namespace BloodBank.Model.Models.Indagini.Tipi {
 
-    public class IndagineRange<U, T> : Indagine<U, T> where T : IComparable<T> where U : ListaVoci{
+    [ImplementPropertyChanged] public class IndagineRange<U, T> : Indagine<U, T> where T : IComparable<T> where U : ListaVoci{
 
         public IndagineRange(string testo, Idoneità idoneitàFallimento, T rangeMin, T rangeMax) : base(testo, idoneitàFallimento) {
             RangeMin = rangeMin;

@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using BloodBank.Model.Models.Donazioni;
 using BloodBank.Model.Models.Sangue;
 using BloodBank.Model.Models.Tests;
+using PropertyChanged;
 
 namespace BloodBank.Model.Models.Persone {
 
-    public class Donatore {
+    [ImplementPropertyChanged] public class Donatore {
         public static readonly Tuple<int, int> RangeEtà = new Tuple<int, int>(16, 80);
 
         private readonly List<Donazione> _listaDonazioni;
