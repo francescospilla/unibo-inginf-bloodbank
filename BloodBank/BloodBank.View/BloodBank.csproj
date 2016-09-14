@@ -130,6 +130,7 @@
     <Compile Include="Components\ReadOnlyPanel.cs" />
     <Compile Include="Converters\StringToPackIconConverter.cs" />
     <Compile Include="UserControls\FilterControl.cs" />
+    <Compile Include="Views\ListaIndaginiQuestionarioView.cs" />
     <Compile Include="Views\ListeIndaginiQuestionarioView.xaml.cs">
       <DependentUpon>ListeIndaginiQuestionarioView.xaml</DependentUpon>
     </Compile>
