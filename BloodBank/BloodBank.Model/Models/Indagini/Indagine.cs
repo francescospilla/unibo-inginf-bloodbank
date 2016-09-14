@@ -1,13 +1,19 @@
 ﻿using System;
+using System.Threading;
 using BloodBank.Model.Models.Tests;
 
 namespace BloodBank.Model.Models.Indagini {
 
     public abstract class Indagine {
+        private static int _staticCounter = 0;
+
+        public int Id { get; }
         public string Testo { get; }
         protected Idoneità IdoneitàFallimento { get; }
 
-        protected Indagine(string testo, Idoneità idoneitàFallimento) {
+        protected Indagine(string testo, Idoneità idoneitàFallimento)
+        {
+            Id = Interlocked.Increment(ref _staticCounter);
             Testo = testo;
             IdoneitàFallimento = idoneitàFallimento;
         }
