@@ -12,7 +12,7 @@ namespace BloodBank.ViewModel.ViewModels
 {
 
     [ImplementPropertyChanged]
-    public class ListaVociViewModel : ViewModel<ListaVoci>
+    public class ListaVociViewModel<U> : ViewModel<ListaVoci<U>> where U : ListaVoci
     {
         public ListaVociViewModel(IEventAggregator eventAggregator) : base(eventAggregator)
         {

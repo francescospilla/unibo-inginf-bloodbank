@@ -4,7 +4,7 @@ using Stylet;
 namespace BloodBank.ViewModel.Components {
 
     [ImplementPropertyChanged]
-    public abstract class ViewModel<TModel> : Screen where TModel : class{
+    public abstract class ViewModel<TModel> : Screen, IViewModel<TModel> where TModel : class{
         protected IEventAggregator EventAggregator;
         private TModel _model;
 

@@ -64,9 +64,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bootstrapper.cs" />
+    <Compile Include="Components\IViewModel.cs" />
     <Compile Include="Components\ViewModel.cs" />
     <Compile Include="Components\WorkspaceViewModel.cs" />
     <Compile Include="Events\ViewModelCollectionChangedEvent.cs" />
+    <Compile Include="ViewModels\ListaVociAnalisiViewModel.cs" />
+    <Compile Include="ViewModels\ListaVociQuestionarioViewModel.cs" />
+    <Compile Include="ViewModels\NewDonazioneViewModel.cs" />
     <Compile Include="ViewModels\NewListaVociQuestionarioViewModel.cs" />
     <Compile Include="ViewModels\NewListaVociViewModel.cs" />
     <Compile Include="Service\DataService.cs" />

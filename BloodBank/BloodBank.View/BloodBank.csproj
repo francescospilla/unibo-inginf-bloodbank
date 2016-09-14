@@ -130,6 +130,8 @@
     <Compile Include="Components\ReadOnlyPanel.cs" />
     <Compile Include="Converters\StringToPackIconConverter.cs" />
     <Compile Include="UserControls\FilterControl.cs" />
+    <Compile Include="Views\ListaVociAnalisiView.cs" />
+    <Compile Include="Views\ListaVociQuestionarioView.cs" />
     <Compile Include="Views\ListeIndaginiQuestionarioView.xaml.cs">
       <DependentUpon>ListeIndaginiQuestionarioView.xaml</DependentUpon>
     </Compile>
@@ -151,6 +153,9 @@
       <DependentUpon>ListaIndaginiView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ListaIndaginiQuestionarioView.cs" />
+    <Compile Include="Views\NewDonazioneView.xaml.cs">
+      <DependentUpon>NewDonazioneView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\NewListaVociView.xaml.cs">
       <DependentUpon>NewListaVociView.xaml</DependentUpon>
     </Compile>
@@ -201,6 +206,10 @@
     <Page Include="Views\ListaIndaginiView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\NewDonazioneView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\NewListaVociView.xaml">
       <SubType>Designer</SubType>
