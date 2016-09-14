@@ -15,9 +15,9 @@ using BloodBank.ViewModel.ViewModels;
 namespace BloodBank.ViewModel {
 
     [ImplementPropertyChanged]
-    public class ShellViewModel : Conductor<NavigationMenuItem>.Collection.OneActive, IHandle<NavMenuEvent> {
+    public class ShellViewModel : Conductor<NavigationMenuItem>.Collection.OneActive, IHandle<NavMenuEvent>, IHandle<OpenDialogEvent> {
 
-        public ShellViewModel(IEventAggregator eventAggregator, DonatoriViewModel donatoriViewModel, DonazioniViewModel donazioniViewModel, ListeIndaginiQuestionarioViewModel listeIndaginiQuestionarioViewModel, VisiteMedicheViewModel visiteMedicheViewModel, ListaVociViewModel listaVociViewModel, NuovaIndagineBooleanDialogViewModel nuovaIndagineBooleanDialogViewModel) {
+        public ShellViewModel(IEventAggregator eventAggregator, DonatoriViewModel donatoriViewModel, DonazioniViewModel donazioniViewModel, ListeIndaginiQuestionarioViewModel listeIndaginiQuestionarioViewModel, VisiteMedicheViewModel visiteMedicheViewModel, ListaVociViewModel listaVociViewModel) {
             eventAggregator.Subscribe(this);
 
             DisplayName = "BloodBank";
@@ -35,7 +35,6 @@ namespace BloodBank.ViewModel {
             Items.Add(new NavigationMenuItem("Questionari", "Heart", listeIndaginiQuestionarioViewModel));
             Items.Add(new NavigationMenuItem("Visite Mediche", "Hospital", visiteMedicheViewModel));
             Items.Add(new NavigationMenuItem("Tests", "Help", listaVociViewModel));
-            Items.Add(new NavigationMenuItem("Nuova Indagine B", "WeatherLightning", nuovaIndagineBooleanDialogViewModel));
         }
 
         #region NavMenu
@@ -66,5 +65,16 @@ namespace BloodBank.ViewModel {
         }
 
         #endregion NavMenu
+
+        #region Dialog
+        public bool IsDialogOpen { get; set; }
+        public IScreen DialogContent { get; private set; }
+
+        public void Handle(OpenDialogEvent message)
+        {
+            DialogContent = message.DialogContent;
+            IsDialogOpen = true;
+        }
+        #endregion Dialog
     }
 }

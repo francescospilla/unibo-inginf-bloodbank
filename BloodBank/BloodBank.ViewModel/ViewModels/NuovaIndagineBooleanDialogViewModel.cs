@@ -33,13 +33,10 @@ namespace BloodBank.ViewModel.ViewModels
 
         public IEnumerable<bool> RisultatoCorrettoEnumerable { get; } = new[] { true, false };
         public IEnumerable<Idoneità> IdoneitàEnumerable { get; } = EnumExtensions.Values<Idoneità>();
-
+        
         #region Save
 
-        public bool CanSave
-        {
-            get { return !HasErrors; }
-        }
+        public bool CanSave => !HasErrors;
 
         public void Save()
         {

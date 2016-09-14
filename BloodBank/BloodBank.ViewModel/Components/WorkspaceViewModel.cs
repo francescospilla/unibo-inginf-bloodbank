@@ -9,7 +9,7 @@ namespace BloodBank.ViewModel.Components {
 
     [ImplementPropertyChanged]
     public class WorkspaceViewModel<TModel, TViewModel> : Conductor<TViewModel>.Collection.OneActive where TModel : class where TViewModel : ViewModel<TModel> {
-        private readonly IEventAggregator _eventAggregator;
+        protected readonly IEventAggregator _eventAggregator;
         private readonly IDataService<TModel, TViewModel> _dataService;
         private readonly Func<TViewModel> _viewModelFactory;
 

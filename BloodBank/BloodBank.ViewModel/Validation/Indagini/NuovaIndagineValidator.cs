@@ -9,11 +9,7 @@ using BloodBank.ViewModel.ViewModels;
 using FluentValidation;
 
 namespace BloodBank.ViewModel.Validation.Indagini
-{
-    public class NuovaIndagineValidator
-    {
-    }
-
+{ 
     public class NuovaIndagineBooleanValidator : FluentValidation.AbstractValidator<NuovaIndagineBooleanDialogViewModel>
     {
         public NuovaIndagineBooleanValidator()

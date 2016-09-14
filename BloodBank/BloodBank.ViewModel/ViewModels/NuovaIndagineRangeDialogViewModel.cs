@@ -34,10 +34,7 @@ namespace BloodBank.ViewModel.ViewModels
 
         #region Save
 
-        public bool CanSave
-        {
-            get { return !HasErrors; }
-        }
+        public bool CanSave => !HasErrors;
 
         public void Save()
         {
