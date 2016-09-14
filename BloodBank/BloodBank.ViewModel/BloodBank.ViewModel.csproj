@@ -98,6 +98,10 @@
       <Project>{7fb4caf6-148f-424e-bfde-d117f13de185}</Project>
       <Name>BloodBank.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\BloodBank.Mock\BloodBank.Mock.csproj">
+      <Project>{9F6EE4E9-BE2F-4726-A208-081FD7EB38CA}</Project>
+      <Name>BloodBank.Mock</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BloodBank.Model\BloodBank.Model.csproj">
       <Project>{85debb74-1f91-474f-9f84-592a873573ba}</Project>
       <Name>BloodBank.Model</Name>

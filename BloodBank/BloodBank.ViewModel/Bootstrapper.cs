@@ -4,6 +4,7 @@ using StructureMap;
 using Stylet;
 using Stylet.FluentValidation;
 using System.Reflection;
+using BloodBank.Mock;
 using StructureMap.Pipeline;
 using ValidatorExtensions = BloodBank.ViewModel.Validation.ValidatorExtensions;
 
@@ -15,7 +16,7 @@ namespace BloodBank.ViewModel {
             base.ConfigureIoC(config);
 
             config.Scan(x => {
-                x.AssemblyContainingType(typeof(IDataService<>));
+                x.AssemblyContainingType(typeof(DonatoreService));
                 x.ConnectImplementationsToTypesClosing(typeof(IDataService<>)).OnAddedPluginTypes(c => c.Singleton());
                 x.WithDefaultConventions();
             });
