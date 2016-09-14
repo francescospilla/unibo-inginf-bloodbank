@@ -5,7 +5,7 @@ using BloodBank.ViewModel.Service;
 using PropertyChanged;
 using Stylet;
 
-namespace BloodBank.ViewModel.ViewModels {
+namespace BloodBank.ViewModel.ViewModels.Persone {
 
     [ImplementPropertyChanged]
     public class DonatoriViewModel : TabWorkspaceViewModel<Donatore, DonatoreViewModel> {

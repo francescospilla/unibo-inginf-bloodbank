@@ -130,14 +130,11 @@
     <Compile Include="Components\ReadOnlyPanel.cs" />
     <Compile Include="Converters\StringToPackIconConverter.cs" />
     <Compile Include="UserControls\FilterControl.cs" />
-    <Compile Include="Views\ListeIndaginiQuestionarioView.xaml.cs">
-      <DependentUpon>ListeIndaginiQuestionarioView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\DonazioniView.xaml.cs">
+    <Compile Include="Views\Donazioni\DonazioniView.xaml.cs">
       <DependentUpon>DonazioniView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\DonatoriView.xaml.cs">
-      <DependentUpon>DonatoriView.xaml</DependentUpon>
+    <Compile Include="Views\Indagini\ListaIndaginiView.xaml.cs">
+      <DependentUpon>ListaIndaginiView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="ShellView.xaml.cs">
@@ -147,15 +144,17 @@
       <DependentUpon>AppBar.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\IntegerTextBox.cs" />
-    <Compile Include="Views\ListaIndaginiView.xaml.cs">
-      <DependentUpon>ListaIndaginiView.xaml</DependentUpon>
+    <Compile Include="Views\Persone\DonatoreView.xaml.cs">
+      <DependentUpon>DonatoreView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ListaIndaginiQuestionarioView.cs" />
+    <Compile Include="Views\Persone\DonatoriView.xaml.cs">
+      <DependentUpon>DonatoriView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tests\ListaIndaginiQuestionarioView.cs" />
+    <Compile Include="Views\Tests\ListeIndaginiQuestionarioView.xaml.cs">
+      <DependentUpon>ListeIndaginiQuestionarioView.xaml</DependentUpon>
+    </Compile>
     <Page Include="Resources\FilterControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\DonatoreView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -168,24 +167,13 @@
     <Compile Include="Converters\BoolToValueConverter.cs" />
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Converters\EnumDisplayAttributeOrHumanizeConverter.cs" />
-    <Compile Include="Views\DonatoreView.xaml.cs">
-      <DependentUpon>DonatoreView.xaml</DependentUpon>
-    </Compile>
-    <Page Include="Views\ListaVociView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\ListeIndaginiQuestionarioView.xaml">
+    <Page Include="Views\Donazioni\DonazioniView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\DonazioniView.xaml">
+    <Page Include="Views\Indagini\ListaIndaginiView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\DonatoriView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ShellView.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -195,17 +183,29 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ListaIndaginiView.xaml">
+    <Page Include="Views\Persone\DonatoreView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\VisitaMedicaView.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="Views\Persone\DonatoriView.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\VisiteMedicheView.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="Views\Tests\ListaVociView.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Tests\ListeIndaginiQuestionarioView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Tests\VisitaMedicaView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Tests\VisiteMedicheView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
@@ -265,6 +265,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

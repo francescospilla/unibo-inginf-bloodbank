@@ -2,7 +2,7 @@
 using PropertyChanged;
 using Stylet;
 
-namespace BloodBank.ViewModel.ViewModels {
+namespace BloodBank.ViewModel.ViewModels.Donazioni {
 
     [ImplementPropertyChanged]
     public class DonazioniViewModel : Screen {

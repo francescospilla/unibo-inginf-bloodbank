@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using BloodBank.Core.Attributes;
 using BloodBank.Core.Extensions;
 using BloodBank.Model.Models;
+using BloodBank.Model.Models.Persone;
 using BloodBank.Model.Models.Tests;
+using BloodBank.Model.Service;
 using BloodBank.ViewModel.Components;
 using BloodBank.ViewModel.Service;
 using Stylet;
-using BloodBank.Model.Models.Persone;
-using BloodBank.Model.Service;
 
-namespace BloodBank.ViewModel.ViewModels
+namespace BloodBank.ViewModel.ViewModels.Tests
 {
     public class VisitaMedicaViewModel : EditableViewModel<VisitaMedica>
     {

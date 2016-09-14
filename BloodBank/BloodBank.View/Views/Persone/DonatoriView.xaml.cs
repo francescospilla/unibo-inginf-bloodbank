@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace BloodBank.View.Views {
+namespace BloodBank.View.Views.Persone {
 
     /// <summary>
     /// Interaction logic for DonatoriView.xaml

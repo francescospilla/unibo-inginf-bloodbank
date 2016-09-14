@@ -5,7 +5,7 @@ using BloodBank.ViewModel.Service;
 using PropertyChanged;
 using Stylet;
 
-namespace BloodBank.ViewModel.ViewModels
+namespace BloodBank.ViewModel.ViewModels.Tests
 {
     [ImplementPropertyChanged]
     public class VisiteMedicheViewModel : TabWorkspaceViewModel<VisitaMedica, VisitaMedicaViewModel> {

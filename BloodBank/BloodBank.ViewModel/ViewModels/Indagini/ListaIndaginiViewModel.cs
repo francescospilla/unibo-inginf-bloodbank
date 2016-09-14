@@ -10,7 +10,7 @@ using BloodBank.ViewModel.Service;
 using PropertyChanged;
 using Stylet;
 
-namespace BloodBank.ViewModel.ViewModels {
+namespace BloodBank.ViewModel.ViewModels.Indagini {
 
     [ImplementPropertyChanged]
     public class ListaIndaginiViewModel<U> : EditableViewModel<ListaIndagini<U>>, IListaIndagini where U : ListaVoci {

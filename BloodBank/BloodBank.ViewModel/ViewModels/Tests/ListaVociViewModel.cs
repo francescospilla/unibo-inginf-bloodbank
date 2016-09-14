@@ -5,10 +5,10 @@ using BloodBank.Model.Models.Indagini;
 using BloodBank.Model.Models.Persone;
 using BloodBank.Model.Models.Tests;
 using BloodBank.ViewModel.Components;
-using Stylet;
 using PropertyChanged;
+using Stylet;
 
-namespace BloodBank.ViewModel.ViewModels
+namespace BloodBank.ViewModel.ViewModels.Tests
 {
 
     [ImplementPropertyChanged]
