@@ -3,20 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:BloodBank.View.Views"
              xmlns:s="https://github.com/canton7/Stylet"
              xmlns:components="clr-namespace:BloodBank.View.Components"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="500">
 
-
-    <StackPanel Background="{DynamicResource MaterialDesignBackground}">
-
-        <Expander>
-            <Expander.Header>
-                <TextBlock Text="Donatore" />
-            </Expander.Header>
-
+    <xctk:Wizard>
+        <xctk:WizardPage Title="Selezione Donatore">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
@@ -30,23 +24,28 @@
                 </Grid.ColumnDefinitions>
 
                 <Label Grid.Row="0" Grid.Column="0" Margin="10 20">Donatore:</Label>
-                <ComboBox Grid.Row="0" Grid.Column="1" ItemsSource="{Binding DonatoreEnumerable}" SelectedItem="{Binding SelectedDonatore}">
-                    <ComboBox.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding Model}" />
-                        </DataTemplate>
-                    </ComboBox.ItemTemplate>
-                </ComboBox>
-                <ContentControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" s:View.Model="{Binding SelectedDonatore}" components:ReadOnlyPanel.IsReadOnly="True"/>
+                <ComboBox Grid.Row="0" Grid.Column="1" DisplayMemberPath="Model" ItemsSource="{Binding DonatoreEnumerable}" SelectedItem="{Binding SelectedDonatore}" />
+                <ContentControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" s:View.Model="{Binding SelectedDonatore}" components:ReadOnlyPanel.IsReadOnly="True" Margin="20"/>
             </Grid>
-        </Expander>
+        </xctk:WizardPage>
+        <xctk:WizardPage Title="Seleziona ListaIndagini">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
 
-        <Expander>
-            <Expander.Header>
-                <TextBlock Text="ListaIndagini" />
-            </Expander.Header>
+                <Label Grid.Row="0" Grid.Column="0" Margin="10 20">ListaIndagini:</Label>
+                <ComboBox Grid.Row="0" Grid.Column="1" DisplayMemberPath="Model" ItemsSource="{Binding ListaIndaginiEnumerable}" SelectedItem="{Binding SelectedListaIndagini}" />
+                <ContentControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" s:View.Model="{Binding SelectedListaIndagini}" components:ReadOnlyPanel.IsReadOnly="True" Margin="20"/>
+            </Grid>
+        </xctk:WizardPage>
+    </xctk:Wizard>
 
-        </Expander>
-
-    </StackPanel>
 </UserControl>
