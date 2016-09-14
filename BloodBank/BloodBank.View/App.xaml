@@ -10,6 +10,7 @@
 			 xmlns:dragablz="http://dragablz.net/winfx/xaml/dragablz"
 			 xmlns:viewModel="clr-namespace:BloodBank.ViewModel;assembly=BloodBank.ViewModel"
 			 xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+			 xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
 			 mc:Ignorable="d ignore">
 
     <Application.Resources>
@@ -73,6 +74,25 @@
                 <Setter Property="EmptyHeaderSizingHint" Value="PreviousTab" />
             </Style>
 
+            <!-- Card-styled ContentControl -->
+            <Style x:Key="CardContentControlStyle" TargetType="ContentControl">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type ContentControl}">
+                            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                                <StackPanel Margin="0 10">
+                                    <md:Card Margin="20 10" Padding="10 0 10 30" MaxWidth="1000">
+                                        <StackPanel>
+                                            <ContentPresenter />
+                                        </StackPanel>
+                                    </md:Card>
+                                </StackPanel>
+                            </ScrollViewer>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
             <!-- Stylet support for Dragablz -->
             <Style BasedOn="{StaticResource {x:Type dragablz:TabablzControl}}" TargetType="dragablz:TabablzControl" x:Key="StyletConductorTabablzControl">
                 <Setter Property="Background" Value="Transparent" />
@@ -88,7 +108,7 @@
                 <Setter Property="ContentTemplate">
                     <Setter.Value>
                         <DataTemplate>
-                            <ContentControl s:View.Model="{Binding }"></ContentControl>
+                            <ContentControl Style="{StaticResource CardContentControlStyle}" s:View.Model="{Binding }" />
                         </DataTemplate>
                     </Setter.Value>
                 </Setter>
@@ -133,7 +153,43 @@
                     </DataTrigger>
                 </Style.Triggers>
             </Style>
+
             
+            <!-- Material Design theme for XCTK Wizard -->
+            <Style TargetType="{x:Type xctk:Wizard}">
+                <Setter Property="BackButtonContent" Value="INDIETRO" />
+                <Setter Property="NextButtonContent" Value="AVANTI" />
+                <Setter Property="CancelButtonContent" Value="CANCELLA" />
+                <Setter Property="FinishButtonContent" Value="FINISCI" />
+                <Setter Property="HelpButtonVisibility" Value="Hidden" />
+                <Setter Property="CancelButtonClosesWindow" Value="False" />
+                <Setter Property="FinishButtonClosesWindow" Value="False" />
+                <Setter Property="Background" Value="{StaticResource MaterialDesignBackground}" />
+                <Setter Property="BorderBrush" Value="{StaticResource MaterialDesignDivider}" />
+                <Setter Property="BorderThickness" Value="0" />
+                <Style.Resources>
+                    <Style TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignFlatButton}">
+                    </Style>
+                </Style.Resources>
+            </Style>
+            <Style TargetType="{x:Type xctk:WizardPage}">
+                <Setter Property="PageType" Value="Interior" />
+                <Style.Triggers>
+                    <Trigger Property="PageType" Value="Blank">
+                        <Setter Property="Background" Value="{StaticResource MaterialDesignPaper}" />
+                    </Trigger>
+                    <Trigger Property="PageType" Value="Exterior">
+                        <Setter Property="Background" Value="{StaticResource MaterialDesignPaper}" />
+                        <Setter Property="ExteriorPanelBackground" Value="{DynamicResource PrimaryHueLightBrush}" />
+                    </Trigger>
+                    <Trigger Property="PageType" Value="Interior">
+                        <Setter Property="Background" Value="{StaticResource MaterialDesignPaper}" />
+                        <Setter Property="BorderBrush" Value="{StaticResource MaterialDesignDivider}" />
+                        <Setter Property="HeaderBackground" Value="{StaticResource MaterialDesignBackground}" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>

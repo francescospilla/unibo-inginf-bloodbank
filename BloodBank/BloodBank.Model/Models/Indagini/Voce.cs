@@ -1,17 +1,25 @@
 using System;
 using BloodBank.Model.Models.Tests;
+using PropertyChanged;
 
-namespace BloodBank.Model.Models.Indagini {
+namespace BloodBank.Model.Models.Indagini
+{
 
-    public abstract class Voce {
+    public abstract class Voce
+    {
         public abstract Idoneità Idoneità { get; }
         public abstract string TestoIndagine { get; }
         public abstract string TestoRisultato { get; }
     }
 
-    public class Voce<U, T> : Voce where T : IComparable<T> where U : ListaVoci {
+    public abstract class Voce<U> : Voce where U : ListaVoci
+    { }
 
-        public Voce(Indagine<U, T> indagine, T risultato) {
+    [ImplementPropertyChanged] public class Voce<U, T> : Voce<U> where T : IComparable<T> where U : ListaVoci
+    {
+
+        public Voce(Indagine<U, T> indagine, T risultato)
+        {
             Indagine = indagine;
             Risultato = risultato;
             Idoneità = Indagine.GetIdoneitàFromRisultato(risultato);
@@ -24,7 +32,8 @@ namespace BloodBank.Model.Models.Indagini {
         public override string TestoIndagine => Indagine.Testo;
         public override string TestoRisultato => Risultato.ToString();
 
-        public override string ToString() {
+        public override string ToString()
+        {
             return "Voce: " + TestoIndagine + ", Risultato: " + TestoRisultato;
         }
     }

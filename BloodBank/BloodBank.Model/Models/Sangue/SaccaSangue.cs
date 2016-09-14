@@ -1,18 +1,17 @@
 ﻿using System;
 using BloodBank.Model.Models.Donazioni;
+using PropertyChanged;
 
 namespace BloodBank.Model.Models.Sangue {
 
-    public class SaccaSangue {
+    [ImplementPropertyChanged] public class SaccaSangue {
 
-        public SaccaSangue(Donazione donazione, GruppoSanguigno gruppo, ComponenteEmatico componente, DateTime dataPrelievo,
-            int quantitàFrazionaria) {
+        public SaccaSangue(Donazione donazione, GruppoSanguigno gruppo, ComponenteEmatico componente, DateTime dataPrelievo) {
             Id = Guid.NewGuid();
             Donazione = donazione;
             DataPrelievo = dataPrelievo;
             Gruppo = gruppo;
             Componente = componente;
-            QuantitàFrazionaria = quantitàFrazionaria;
             Disponibile = true;
             DataScadenza = Componente.CalculateDataScadenza(DataPrelievo.Date);
         }
@@ -24,7 +23,6 @@ namespace BloodBank.Model.Models.Sangue {
         public GruppoSanguigno Gruppo { get; }
         public ComponenteEmatico Componente { get; }
         public bool Disponibile { get; private set; }
-        public int QuantitàFrazionaria { get; }
 
         public void Preleva() {
             if (!Disponibile)

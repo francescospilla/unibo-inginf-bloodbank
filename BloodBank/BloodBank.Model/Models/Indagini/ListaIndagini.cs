@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using BloodBank.Model.Models.Tests;
+using PropertyChanged;
 
 namespace BloodBank.Model.Models.Indagini {
 
@@ -80,7 +81,7 @@ namespace BloodBank.Model.Models.Indagini {
         }
     }
 
-    public class ListaIndagini<U> : ListaIndagini where U : ListaVoci {
+    [ImplementPropertyChanged] public class ListaIndagini<U> : ListaIndagini where U : ListaVoci {
         public Type Tipo { get; } = typeof(U);
 
         public ListaIndagini(string nome = null) : base(nome) {

@@ -51,8 +51,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Dragablz, Version=0.0.3.170, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dragablz.0.0.3.170\lib\net45\Dragablz.dll</HintPath>
+    <Reference Include="Dragablz, Version=0.0.3.171, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dragablz.0.0.3.171\lib\net45\Dragablz.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="MahApps.Metro, Version=1.2.4.0, Culture=neutral, PublicKeyToken=f4fb5a3c4d1e5b4f, processorArchitecture=MSIL">
@@ -63,8 +63,8 @@
       <HintPath>..\packages\MaterialDesignColors.1.1.3\lib\net45\MaterialDesignColors.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="MaterialDesignThemes.Wpf, Version=2.1.0.657, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MaterialDesignThemes.2.1.0.657\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
+    <Reference Include="MaterialDesignThemes.Wpf, Version=2.2.0.682, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignThemes.2.2.0-ci682\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Stylet, Version=1.1.16.0, Culture=neutral, processorArchitecture=MSIL">
@@ -91,6 +91,30 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="Xceed.Wpf.AvalonDock, Version=2.9.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.9\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero, Version=2.9.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.9\lib\net40\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro, Version=2.9.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.9\lib\net40\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010, Version=2.9.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.9\lib\net40\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.DataGrid, Version=2.9.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.9\lib\net40\Xceed.Wpf.DataGrid.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit, Version=2.9.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.9\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -103,6 +127,7 @@
     <Compile Include="Components\PushBinding\PushBinding.cs" />
     <Compile Include="Components\PushBinding\PushBindingCollection.cs" />
     <Compile Include="Components\PushBinding\PushBindingManager.cs" />
+    <Compile Include="Components\ReadOnlyPanel.cs" />
     <Compile Include="Converters\CollectionToDataTableConverter.cs" />
     <Compile Include="Converters\ObjectToDictionaryConverter.cs" />
     <Compile Include="Converters\StringToPackIconConverter.cs" />
@@ -111,14 +136,8 @@
       <DependentUpon>IndaginiView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\IndaginiQuestionarioView.cs" />
-    <Compile Include="Views\ListeIndaginiQuestionarioView.xaml.cs">
-      <DependentUpon>ListeIndaginiQuestionarioView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\DonazioniView.xaml.cs">
-      <DependentUpon>DonazioniView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\DonatoriView.xaml.cs">
-      <DependentUpon>DonatoriView.xaml</DependentUpon>
+    <Compile Include="Views\Indagini\ListaIndaginiView.xaml.cs">
+      <DependentUpon>ListaIndaginiView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="ShellView.xaml.cs">
@@ -128,15 +147,17 @@
       <DependentUpon>AppBar.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\IntegerTextBox.cs" />
-    <Compile Include="Views\ListaIndaginiView.xaml.cs">
-      <DependentUpon>ListaIndaginiView.xaml</DependentUpon>
+    <Compile Include="Views\Persone\DonatoreView.xaml.cs">
+      <DependentUpon>DonatoreView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ListaIndaginiQuestionarioView.cs" />
+    <Compile Include="Views\Persone\DonatoriView.xaml.cs">
+      <DependentUpon>DonatoriView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tests\ListaIndaginiQuestionarioView.cs" />
+    <Compile Include="Views\Tests\ListeIndaginiQuestionarioView.xaml.cs">
+      <DependentUpon>ListeIndaginiQuestionarioView.xaml</DependentUpon>
+    </Compile>
     <Page Include="Resources\FilterControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\DonatoreView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -149,28 +170,17 @@
     <Compile Include="Converters\BoolToValueConverter.cs" />
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Converters\EnumDisplayAttributeOrHumanizeConverter.cs" />
-    <Compile Include="Views\DonatoreView.xaml.cs">
-      <DependentUpon>DonatoreView.xaml</DependentUpon>
-    </Compile>
     <Page Include="Views\IndaginiView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ListaVociView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\ListeIndaginiQuestionarioView.xaml">
+    <Page Include="Views\Donazioni\DonazioniView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\DonazioniView.xaml">
+    <Page Include="Views\Indagini\ListaIndaginiView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\DonatoriView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ShellView.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -180,7 +190,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ListaIndaginiView.xaml">
+    <Page Include="Views\Persone\DonatoreView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Persone\DonatoriView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Tests\ListaVociView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Tests\ListeIndaginiQuestionarioView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -192,13 +214,13 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\VisitaMedicaView.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="Views\Tests\VisitaMedicaView.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\VisiteMedicheView.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="Views\Tests\VisiteMedicheView.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
@@ -258,6 +280,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

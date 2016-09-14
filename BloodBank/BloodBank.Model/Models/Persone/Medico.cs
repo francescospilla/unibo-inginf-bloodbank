@@ -1,8 +1,9 @@
 ﻿using System;
+using PropertyChanged;
 
 namespace BloodBank.Model.Models.Persone
 {
-    public class Medico
+    [ImplementPropertyChanged] public class Medico
     {
 
         public Contatto Contatto { get; }
