@@ -90,6 +90,7 @@
     <Compile Include="ViewModels\ListaIndaginiQuestionarioViewModel.cs" />
     <Compile Include="ViewModels\ListaIndaginiViewModel.cs" />
     <Compile Include="Components\TabWorkspaceViewModel.cs" />
+    <Compile Include="ViewModels\SaccheSangueViewModel.cs" />
     <Compile Include="ViewModels\VisitaMedicaViewModel.cs" />
     <Compile Include="ViewModels\VisiteMedicheViewModel.cs" />
     <Compile Include="ViewModels\SaccaSangueViewModel.cs" />

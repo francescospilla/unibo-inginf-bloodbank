@@ -24,7 +24,7 @@ namespace BloodBank.ViewModel.ViewModels {
 
         #region Properties
 
-        public new string DisplayName => IsInitialized ? IdSacca : "Nuova sacca";
+        public new string DisplayName => IsInitialized ? IdSacca : "Nuova Sacca";
 
         public string IdSacca => Id.ToString();
 

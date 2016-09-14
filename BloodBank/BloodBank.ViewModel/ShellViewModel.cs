@@ -17,7 +17,7 @@ namespace BloodBank.ViewModel {
     [ImplementPropertyChanged]
     public class ShellViewModel : Conductor<NavigationMenuItem>.Collection.OneActive, IHandle<NavMenuEvent> {
 
-        public ShellViewModel(IEventAggregator eventAggregator, DonatoriViewModel donatoriViewModel, DonazioniViewModel donazioniViewModel, ListeIndaginiQuestionarioViewModel listeIndaginiQuestionarioViewModel, VisiteMedicheViewModel visiteMedicheViewModel, ListaVociViewModel listaVociViewModel, SaccaSangueViewModel saccaSangueViewModel) {
+        public ShellViewModel(IEventAggregator eventAggregator, DonatoriViewModel donatoriViewModel, DonazioniViewModel donazioniViewModel, ListeIndaginiQuestionarioViewModel listeIndaginiQuestionarioViewModel, VisiteMedicheViewModel visiteMedicheViewModel, ListaVociViewModel listaVociViewModel, SaccheSangueViewModel saccheSangueViewModel) {
             eventAggregator.Subscribe(this);
 
             DisplayName = "BloodBank";
@@ -30,14 +30,11 @@ namespace BloodBank.ViewModel {
 
             listaVociViewModel.Model = analisi;
 
-            SaccaSangue saccaSangue = new SaccaSangue(null, GruppoSanguigno.AB_Neg, ComponenteEmatico.GlobuliRossi, DateTime.Now.AddDays(-3).AddHours(2));
-            saccaSangueViewModel.Model = saccaSangue;
-
             Items.Add(new NavigationMenuItem("Donatori", "AccountMultiple", donatoriViewModel));
             Items.Add(new NavigationMenuItem("Donazioni", "Heart", donazioniViewModel));
-            Items.Add(new NavigationMenuItem("Questionari", "Heart", listeIndaginiQuestionarioViewModel));
+            Items.Add(new NavigationMenuItem("Questionari", "Book", listeIndaginiQuestionarioViewModel));
             Items.Add(new NavigationMenuItem("Visite Mediche", "Hospital", visiteMedicheViewModel));
-            Items.Add(new NavigationMenuItem("Sacche di Sangue", "Water", saccaSangueViewModel));
+            Items.Add(new NavigationMenuItem("Sacche di Sangue", "Water", saccheSangueViewModel));
             Items.Add(new NavigationMenuItem("Tests", "Help", listaVociViewModel));
         }
 
