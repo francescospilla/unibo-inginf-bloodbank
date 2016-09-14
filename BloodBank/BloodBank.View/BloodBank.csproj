@@ -51,8 +51,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Dragablz, Version=0.0.3.169, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dragablz.0.0.3.169\lib\net45\Dragablz.dll</HintPath>
+    <Reference Include="Dragablz, Version=0.0.3.171, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dragablz.0.0.3.171\lib\net45\Dragablz.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="MahApps.Metro, Version=1.2.4.0, Culture=neutral, PublicKeyToken=f4fb5a3c4d1e5b4f, processorArchitecture=MSIL">
@@ -63,8 +63,12 @@
       <HintPath>..\packages\MaterialDesignColors.1.1.3\lib\net45\MaterialDesignColors.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="MaterialDesignThemes.Wpf, Version=2.0.1.645, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MaterialDesignThemes.2.0.1-ci645\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
+    <Reference Include="MaterialDesignThemes.Wpf, Version=2.2.0.682, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignThemes.2.2.0-ci682\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Stylet, Version=1.1.16.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stylet.1.1.16\lib\net45\Stylet.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -87,6 +91,30 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="Xceed.Wpf.AvalonDock, Version=2.9.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.9\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero, Version=2.9.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.9\lib\net40\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro, Version=2.9.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.9\lib\net40\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010, Version=2.9.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.9\lib\net40\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.DataGrid, Version=2.9.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.9\lib\net40\Xceed.Wpf.DataGrid.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit, Version=2.9.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.9\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -99,11 +127,11 @@
     <Compile Include="Components\PushBinding\PushBinding.cs" />
     <Compile Include="Components\PushBinding\PushBindingCollection.cs" />
     <Compile Include="Components\PushBinding\PushBindingManager.cs" />
+    <Compile Include="Components\ReadOnlyPanel.cs" />
     <Compile Include="Converters\StringToPackIconConverter.cs" />
     <Compile Include="UserControls\FilterControl.cs" />
-    <Compile Include="Views\AnalisiView.cs" />
-    <Compile Include="Views\QuestionariView.xaml.cs">
-      <DependentUpon>QuestionariView.xaml</DependentUpon>
+    <Compile Include="Views\ListeIndaginiQuestionarioView.xaml.cs">
+      <DependentUpon>ListeIndaginiQuestionarioView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\DonazioniView.xaml.cs">
       <DependentUpon>DonazioniView.xaml</DependentUpon>
@@ -122,7 +150,6 @@
     <Compile Include="Views\ListaIndaginiView.xaml.cs">
       <DependentUpon>ListaIndaginiView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\QuestionarioView.cs" />
     <Compile Include="Views\SaccaSangueView.xaml.cs">
       <DependentUpon>SaccaSangueView.xaml</DependentUpon>
     </Compile>
@@ -146,7 +173,11 @@
     <Compile Include="Views\DonatoreView.xaml.cs">
       <DependentUpon>DonatoreView.xaml</DependentUpon>
     </Compile>
-    <Page Include="Views\QuestionariView.xaml">
+    <Page Include="Views\ListaVociView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ListeIndaginiQuestionarioView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -223,10 +254,6 @@
     <ProjectReference Include="..\BloodBank.ViewModel\BloodBank.ViewModel.csproj">
       <Project>{D950CEA9-77F9-42D8-B7E2-B61748BB38A7}</Project>
       <Name>BloodBank.ViewModel</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Stylet\Stylet.csproj">
-      <Project>{2435bd00-ac12-48b0-ad36-9bab2fdec3f5}</Project>
-      <Name>Stylet</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -1,13 +1,9 @@
 using System;
 using BloodBank.Core.Extensions;
-using BloodBank.Model.Donatori;
+using BloodBank.Model.Models.Persone;
 using BloodBank.Model.Service;
-using BloodBank.ViewModel.Service;
-using BloodBank.ViewModel.Validation.Rules;
 using FluentValidation;
-using BloodBank.ViewModel.Validation;
 using BloodBank.ViewModel.ViewModels;
-using FluentValidation.Validators;
 
 namespace BloodBank.ViewModel.Validation.Donatori {
 

@@ -1,7 +1,7 @@
-﻿using BloodBank.Model.Donazioni;
-using System;
+﻿using System;
+using BloodBank.Model.Models.Donazioni;
 
-namespace BloodBank.Model.Sangue {
+namespace BloodBank.Model.Models.Sangue {
 
     public class SaccaSangue {
 

@@ -1,7 +1,7 @@
 using System;
-using BloodBank.Model.Tests;
+using BloodBank.Model.Models.Tests;
 
-namespace BloodBank.Model.Indagini {
+namespace BloodBank.Model.Models.Indagini {
 
     public abstract class Voce {
         public abstract Idoneità Idoneità { get; }

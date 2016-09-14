@@ -47,6 +47,10 @@
       <HintPath>..\packages\StructureMap.4.4.0\lib\net45\StructureMap.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Stylet, Version=1.1.16.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stylet.1.1.16\lib\net45\Stylet.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xaml" />
@@ -61,6 +65,7 @@
   <ItemGroup>
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Components\ViewModel.cs" />
+    <Compile Include="Components\WorkspaceViewModel.cs" />
     <Compile Include="Events\ViewModelCollectionChangedEvent.cs" />
     <Compile Include="Service\DataService.cs" />
     <Compile Include="Service\IDataService.cs" />
@@ -72,8 +77,8 @@
     <Compile Include="Validation\Rules\UniquePropertyValidator.cs" />
     <Compile Include="Validation\Tests\VisitaMedicaValidator.cs" />
     <Compile Include="Validation\ValidatorExtensions.cs" />
-    <Compile Include="ViewModels\AnalisiViewModel.cs" />
-    <Compile Include="ViewModels\QuestionariViewModel.cs" />
+    <Compile Include="ViewModels\ListaVociViewModel.cs" />
+    <Compile Include="ViewModels\ListeIndaginiQuestionarioViewModel.cs" />
     <Compile Include="ViewModels\DonazioniViewModel.cs" />
     <Compile Include="ViewModels\DonatoriViewModel.cs" />
     <Compile Include="Components\EditableViewModel.cs" />
@@ -82,8 +87,9 @@
     <Compile Include="ShellViewModel.cs" />
     <Compile Include="ViewModels\DonatoreViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\QuestionarioViewModel.cs" />
+    <Compile Include="ViewModels\ListaIndaginiQuestionarioViewModel.cs" />
     <Compile Include="ViewModels\ListaIndaginiViewModel.cs" />
+    <Compile Include="Components\TabWorkspaceViewModel.cs" />
     <Compile Include="ViewModels\VisitaMedicaViewModel.cs" />
     <Compile Include="ViewModels\VisiteMedicheViewModel.cs" />
     <Compile Include="ViewModels\SaccaSangueViewModel.cs" />
@@ -100,10 +106,6 @@
     <ProjectReference Include="..\Stylet.FluentValidation\Stylet.FluentValidation.csproj">
       <Project>{bc9bc04d-1d1a-43a3-be2d-d80509f03e3c}</Project>
       <Name>Stylet.FluentValidation</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Stylet\Stylet.csproj">
-      <Project>{2435BD00-AC12-48B0-AD36-9BAB2FDEC3F5}</Project>
-      <Name>Stylet</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

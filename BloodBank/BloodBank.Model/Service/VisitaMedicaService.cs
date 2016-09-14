@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using BloodBank.Model.Indagini.Tipi;
-using BloodBank.Model.Tests;
+﻿using System.Collections.Generic;
+using BloodBank.Model.Models.Tests;
 
 namespace BloodBank.Model.Service
 {

@@ -1,11 +1,11 @@
-﻿using BloodBank.Model.Sangue;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics.Contracts;
 using System.Linq;
+using BloodBank.Model.Models.Sangue;
 
-namespace BloodBank.Model.Donazioni {
+namespace BloodBank.Model.Models.Donazioni {
 
     public sealed class TipoDonazione {
 

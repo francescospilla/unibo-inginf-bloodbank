@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BloodBank.Model.Donazioni;
-using BloodBank.Model.Sangue;
+using BloodBank.Model.Models.Donazioni;
+using BloodBank.Model.Models.Sangue;
 
 namespace BloodBank.Model.Service
 {

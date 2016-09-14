@@ -42,8 +42,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\Donatori\Contatto.cs" />
-    <Compile Include="Models\Donatori\Donatore.cs" />
+    <Compile Include="Models\Persone\Contatto.cs" />
+    <Compile Include="Models\Persone\Donatore.cs" />
     <Compile Include="Models\Donazioni\Donazione.cs" />
     <Compile Include="Models\Donazioni\TipoDonazione.cs" />
     <Compile Include="Models\Idoneità.cs" />
@@ -53,6 +53,7 @@
     <Compile Include="Models\Indagini\Tipi\IndagineBoolean.cs" />
     <Compile Include="Models\Indagini\Tipi\IndagineRange.cs" />
     <Compile Include="Models\Indagini\Voce.cs" />
+    <Compile Include="Models\Persone\Medico.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\Ricerca.cs" />
     <Compile Include="Models\Sangue\ComponenteEmatico.cs" />
@@ -68,6 +69,7 @@
     <Compile Include="Models\Tests\Questionario.cs" />
     <Compile Include="Models\Tests\Test.cs" />
     <Compile Include="Models\Tests\VisitaMedica.cs" />
+    <Compile Include="Service\MedicoService.cs" />
     <Compile Include="Service\VisitaMedicaService.cs" />
     <Compile Include="Service\SaccaSangueService.cs" />
   </ItemGroup>

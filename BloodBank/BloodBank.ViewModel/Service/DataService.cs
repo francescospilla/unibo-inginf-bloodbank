@@ -9,7 +9,7 @@ using BloodBank.ViewModel.Components;
 
 namespace BloodBank.ViewModel.Service {
 
-    public class DataService<TModel, TViewModel> : IDataService<TModel, TViewModel> where TModel : class where TViewModel : EditableViewModel<TModel> {
+    public class DataService<TModel, TViewModel> : IDataService<TModel, TViewModel> where TModel : class where TViewModel : ViewModel<TModel> {
         private readonly IEventAggregator _eventAggregator;
         private readonly IDataService<TModel> _modelService;
         private ObservableCollection<TViewModel> _viewModelList;

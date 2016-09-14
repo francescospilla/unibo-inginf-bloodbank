@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace BloodBank.Model.Indagini {
+namespace BloodBank.Model.Models.Indagini {
 
     public interface IListaIndagini {
         DateTime DataCreazione { get; }

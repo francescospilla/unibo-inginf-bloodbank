@@ -2,7 +2,7 @@
 
 // ReSharper disable InconsistentNaming
 
-namespace BloodBank.Model.Sangue {
+namespace BloodBank.Model.Models.Sangue {
 
     public enum GruppoSanguigno {
 

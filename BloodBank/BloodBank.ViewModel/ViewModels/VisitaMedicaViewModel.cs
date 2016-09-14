@@ -1,32 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using BloodBank.Core.Attributes;
 using BloodBank.Core.Extensions;
-using BloodBank.Model;
-using BloodBank.Model.Tests;
+using BloodBank.Model.Models;
+using BloodBank.Model.Models.Tests;
 using BloodBank.ViewModel.Components;
 using BloodBank.ViewModel.Service;
 using Stylet;
-using BloodBank.Model.Donatori;
+using BloodBank.Model.Models.Persone;
 using BloodBank.Model.Service;
-using BloodBank.ViewModel.Validation.Tests;
 
 namespace BloodBank.ViewModel.ViewModels
 {
     public class VisitaMedicaViewModel : EditableViewModel<VisitaMedica>
     {
         private readonly IDataService<Donatore> _donatoreDataService;
+        private readonly IDataService<Medico> _medicoDataService;
 
         #region Constructors
 
-        public VisitaMedicaViewModel(IEventAggregator eventAggregator, IDataService<Donatore> donatoreDataService, IDataService<VisitaMedica, VisitaMedicaViewModel> dataService, IModelValidator<VisitaMedicaViewModel> validator) : base(eventAggregator, dataService, validator)
+        public VisitaMedicaViewModel(IEventAggregator eventAggregator, IDataService<Donatore> donatoreDataService, IDataService<VisitaMedica, VisitaMedicaViewModel> dataService, IDataService<Medico> medicoDataService, IModelValidator<VisitaMedicaViewModel> validator) : base(eventAggregator, dataService, validator)
         {
             _donatoreDataService = donatoreDataService;
+            _medicoDataService = medicoDataService;
             DonatoreEnumerable = _donatoreDataService.GetModels();
+            MedicoEnumerable = _medicoDataService.GetModels();
         }
 
         #endregion Constructors
@@ -45,13 +43,14 @@ namespace BloodBank.ViewModel.ViewModels
         public string DescrizioneBreve { get; set;  }
         public DateTime Data { get; set;  } = DateTime.Now;
         public Idoneità Idoneità { get; set;  }
-        public string NomeMedico { get; set; }
+        public Medico Medico { get; set; }
+        public string Referto { get; set; }
 
         #endregion Properties
 
         public IEnumerable<Idoneità> IdoneitàEnumerable { get; } = EnumExtensions.Values<Idoneità>();
         public IEnumerable<Donatore> DonatoreEnumerable { get; }
-        public IEnumerable<string> NomeMedicoEnumerable { get; } = new List<string>(){ "Medico1", "Medico2", "Medico3"};
+        public IEnumerable<Medico> MedicoEnumerable { get; }
 
     #region Mappings
 
@@ -61,12 +60,13 @@ namespace BloodBank.ViewModel.ViewModels
             DescrizioneBreve = Model.DescrizioneBreve;
             Data = Model.Data;
             Idoneità = Model.Idoneità;
-            NomeMedico = Model._nomeMedico;
+            Medico = Model.Medico;
+            Referto = Model.Referto;
         }
 
         protected override VisitaMedica CreateModelFromViewModel()
         {
-            return new VisitaMedica(Donatore, DescrizioneBreve, Data, Idoneità, NomeMedico);
+            return new VisitaMedica(Donatore, DescrizioneBreve, Data, Idoneità, Medico, Referto);
         }
 
         protected override void SyncViewModelToModel()

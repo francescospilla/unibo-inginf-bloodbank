@@ -1,8 +1,8 @@
 ﻿using BloodBank.Core.Extensions;
-using BloodBank.Model.Indagini;
-using BloodBank.Model.Tests;
 using System.Collections.Generic;
 using System.Linq;
+using BloodBank.Model.Models.Indagini;
+using BloodBank.Model.Models.Tests;
 
 namespace BloodBank.Model.Service {
 

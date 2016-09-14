@@ -1,8 +1,8 @@
-﻿using BloodBank.Model.Donatori;
-using System;
+﻿using System;
 using System.Linq;
+using BloodBank.Model.Models.Persone;
 
-namespace BloodBank.Model.Tests {
+namespace BloodBank.Model.Models.Tests {
 
     public abstract class Test {
 

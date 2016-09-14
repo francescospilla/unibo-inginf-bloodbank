@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
-namespace BloodBank.Model {
+namespace BloodBank.Model.Models {
 
     public enum Idoneità {
         Idoneo = 0,

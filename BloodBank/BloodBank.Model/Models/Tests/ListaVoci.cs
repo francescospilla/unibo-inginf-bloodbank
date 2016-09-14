@@ -1,10 +1,10 @@
-﻿using BloodBank.Model.Donatori;
-using BloodBank.Model.Indagini;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using BloodBank.Model.Models.Indagini;
+using BloodBank.Model.Models.Persone;
 
-namespace BloodBank.Model.Tests {
+namespace BloodBank.Model.Models.Tests {
 
     public abstract class ListaVoci : Test {
         private readonly List<Voce> _listaVoci;

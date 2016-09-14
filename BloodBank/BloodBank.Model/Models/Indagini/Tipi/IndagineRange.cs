@@ -1,7 +1,7 @@
 ﻿using System;
-using BloodBank.Model.Tests;
+using BloodBank.Model.Models.Tests;
 
-namespace BloodBank.Model.Indagini.Tipi {
+namespace BloodBank.Model.Models.Indagini.Tipi {
 
     public class IndagineRange<U, T> : Indagine<U, T> where T : IComparable<T> where U : ListaVoci{
 
