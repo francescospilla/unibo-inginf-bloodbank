@@ -15,7 +15,7 @@ namespace BloodBank.Mock
         internal static Donazione Donazione1 = new Donazione(D1, Piastrinoaferesi, new DateTime(2016, 09, 13), V1, A1, Q1);
         internal static Donazione Donazione2 = new Donazione(D2, SangueIntero, new DateTime(2016, 08, 23), V2, A2, Q2);
         internal static Donazione Donazione3 = new Donazione(D3, Plasmaferesi, new DateTime(2016, 05, 15), V3, A3, Q3);
-        internal static Donazione Donazione4 = new Donazione(D4, SangueIntero, new DateTime(2016, 08, 23), V4, A4, Q4);
+        internal static Donazione Donazione4 = new Donazione(D4, SangueIntero, new DateTime(2016, 07, 02), V4, A4, Q4);
 
         private static readonly IList<Donazione> Items = new List<Donazione>()
         {

@@ -21,6 +21,7 @@ namespace BloodBank.Mock
         internal static Donatore D10 = new Donatore(new Contatto("Paola", "Longo", Sesso.Femmina, new DateTime(1995, 02, 22), "ZDDPTY33T71Z731G", "Via Quattro Passi", "Formigine", "Italia", "12341"), GruppoSanguigno.O_Pos, false);
         internal static Donatore D11 = new Donatore(new Contatto("Marco", "Tommasini", Sesso.Maschio, new DateTime(1999, 03, 30), "SCFGTX73E44G348S", "Stradello Romano", "Modena", "Italia", "12341"), GruppoSanguigno.O_Neg, false);
         internal static Donatore D12 = new Donatore(new Contatto("Tommaso", "DeLivorno", Sesso.Maschio, new DateTime(1950, 04, 28), "CXGHWD32R47G788H", "Via Fatti Bello", "Comacchio", "Italia", "12341"), GruppoSanguigno.A_Pos, false);
+        // Questi donatori non sono idonei
         internal static Donatore D13 = new Donatore(new Contatto("Marta", "Martinelli", Sesso.Femmina, new DateTime(1926, 05, 03), "MOEXFV77A48L614A", "Via Battibecco", "Bologna", "Italia", "12341"), GruppoSanguigno.AB_Pos, false);
         internal static Donatore D14 = new Donatore(new Contatto("Xing", "Li", Sesso.Femmina, new DateTime(2004, 06, 01), "VXGFFM39D17F716B", "Wood Duck Drive", "Sand River", "Indiana", "46563"), GruppoSanguigno.AB_Pos, false);
 
