@@ -105,6 +105,10 @@
     <Compile Include="Components\PushBinding\PushBindingManager.cs" />
     <Compile Include="Converters\StringToPackIconConverter.cs" />
     <Compile Include="UserControls\FilterControl.cs" />
+    <Compile Include="Views\IndaginiView.xaml.cs">
+      <DependentUpon>IndaginiView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\IndaginiQuestionarioView.cs" />
     <Compile Include="Views\ListeIndaginiQuestionarioView.xaml.cs">
       <DependentUpon>ListeIndaginiQuestionarioView.xaml</DependentUpon>
     </Compile>
@@ -146,6 +150,10 @@
     <Compile Include="Views\DonatoreView.xaml.cs">
       <DependentUpon>DonatoreView.xaml</DependentUpon>
     </Compile>
+    <Page Include="Views\IndaginiView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ListaVociView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

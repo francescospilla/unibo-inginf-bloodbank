@@ -68,6 +68,8 @@
     <Compile Include="Components\WorkspaceViewModel.cs" />
     <Compile Include="Events\OpenDialogEvent.cs" />
     <Compile Include="Events\ViewModelCollectionChangedEvent.cs" />
+    <Compile Include="ViewModels\IndaginiQuestionarioViewModel.cs" />
+    <Compile Include="ViewModels\IndaginiViewModel.cs" />
     <Compile Include="Service\DataService.cs" />
     <Compile Include="Service\IDataService.cs" />
     <Compile Include="StructureMapBootstrapper.cs" />
