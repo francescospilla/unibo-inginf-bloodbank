@@ -9,13 +9,15 @@ using BloodBank.Model.Service;
 using BloodBank.ViewModel.Components;
 using BloodBank.ViewModel.Service;
 using BloodBank.ViewModel.Validation.Indagini;
+using PropertyChanged;
 using Stylet;
 
 namespace BloodBank.ViewModel.ViewModels
 {
-    public class NuovaIndagineBooleanDialogViewModel : Screen
+    [ImplementPropertyChanged]
+    public abstract class NuovaIndagineBooleanDialogViewModel : Screen
     {
-        public NuovaIndagineBooleanDialogViewModel(IEventAggregator eventAggregator, IModelValidator<NuovaIndagineBooleanDialogViewModel> validator) : base(validator)
+        protected NuovaIndagineBooleanDialogViewModel(IEventAggregator eventAggregator, IModelValidator<NuovaIndagineBooleanDialogViewModel> validator) : base(validator)
         {
         }
 
@@ -27,13 +29,11 @@ namespace BloodBank.ViewModel.ViewModels
         public Idoneità IdoneitaFallimento { get; set; }
         public bool RisultatoCorretto { get; set; }
 
-        public IndagineBoolean<Questionario> Model { get; set; }
-
         #endregion Properties
 
         public IEnumerable<bool> RisultatoCorrettoEnumerable { get; } = new[] { true, false };
         public IEnumerable<Idoneità> IdoneitàEnumerable { get; } = EnumExtensions.Values<Idoneità>();
-        
+
         #region Save
 
         public bool CanSave => !HasErrors;
@@ -41,16 +41,40 @@ namespace BloodBank.ViewModel.ViewModels
         public void Save()
         {
             if (Validator != null && !Validate()) return;
-                Model = CreateModelFromViewModel();
+            object model = CreateModelFromViewModel();
             //TODO: notifica al view parent
-           
+
         }
 
-        private IndagineBoolean<Questionario> CreateModelFromViewModel()
-        {
-           return new IndagineBoolean<Questionario>(Testo, IdoneitaFallimento, RisultatoCorretto);
-        }
+        protected abstract object CreateModelFromViewModel();
 
         #endregion Save
+    }
+
+    public class NuovaIndagineBooleanDialogViewModel<U> : NuovaIndagineBooleanDialogViewModel where U : ListaVoci
+    {
+        public NuovaIndagineBooleanDialogViewModel(IEventAggregator eventAggregator, IModelValidator<NuovaIndagineBooleanDialogViewModel> validator) : base(eventAggregator, validator)
+        {
+        }
+
+        protected override object CreateModelFromViewModel()
+        {
+            return new IndagineBoolean<U>(Testo, IdoneitaFallimento, RisultatoCorretto);
+        }
+
+    }
+
+    public class NuovaIndagineBooleanQuestionarioDialogViewModel : NuovaIndagineBooleanDialogViewModel<Questionario>
+    {
+        public NuovaIndagineBooleanQuestionarioDialogViewModel(IEventAggregator eventAggregator, IModelValidator<NuovaIndagineBooleanDialogViewModel> validator) : base(eventAggregator, validator)
+        {
+        }
+    }
+
+    public class NuovaIndagineBooleanAnalisiDialogViewModel : NuovaIndagineBooleanDialogViewModel<Analisi>
+    {
+        public NuovaIndagineBooleanAnalisiDialogViewModel(IEventAggregator eventAggregator, IModelValidator<NuovaIndagineBooleanDialogViewModel> validator) : base(eventAggregator, validator)
+        {
+        }
     }
 }
