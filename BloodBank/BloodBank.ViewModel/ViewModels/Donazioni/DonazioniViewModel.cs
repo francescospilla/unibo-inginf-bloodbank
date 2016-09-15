@@ -1,28 +1,17 @@
-﻿using BloodBank.ViewModel.Events;
+﻿using System;
+using BloodBank.Model.Models.Donazioni;
+using BloodBank.ViewModel.Components;
+using BloodBank.ViewModel.Service;
 using PropertyChanged;
 using Stylet;
 
 namespace BloodBank.ViewModel.ViewModels.Donazioni {
 
     [ImplementPropertyChanged]
-    public class DonazioniViewModel : Screen {
-        private readonly IEventAggregator _eventAggregator;
-
-        #region Constructors
-
-        public DonazioniViewModel(IEventAggregator eventAggregator) {
-            _eventAggregator = eventAggregator;
-            DisplayName = "Donazioni";
+    public class DonazioniViewModel : WorkspaceViewModel<Donazione, DonazioneViewModel>
+    {
+        public DonazioniViewModel(IEventAggregator eventAggregator, IDataService<Donazione, DonazioneViewModel> dataService, Func<DonazioneViewModel> viewModelFactory) : base(eventAggregator, dataService, viewModelFactory)
+        {
         }
-
-        #endregion Constructors
-
-        #region Actions
-
-        public void OpenNavMenu() {
-            _eventAggregator.Publish(new NavMenuEvent(NavMenuEvent.NavMenuStates.Open));
-        }
-
-        #endregion Actions
     }
 }

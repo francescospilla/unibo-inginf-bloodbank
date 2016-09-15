@@ -67,6 +67,7 @@
     <Compile Include="Components\ViewModel.cs" />
     <Compile Include="Components\WorkspaceViewModel.cs" />
     <Compile Include="Events\ViewModelCollectionChangedEvent.cs" />
+    <Compile Include="ViewModels\Donazioni\DonazioneViewModel.cs" />
     <Compile Include="ViewModels\NewDonazioneViewModel.cs" />
     <Compile Include="ViewModels\NewListaVociQuestionarioViewModel.cs" />
     <Compile Include="ViewModels\NewListaVociViewModel.cs" />
