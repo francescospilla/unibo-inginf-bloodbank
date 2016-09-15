@@ -7,13 +7,16 @@ using BloodBank.Core.Extensions;
 using BloodBank.Model.Models;
 using BloodBank.Model.Models.Indagini.Tipi;
 using BloodBank.Model.Models.Tests;
+using PropertyChanged;
 using Stylet;
 
 namespace BloodBank.ViewModel.ViewModels
 {
-    public class NuovaIndagineRangeDialogViewModel<T> :Screen where T : IComparable<T>
+    [ImplementPropertyChanged]
+    public abstract class NuovaIndagineRangeDialogViewModel<T> : Screen where T : IComparable<T>
     {
-        public NuovaIndagineRangeDialogViewModel(IEventAggregator eventAggregator, IModelValidator<NuovaIndagineRangeDialogViewModel<T>> validator) : base(validator)
+        protected NuovaIndagineRangeDialogViewModel(IEventAggregator eventAggregator,
+            IModelValidator<NuovaIndagineRangeDialogViewModel<T>> validator) : base(validator)
         {
         }
 
@@ -26,10 +29,8 @@ namespace BloodBank.ViewModel.ViewModels
         public T RangeMin { get; set; }
         public T RangeMax { get; set; }
 
-        public IndagineRange<Questionario, T> Model { get; set; }
-
         #endregion Properties
-        
+
         public IEnumerable<Idoneità> IdoneitàEnumerable { get; } = EnumExtensions.Values<Idoneità>();
 
         #region Save
@@ -39,17 +40,58 @@ namespace BloodBank.ViewModel.ViewModels
         public void Save()
         {
             if (Validator != null && !Validate()) return;
-            Model = CreateModelFromViewModel();
+            object model = CreateModelFromViewModel();
             //TODO: notifica al view parent
 
         }
 
-        private IndagineRange<Questionario, T> CreateModelFromViewModel()
-        {
-            return new IndagineRange<Questionario, T>(Testo, IdoneitaFallimento, RangeMin, RangeMax);
-        }
+        protected abstract object CreateModelFromViewModel();
 
         #endregion Save
 
+    }
+
+    public class NuovaIndagineRangeDialogViewModel<U, T> : NuovaIndagineRangeDialogViewModel<T> where T : IComparable<T>
+        where U : ListaVoci
+    {
+        public NuovaIndagineRangeDialogViewModel(IEventAggregator eventAggregator,
+            IModelValidator<NuovaIndagineRangeDialogViewModel<T>> validator) : base(eventAggregator, validator)
+        {
+        }
+
+        protected override object CreateModelFromViewModel()
+        {
+            return new IndagineRange<U, T>(Testo, IdoneitaFallimento, RangeMin, RangeMax);
+        }
+    }
+
+    public class NuovaIndagineRangeIntAnalisiDialogViewModel : NuovaIndagineRangeDialogViewModel<Analisi, int>
+    {
+        public NuovaIndagineRangeIntAnalisiDialogViewModel(IEventAggregator eventAggregator,
+            IModelValidator<NuovaIndagineRangeDialogViewModel<int>> validator) : base(eventAggregator, validator)
+        {
+        }
+    }
+
+    public class NuovaIndagineRangeDoubleAnalisiDialogViewModel : NuovaIndagineRangeDialogViewModel<Analisi, double>
+    {
+        public NuovaIndagineRangeDoubleAnalisiDialogViewModel(IEventAggregator eventAggregator,
+            IModelValidator<NuovaIndagineRangeDialogViewModel<double>> validator) : base(eventAggregator, validator)
+        {
+        }
+    }
+
+    public class NuovaIndagineRangeIntQuestionarioDialogViewModel : NuovaIndagineRangeDialogViewModel<Questionario, int>
+    {
+        public NuovaIndagineRangeIntQuestionarioDialogViewModel(IEventAggregator eventAggregator, IModelValidator<NuovaIndagineRangeDialogViewModel<int>> validator) : base(eventAggregator, validator)
+        {
+        }
+    }
+
+    public class NuovaIndagineRangeDoubleQuestionarioDialogViewModel : NuovaIndagineRangeDialogViewModel<Questionario, double>
+    {
+        public NuovaIndagineRangeDoubleQuestionarioDialogViewModel(IEventAggregator eventAggregator, IModelValidator<NuovaIndagineRangeDialogViewModel<double>> validator) : base(eventAggregator, validator)
+        {
+        }
     }
 }
