@@ -130,9 +130,7 @@
     <Compile Include="Components\ReadOnlyPanel.cs" />
     <Compile Include="Converters\StringToPackIconConverter.cs" />
     <Compile Include="UserControls\FilterControl.cs" />
-    <Compile Include="Views\Donazioni\DonazioniView.xaml.cs">
-      <DependentUpon>DonazioniView.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="Views\Donazioni\DonazioniView.xaml.cs" />
     <Compile Include="Views\Indagini\ListaIndaginiView.xaml.cs">
       <DependentUpon>ListaIndaginiView.xaml</DependentUpon>
     </Compile>
@@ -162,6 +160,12 @@
     <Compile Include="Views\Tests\ListaVociQuestionarioView.cs" />
     <Compile Include="Views\Tests\ListeIndaginiQuestionarioView.xaml.cs">
       <DependentUpon>ListeIndaginiQuestionarioView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Sangue\SaccaSangueView.xaml.cs">
+      <DependentUpon>SaccaSangueView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Sangue\SaccheSangueView.xaml.cs">
+      <DependentUpon>SaccheSangueView.xaml</DependentUpon>
     </Compile>
     <Page Include="Resources\FilterControl.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -212,6 +216,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\Sangue\SaccheSangueView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Tests\ListeIndaginiQuestionarioView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -223,6 +231,10 @@
     <Page Include="Views\Tests\VisiteMedicheView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Sangue\SaccaSangueView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
