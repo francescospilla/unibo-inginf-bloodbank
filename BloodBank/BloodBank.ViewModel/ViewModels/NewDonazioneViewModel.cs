@@ -43,7 +43,7 @@ namespace BloodBank.ViewModel.ViewModels
             _visitaMedicaDataService = visitaMedicaDataService;
 
             DonatoreEnumerable =
-                _donatoreDataService.GetViewModels();
+                _donatoreDataService.GetViewModels().Where(vm => vm.Idoneità == Idoneità.Idoneo);
         }
 
         #region Properties

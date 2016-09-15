@@ -1,9 +1,11 @@
 ﻿using BloodBank.Model.Models.Tests;
+using PropertyChanged;
 using Stylet;
 
 namespace BloodBank.ViewModel.ViewModels.Tests
 {
-   public class ListaVociQuestionarioViewModel : ListaVociViewModel<Questionario>
+    [ImplementPropertyChanged]
+    public class ListaVociQuestionarioViewModel : ListaVociViewModel<Questionario>
     {
        public ListaVociQuestionarioViewModel(IEventAggregator eventAggregator) : base(eventAggregator)
        {

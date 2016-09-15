@@ -16,7 +16,7 @@ namespace BloodBank.Model.Models {
                 listaSacche.Where(
                     sacca =>
                         sacca.Disponibile && sacca.Componente == componente &&
-                        sacca.Componente.GetCompatibili(sacca.Gruppo).Contains(gruppo) && sacca.QuantitàFrazionaria == 1).ToList();
+                        sacca.Componente.GetCompatibili(sacca.Gruppo).Contains(gruppo)).ToList();
         }
     }
 }

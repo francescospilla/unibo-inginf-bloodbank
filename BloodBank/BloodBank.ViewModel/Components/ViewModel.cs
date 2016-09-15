@@ -1,22 +1,31 @@
-﻿using PropertyChanged;
+﻿using System.ComponentModel;
+using PropertyChanged;
 using Stylet;
 
-namespace BloodBank.ViewModel.Components {
+namespace BloodBank.ViewModel.Components
+{
 
     [ImplementPropertyChanged]
-    public abstract class ViewModel<TModel> : Screen, IViewModel<TModel> where TModel : class{
+    public abstract class ViewModel<TModel> : Screen where TModel : class
+    {
         protected IEventAggregator EventAggregator;
         private TModel _model;
 
-        protected ViewModel(IEventAggregator eventAggregator, IModelValidator validator = null) : base(validator) {
+        protected ViewModel(IEventAggregator eventAggregator, IModelValidator validator = null) : base(validator)
+        {
             EventAggregator = eventAggregator;
         }
 
-        public virtual TModel Model {
+        public virtual TModel Model
+        {
             get { return _model; }
-            set {
+            set
+            {
                 _model = value;
                 SyncModelToViewModel();
+                INotifyPropertyChanged notifyPropertyChanged = Model as INotifyPropertyChanged;
+                if (notifyPropertyChanged != null)
+                    notifyPropertyChanged.PropertyChanged += (sender, args) => { SyncModelToViewModel(); };
             }
         }
 

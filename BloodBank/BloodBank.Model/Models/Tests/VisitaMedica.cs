@@ -1,9 +1,10 @@
 ﻿using System;
 using BloodBank.Model.Models.Persone;
+using PropertyChanged;
 
 namespace BloodBank.Model.Models.Tests {
 
-    public class VisitaMedica : Test {
+    [ImplementPropertyChanged] public class VisitaMedica : Test {
 
         public VisitaMedica(Donatore donatore, string descrizioneBreve, DateTime data, Idoneità idoneità, Medico medico, string referto)
             : base(donatore, data, descrizioneBreve) {

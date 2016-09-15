@@ -1,4 +1,5 @@
 using System;
+using PropertyChanged;
 
 namespace BloodBank.Model.Models.Persone {
 
@@ -7,7 +8,7 @@ namespace BloodBank.Model.Models.Persone {
         Femmina
     }
 
-    public class Contatto {
+    [ImplementPropertyChanged] public class Contatto {
 
         public Contatto(string nome, string cognome, Sesso sesso, DateTime dataNascita, string codiceFiscale, string indirizzo, string città, string stato, string codicePostale, string telefono = null, string email = null) {
             Nome = nome;

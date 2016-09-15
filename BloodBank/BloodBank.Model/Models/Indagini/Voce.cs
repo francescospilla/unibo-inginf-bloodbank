@@ -1,5 +1,6 @@
 using System;
 using BloodBank.Model.Models.Tests;
+using PropertyChanged;
 
 namespace BloodBank.Model.Models.Indagini
 {
@@ -14,7 +15,7 @@ namespace BloodBank.Model.Models.Indagini
     public abstract class Voce<U> : Voce where U : ListaVoci
     { }
 
-    public class Voce<U, T> : Voce<U> where T : IComparable<T> where U : ListaVoci
+    [ImplementPropertyChanged] public class Voce<U, T> : Voce<U> where T : IComparable<T> where U : ListaVoci
     {
 
         public Voce(Indagine<U, T> indagine, T risultato)
