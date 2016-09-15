@@ -17,19 +17,6 @@ namespace BloodBank.ViewModel.ViewModels.Tests {
         public ListeIndaginiQuestionarioViewModel(IEventAggregator eventAggregator, IDataService<ListaIndagini<Questionario>, ListaIndaginiQuestionarioViewModel> dataService, Func<ListaIndaginiQuestionarioViewModel> viewModelFactory) : base(eventAggregator, dataService, viewModelFactory) {
         }
 
-        #region NuovaIndagineButton
 
-        public void OpenNewIndagineBooleanDialog()
-        {
-            OpenDialogEvent e = new OpenDialogEvent(new NuovaIndagineBooleanDialogViewModel(_eventAggregator, new FluentModelValidator<NuovaIndagineBooleanDialogViewModel>(new NuovaIndagineBooleanValidator())));
-            _eventAggregator.PublishOnUIThread(e);
-        }
-
-        public void OpenNewIndagineRangeDialog()
-        {
-
-        }
-        
-        #endregion NuovaIndagineButton
     }
 }

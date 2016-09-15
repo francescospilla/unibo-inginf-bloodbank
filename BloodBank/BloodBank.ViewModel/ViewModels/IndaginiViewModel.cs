@@ -8,8 +8,10 @@ using BloodBank.Model.Models.Tests;
 using BloodBank.Model.Service;
 using BloodBank.ViewModel.Events;
 using BloodBank.ViewModel.Service;
+using BloodBank.ViewModel.Validation.Indagini;
 using PropertyChanged;
 using Stylet;
+using Stylet.FluentValidation;
 
 namespace BloodBank.ViewModel.ViewModels {
 
@@ -18,7 +20,7 @@ namespace BloodBank.ViewModel.ViewModels {
         private readonly IEventAggregator _eventAggregator;
         private readonly IDataService<Indagine<Analisi>> _indagineAnalisiDataService;
         private readonly IDataService<Indagine<Questionario>> _indagineQuestionarioDataService;
-        
+
         #region Constructor
 
         public IndaginiViewModel(IEventAggregator eventAggregator, IDataService<Indagine<Analisi>> indagineAnalisiDataService, IDataService<Indagine<Questionario>> indagineQuestionarioDataService) {
@@ -32,7 +34,7 @@ namespace BloodBank.ViewModel.ViewModels {
             IndaginiQuestionario = new BindableCollection<Indagine<Questionario>>(_indagineQuestionarioDataService.GetModels());
         }
         #endregion
-        
+
         #region Properties
 
         public BindableCollection<Indagine<Analisi>> IndaginiAnalisi { get; set; }
@@ -45,6 +47,20 @@ namespace BloodBank.ViewModel.ViewModels {
         public void OpenNavMenu() {
             _eventAggregator.Publish(new NavMenuEvent(NavMenuEvent.NavMenuStates.Open));
         }
+
+        #region NuovaIndagineButton
+
+        public void OpenNewIndagineBooleanDialog(Type type) {
+            OpenDialogEvent e = new OpenDialogEvent(new NuovaIndagineBooleanDialogViewModel(_eventAggregator, new FluentModelValidator<NuovaIndagineBooleanDialogViewModel>(new NuovaIndagineBooleanValidator())));
+            _eventAggregator.PublishOnUIThread(e);
+        }
+
+        public void OpenNewIndagineRangeDialog(Type type) {
+/*            OpenDialogEvent e = new OpenDialogEvent(new NuovaIndagineRangeDialogViewModel<>(_eventAggregator, new FluentModelValidator<NuovaIndagineBooleanDialogViewModel>(new NuovaIndagineBooleanValidator())));
+            _eventAggregator.PublishOnUIThread(e);*/
+        }
+
+        #endregion NuovaIndagineButton
 
         #endregion Actions
     }
