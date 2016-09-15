@@ -18,6 +18,10 @@ namespace BloodBank.ViewModel.ViewModels
         protected NuovaIndagineRangeDialogViewModel(IEventAggregator eventAggregator,
             IModelValidator<NuovaIndagineRangeDialogViewModel<T>> validator) : base(validator)
         {
+            if (validator != null) {
+                AutoValidate = true;
+                Validate();
+            }
         }
 
         #region Properties

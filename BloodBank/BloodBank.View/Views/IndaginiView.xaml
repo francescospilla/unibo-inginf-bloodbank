@@ -43,34 +43,57 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
-                <Grid Grid.Row="0" MaxWidth="1000">
-                    <md:Card Margin="20 10" Padding="10 0 10 30">
+                <Grid Grid.Row="0">
+                    <md:Card Margin="20 10" Padding="10 0 10 30" MaxWidth="1000">
                         <StackPanel>
                             <TextBlock Margin="0 10 0 0" Text="Indagini Analisi" Style="{StaticResource MaterialDesignDisplay1TextBlock}" />
                             <DataGrid ItemsSource="{Binding IndaginiAnalisi, Converter={StaticResource IndaginiToDataTable}}" IsReadOnly="True" FrozenColumnCount="1" CanUserResizeColumns="False" AutoGenerateColumns="True" AutoGeneratingColumn="Grid_OnAutoGeneratingColumn" />
                         </StackPanel>
                     </md:Card>
-                    <md:PopupBox ToolTip="Aggiungi ... per Analisi" Style="{StaticResource MaterialDesignMultiFloatingActionAccentPopupBox}" HorizontalAlignment="Right" Margin="10" PlacementMode="TopAndAlignCentres">
+                    <md:PopupBox ToolTip="Aggiungi ... per Analisi" Style="{StaticResource MaterialDesignMultiFloatingActionAccentPopupBox}" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10" PlacementMode="TopAndAlignCentres">
                         <StackPanel>
-                            <Button ToolTip="Indagine Boolean" Command="{s:Action OpenNewIndagineBooleanDialog}" CommandParameter="{x:Type tests:Analisi}">1</Button>
-                            <Button ToolTip="Indagine Range" Command="{s:Action OpenNewIndagineRangeDialog}" CommandParameter="{x:Type tests:Analisi}">2</Button>
+                            <Button ToolTip="Indagine Boolean" Command="{s:Action OpenNewIndagineBooleanAnalisiDialog}">
+                                <md:PackIcon Kind="CheckBoxMarkedCircleOutline" />
+                            </Button>
+                            <md:PopupBox ToolTip="Indagine Range..." Style="{StaticResource MaterialDesignMultiFloatingActionPopupBox}" PopupMode="MouseOver" PlacementMode="LeftAndAlignTopEdges">
+                                <StackPanel>
+                                    <Button ToolTip="Numero intero" Command="{s:Action OpenNewIndagineRangeIntAnalisiDialog}">
+                                        <md:PackIcon Kind="Numeric" />
+                                    </Button>
+                                    <Button ToolTip="Numero decimale" Command="{s:Action OpenNewIndagineRangeDoubleAnalisiDialog}">
+                                        <md:PackIcon Kind="Numeric" />
+                                    </Button>
+                                </StackPanel>
+                            </md:PopupBox>
                         </StackPanel>
                     </md:PopupBox>
                 </Grid>
 
-                <Grid Grid.Row="1" MaxWidth="1000">
-                    <md:Card Margin="20 10" Padding="10 0 10 30">
+                <Grid Grid.Row="1">
+                    <md:Card Margin="20 10" Padding="10 0 10 30" MaxWidth="1000">
                         <StackPanel>
                             <TextBlock Margin="0 10 0 0" Text="Indagini Questionario" Style="{StaticResource MaterialDesignDisplay1TextBlock}" />
                             <DataGrid ItemsSource="{Binding IndaginiQuestionario, Converter={StaticResource IndaginiToDataTable}}" IsReadOnly="True" FrozenColumnCount="1" CanUserResizeColumns="False" AutoGenerateColumns="True" AutoGeneratingColumn="Grid_OnAutoGeneratingColumn" />
                         </StackPanel>
                     </md:Card>
-                    <md:PopupBox ToolTip="Aggiungi ... per Questionario" Style="{StaticResource MaterialDesignMultiFloatingActionAccentPopupBox}" HorizontalAlignment="Right" Margin="10" PlacementMode="TopAndAlignCentres">
+                    <md:PopupBox ToolTip="Aggiungi ... per Questionario" Style="{StaticResource MaterialDesignMultiFloatingActionAccentPopupBox}" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10" PlacementMode="TopAndAlignCentres">
                         <StackPanel>
-                            <Button ToolTip="...Indagine Boolean" Command="{s:Action OpenNewIndagineBooleanDialog}" CommandParameter="{x:Type tests:Questionario}">1</Button>
-                            <Button ToolTip="...Indagine Range" Command="{s:Action OpenNewIndagineRangeDialog}" CommandParameter="{x:Type tests:Questionario}">2</Button>
+                            <Button ToolTip="Indagine Boolean" Command="{s:Action OpenNewIndagineBooleanQuestionarioDialog}">
+                                <md:PackIcon Kind="CheckBoxMarkedCircleOutline" />
+                            </Button>
+                            <md:PopupBox ToolTip="Indagine Range..." Style="{StaticResource MaterialDesignMultiFloatingActionPopupBox}" PopupMode="MouseOver" PlacementMode="LeftAndAlignTopEdges">
+                                <StackPanel>
+                                    <Button ToolTip="Numero intero" Command="{s:Action OpenNewIndagineRangeIntQuestionarioDialog}">
+                                        <md:PackIcon Kind="Numeric" />
+                                    </Button>
+                                    <Button ToolTip="Numero decimale" Command="{s:Action OpenNewIndagineRangeDoubleQuestionarioDialog}">
+                                        <md:PackIcon Kind="Numeric" />
+                                    </Button>
+                                </StackPanel>
+                            </md:PopupBox>
                         </StackPanel>
                     </md:PopupBox>
+
                 </Grid>
 
             </Grid>

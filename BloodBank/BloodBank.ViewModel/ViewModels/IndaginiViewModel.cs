@@ -20,13 +20,19 @@ namespace BloodBank.ViewModel.ViewModels {
         private readonly IEventAggregator _eventAggregator;
         private readonly IDataService<Indagine<Analisi>> _indagineAnalisiDataService;
         private readonly IDataService<Indagine<Questionario>> _indagineQuestionarioDataService;
+        private readonly IModelValidator<NuovaIndagineBooleanDialogViewModel> _nuovaIndagineBooleanDialogValidator;
+        private readonly IModelValidator<NuovaIndagineRangeDialogViewModel<int>> _nuovaIndagineAnalisiIntDialogValidator;
+        private readonly IModelValidator<NuovaIndagineRangeDialogViewModel<double>> _nuovaIndagineAnalisiDoubleDialogValidator;
 
         #region Constructor
 
-        public IndaginiViewModel(IEventAggregator eventAggregator, IDataService<Indagine<Analisi>> indagineAnalisiDataService, IDataService<Indagine<Questionario>> indagineQuestionarioDataService) {
+        public IndaginiViewModel(IEventAggregator eventAggregator, IDataService<Indagine<Analisi>> indagineAnalisiDataService, IDataService<Indagine<Questionario>> indagineQuestionarioDataService, IModelValidator<NuovaIndagineBooleanDialogViewModel> nuovaIndagineBooleanDialogValidator, IModelValidator<NuovaIndagineRangeDialogViewModel<int>> nuovaIndagineAnalisiIntDialogValidator, IModelValidator<NuovaIndagineRangeDialogViewModel<double>> nuovaIndagineAnalisiDoubleDialogValidator) {
             _eventAggregator = eventAggregator;
             _indagineAnalisiDataService = indagineAnalisiDataService;
             _indagineQuestionarioDataService = indagineQuestionarioDataService;
+            _nuovaIndagineBooleanDialogValidator = nuovaIndagineBooleanDialogValidator;
+            _nuovaIndagineAnalisiIntDialogValidator = nuovaIndagineAnalisiIntDialogValidator;
+            _nuovaIndagineAnalisiDoubleDialogValidator = nuovaIndagineAnalisiDoubleDialogValidator;
 
             DisplayName = typeof(Indagine).Name;
 
@@ -50,15 +56,44 @@ namespace BloodBank.ViewModel.ViewModels {
 
         #region NuovaIndagineButton
 
-        public void OpenNewIndagineBooleanDialog(Type type) {
-            OpenDialogEvent e = new OpenDialogEvent(new NuovaIndagineBooleanDialogViewModel(_eventAggregator, new FluentModelValidator<NuovaIndagineBooleanDialogViewModel>(new NuovaIndagineBooleanValidator())));
+        public void OpenNewDialog(IScreen dialog) {
+            OpenDialogEvent e = new OpenDialogEvent(dialog);
             _eventAggregator.PublishOnUIThread(e);
         }
 
-        public void OpenNewIndagineRangeDialog(Type type) {
-/*            OpenDialogEvent e = new OpenDialogEvent(new NuovaIndagineRangeDialogViewModel<>(_eventAggregator, new FluentModelValidator<NuovaIndagineBooleanDialogViewModel>(new NuovaIndagineBooleanValidator())));
-            _eventAggregator.PublishOnUIThread(e);*/
+        public void OpenNewIndagineBooleanAnalisiDialog() {
+            var dialog = new NuovaIndagineBooleanAnalisiDialogViewModel(_eventAggregator, _nuovaIndagineBooleanDialogValidator);
+            OpenNewDialog(dialog);
         }
+
+        public void OpenNewIndagineBooleanQuestionarioDialog() {
+            var dialog = new NuovaIndagineBooleanQuestionarioDialogViewModel(_eventAggregator, _nuovaIndagineBooleanDialogValidator);
+            OpenNewDialog(dialog);
+        }
+
+
+        public void OpenNewIndagineRangeIntAnalisiDialog() {
+            var dialog = new NuovaIndagineRangeIntAnalisiDialogViewModel(_eventAggregator, _nuovaIndagineAnalisiIntDialogValidator);
+            OpenNewDialog(dialog);
+        }
+
+
+        public void OpenNewIndagineRangeDoubleAnalisiDialog() {
+            var dialog = new NuovaIndagineRangeDoubleAnalisiDialogViewModel(_eventAggregator, _nuovaIndagineAnalisiDoubleDialogValidator);
+            OpenNewDialog(dialog);
+        }
+
+        public void OpenNewIndagineRangeIntQuestionarioDialog() {
+            var dialog = new NuovaIndagineRangeIntQuestionarioDialogViewModel(_eventAggregator, _nuovaIndagineAnalisiIntDialogValidator);
+            OpenNewDialog(dialog);
+        }
+
+
+        public void OpenNewIndagineRangeDoubleQuestionarioDialog() {
+            var dialog = new NuovaIndagineRangeDoubleQuestionarioDialogViewModel(_eventAggregator, _nuovaIndagineAnalisiDoubleDialogValidator);
+            OpenNewDialog(dialog);
+        }
+
 
         #endregion NuovaIndagineButton
 

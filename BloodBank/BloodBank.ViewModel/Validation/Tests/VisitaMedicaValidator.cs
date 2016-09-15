@@ -9,7 +9,7 @@ namespace BloodBank.ViewModel.Validation.Tests
 {
     public class VisitaMedicaValidator : AbstractValidator<VisitaMedicaViewModel>
     {
-        public VisitaMedicaValidator(IDataService<VisitaMedica> dataService)
+        public VisitaMedicaValidator()
         {
             RuleFor(vm => vm.Donatore).NotEmpty();
             RuleFor(vm => vm.Medico).NotEmpty();

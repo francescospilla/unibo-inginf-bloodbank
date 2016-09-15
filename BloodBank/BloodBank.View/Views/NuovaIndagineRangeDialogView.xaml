@@ -12,14 +12,14 @@
 
     <Grid Margin="10">
         <Grid.Resources>
-            <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource MaterialDesignComboBox}">
+            <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource MaterialDesignFloatingHintComboBox}">
                 <Setter Property="Margin" Value="10 10 10 7" />
             </Style>
             <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignFloatingHintTextBox}">
                 <Setter Property="Margin" Value="10 10 10 7" />
             </Style>
             <Style TargetType="{x:Type md:PackIcon}">
-                <Setter Property="Margin" Value="10 10 10 7"  />
+                <Setter Property="Margin" Value="10 10 10 12"  />
                 <Setter Property="VerticalAlignment" Value="Bottom" />
                 <Setter Property="HorizontalAlignment" Value="Center" />
             </Style>
@@ -39,8 +39,8 @@
 
         <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="Nuova Indagine Range" Style="{StaticResource MaterialDesignDisplay1TextBlock}" />
 
-        <md:PackIcon Grid.Row="1" Grid.Column="0" Kind="Pencil" Foreground="{Binding ElementName=TextBoxDescrizioneBreve, Path=BorderBrush}" />
-        <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" MinLines="4" x:Name="TextBoxDescrizioneBreve" md:HintAssist.Hint="Inserire il testo dell'indagine" IsEnabled="{Binding IsInitialized, Converter={StaticResource BoolInverter}}"
+        <md:PackIcon Grid.Row="1" Grid.Column="0" Kind="Pencil" Foreground="{Binding ElementName=TextBoxTesto, Path=BorderBrush}" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="10,25,10,0" />
+        <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" MinLines="2" x:Name="TextBoxTesto" md:HintAssist.Hint="Inserire il testo dell'indagine" IsEnabled="{Binding IsInitialized, Converter={StaticResource BoolInverter}}"
                                  Text="{Binding Path=Testo, UpdateSourceTrigger=PropertyChanged}" VerticalContentAlignment="Top"  TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True">
         </TextBox>
 
@@ -55,7 +55,7 @@
         </ComboBox>
 
         <md:PackIcon Grid.Row="2" Grid.Column="0" Kind="Check" Foreground="{Binding ElementName=TextBoxIdoneità, Path=BorderBrush}" />
-        <Grid Grid.Row="2" Grid.Column="1">
+        <Grid Grid.Row="2" Grid.Column="1" Margin="10 10 10 7">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />

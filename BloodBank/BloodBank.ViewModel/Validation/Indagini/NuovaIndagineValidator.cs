@@ -10,13 +10,13 @@ using FluentValidation;
 
 namespace BloodBank.ViewModel.Validation.Indagini
 { 
-    public class NuovaIndagineBooleanValidator : FluentValidation.AbstractValidator<NuovaIndagineBooleanDialogViewModel>
+    public class NuovaIndagineBooleanValidator : AbstractValidator<NuovaIndagineBooleanDialogViewModel>
     {
         public NuovaIndagineBooleanValidator()
         {
             RuleFor(vm => vm.Testo).NotEmpty();
             RuleFor(vm => vm.IdoneitaFallimento).NotNull().IsInEnum();
-            RuleFor(vm => vm.RisultatoCorretto).NotEmpty();
+            RuleFor(vm => vm.RisultatoCorretto).NotNull();
         }
     }
 
@@ -28,6 +28,10 @@ namespace BloodBank.ViewModel.Validation.Indagini
             RuleFor(vm => vm.IdoneitaFallimento).NotNull().IsInEnum();
             RuleFor(vm => vm.RangeMin).NotEmpty();
             RuleFor(vm => vm.RangeMax).NotEmpty();
+            RuleFor(vm => vm).Must(vm => vm.RangeMin.CompareTo(vm.RangeMax) <= 0);
         }
     }
+
+    public class NuovaIndagineIntRangeValidator : NuovaIndagineRangeValidator<int> { }
+    public class NuovaIndagineDoubleRangeValidator : NuovaIndagineRangeValidator<double> { }
 }

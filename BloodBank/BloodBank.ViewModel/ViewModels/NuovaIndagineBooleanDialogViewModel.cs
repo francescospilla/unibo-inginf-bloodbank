@@ -17,8 +17,11 @@ namespace BloodBank.ViewModel.ViewModels
     [ImplementPropertyChanged]
     public abstract class NuovaIndagineBooleanDialogViewModel : Screen
     {
-        protected NuovaIndagineBooleanDialogViewModel(IEventAggregator eventAggregator, IModelValidator<NuovaIndagineBooleanDialogViewModel> validator) : base(validator)
-        {
+        protected NuovaIndagineBooleanDialogViewModel(IEventAggregator eventAggregator, IModelValidator<NuovaIndagineBooleanDialogViewModel> validator) : base(validator) {
+            if (validator != null) {
+                AutoValidate = true;
+                Validate();
+            }
         }
 
         #region Properties

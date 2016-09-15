@@ -147,6 +147,8 @@
       <DependentUpon>AppBar.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\IntegerTextBox.cs" />
+    <Compile Include="Views\NuovaIndagineRangeDialogView.cs" />
+    <Compile Include="Views\NuovaIndagineBooleanDialogView.cs" />
     <Compile Include="Views\Persone\DonatoreView.xaml.cs">
       <DependentUpon>DonatoreView.xaml</DependentUpon>
     </Compile>
