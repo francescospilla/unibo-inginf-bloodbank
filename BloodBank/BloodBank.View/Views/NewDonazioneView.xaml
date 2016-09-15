@@ -45,8 +45,8 @@
                 </Grid.ColumnDefinitions>
 
                 <Label Grid.Row="0" Grid.Column="0" Margin="10 20">Questionario:</Label>
-                <ComboBox Grid.Row="0" Grid.Column="1" DisplayMemberPath="Model" ItemsSource="{Binding listaVociQuestionarioEnumerable}" SelectedItem="{Binding SelectedlistaVociQuestionario}" />
-                <ContentControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" s:View.Model="{Binding SelectedlistaVociQuestionario}" components:ReadOnlyPanel.IsReadOnly="True" Margin="20"/>
+                    <ComboBox Grid.Row="0" Grid.Column="1" DisplayMemberPath="Model" ItemsSource="{Binding ListaVociQuestionarioEnumerable}" SelectedItem="{Binding SelectedListaVociQuestionario}" />
+                <ContentControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" s:View.Model="{Binding SelectedListaVociQuestionario}" components:ReadOnlyPanel.IsReadOnly="True" Margin="20"/>
             </Grid>
         </xctk:WizardPage>
         <xctk:WizardPage Title="Seleziona Analisi">
@@ -63,8 +63,8 @@
                 </Grid.ColumnDefinitions>
 
                 <Label Grid.Row="0" Grid.Column="0" Margin="10 20">Analisi:</Label>
-                <ComboBox Grid.Row="0" Grid.Column="1" DisplayMemberPath="Model" ItemsSource="{Binding listaVociAnalisiEnumerable}" SelectedItem="{Binding SelectedlistaVociAnalisi}" />
-                <ContentControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" s:View.Model="{Binding SelectedlistaVociAnalisi}" components:ReadOnlyPanel.IsReadOnly="True" Margin="20"/>
+                    <ComboBox Grid.Row="0" Grid.Column="1" DisplayMemberPath="Model" ItemsSource="{Binding ListaVociAnalisiEnumerable}" SelectedItem="{Binding SelectedListaVociAnalisi}" />
+                <ContentControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" s:View.Model="{Binding SelectedListaVociAnalisi}" components:ReadOnlyPanel.IsReadOnly="True" Margin="20"/>
             </Grid>
         </xctk:WizardPage>
         <xctk:WizardPage Title="Seleziona Visita Medica">

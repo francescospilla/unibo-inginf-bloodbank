@@ -66,15 +66,9 @@ namespace BloodBank.ViewModel.ViewModels
         {
             if (SelectedDonatore == null)
                 return;
-            ListaVociAnalisiEnumerable = new BindableCollection<ListaVociAnalisiViewModel>(
-                _listaVociAnalisiDataService.GetViewModels()
-                    .Where(vm => vm.Donatore.Equals(SelectedDonatore.Model) && vm.Data.Date.Equals(DateTime.Today)));
-            ListaVociQuestionarioEnumerable = new BindableCollection<ListaVociQuestionarioViewModel>(
-                _listaVociQuestionarioDataService.GetViewModels()
-                    .Where(vm => vm.Donatore.Equals(SelectedDonatore.Model) && vm.Data.Date.Equals(DateTime.Today)));
-            VisitaMedicaEnumerable = new BindableCollection<VisitaMedicaViewModel>(
-                _visitaMedicaDataService.GetViewModels()
-                    .Where(vm => vm.Donatore.Equals(SelectedDonatore.Model) && vm.Data.Date.Equals(DateTime.Today)));
+            ListaVociAnalisiEnumerable = _listaVociAnalisiDataService.GetViewModels().Where(vm => vm.Donatore.Equals(SelectedDonatore.Model) && vm.Data.Date.Equals(DateTime.Today));
+            ListaVociQuestionarioEnumerable = _listaVociQuestionarioDataService.GetViewModels().Where(vm => vm.Donatore.Equals(SelectedDonatore.Model) && vm.Data.Date.Equals(DateTime.Today));
+            VisitaMedicaEnumerable = _visitaMedicaDataService.GetViewModels().Where(vm => vm.Donatore.Equals(SelectedDonatore.Model) && vm.Data.Date.Equals(DateTime.Today));
         }
 
 
