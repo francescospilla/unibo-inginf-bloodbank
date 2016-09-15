@@ -11,6 +11,7 @@ using BloodBank.Model.Models.Sangue;
 using BloodBank.Model.Models.Tests;
 using BloodBank.ViewModel.Components;
 using BloodBank.ViewModel.ViewModels;
+using BloodBank.ViewModel.ViewModels.Donazioni;
 using BloodBank.ViewModel.ViewModels.Persone;
 using BloodBank.ViewModel.ViewModels.Tests;
 

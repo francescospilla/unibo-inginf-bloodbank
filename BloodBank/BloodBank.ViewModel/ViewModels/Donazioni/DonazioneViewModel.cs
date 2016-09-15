@@ -1,20 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using BloodBank.Core.Attributes;
 using BloodBank.Core.Extensions;
 using BloodBank.Model.Models.Donazioni;
 using BloodBank.Model.Models.Persone;
 using BloodBank.Model.Models.Sangue;
 using BloodBank.Model.Models.Tests;
-using BloodBank.Model.Service;
 using BloodBank.ViewModel.Components;
 using PropertyChanged;
 using Stylet;
 
-namespace BloodBank.ViewModel.ViewModels
+namespace BloodBank.ViewModel.ViewModels.Donazioni
 {
     [ImplementPropertyChanged]
     public class DonazioneViewModel : ViewModel<Donazione>

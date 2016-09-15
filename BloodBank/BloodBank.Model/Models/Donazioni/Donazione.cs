@@ -17,7 +17,7 @@ namespace BloodBank.Model.Models.Donazioni
         public Donazione(Donatore donatore, TipoDonazione tipoDonazione, DateTime data, VisitaMedica visitaMedica,
             Analisi analisi, Questionario questionario)
         {
-            Contract.Requires<ArgumentNullException>(donatore != null && data != null && visitaMedica != null && analisi != null && questionario != null, "Tutti i parametri devono essere diversi da null.");
+           // Contract.Requires<ArgumentNullException>(donatore != null && data != null && visitaMedica != null && analisi != null && questionario != null, "Tutti i parametri devono essere diversi da null.");
 
             if (donatore.Idoneità != Idoneità.Idoneo)
                 throw new ArgumentException("Non si può effettuare la donazione se il donatore non è " + Idoneità.Idoneo);
@@ -53,18 +53,18 @@ namespace BloodBank.Model.Models.Donazioni
 
         public void EffettuaPrelievo()
         {
-            Contract.Requires<InvalidOperationException>(SaccheSangue.Count == 0, "SaccheSangue.Count == 0");
+            // Contract.Requires<InvalidOperationException>(SaccheSangue.Count == 0, "SaccheSangue.Count == 0");
 
             foreach (ComponenteEmatico componente in TipoDonazione.ComponentiDerivati)
                 for (int i = 0; i < TipoDonazione.QuantitàComponente(componente); i++)
                 SaccheSangue.Add(new SaccaSangue(this, Donatore.GruppoSanguigno, componente, Data));
 
-            Contract.Ensures(SaccheSangue.Count > 0, "SaccheSangue.Count > 0");
+            // Contract.Ensures(SaccheSangue.Count > 0, "SaccheSangue.Count > 0");
         }
 
         private static bool AreDateTestValide(DateTime dataDonazione, params DateTime[] dateTest)
         {
-            return dateTest.All(data => data.Date.Equals(dataDonazione.Date) && data.TimeOfDay < dataDonazione.TimeOfDay);
+            return dateTest.All(data => data.Date.Equals(dataDonazione.Date));
         }
 
         protected bool Equals(Donazione other)

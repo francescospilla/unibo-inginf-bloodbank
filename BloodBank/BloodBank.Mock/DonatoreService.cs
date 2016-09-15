@@ -10,9 +10,9 @@ namespace BloodBank.Mock
     public class DonatoreService : DataService<Donatore>
     {
         internal static Donatore D1 = new Donatore(new Contatto("Pasquale", "Cafiero", Sesso.Maschio, new DateTime(1971, 12, 24), "DQCSRN36T14A704A", "Via Capo di Monte, 33", "Bologna", "Italia", "40135"), GruppoSanguigno.AB_Neg, true);
-        internal static Donatore D2 = new Donatore(new Contatto("Ginevra", "Rossi", Sesso.Femmina, new DateTime(1994, 06, 05), "NDUYTG69C71H501J", "Via Andrea Costa", "Bologna", "Italia", "40135"), GruppoSanguigno.O_Pos, false);
-        internal static Donatore D3 = new Donatore(new Contatto("Gino", "Paoli", Sesso.Maschio, new DateTime(1994, 07, 24), "ZVRVSZ41C41H679X", "Via Albiroli", "Bologna", "Italia", "40135"), GruppoSanguigno.O_Neg, false);
-        internal static Donatore D4 = new Donatore(new Contatto("Christopher", "Jones", Sesso.Maschio, new DateTime(1990, 08, 04), "BMRNRJ71B06L229S", "Quilly Lane", "Westerville", "Ohio", "43081"), GruppoSanguigno.AB_Neg, false);
+        internal static Donatore D2 = new Donatore(new Contatto("Ginevra", "Rossi", Sesso.Femmina, new DateTime(1994, 06, 05), "NDUYTG69C71H501J", "Via Andrea Costa", "Bologna", "Italia", "40135"), GruppoSanguigno.O_Pos, true);
+        internal static Donatore D3 = new Donatore(new Contatto("Gino", "Paoli", Sesso.Maschio, new DateTime(1994, 07, 24), "ZVRVSZ41C41H679X", "Via Albiroli", "Bologna", "Italia", "40135"), GruppoSanguigno.O_Neg, true);
+        internal static Donatore D4 = new Donatore(new Contatto("Christopher", "Jones", Sesso.Maschio, new DateTime(1990, 08, 04), "BMRNRJ71B06L229S", "Quilly Lane", "Westerville", "Ohio", "43081"), GruppoSanguigno.AB_Neg, true);
         internal static Donatore D5 = new Donatore(new Contatto("Alfonso", "Verdi", Sesso.Maschio, new DateTime(1984, 09, 08), "JLDHDW45C14E951E", "Pinewood Avenue", "Marquette", "Michigan", "49855"), GruppoSanguigno.AB_Pos, false);
         internal static Donatore D6 = new Donatore(new Contatto("Nicola", "Neri", Sesso.Maschio, new DateTime(1946, 10, 23), "NMGJLC61T67I168S", "Via dei Tignosi", "Viterbo", "Italia", "12341"), GruppoSanguigno.A_Neg, false);
         internal static Donatore D7 = new Donatore(new Contatto("Alice", "Paciulli", Sesso.Femmina, new DateTime(1992, 11, 15), "BLEZNP50E45D006I", "Via La Nebbia", "Roma", "Italia", "12341"), GruppoSanguigno.A_Pos, false);
