@@ -1,16 +1,21 @@
 using System;
 using PropertyChanged;
 
-namespace BloodBank.Model.Models.Persone {
+namespace BloodBank.Model.Models.Persone
+{
 
-    public enum Sesso {
+    public enum Sesso
+    {
         Maschio,
         Femmina
     }
 
-    [ImplementPropertyChanged] public class Contatto {
+    [ImplementPropertyChanged]
+    public class Contatto
+    {
 
-        public Contatto(string nome, string cognome, Sesso sesso, DateTime dataNascita, string codiceFiscale, string indirizzo, string città, string stato, string codicePostale, string telefono = null, string email = null) {
+        public Contatto(string nome, string cognome, Sesso sesso, DateTime dataNascita, string codiceFiscale, string indirizzo, string città, string stato, string codicePostale, string telefono = null, string email = null)
+        {
             Nome = nome;
             Cognome = cognome;
             Sesso = sesso;
@@ -38,21 +43,25 @@ namespace BloodBank.Model.Models.Persone {
 
         #region Overrides
 
-        private bool Equals(Contatto other) {
+        private bool Equals(Contatto other)
+        {
             return string.Equals(CodiceFiscale, other.CodiceFiscale);
         }
 
-        public override bool Equals(object obj) {
+        public override bool Equals(object obj)
+        {
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
             return obj.GetType() == GetType() && Equals((Contatto)obj);
         }
 
-        public override int GetHashCode() {
+        public override int GetHashCode()
+        {
             return CodiceFiscale?.GetHashCode() ?? 0;
         }
 
-        public override string ToString() {
+        public override string ToString()
+        {
             return Nome + " " + Cognome;
         }
 

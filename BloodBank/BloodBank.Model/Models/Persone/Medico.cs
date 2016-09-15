@@ -3,7 +3,8 @@ using PropertyChanged;
 
 namespace BloodBank.Model.Models.Persone
 {
-    [ImplementPropertyChanged] public class Medico
+    [ImplementPropertyChanged]
+    public class Medico
     {
 
         public Contatto Contatto { get; }
@@ -73,7 +74,7 @@ namespace BloodBank.Model.Models.Persone
 
         #endregion Contatto delegated properties
 
-        public Medico (Contatto contatto)
+        public Medico(Contatto contatto)
         {
             Contatto = contatto;
         }

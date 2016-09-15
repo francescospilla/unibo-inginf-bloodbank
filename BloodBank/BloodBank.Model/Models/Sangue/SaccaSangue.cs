@@ -2,11 +2,15 @@
 using BloodBank.Model.Models.Donazioni;
 using PropertyChanged;
 
-namespace BloodBank.Model.Models.Sangue {
+namespace BloodBank.Model.Models.Sangue
+{
 
-    [ImplementPropertyChanged] public class SaccaSangue {
+    [ImplementPropertyChanged]
+    public class SaccaSangue
+    {
 
-        public SaccaSangue(Donazione donazione, GruppoSanguigno gruppo, ComponenteEmatico componente, DateTime dataPrelievo) {
+        public SaccaSangue(Donazione donazione, GruppoSanguigno gruppo, ComponenteEmatico componente, DateTime dataPrelievo)
+        {
             Id = Guid.NewGuid();
             Donazione = donazione;
             DataPrelievo = dataPrelievo;
@@ -24,7 +28,8 @@ namespace BloodBank.Model.Models.Sangue {
         public ComponenteEmatico Componente { get; }
         public bool Disponibile { get; private set; }
 
-        public void Preleva() {
+        public void Preleva()
+        {
             if (!Disponibile)
                 throw new AccessViolationException("La sacca di sangue è già stata prelevata");
             if (DateTime.Now >= DataScadenza)
@@ -33,22 +38,26 @@ namespace BloodBank.Model.Models.Sangue {
             Disponibile = false;
         }
 
-        protected bool Equals(SaccaSangue other) {
+        protected bool Equals(SaccaSangue other)
+        {
             return Id.Equals(other.Id);
         }
 
-        public override bool Equals(object obj) {
+        public override bool Equals(object obj)
+        {
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
             SaccaSangue other = obj as SaccaSangue;
             return other != null && Equals(other);
         }
 
-        public override int GetHashCode() {
+        public override int GetHashCode()
+        {
             return Id.GetHashCode();
         }
 
-        public override string ToString() {
+        public override string ToString()
+        {
             return Id + ", " + Componente + " " + Gruppo + " (" + DataPrelievo + ")";
         }
     }

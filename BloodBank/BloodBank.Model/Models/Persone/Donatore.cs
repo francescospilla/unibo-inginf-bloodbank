@@ -5,9 +5,12 @@ using BloodBank.Model.Models.Sangue;
 using BloodBank.Model.Models.Tests;
 using PropertyChanged;
 
-namespace BloodBank.Model.Models.Persone {
+namespace BloodBank.Model.Models.Persone
+{
 
-    [ImplementPropertyChanged] public class Donatore {
+    [ImplementPropertyChanged]
+    public class Donatore
+    {
         public static readonly Tuple<int, int> RangeEtà = new Tuple<int, int>(16, 80);
 
         private readonly List<Donazione> _listaDonazioni;
@@ -17,59 +20,71 @@ namespace BloodBank.Model.Models.Persone {
 
         #region Contatto delegated properties
 
-        public string Città {
+        public string Città
+        {
             get { return Contatto.Città; }
             set { Contatto.Città = value; }
         }
 
-        public string CodiceFiscale {
+        public string CodiceFiscale
+        {
             get { return Contatto.CodiceFiscale; }
         }
 
-        public string CodicePostale {
+        public string CodicePostale
+        {
             get { return Contatto.CodicePostale; }
             set { Contatto.CodicePostale = value; }
         }
 
-        public string Cognome {
+        public string Cognome
+        {
             get { return Contatto.Cognome; }
         }
 
-        public DateTime DataNascita {
+        public DateTime DataNascita
+        {
             get { return Contatto.DataNascita; }
         }
 
-        public string Email {
+        public string Email
+        {
             get { return Contatto.Email; }
             set { Contatto.Email = value; }
         }
 
-        public string Indirizzo {
+        public string Indirizzo
+        {
             get { return Contatto.Indirizzo; }
             set { Contatto.Indirizzo = value; }
         }
 
-        public string Nome {
+        public string Nome
+        {
             get { return Contatto.Nome; }
         }
 
-        public Sesso Sesso {
+        public Sesso Sesso
+        {
             get { return Contatto.Sesso; }
         }
 
-        public string Stato {
+        public string Stato
+        {
             get { return Contatto.Stato; }
             set { Contatto.Stato = value; }
         }
 
-        public string Telefono {
+        public string Telefono
+        {
             get { return Contatto.Telefono; }
             set { Contatto.Telefono = value; }
         }
 
         #endregion Contatto delegated properties
 
-        public Donatore(Contatto contatto, GruppoSanguigno gruppoSanguigno, bool attivo) {
+        public Donatore(Contatto contatto, GruppoSanguigno gruppoSanguigno, bool attivo)
+        {
             Contatto = contatto;
             GruppoSanguigno = gruppoSanguigno;
             Attivo = attivo;
@@ -86,21 +101,25 @@ namespace BloodBank.Model.Models.Persone {
 
         #region Overrides
 
-        private bool Equals(Donatore other) {
+        private bool Equals(Donatore other)
+        {
             return Equals(Contatto, other.Contatto);
         }
 
-        public override bool Equals(object obj) {
+        public override bool Equals(object obj)
+        {
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
             return obj.GetType() == typeof(Donatore) && Equals((Donatore)obj);
         }
 
-        public override int GetHashCode() {
+        public override int GetHashCode()
+        {
             return Contatto?.GetHashCode() ?? 0;
         }
 
-        public override string ToString() {
+        public override string ToString()
+        {
             return Contatto.ToString();
         }
 

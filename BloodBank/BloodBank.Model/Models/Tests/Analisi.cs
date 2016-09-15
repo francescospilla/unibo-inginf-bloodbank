@@ -4,12 +4,16 @@ using BloodBank.Model.Models.Indagini;
 using BloodBank.Model.Models.Persone;
 using PropertyChanged;
 
-namespace BloodBank.Model.Models.Tests {
+namespace BloodBank.Model.Models.Tests
+{
 
-    [ImplementPropertyChanged] public class Analisi : ListaVoci {
+    [ImplementPropertyChanged]
+    public class Analisi : ListaVoci
+    {
 
         public Analisi(Donatore donatore, string descrizioneBreve, DateTime data, IEnumerable<Voce> listaIndagini)
-            : base(donatore, descrizioneBreve, data, listaIndagini) {
+            : base(donatore, descrizioneBreve, data, listaIndagini)
+        {
         }
     }
 }

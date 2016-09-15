@@ -2,11 +2,15 @@
 using BloodBank.Model.Models.Tests;
 using PropertyChanged;
 
-namespace BloodBank.Model.Models.Indagini.Tipi {
+namespace BloodBank.Model.Models.Indagini.Tipi
+{
 
-    [ImplementPropertyChanged] public class IndagineRange<U, T> : Indagine<U, T> where T : IComparable<T> where U : ListaVoci{
+    [ImplementPropertyChanged]
+    public class IndagineRange<U, T> : Indagine<U, T> where T : IComparable<T> where U : ListaVoci
+    {
 
-        public IndagineRange(string testo, Idoneità idoneitàFallimento, T rangeMin, T rangeMax) : base(testo, idoneitàFallimento) {
+        public IndagineRange(string testo, Idoneità idoneitàFallimento, T rangeMin, T rangeMax) : base(testo, idoneitàFallimento)
+        {
             RangeMin = rangeMin;
             RangeMax = rangeMax;
         }
@@ -14,7 +18,8 @@ namespace BloodBank.Model.Models.Indagini.Tipi {
         private T RangeMin { get; }
         private T RangeMax { get; }
 
-        internal override Idoneità GetIdoneitàFromRisultato(T risultato) {
+        internal override Idoneità GetIdoneitàFromRisultato(T risultato)
+        {
             return risultato.CompareTo(RangeMin) >= 0 && risultato.CompareTo(RangeMax) <= 0
                 ? Idoneità.Idoneo
                 : IdoneitàFallimento;
