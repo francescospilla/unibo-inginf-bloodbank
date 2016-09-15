@@ -8,10 +8,12 @@ using BloodBank.Model.Models.Tests;
 using BloodBank.Model.Service;
 using BloodBank.ViewModel.Components;
 using BloodBank.ViewModel.Service;
+using PropertyChanged;
 using Stylet;
 
 namespace BloodBank.ViewModel.ViewModels.Tests
 {
+    [ImplementPropertyChanged]
     public class VisitaMedicaViewModel : EditableViewModel<VisitaMedica>
     {
         private readonly IDataService<Donatore> _donatoreDataService;

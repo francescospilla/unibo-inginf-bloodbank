@@ -144,6 +144,13 @@
       <DependentUpon>AppBar.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\IntegerTextBox.cs" />
+    <Compile Include="Views\NewDonazioneView.xaml.cs">
+      <DependentUpon>NewDonazioneView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NewListaVociQuestionarioView.cs" />
+    <Compile Include="Views\NewListaVociView.xaml.cs">
+      <DependentUpon>NewListaVociView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Persone\DonatoreView.xaml.cs">
       <DependentUpon>DonatoreView.xaml</DependentUpon>
     </Compile>
@@ -151,6 +158,8 @@
       <DependentUpon>DonatoriView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Tests\ListaIndaginiQuestionarioView.cs" />
+    <Compile Include="Views\Tests\ListaVociAnalisiView.cs" />
+    <Compile Include="Views\Tests\ListaVociQuestionarioView.cs" />
     <Compile Include="Views\Tests\ListeIndaginiQuestionarioView.xaml.cs">
       <DependentUpon>ListeIndaginiQuestionarioView.xaml</DependentUpon>
     </Compile>
@@ -182,6 +191,14 @@
     <Page Include="UserControls\AppBar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NewDonazioneView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\NewListaVociView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Persone\DonatoreView.xaml">
       <Generator>MSBuild:Compile</Generator>

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 using BloodBank.ViewModel.Service;
 using PropertyChanged;
 using Stylet;
@@ -37,6 +38,9 @@ namespace BloodBank.ViewModel.Components {
             set {
                 base.Model = value;
                 IsChanged = false;
+                INotifyPropertyChanged notifyPropertyChanged = Model as INotifyPropertyChanged;
+                if (notifyPropertyChanged != null)
+                    notifyPropertyChanged.PropertyChanged += (sender, args) => { IsChanged = false; };            
             }
         }
 

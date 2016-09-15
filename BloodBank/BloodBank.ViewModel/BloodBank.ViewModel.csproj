@@ -67,6 +67,9 @@
     <Compile Include="Components\ViewModel.cs" />
     <Compile Include="Components\WorkspaceViewModel.cs" />
     <Compile Include="Events\ViewModelCollectionChangedEvent.cs" />
+    <Compile Include="ViewModels\NewDonazioneViewModel.cs" />
+    <Compile Include="ViewModels\NewListaVociQuestionarioViewModel.cs" />
+    <Compile Include="ViewModels\NewListaVociViewModel.cs" />
     <Compile Include="Service\DataService.cs" />
     <Compile Include="Service\IDataService.cs" />
     <Compile Include="StructureMapBootstrapper.cs" />
@@ -88,6 +91,8 @@
     <Compile Include="ViewModels\Persone\DonatoreViewModel.cs" />
     <Compile Include="ViewModels\Persone\DonatoriViewModel.cs" />
     <Compile Include="ViewModels\Tests\ListaIndaginiQuestionarioViewModel.cs" />
+    <Compile Include="ViewModels\Tests\ListaVociAnalisiViewModel.cs" />
+    <Compile Include="ViewModels\Tests\ListaVociQuestionarioViewModel.cs" />
     <Compile Include="ViewModels\Tests\ListaVociViewModel.cs" />
     <Compile Include="ViewModels\Tests\ListeIndaginiQuestionarioViewModel.cs" />
     <Compile Include="ViewModels\Tests\VisitaMedicaViewModel.cs" />

@@ -35,4 +35,11 @@ namespace BloodBank.Model.Models.Tests {
             }
         }
     }
+
+    public class ListaVoci<U> : ListaVoci where U : ListaVoci
+    {
+        public ListaVoci(Donatore donatore, string descrizioneBreve, DateTime data, IEnumerable<Voce> listaVoci) : base(donatore, descrizioneBreve, data, listaVoci)
+        {
+        }
+    }
 }

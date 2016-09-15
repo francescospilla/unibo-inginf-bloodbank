@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
 using BloodBank.Model.Models.Donazioni;
 using BloodBank.Model.Models.Sangue;
 using BloodBank.Model.Models.Tests;
@@ -124,5 +126,11 @@ namespace BloodBank.Model.Models.Persone
         }
 
         #endregion Overrides
+
+        public void AggiungiTest(Test test)
+        {
+            _listaTest.Add(test);
+            Idoneità = _listaTest.LastOrDefault()?.Idoneità;
+        }
     }
 }
