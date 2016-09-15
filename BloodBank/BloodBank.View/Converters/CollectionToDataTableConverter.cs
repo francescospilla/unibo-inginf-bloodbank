@@ -5,6 +5,7 @@ using System.Data;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Data;
 using BloodBank.Model.Models.Indagini.Tipi;
@@ -13,6 +14,9 @@ using BloodBank.Model.Models.Tests;
 namespace BloodBank.View.Converters {
 
     public class CollectionToDataTableConverter : IValueConverter {
+
+        public IComparer<string> PropertySorter { get; set; }
+
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture) {
             IEnumerable<object> enumerable = value as IEnumerable<object>;
             if (enumerable == null)
@@ -22,12 +26,12 @@ namespace BloodBank.View.Converters {
 
             DataTable dt = new DataTable();
 
-            HashSet<string> unionKeys = new HashSet<string>();
+            SortedSet<string> unionKeys = new SortedSet<string>(PropertySorter);
             foreach (Dictionary<string, object> dictionary in dictionaries)
                 unionKeys.UnionWith(dictionary.Keys);
 
             foreach (string key in unionKeys) {
-                dt.Columns.Add(key, typeof(string));
+                dt.Columns.Add(key, key.Equals("Id") ? typeof(int) : typeof(string));
             }
 
             foreach (Dictionary<string, object> dictionary in dictionaries) {

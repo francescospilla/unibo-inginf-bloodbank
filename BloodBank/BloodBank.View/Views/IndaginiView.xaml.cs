@@ -21,7 +21,13 @@ namespace BloodBank.View.Views {
         public IndaginiView() {
             InitializeComponent();
 
+        }
 
+        private void Grid_OnAutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
+        {
+            DataGridTextColumn column = (DataGridTextColumn) e.Column;
+            if (column != null)
+                column.ElementStyle = Resources["WrappedTextBlockStyle"] as Style;
         }
     }
 }
