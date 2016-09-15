@@ -48,19 +48,9 @@
 
         <Grid><ContentControl Style="{StaticResource CardContentControlStyle}" s:View.Model="{Binding ActiveItem}" />
 
-            <md:PopupBox Style="{StaticResource MaterialDesignMultiFloatingActionPopupBox}"
-                                         PlacementMode="TopAndAlignCentres"
-                                         ToolTipService.Placement="Right"
-                                         ToolTip="Nuovo..."
-                                         VerticalAlignment="Bottom"
-                                         HorizontalAlignment="Right"
-                                         Margin="0,0,20,20">
-                <StackPanel>
-                    <Button ToolTip="Questionario" Command="{s:Action Add}">1</Button>
-                    <Button ToolTip="Indagine Boolean" x:Name="IndagineBooleanButton" Command="{s:Action OpenNewIndagineBooleanDialog}">2</Button>
-                    <Button ToolTip="Indagine Range" x:Name="IndagineRangeButton"  Command="{s:Action OpenNewIndagineRangeDialog}">3</Button>
-                </StackPanel>
-            </md:PopupBox>
+            <Button ToolTip="Aggiungi Questionario" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,20,20" Command="{s:Action Add}" Grid.Row="1">
+                <md:PackIcon Kind="Plus" Height="24" Width="24" />
+            </Button>
         </Grid>
 
     </DockPanel>
