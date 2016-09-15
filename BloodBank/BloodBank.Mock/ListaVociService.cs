@@ -60,7 +60,7 @@ namespace BloodBank.Mock
         // liste di voci generiche
         internal static IEnumerable<Voce<Questionario>> Lvq1 = new List<Voce<Questionario>>()
         {
-            Vq1, Vq3, Vq6, Vq10, Vq8
+            Vq1, Vq4, Vq6, Vq10, Vq8
         };
         internal static IEnumerable<Voce<Questionario>> Lvq2 = new List<Voce<Questionario>>()
         {
