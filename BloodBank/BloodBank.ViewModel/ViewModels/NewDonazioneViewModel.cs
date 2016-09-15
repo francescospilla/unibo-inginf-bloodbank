@@ -54,6 +54,12 @@ namespace BloodBank.ViewModel.ViewModels
         public VisitaMedicaViewModel SelectedVisitaMedica { get; set; }
         public TipoDonazione SelectedTipoDonazione { get; set; }
 
+        public bool CanMoveTo2ndPage => SelectedDonatore != null;
+        public bool CanMoveTo3rdPage => SelectedListaVociQuestionario != null;
+        public bool CanMoveTo4thPage => SelectedListaVociAnalisi != null;
+        public bool CanMoveTo5thPage => SelectedVisitaMedica != null;
+        public bool CanMoveToLastPage => SelectedTipoDonazione != null;
+
         #endregion
 
         public IEnumerable<DonatoreViewModel> DonatoreEnumerable { get; }
@@ -66,11 +72,10 @@ namespace BloodBank.ViewModel.ViewModels
         {
             if (SelectedDonatore == null)
                 return;
-            ListaVociAnalisiEnumerable = _listaVociAnalisiDataService.GetViewModels().Where(vm => vm.Donatore.Equals(SelectedDonatore.Model) && vm.Data.Date.Equals(DateTime.Today));
-            ListaVociQuestionarioEnumerable = _listaVociQuestionarioDataService.GetViewModels().Where(vm => vm.Donatore.Equals(SelectedDonatore.Model) && vm.Data.Date.Equals(DateTime.Today));
-            VisitaMedicaEnumerable = _visitaMedicaDataService.GetViewModels().Where(vm => vm.Donatore.Equals(SelectedDonatore.Model) && vm.Data.Date.Equals(DateTime.Today));
+            ListaVociAnalisiEnumerable = _listaVociAnalisiDataService.GetViewModels().Where(vm => vm.Donatore.Equals(SelectedDonatore.Model) && vm.Data.Date.Equals(DateTime.Today) && vm.Idoneità == Idoneità.Idoneo);
+            ListaVociQuestionarioEnumerable = _listaVociQuestionarioDataService.GetViewModels().Where(vm => vm.Donatore.Equals(SelectedDonatore.Model) && vm.Data.Date.Equals(DateTime.Today) && vm.Idoneità == Idoneità.Idoneo);
+            VisitaMedicaEnumerable = _visitaMedicaDataService.GetViewModels().Where(vm => vm.Donatore.Equals(SelectedDonatore.Model) && vm.Data.Date.Equals(DateTime.Today) && vm.Idoneità == Idoneità.Idoneo);
         }
-
 
         public void OpenNavMenu()
         {
