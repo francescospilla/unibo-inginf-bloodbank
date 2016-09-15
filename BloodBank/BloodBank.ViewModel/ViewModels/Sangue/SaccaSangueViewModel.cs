@@ -21,6 +21,7 @@ namespace BloodBank.ViewModel.ViewModels.Sangue {
         #region Properties
 
         public new string DisplayName => IsInitialized ? IdSacca : "Nuova Sacca";
+        public string CompEmGruppoSanguigno => Componente + " " + Gruppo;
 
         public string IdSacca => Id.ToString();
 

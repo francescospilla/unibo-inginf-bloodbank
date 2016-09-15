@@ -98,6 +98,7 @@
     <Compile Include="ViewModels\Tests\ListaVociQuestionarioViewModel.cs" />
     <Compile Include="ViewModels\Tests\ListaVociViewModel.cs" />
     <Compile Include="ViewModels\Tests\ListeIndaginiQuestionarioViewModel.cs" />
+    <Compile Include="ViewModels\Tests\ListeVociViewModel.cs" />
     <Compile Include="ViewModels\Tests\VisitaMedicaViewModel.cs" />
     <Compile Include="ViewModels\Tests\VisiteMedicheViewModel.cs" />
   </ItemGroup>

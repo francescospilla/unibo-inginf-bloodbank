@@ -21,7 +21,7 @@ namespace BloodBank.ViewModel {
     [ImplementPropertyChanged]
     public class ShellViewModel : Conductor<NavigationMenuItem>.Collection.OneActive, IHandle<NavMenuEvent> {
 
-        public ShellViewModel(IEventAggregator eventAggregator, DonatoriViewModel donatoriViewModel, DonazioniViewModel donazioniViewModel, SaccheSangueViewModel saccheSangueViewModel, ListeIndaginiQuestionarioViewModel listeIndaginiQuestionarioViewModel, VisiteMedicheViewModel visiteMedicheViewModel, ListaVociAnalisiViewModel listaVociViewModel, NewListaVociQuestionarioViewModel newListaVociViewModel, NewDonazioneViewModel newDonazioneViewModel) {
+        public ShellViewModel(IEventAggregator eventAggregator, DonatoriViewModel donatoriViewModel, DonazioniViewModel donazioniViewModel, SaccheSangueViewModel saccheSangueViewModel, ListeIndaginiQuestionarioViewModel listeIndaginiQuestionarioViewModel, VisiteMedicheViewModel visiteMedicheViewModel, ListeVociAnalisiViewModel listeVociAnalisiViewModel, ListeVociQuestionarioViewModel listeVociQuestionarioViewModel,  NewListaVociQuestionarioViewModel newListaVociViewModel, NewDonazioneViewModel newDonazioneViewModel) {
 
             eventAggregator.Subscribe(this);
 
@@ -31,16 +31,17 @@ namespace BloodBank.ViewModel {
                 new Voce<Questionario, bool>(new IndagineBoolean<Questionario>("Domanda 1", Idoneità.NonIdoneo, true), true),
                  new Voce<Questionario, int>(new IndagineRange<Questionario, int>("Domanda 10", Idoneità.NonIdoneo, 0, 10), -1)
             };
-            Analisi analisi = new Analisi(new Donatore(new Contatto("Pasquale", "Cafiero", Sesso.Maschio, new DateTime(1971, 12, 24), "DQCSRN36T14A704A", "Via Capo di Monte, 33", "Bologna", "Italia", "12345"), GruppoSanguigno.AB_Neg, true), "Descrizione brevissima delle analisi", DateTime.Today, voci);
+            //Analisi analisi = new Analisi(new Donatore(new Contatto("Pasquale", "Cafiero", Sesso.Maschio, new DateTime(1971, 12, 24), "DQCSRN36T14A704A", "Via Capo di Monte, 33", "Bologna", "Italia", "12345"), GruppoSanguigno.AB_Neg, true), "Descrizione brevissima delle analisi", DateTime.Today, voci);
 
-            listaVociViewModel.Model = analisi;
+            //listaVociViewModel.Model = analisi;
 
             Items.Add(new NavigationMenuItem("Donatori", "AccountMultiple", donatoriViewModel));
             Items.Add(new NavigationMenuItem("Donazioni", "Heart", donazioniViewModel));
             Items.Add(new NavigationMenuItem("Questionari", "Book", listeIndaginiQuestionarioViewModel));
             Items.Add(new NavigationMenuItem("Visite Mediche", "Hospital", visiteMedicheViewModel));
             Items.Add(new NavigationMenuItem("Sacche di Sangue", "Water", saccheSangueViewModel));
-            Items.Add(new NavigationMenuItem("Tests", "Help", listaVociViewModel));
+            Items.Add(new NavigationMenuItem("Analisi", "Biohazard", listeVociAnalisiViewModel));
+            Items.Add(new NavigationMenuItem("Questionari", "EmoticonSad", listeVociQuestionarioViewModel));
             Items.Add(new NavigationMenuItem("NewQuestionario", "Help", newListaVociViewModel));
             Items.Add(new NavigationMenuItem("Nuova Donazione", "Skull", newDonazioneViewModel));
         }

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using BloodBank.Core.Attributes;
+using BloodBank.Core.Extensions;
 using BloodBank.Model.Models;
 using BloodBank.Model.Models.Indagini;
 using BloodBank.Model.Models.Persone;
@@ -18,6 +20,13 @@ namespace BloodBank.ViewModel.ViewModels.Tests
         {
         }
 
+        public string DataDonatore => Data.ToShortDateString() + " - " + Donatore.Nome + " " + Donatore.Cognome;
+
+        public new string DisplayName => IsInitialized ? DataDonatore : "Nuovo test";
+
+        public string StringaRicerca => this.PropertyList(typeof(SearchableAttribute));
+
+        [Searchable]
         public Donatore Donatore { get; set; }
         public DateTime Data { get; set; }
         public string DescrizioneBreve { get; set; }
