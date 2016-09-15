@@ -11,7 +11,6 @@ using BloodBank.Model.Models.Sangue;
 using BloodBank.Model.Models.Tests;
 using BloodBank.ViewModel.Components;
 using BloodBank.ViewModel.ViewModels;
-using BloodBank.ViewModel.ViewModels.Donazioni;
 using BloodBank.ViewModel.ViewModels.Persone;
 using BloodBank.ViewModel.ViewModels.Tests;
 
@@ -35,7 +34,7 @@ namespace BloodBank.ViewModel {
 
             Items.Add(new NavigationMenuItem("Donatori", "AccountMultiple", donatoriViewModel));
             Items.Add(new NavigationMenuItem("Donazioni", "Heart", donazioniViewModel));
-            Items.Add(new NavigationMenuItem("Questionari", "Heart", listeIndaginiQuestionarioViewModel));
+            Items.Add(new NavigationMenuItem("Questionari", "Book", listeIndaginiQuestionarioViewModel));
             Items.Add(new NavigationMenuItem("Visite Mediche", "Hospital", visiteMedicheViewModel));
             Items.Add(new NavigationMenuItem("Tests", "Help", listaVociViewModel));
             Items.Add(new NavigationMenuItem("NewQuestionario", "Help", newListaVociViewModel));

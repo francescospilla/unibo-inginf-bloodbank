@@ -176,6 +176,10 @@
     <Compile Include="Converters\BoolToValueConverter.cs" />
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Converters\EnumDisplayAttributeOrHumanizeConverter.cs" />
+    <Page Include="Views\Donazioni\DonazioneView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\Donazioni\DonazioniView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
