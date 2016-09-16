@@ -29,5 +29,10 @@ namespace BloodBank.View.Views {
             if (column != null)
                 column.ElementStyle = Resources["WrappedTextBlockStyle"] as Style;
         }
+
+        private void DataGrid_OnAddingNewItem(object sender, AddingNewItemEventArgs e)
+        {
+            Console.WriteLine("aggiunto nuovo elemento, sarcazzoville: " + e.NewItem);
+        }
     }
 }

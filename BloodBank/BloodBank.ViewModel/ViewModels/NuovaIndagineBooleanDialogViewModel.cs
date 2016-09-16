@@ -7,6 +7,7 @@ using BloodBank.Model.Models.Indagini.Tipi;
 using BloodBank.Model.Models.Tests;
 using BloodBank.Model.Service;
 using BloodBank.ViewModel.Components;
+using BloodBank.ViewModel.Events;
 using BloodBank.ViewModel.Service;
 using BloodBank.ViewModel.Validation.Indagini;
 using PropertyChanged;
@@ -17,11 +18,15 @@ namespace BloodBank.ViewModel.ViewModels
     [ImplementPropertyChanged]
     public abstract class NuovaIndagineBooleanDialogViewModel : Screen
     {
+        private readonly IEventAggregator _eventAggregator;
+
         protected NuovaIndagineBooleanDialogViewModel(IEventAggregator eventAggregator, IModelValidator<NuovaIndagineBooleanDialogViewModel> validator) : base(validator) {
             if (validator != null) {
                 AutoValidate = true;
                 Validate();
             }
+            _eventAggregator = eventAggregator;
+
         }
 
         #region Properties
@@ -50,8 +55,8 @@ namespace BloodBank.ViewModel.ViewModels
         public void Save()
         {
             if (Validator != null && !Validate()) return;
-            object model = CreateModelFromViewModel();
-            //TODO: notifica al view parent
+            SaveIndagineEvent e = new SaveIndagineEvent(CreateModelFromViewModel());
+            _eventAggregator.PublishOnUIThread(e);
 
         }
 
