@@ -42,16 +42,16 @@
         <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="Nuova Indagine Boolean" Style="{StaticResource MaterialDesignDisplay1TextBlock}" />
 
         <md:PackIcon Grid.Row="1" Grid.Column="0" Kind="Pencil" Foreground="{Binding ElementName=TextBoxTesto, Path=BorderBrush}" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="10,25,10,0" />
-        <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" MinLines="2" x:Name="TextBoxTesto" md:HintAssist.Hint="Inserire il testo dell'indagine" IsEnabled="{Binding IsInitialized, Converter={StaticResource BoolInverter}}"
+        <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" MinLines="2" x:Name="TextBoxTesto" md:HintAssist.Hint="Inserire il testo dell'indagine"
                                  Text="{Binding Path=Testo, UpdateSourceTrigger=PropertyChanged}" VerticalContentAlignment="Top"  TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True">
         </TextBox>
 
-        <md:PackIcon Grid.Row="2" Grid.Column="2" Kind="ThumbsUpDown" Foreground="{Binding ElementName=TextBoxIdoneità, Path=BorderBrush}" />
+        <md:PackIcon Grid.Row="2" Grid.Column="2" Kind="ThumbsUpDown" Foreground="{Binding ElementName=ComboBoxIdoneitaFallimento, Path=BorderBrush}" />
         <ComboBox Grid.Row="2" Grid.Column="3" x:Name="ComboBoxIdoneitaFallimento" md:HintAssist.Hint="Idoneità in caso di fallimento" ItemsSource="{Binding IdoneitàEnumerable}" VerticalAlignment="Center"
                                       SelectedItem="{Binding Path=IdoneitaFallimento, UpdateSourceTrigger=PropertyChanged}">
         </ComboBox>
 
-        <md:PackIcon Grid.Row="2" Grid.Column="0" Kind="Check" Foreground="{Binding ElementName=TextBoxIdoneità, Path=BorderBrush}" />
+        <md:PackIcon Grid.Row="2" Grid.Column="0" Kind="Check" Foreground="{Binding ElementName=ComboBoxRisultatoCorretto, Path=BorderBrush}" />
         <ComboBox Grid.Row="2" Grid.Column="1" x:Name="ComboBoxRisultatoCorretto"  md:HintAssist.Hint="Risultato Corretto" ItemsSource="{Binding RisultatoCorrettoEnumerable}" VerticalAlignment="Center"
                                       SelectedItem="{Binding Path=RisultatoCorretto, UpdateSourceTrigger=PropertyChanged}">
             <ComboBox.ItemTemplate>

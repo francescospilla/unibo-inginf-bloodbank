@@ -26,8 +26,8 @@ namespace BloodBank.ViewModel.Validation.Indagini
         {
             RuleFor(vm => vm.Testo).NotEmpty();
             RuleFor(vm => vm.IdoneitaFallimento).NotNull().IsInEnum();
-            RuleFor(vm => vm.RangeMin).NotEmpty();
-            RuleFor(vm => vm.RangeMax).NotEmpty();
+            RuleFor(vm => vm.RangeMin).NotNull();
+            RuleFor(vm => vm.RangeMax).NotNull();
             RuleFor(vm => vm).Must(vm => vm.RangeMin.CompareTo(vm.RangeMax) <= 0);
         }
     }

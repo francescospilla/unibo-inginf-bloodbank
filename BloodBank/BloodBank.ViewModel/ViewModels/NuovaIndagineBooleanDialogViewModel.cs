@@ -37,6 +37,12 @@ namespace BloodBank.ViewModel.ViewModels
         public IEnumerable<bool> RisultatoCorrettoEnumerable { get; } = new[] { true, false };
         public IEnumerable<Idoneità> IdoneitàEnumerable { get; } = EnumExtensions.Values<Idoneità>();
 
+        protected override void OnValidationStateChanged(IEnumerable<string> changedProperties) {
+            base.OnValidationStateChanged(changedProperties);
+            // Fody can't weave other assemblies, so we have to manually raise this
+            NotifyOfPropertyChange(() => CanSave);
+        }
+
         #region Save
 
         public bool CanSave => !HasErrors;
@@ -54,6 +60,7 @@ namespace BloodBank.ViewModel.ViewModels
         #endregion Save
     }
 
+    [ImplementPropertyChanged]
     public class NuovaIndagineBooleanDialogViewModel<U> : NuovaIndagineBooleanDialogViewModel where U : ListaVoci
     {
         public NuovaIndagineBooleanDialogViewModel(IEventAggregator eventAggregator, IModelValidator<NuovaIndagineBooleanDialogViewModel> validator) : base(eventAggregator, validator)
@@ -67,6 +74,7 @@ namespace BloodBank.ViewModel.ViewModels
 
     }
 
+    [ImplementPropertyChanged]
     public class NuovaIndagineBooleanQuestionarioDialogViewModel : NuovaIndagineBooleanDialogViewModel<Questionario>
     {
         public NuovaIndagineBooleanQuestionarioDialogViewModel(IEventAggregator eventAggregator, IModelValidator<NuovaIndagineBooleanDialogViewModel> validator) : base(eventAggregator, validator)
@@ -74,6 +82,7 @@ namespace BloodBank.ViewModel.ViewModels
         }
     }
 
+    [ImplementPropertyChanged]
     public class NuovaIndagineBooleanAnalisiDialogViewModel : NuovaIndagineBooleanDialogViewModel<Analisi>
     {
         public NuovaIndagineBooleanAnalisiDialogViewModel(IEventAggregator eventAggregator, IModelValidator<NuovaIndagineBooleanDialogViewModel> validator) : base(eventAggregator, validator)
