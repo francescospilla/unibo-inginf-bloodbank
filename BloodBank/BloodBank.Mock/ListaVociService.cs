@@ -39,10 +39,10 @@ namespace BloodBank.Mock
         };
 
         // analisi specifiche per donatori
-        internal static Analisi A1 = new Analisi(D1, "Descrizione 1", DateTime.Today, Lva1);
-        internal static Analisi A2 = new Analisi(D2, "Descrizione 2", new DateTime(2016, 08, 23), Lva2);
-        internal static Analisi A3 = new Analisi(D3, "Descrizione 3", new DateTime(2016, 05, 15), Lva3);
-        internal static Analisi A4 = new Analisi(D4, "Descrizione 4", new DateTime(2016, 07, 02), Lva1);
+        internal static Analisi A1 = new Analisi(D1, "Descrizione 1", DateTime.Now.AddHours(-3), Lva1);
+        internal static Analisi A2 = new Analisi(D2, "Descrizione 2", new DateTime(2016, 08, 23, 11, 00, 30), Lva2);
+        internal static Analisi A3 = new Analisi(D3, "Descrizione 3", new DateTime(2016, 05, 15, 17, 03, 00), Lva3);
+        internal static Analisi A4 = new Analisi(D4, "Descrizione 4", new DateTime(2016, 07, 02, 15, 00, 12), Lva1);
 
         private static readonly IList<ListaVoci<Analisi>> Items = new List<ListaVoci<Analisi>>()
         {
@@ -81,11 +81,11 @@ namespace BloodBank.Mock
         };
 
         // questionari specifici per donatori
-        internal static Questionario Q1 = new Questionario(D1, "Descrizione questionario 1", DateTime.Today, Lvq1);
-        internal static Questionario Q2 = new Questionario(D2, "Descrizione questionario 1", new DateTime(2016, 08, 23), Lvq2);
-        internal static Questionario Q3 = new Questionario(D3, "Descrizione questionario 1", new DateTime(2016, 05, 15), Lvq3);
-        internal static Questionario Q4 = new Questionario(D4, "Descrizione questionario 1", new DateTime(2016, 07, 02), Lvq4);
-        internal static Questionario Q5 = new Questionario(D5, "Descrizione questionario 1", new DateTime(2016, 09, 14), Lvq1);
+        internal static Questionario Q1 = new Questionario(D1, "Descrizione questionario 1", DateTime.Now.AddHours(-4), Lvq1);
+        internal static Questionario Q2 = new Questionario(D2, "Descrizione questionario 1", new DateTime(2016, 08, 23, 10, 30, 12), Lvq2);
+        internal static Questionario Q3 = new Questionario(D3, "Descrizione questionario 1", new DateTime(2016, 05, 15, 16, 45, 36), Lvq3);
+        internal static Questionario Q4 = new Questionario(D4, "Descrizione questionario 1", new DateTime(2016, 07, 02, 14, 40, 00), Lvq4);
+        internal static Questionario Q5 = new Questionario(D5, "Descrizione questionario 1", new DateTime(2016, 09, 14, 09, 25, 00), Lvq1);
 
         private static readonly IList<ListaVoci<Questionario>> Items = new List<ListaVoci<Questionario>>()
         {
