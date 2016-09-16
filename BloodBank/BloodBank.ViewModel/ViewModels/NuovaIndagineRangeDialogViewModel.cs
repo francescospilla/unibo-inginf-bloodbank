@@ -13,7 +13,7 @@ using Stylet;
 namespace BloodBank.ViewModel.ViewModels
 {
     [ImplementPropertyChanged]
-    public abstract class NuovaIndagineRangeDialogViewModel<T> : Screen where T : IComparable<T>
+    public abstract class NuovaIndagineRangeDialogViewModel<T> : Screen where T : struct, IComparable<T>
     {
         protected NuovaIndagineRangeDialogViewModel(IEventAggregator eventAggregator,
             IModelValidator<NuovaIndagineRangeDialogViewModel<T>> validator) : base(validator)
@@ -30,8 +30,8 @@ namespace BloodBank.ViewModel.ViewModels
 
         public string Testo { get; set; }
         public Idoneità IdoneitaFallimento { get; set; }
-        public T RangeMin { get; set; }
-        public T RangeMax { get; set; }
+        public T? RangeMin { get; set; }
+        public T? RangeMax { get; set; }
 
         #endregion Properties
 
@@ -62,7 +62,7 @@ namespace BloodBank.ViewModel.ViewModels
     }
 
     [ImplementPropertyChanged]
-    public class NuovaIndagineRangeDialogViewModel<U, T> : NuovaIndagineRangeDialogViewModel<T> where T : IComparable<T>
+    public class NuovaIndagineRangeDialogViewModel<U, T> : NuovaIndagineRangeDialogViewModel<T> where T : struct , IComparable<T>
         where U : ListaVoci
     {
         public NuovaIndagineRangeDialogViewModel(IEventAggregator eventAggregator,
@@ -72,7 +72,7 @@ namespace BloodBank.ViewModel.ViewModels
 
         protected override object CreateModelFromViewModel()
         {
-            return new IndagineRange<U, T>(Testo, IdoneitaFallimento, RangeMin, RangeMax);
+            return new IndagineRange<U, T>(Testo, IdoneitaFallimento, RangeMin.GetValueOrDefault(), RangeMax.GetValueOrDefault());
         }
     }
 
