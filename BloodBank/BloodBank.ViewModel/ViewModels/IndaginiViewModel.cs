@@ -64,8 +64,8 @@ namespace BloodBank.ViewModel.ViewModels
 
         public void OpenNewDialog(IScreen dialog)
         {
-            OpenDialogEvent e = new OpenDialogEvent(dialog);
-            _eventAggregator.PublishOnUIThread(e);
+            DialogEvent e = new DialogEvent(true, dialog);
+            _eventAggregator.Publish(e);
         }
 
         public void OpenNewIndagineBooleanAnalisiDialog()
@@ -112,6 +112,8 @@ namespace BloodBank.ViewModel.ViewModels
 
         public void Handle(SaveIndagineEvent e)
         {
+            _eventAggregator.Publish(new DialogEvent(false, null));
+
             Indagine<Analisi> indagineAnalisi = e.Indagine as Indagine<Analisi>;
             if (indagineAnalisi != null)
             {

@@ -66,7 +66,7 @@
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Components\ViewModel.cs" />
     <Compile Include="Components\WorkspaceViewModel.cs" />
-    <Compile Include="Events\OpenDialogEvent.cs" />
+    <Compile Include="Events\DialogEvent.cs" />
     <Compile Include="Events\SaveIndagineEvent.cs" />
     <Compile Include="Events\ViewModelCollectionChangedEvent.cs" />
     <Compile Include="ViewModels\IndaginiViewModel.cs" />

@@ -7,13 +7,15 @@ using Stylet;
 
 namespace BloodBank.ViewModel.Events
 {
-    public class OpenDialogEvent
+    public class DialogEvent
     {
-        public OpenDialogEvent(IScreen dialogContent)
+        public DialogEvent(bool isOpen, IScreen dialogContent)
         {
             DialogContent = dialogContent;
+            IsOpen = isOpen;
         }
 
+        public bool IsOpen { get; }
         public IScreen DialogContent { get; }
     }
 }

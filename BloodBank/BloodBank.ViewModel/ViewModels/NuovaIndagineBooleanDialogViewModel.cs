@@ -56,7 +56,7 @@ namespace BloodBank.ViewModel.ViewModels
         {
             if (Validator != null && !Validate()) return;
             SaveIndagineEvent e = new SaveIndagineEvent(CreateModelFromViewModel());
-            _eventAggregator.PublishOnUIThread(e);
+            _eventAggregator.Publish(e);
 
         }
 

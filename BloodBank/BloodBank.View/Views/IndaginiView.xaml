@@ -52,19 +52,15 @@
                     </md:Card>
                     <md:PopupBox ToolTip="Aggiungi ... per Analisi" Style="{StaticResource MaterialDesignMultiFloatingActionAccentPopupBox}" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10" PlacementMode="TopAndAlignCentres">
                         <StackPanel>
+                            <Button ToolTip="Indagine Range (Decimale)" Command="{s:Action OpenNewIndagineRangeDoubleAnalisiDialog}">
+                                <md:PackIcon Kind="Numeric" />
+                            </Button>
+                            <Button ToolTip="Indagine Range (Intero)" Command="{s:Action OpenNewIndagineRangeIntAnalisiDialog}">
+                                <md:PackIcon Kind="Numeric" />
+                            </Button>
                             <Button ToolTip="Indagine Boolean" Command="{s:Action OpenNewIndagineBooleanAnalisiDialog}">
                                 <md:PackIcon Kind="CheckBoxMarkedCircleOutline" />
                             </Button>
-                            <md:PopupBox ToolTip="Indagine Range..." Style="{StaticResource MaterialDesignMultiFloatingActionPopupBox}" PopupMode="MouseOver" PlacementMode="LeftAndAlignTopEdges">
-                                <StackPanel>
-                                    <Button ToolTip="Numero intero" Command="{s:Action OpenNewIndagineRangeIntAnalisiDialog}">
-                                        <md:PackIcon Kind="Numeric" />
-                                    </Button>
-                                    <Button ToolTip="Numero decimale" Command="{s:Action OpenNewIndagineRangeDoubleAnalisiDialog}">
-                                        <md:PackIcon Kind="Numeric" />
-                                    </Button>
-                                </StackPanel>
-                            </md:PopupBox>
                         </StackPanel>
                     </md:PopupBox>
                 </Grid>

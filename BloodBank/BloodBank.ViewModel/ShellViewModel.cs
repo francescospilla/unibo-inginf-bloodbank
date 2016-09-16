@@ -18,7 +18,7 @@ using BloodBank.ViewModel.ViewModels.Tests;
 namespace BloodBank.ViewModel {
 
     [ImplementPropertyChanged]
-    public class ShellViewModel : Conductor<NavigationMenuItem>.Collection.OneActive, IHandle<NavMenuEvent>, IHandle<OpenDialogEvent> {
+    public class ShellViewModel : Conductor<NavigationMenuItem>.Collection.OneActive, IHandle<NavMenuEvent>, IHandle<DialogEvent> {
 
         public ShellViewModel(IEventAggregator eventAggregator, DonatoriViewModel donatoriViewModel, DonazioniViewModel donazioniViewModel, ListeIndaginiQuestionarioViewModel listeIndaginiQuestionarioViewModel, VisiteMedicheViewModel visiteMedicheViewModel, ListaVociViewModel listaVociViewModel, IndaginiViewModel indaginiViewModel) {
             eventAggregator.Subscribe(this);
@@ -74,10 +74,10 @@ namespace BloodBank.ViewModel {
         public bool IsDialogOpen { get; set; }
         public IScreen DialogContent { get; private set; }
 
-        public void Handle(OpenDialogEvent message)
+        public void Handle(DialogEvent message)
         {
             DialogContent = message.DialogContent;
-            IsDialogOpen = true;
+            IsDialogOpen = message.IsOpen;
         }
         #endregion Dialog
     }
