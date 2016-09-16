@@ -167,6 +167,11 @@
     <Compile Include="Views\Sangue\SaccheSangueView.xaml.cs">
       <DependentUpon>SaccheSangueView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Tests\ListeVociAnalisiView.cs" />
+    <Compile Include="Views\Tests\ListeVociQuestionarioView.cs" />
+    <Compile Include="Views\Tests\ListeVociView.xaml.cs">
+      <DependentUpon>ListeVociView.xaml</DependentUpon>
+    </Compile>
     <Page Include="Resources\FilterControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -227,6 +232,10 @@
     <Page Include="Views\Tests\ListeIndaginiQuestionarioView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Tests\ListeVociView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Tests\VisitaMedicaView.xaml">
       <Generator>MSBuild:Compile</Generator>
