@@ -15,8 +15,8 @@ namespace BloodBank.Model.Models.Persone
     {
         public static readonly Tuple<int, int> RangeEtà = new Tuple<int, int>(16, 80);
 
-        private readonly List<Donazione> _listaDonazioni;
-        private readonly List<Test> _listaTest;
+        private readonly SortedList<DateTime, Donazione> _listaDonazioni;
+        private readonly SortedList<DateTime, Test> _listaTest;
 
         public Contatto Contatto { get; }
 
@@ -90,16 +90,16 @@ namespace BloodBank.Model.Models.Persone
             Contatto = contatto;
             GruppoSanguigno = gruppoSanguigno;
             Attivo = attivo;
-            _listaTest = new List<Test>();
-            _listaDonazioni = new List<Donazione>();
+            _listaTest = new SortedList<DateTime, Test>();
+            _listaDonazioni = new SortedList<DateTime, Donazione>();
         }
 
         public GruppoSanguigno GruppoSanguigno { get; }
         public Idoneità? Idoneità { get; private set; }
         public bool Attivo { get; set; }
 
-        public IEnumerable<Test> ListaTest => _listaTest;
-        public IEnumerable<Donazione> ListaDonazioni => _listaDonazioni;
+        public IEnumerable<Test> ListaTest => _listaTest.Values;
+        public IEnumerable<Donazione> ListaDonazioni => _listaDonazioni.Values;
 
         #region Overrides
 
@@ -129,8 +129,8 @@ namespace BloodBank.Model.Models.Persone
 
         public void AggiungiTest(Test test)
         {
-            _listaTest.Add(test);
-            Idoneità = _listaTest.LastOrDefault()?.Idoneità;
+            _listaTest.Add(test.Data, test);
+            Idoneità = _listaTest.LastOrDefault().Value?.Idoneità;
         }
     }
 }

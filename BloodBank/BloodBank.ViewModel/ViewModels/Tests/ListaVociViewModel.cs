@@ -27,16 +27,37 @@ namespace BloodBank.ViewModel.ViewModels.Tests
         public string StringaRicerca => this.PropertyList(typeof(SearchableAttribute));
 
         [Searchable]
+		
+        #region Properties
+
         public Donatore Donatore { get; set; }
-        public DateTime Data { get; set; }
         public string DescrizioneBreve { get; set; }
         public Idoneità Idoneità { get; set; }
         public IEnumerable<Voce> Voci { get; set; }
+
+        #region Data e Ora
+        private DateTime _data = DateTime.Now;
+        public DateTime Data
+        {
+            get { return _data; }
+            set { _data = value.Date; }
+        }
+
+        private DateTime _dataOra = DateTime.Now;
+        public DateTime DataOra
+        {
+            get { return _dataOra; }
+            set { _dataOra = Data.Add(value.TimeOfDay); }
+        }
+        #endregion Data e Ora
+
+        #endregion Properties
 
         protected override void SyncModelToViewModel()
         {
             Donatore = Model.Donatore;
             Data = Model.Data;
+            DataOra = Model.Data;
             DescrizioneBreve = Model.DescrizioneBreve;
             Idoneità = Model.Idoneità;
             Voci = Model.Voci;

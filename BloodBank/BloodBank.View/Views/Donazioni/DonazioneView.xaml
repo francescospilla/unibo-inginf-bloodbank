@@ -13,11 +13,15 @@
 
     <Grid Margin="10">
         <Grid.Resources>
-            <Style TargetType="{x:Type DatePicker}" BasedOn="{StaticResource MaterialDesignDatePicker}">
+            <Style TargetType="{x:Type DatePicker}" BasedOn="{StaticResource MaterialDesignFloatingHintDatePicker}">
                 <Setter Property="Margin" Value="10 10 10 7" />
                 <Setter Property="VerticalAlignment" Value="Bottom" />
             </Style>
-            <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource MaterialDesignComboBox}">
+            <Style TargetType="{x:Type md:TimePicker}" BasedOn="{StaticResource MaterialDesignTimePicker}">
+                <Setter Property="Margin" Value="10 10 10 7" />
+                <Setter Property="VerticalAlignment" Value="Bottom" />
+            </Style>
+            <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource MaterialDesignFloatingHintComboBox}">
                 <Setter Property="Margin" Value="10 10 10 7" />
             </Style>
             <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignFloatingHintTextBox}">
@@ -52,10 +56,18 @@
 
         <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="Riepilogo Donazione" Style="{StaticResource MaterialDesignDisplay1TextBlock}" />
 
-        <md:PackIcon Grid.Row="1" Grid.Column="2" Kind="Calendar" Foreground="{Binding ElementName=DatePickerDataVisitaMedica, Path=BorderBrush}" />
-        <TextBox Grid.Row="1" Grid.Column="3" x:Name="TextBoxData" md:HintAssist.Hint="Data Donazione" IsEnabled="False"
-                                    Text="{Binding Path=Data, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}">
-        </TextBox>
+        <md:PackIcon Grid.Row="1" Grid.Column="2" Kind="Calendar" Foreground="{Binding ElementName=DatePickerDataDonazione, Path=BorderBrush}" />
+        <Grid Grid.Row="1" Grid.Column="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+         <TextBox Grid.Column="0"  x:Name="TextBoxDataDonazione" md:HintAssist.Hint="Data Donazione" Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsEnabled="False" Text="{Binding Path=Data, StringFormat=d}">
+            </TextBox>
+            <TextBox Grid.Column="1" x:Name="TextBoxOraDonazione" md:HintAssist.Hint="Ora Donazione" Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsEnabled="False" Text="{Binding Path=DataOra, StringFormat=t}">
+            </TextBox>
+        </Grid>
+
 
         <md:PackIcon Grid.Row="1" Grid.Column="0" Kind="Account" Foreground="{Binding ElementName=TextBoxNomeDonatore, Path=BorderBrush}" />
         <TextBox Grid.Row="1" Grid.Column="1" x:Name="TextBoxNomeDonatore" md:HintAssist.Hint="Nome Donatore" IsEnabled="False"

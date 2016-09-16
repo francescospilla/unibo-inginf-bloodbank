@@ -11,11 +11,11 @@
 
     <Grid Margin="10">
         <Grid.Resources>
-            <Style TargetType="{x:Type DatePicker}" BasedOn="{StaticResource MaterialDesignDatePicker}">
+            <Style TargetType="{x:Type DatePicker}" BasedOn="{StaticResource MaterialDesignFloatingHintDatePicker}">
                 <Setter Property="Margin" Value="10 10 10 7" />
                 <Setter Property="VerticalAlignment" Value="Bottom" />
             </Style>
-            <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource MaterialDesignComboBox}">
+            <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource MaterialDesignFloatingHintComboBox}">
                 <Setter Property="Margin" Value="10 10 10 7" />
             </Style>
             <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignFloatingHintTextBox}">
@@ -48,11 +48,21 @@
         </TextBox>
 
         <md:PackIcon Grid.Row="1" Grid.Column="2" Kind="Calendar" Foreground="{Binding ElementName=TextBoxData, Path=BorderBrush}" />
-        <TextBox Grid.Row="1" Grid.Column="3" x:Name="TextBoxData" md:HintAssist.Hint="Data del Test" IsEnabled="False"
-                                    Text="{Binding Path=Data, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}">
-        </TextBox>
+         <Grid Grid.Row="1" Grid.Column="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <TextBox Grid.Column="0" x:Name="TextBoxDataTest" md:HintAssist.Hint="Data del Test" IsEnabled="False"
+                                    Text="{Binding Path=Data, UpdateSourceTrigger=PropertyChanged, Mode=OneWay, StringFormat=d }">
+            </TextBox>
+            <TextBox Grid.Column="1" x:Name="TextBoxOraTest" md:HintAssist.Hint="Ora del Test" IsEnabled="False"
+                                    Text="{Binding Path=DataOra, UpdateSourceTrigger=PropertyChanged, Mode=OneWay, StringFormat=t}">
+            </TextBox>
+        </Grid>
 
-        <md:PackIcon Grid.Row="2" Grid.Column="0" Kind="Pencil" Foreground="{Binding ElementName=TextBoxDescrizioneBreve, Path=BorderBrush}" />
+
+            <md:PackIcon Grid.Row="2" Grid.Column="0" Kind="Pencil" Foreground="{Binding ElementName=TextBoxDescrizioneBreve, Path=BorderBrush}" />
         <TextBox Grid.Row="2" Grid.Column="1" x:Name="TextBoxDescrizioneBreve" md:HintAssist.Hint="Testo" IsEnabled="False"
                                  Text="{Binding Path=DescrizioneBreve, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}">
         </TextBox>

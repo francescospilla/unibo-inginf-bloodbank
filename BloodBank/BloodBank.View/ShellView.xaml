@@ -9,7 +9,7 @@
         mc:Ignorable="d"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         FontFamily="Roboto"
-        Title="{Binding DisplayName}" MinHeight="768" Height="768" MinWidth="1024" Width="1024"
+        Title="{Binding DisplayName}" MinHeight="700" Height="700" MinWidth="1024" Width="1024"
         GlowBrush="{DynamicResource AccentColorBrush}" BorderThickness="1">
 
     <Window.Background>
