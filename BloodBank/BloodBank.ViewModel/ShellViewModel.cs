@@ -37,11 +37,11 @@ namespace BloodBank.ViewModel {
 
             Items.Add(new NavigationMenuItem("Donatori", "AccountMultiple", donatoriViewModel));
             Items.Add(new NavigationMenuItem("Donazioni", "Heart", donazioniViewModel));
-            Items.Add(new NavigationMenuItem("Questionari", "Book", listeIndaginiQuestionarioViewModel));
-            Items.Add(new NavigationMenuItem("Visite Mediche", "Hospital", visiteMedicheViewModel));
+            Items.Add(new NavigationMenuItem("Analisi", "Hospital", listeVociAnalisiViewModel));
+            Items.Add(new NavigationMenuItem("Questionari", "Book", listeVociQuestionarioViewModel));
             Items.Add(new NavigationMenuItem("Sacche di Sangue", "Water", saccheSangueViewModel));
-            Items.Add(new NavigationMenuItem("Analisi", "Biohazard", listeVociAnalisiViewModel));
-            Items.Add(new NavigationMenuItem("Questionari", "EmoticonSad", listeVociQuestionarioViewModel));
+            Items.Add(new NavigationMenuItem("Questionari", "Pencil", listeIndaginiQuestionarioViewModel));
+            Items.Add(new NavigationMenuItem("Visite Mediche", "Stethoscope", visiteMedicheViewModel));
             Items.Add(new NavigationMenuItem("NewQuestionario", "Help", newListaVociViewModel));
             Items.Add(new NavigationMenuItem("Nuova Donazione", "Skull", newDonazioneViewModel));
         }
