@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using BloodBank.Model.Models.Tests;
 using BloodBank.Model.Service;
 using static BloodBank.Mock.DonatoreService;
@@ -24,7 +25,7 @@ namespace BloodBank.Mock
         private static readonly IList<VisitaMedica> Items = new List<VisitaMedica>() { 
             V1, V2, V3, V4, V5, V6, V7, V8, V9, V10
             };
-        public VisitaMedicaService() : base(Items)
+        public VisitaMedicaService() : base(Items.OrderBy(visitaMedica => visitaMedica.Data).ToList())
         {
         }
     }
