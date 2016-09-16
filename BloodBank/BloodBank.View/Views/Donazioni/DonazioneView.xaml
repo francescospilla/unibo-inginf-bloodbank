@@ -13,7 +13,7 @@
 
     <Grid Margin="10">
         <Grid.Resources>
-            <Style TargetType="{x:Type DatePicker}" BasedOn="{StaticResource MaterialDesignDatePicker}">
+            <Style TargetType="{x:Type DatePicker}" BasedOn="{StaticResource MaterialDesignFloatingHintDatePicker}">
                 <Setter Property="Margin" Value="10 10 10 7" />
                 <Setter Property="VerticalAlignment" Value="Bottom" />
             </Style>
@@ -21,7 +21,7 @@
                 <Setter Property="Margin" Value="10 10 10 7" />
                 <Setter Property="VerticalAlignment" Value="Bottom" />
             </Style>
-            <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource MaterialDesignComboBox}">
+            <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource MaterialDesignFloatingHintComboBox}">
                 <Setter Property="Margin" Value="10 10 10 7" />
             </Style>
             <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignFloatingHintTextBox}">
@@ -62,8 +62,10 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-        <DatePicker Grid.Column="0" x:Name="DatePickerDataDonazione" md:HintAssist.Hint="Data Donazione"  IsEnabled="False" SelectedDate="{Binding Path=Data.Date, UpdateSourceTrigger=PropertyChanged}" />
-        <md:TimePicker Grid.Column="1" x:Name="TimePickerOraDonazione" md:HintAssist.Hint="Ora Donazione" IsEnabled="False" SelectedTime="{Binding Path=Data.Time, UpdateSourceTrigger=PropertyChanged}"  />
+         <TextBox Grid.Column="0"  x:Name="TextBoxDataDonazione" md:HintAssist.Hint="Data Donazione" Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsEnabled="False" Text="{Binding Path=Data, StringFormat=d}">
+            </TextBox>
+            <TextBox Grid.Column="1" x:Name="TextBoxOraDonazione" md:HintAssist.Hint="Ora Donazione" Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsEnabled="False" Text="{Binding Path=DataOra, StringFormat=t}">
+            </TextBox>
         </Grid>
 
 

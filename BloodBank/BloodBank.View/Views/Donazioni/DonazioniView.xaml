@@ -47,7 +47,7 @@
                                         <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
                                     <StackPanel Grid.Column="0" Margin="8">
-                                        <TextBlock Text="{Binding Data}" />
+                                        <TextBlock Text="{Binding Data, StringFormat=d}" />
                                         <TextBlock FontWeight="Bold" Text="{Binding Donatore}" />
                                         <TextBlock Text="{Binding TipoDonazione}" />
                                         <TextBlock Text="{Binding Donatore.GruppoSanguigno}" />
