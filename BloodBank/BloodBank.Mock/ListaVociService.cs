@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using BloodBank.Model.Models.Indagini;
 using BloodBank.Model.Models.Tests;
 using BloodBank.Model.Service;
@@ -11,7 +12,7 @@ namespace BloodBank.Mock
 {
     public abstract class ListaVociService<U> : DataService<ListaVoci<U>> where U : ListaVoci
     {
-        protected ListaVociService(IList<ListaVoci<U>> items) : base(items)
+        protected ListaVociService(IList<ListaVoci<U>> items) : base(items.OrderBy(listaVoci => listaVoci.Data).ToList())
         {
         }
     }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using BloodBank.Model.Models.Donazioni;
 using BloodBank.Model.Service;
 using static BloodBank.Mock.DonatoreService;
@@ -22,7 +23,7 @@ namespace BloodBank.Mock
             Donazione1, Donazione2, Donazione3, Donazione4
         };
 
-        public DonazioneService(IList<Donazione> items) : base(Items)
+        public DonazioneService(IList<Donazione> items) : base(Items.OrderBy(donazione => donazione.Data).ToList())
         {
         }
     }
