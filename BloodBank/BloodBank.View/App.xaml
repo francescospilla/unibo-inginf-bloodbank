@@ -11,6 +11,7 @@
 			 xmlns:viewModel="clr-namespace:BloodBank.ViewModel;assembly=BloodBank.ViewModel"
 			 xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
 			 xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+			 xmlns:userControls="clr-namespace:BloodBank.View.UserControls"
 			 mc:Ignorable="d ignore">
 
     <Application.Resources>
@@ -62,6 +63,7 @@
             <converters:BoolInverterConverter x:Key="BoolInverter" />
             <converters:BoolToVisibilityConverter x:Key="BoolToVisibility" TrueValue="Visible" FalseValue="Collapsed" />
             <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityInverted" TrueValue="Collapsed" FalseValue="Visible" />
+            <converters:BoolToStringConverter x:Key="BoolToSiNo" TrueValue="Sì" FalseValue="No" />
             <converters:EnumDisplayAttributeOrHumanizeConverter x:Key="EnumToString" />
 
             <system:Boolean x:Key="True">True</system:Boolean>
@@ -119,6 +121,9 @@
             <Style TargetType="{x:Type ListBox}" BasedOn="{StaticResource MaterialDesignListBox}">
                 <Setter Property="ItemContainerStyle" Value="{StaticResource NoPaddingMaterialDesignListBoxItem}" />
             </Style>
+            
+            <!-- SpecialComboBox Material Design theme -->
+            <Style TargetType="{x:Type userControls:FilteredEditableComboBox}" BasedOn="{StaticResource MaterialDesignComboBox}" />
 
             <!-- EditableViewModel Helper Icon -->
             <Style x:Key="EditableHelperIconStyle" TargetType="{x:Type md:PackIcon}">

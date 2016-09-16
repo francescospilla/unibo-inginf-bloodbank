@@ -1,0 +1,97 @@
+﻿<UserControl x:Class="BloodBank.View.Views.IndaginiView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:converters="clr-namespace:BloodBank.View.Converters"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
+             xmlns:userControls="clr-namespace:BloodBank.View.UserControls"
+             xmlns:s="https://github.com/canton7/Stylet"
+             xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:tests="clr-namespace:BloodBank.Model.Models.Tests;assembly=BloodBank.Model"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="500">
+
+    <UserControl.Resources>
+        <x:Array Type="{x:Type system:String}" x:Key="IndaginiPriorityList">
+            <system:String>Id</system:String>
+            <system:String>Testo</system:String>
+            <system:String>IdoneitàFallimento</system:String>
+            <system:String>RisultatoCorretto</system:String>
+            <system:String>RangeMin</system:String>
+            <system:String>RangeMax</system:String>
+        </x:Array>
+        <converters:CollectionToDataTableConverter x:Key="IndaginiToDataTable">
+            <converters:CollectionToDataTableConverter.PropertySorter>
+                <converters:PriorityPropertyComparer PriorityList="{StaticResource IndaginiPriorityList}" />
+            </converters:CollectionToDataTableConverter.PropertySorter>
+        </converters:CollectionToDataTableConverter>
+
+        <Style TargetType="{x:Type TextBlock}" x:Key="WrappedTextBlockStyle">
+            <Setter Property="TextWrapping" Value="WrapWithOverflow"/>
+            <Setter Property="MaxWidth" Value="400" />
+        </Style>
+    </UserControl.Resources>
+
+    <DockPanel>
+        <userControls:AppBar Title="{Binding DisplayName}" NavMenuButtonClickAction="{s:Action OpenNavMenu}" DockPanel.Dock="Top" Panel.ZIndex="1" />
+
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <Grid Margin="0 10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0">
+                    <md:Card Margin="20 10" Padding="10 0 10 30" MaxWidth="1000">
+                        <StackPanel>
+                            <TextBlock Margin="0 10 0 0" Text="Indagini Analisi" Style="{StaticResource MaterialDesignDisplay1TextBlock}" />
+                            <DataGrid ItemsSource="{Binding IndaginiAnalisi, Converter={StaticResource IndaginiToDataTable}}" IsReadOnly="True" FrozenColumnCount="1" CanUserResizeColumns="False" AutoGenerateColumns="True" AutoGeneratingColumn="Grid_OnAutoGeneratingColumn"  />
+                        </StackPanel>
+                    </md:Card>
+                    <md:PopupBox ToolTip="Aggiungi ... per Analisi" Style="{StaticResource MaterialDesignMultiFloatingActionAccentPopupBox}" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10" PlacementMode="TopAndAlignCentres">
+                        <StackPanel>
+                            <Button ToolTip="Indagine Range (Decimale)" Command="{s:Action OpenNewIndagineRangeDoubleAnalisiDialog}">
+                                <md:PackIcon Kind="Numeric" />
+                            </Button>
+                            <Button ToolTip="Indagine Range (Intero)" Command="{s:Action OpenNewIndagineRangeIntAnalisiDialog}">
+                                <md:PackIcon Kind="Numeric" />
+                            </Button>
+                            <Button ToolTip="Indagine Boolean" Command="{s:Action OpenNewIndagineBooleanAnalisiDialog}">
+                                <md:PackIcon Kind="CheckBoxMarkedCircleOutline" />
+                            </Button>
+                        </StackPanel>
+                    </md:PopupBox>
+                </Grid>
+
+                <Grid Grid.Row="1">
+                    <md:Card Margin="20 10" Padding="10 0 10 30" MaxWidth="1000">
+                        <StackPanel>
+                            <TextBlock Margin="0 10 0 0" Text="Indagini Questionario" Style="{StaticResource MaterialDesignDisplay1TextBlock}" />
+                            <DataGrid ItemsSource="{Binding IndaginiQuestionario, Converter={StaticResource IndaginiToDataTable}}" IsReadOnly="True" FrozenColumnCount="1" CanUserResizeColumns="False" AutoGenerateColumns="True" AutoGeneratingColumn="Grid_OnAutoGeneratingColumn" />
+                        </StackPanel>
+                    </md:Card>
+                    <md:PopupBox ToolTip="Aggiungi ... per Questionario" Style="{StaticResource MaterialDesignMultiFloatingActionAccentPopupBox}" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10" PlacementMode="TopAndAlignCentres">
+                        <StackPanel>
+                            <Button ToolTip="Indagine Range (Decimale)" Command="{s:Action OpenNewIndagineRangeDoubleQuestionarioDialog}">
+                                <md:PackIcon Kind="Numeric" />
+                            </Button>
+                            <Button ToolTip="Indagine Range (Intero)" Command="{s:Action OpenNewIndagineRangeIntQuestionarioDialog}">
+                                <md:PackIcon Kind="Numeric" />
+                            </Button>
+                            <Button ToolTip="Indagine Boolean" Command="{s:Action OpenNewIndagineBooleanQuestionarioDialog}">
+                                <md:PackIcon Kind="CheckBoxMarkedCircleOutline" />
+                            </Button>
+                        </StackPanel>
+                    </md:PopupBox>
+
+                </Grid>
+
+            </Grid>
+        </ScrollViewer>
+
+    </DockPanel>
+
+</UserControl>
+

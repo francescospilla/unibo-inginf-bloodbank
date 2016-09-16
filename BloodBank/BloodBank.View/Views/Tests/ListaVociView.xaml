@@ -22,7 +22,7 @@
                 <Setter Property="Margin" Value="10 10 10 7" />
             </Style>
             <Style TargetType="{x:Type md:PackIcon}">
-                <Setter Property="Margin" Value="10 10 10 7"  />
+                <Setter Property="Margin" Value="10 10 10 12"  />
                 <Setter Property="VerticalAlignment" Value="Bottom" />
                 <Setter Property="HorizontalAlignment" Value="Center" />
             </Style>

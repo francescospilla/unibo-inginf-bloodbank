@@ -128,9 +128,16 @@
     <Compile Include="Components\PushBinding\PushBindingCollection.cs" />
     <Compile Include="Components\PushBinding\PushBindingManager.cs" />
     <Compile Include="Components\ReadOnlyPanel.cs" />
+    <Compile Include="Converters\PriorityPropertyComparer.cs" />
+    <Compile Include="Converters\CollectionToDataTableConverter.cs" />
+    <Compile Include="Converters\ObjectToDictionaryConverter.cs" />
     <Compile Include="Converters\StringToPackIconConverter.cs" />
     <Compile Include="UserControls\FilterControl.cs" />
     <Compile Include="Views\Donazioni\DonazioniView.xaml.cs" />
+    <Compile Include="UserControls\FilteredEditableComboBox.cs" />
+    <Compile Include="Views\IndaginiView.xaml.cs">
+      <DependentUpon>IndaginiView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Indagini\ListaIndaginiView.xaml.cs">
       <DependentUpon>ListaIndaginiView.xaml</DependentUpon>
     </Compile>
@@ -149,6 +156,8 @@
     <Compile Include="Views\NewListaVociView.xaml.cs">
       <DependentUpon>NewListaVociView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\NuovaIndagineRangeDialogView.cs" />
+    <Compile Include="Views\NuovaIndagineBooleanDialogView.cs" />
     <Compile Include="Views\Persone\DonatoreView.xaml.cs">
       <DependentUpon>DonatoreView.xaml</DependentUpon>
     </Compile>
@@ -188,6 +197,10 @@
     <Page Include="Views\Donazioni\DonazioneView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\IndaginiView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Donazioni\DonazioniView.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -234,6 +247,12 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Tests\ListeVociView.xaml">
+    </Page>
+    <Page Include="Views\NuovaIndagineBooleanDialogView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NuovaIndagineRangeDialogView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

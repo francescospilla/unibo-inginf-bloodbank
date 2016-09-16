@@ -30,7 +30,7 @@ namespace BloodBank.ViewModel.Service {
                 _viewModelList = new ObservableCollection<TViewModel>(_modelService.GetModels().Select(CreateViewModel));
                 _viewModelList.CollectionChanged += (sender, e) => {
                     foreach (object item in e.NewItems) {
-                        _eventAggregator.PublishOnUIThread(new ViewModelCollectionChangedEvent<TViewModel>((TViewModel)item));
+                        _eventAggregator.Publish(new ViewModelCollectionChangedEvent<TViewModel>((TViewModel)item));
                     }
                 };
             }

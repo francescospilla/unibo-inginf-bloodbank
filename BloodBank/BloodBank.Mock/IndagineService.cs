@@ -23,7 +23,7 @@ namespace BloodBank.Mock
         internal static IndagineBoolean<Questionario> Q3 = new IndagineBoolean<Questionario>("Nell'ultima settimana si è sottoposto a cure odontoiatriche o ad interventi di piccola chirurgia ambulatoriale?", Idoneità.NonIdoneo, false);
         internal static IndagineRange<Questionario, int> Q4 = new IndagineRange<Questionario, int>("Peso (kg)", Idoneità.NonIdoneo, 50, int.MaxValue);
         internal static IndagineBoolean<Questionario> Q5 = new IndagineBoolean<Questionario>("Ha fatto tatuaggi negli ultimi 6 mesi?", Idoneità.Sospeso, false);
-        internal static IndagineRange<Questionario, double> Q6 = new IndagineRange<Questionario, double>("Valore emoglobina (g/dL)", Idoneità.NonIdoneo, 12.5, double.MaxValue);
+        internal static IndagineRange<Questionario, double> Q6 = new IndagineRange<Questionario, double>("Valore emoglobina (g/dL)", Idoneità.NonIdoneo, 12.5, double.PositiveInfinity);
         internal static IndagineBoolean<Questionario> Q7 = new IndagineBoolean<Questionario>("È attualmente in gravidanza?", Idoneità.NonIdoneo, false);
         internal static IndagineBoolean<Questionario> Q8 = new IndagineBoolean<Questionario>("Ha mai assunto o assume sostanze stupefacenti?", Idoneità.NonIdoneo, false);
         internal static IndagineBoolean<Questionario> Q9 = new IndagineBoolean<Questionario>("Si è recentemente sottoposto ad agopuntura?", Idoneità.Sospeso, false);

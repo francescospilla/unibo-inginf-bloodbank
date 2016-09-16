@@ -16,7 +16,12 @@
         <ImageBrush ImageSource="/Resources/bg.jpg" />
     </Window.Background>
 
-    <md:DialogHost Identifier="LayoutRoot">
+    <md:DialogHost Identifier="LayoutRoot" IsOpen="{Binding IsDialogOpen}" DialogContent="{Binding DialogContent, Mode=OneWay}">
+        <md:DialogHost.DialogContentTemplate>
+            <DataTemplate>
+                <ContentControl s:View.Model="{Binding }" />
+            </DataTemplate>
+        </md:DialogHost.DialogContentTemplate>
         <md:DrawerHost IsLeftDrawerOpen="{Binding ElementName=NavMenuButton, Path=IsChecked}">
 
             <md:DrawerHost.LeftDrawerContent>

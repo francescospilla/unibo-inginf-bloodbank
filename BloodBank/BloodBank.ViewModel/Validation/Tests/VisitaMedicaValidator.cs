@@ -5,9 +5,12 @@ using BloodBank.ViewModel.ViewModels;
 using BloodBank.ViewModel.ViewModels.Tests;
 using FluentValidation;
 
-namespace BloodBank.ViewModel.Validation.Tests {
-    public class VisitaMedicaValidator : AbstractValidator<VisitaMedicaViewModel> {
-        public VisitaMedicaValidator(IDataService<VisitaMedica> dataService) {
+namespace BloodBank.ViewModel.Validation.Tests
+{
+    public class VisitaMedicaValidator : AbstractValidator<VisitaMedicaViewModel>
+    {
+        public VisitaMedicaValidator()
+        {
             RuleFor(vm => vm.Donatore).NotEmpty();
             RuleFor(vm => vm.Medico).NotEmpty();
             RuleFor(vm => vm.DescrizioneBreve).NotEmpty();

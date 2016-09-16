@@ -1,0 +1,88 @@
+﻿<UserControl x:Class="BloodBank.View.Views.NuovaIndagineRangeDialogView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:md="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
+             xmlns:xaml="https://github.com/canton7/Stylet"
+             xmlns:userControls="clr-namespace:BloodBank.View.UserControls"
+             mc:Ignorable="d" d:DesignHeight="600" d:DesignWidth="800">
+
+    <UserControl.Resources>
+    </UserControl.Resources>
+
+    <Grid Margin="10">
+        <Grid.Resources>
+            <Style TargetType="{x:Type userControls:FilteredEditableComboBox}" BasedOn="{StaticResource MaterialDesignFloatingHintComboBox}">
+                <Setter Property="Margin" Value="10 10 10 7" />
+            </Style>
+            <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource MaterialDesignFloatingHintComboBox}">
+                <Setter Property="Margin" Value="10 10 10 7" />
+            </Style>
+            <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignFloatingHintTextBox}">
+                <Setter Property="Margin" Value="10 10 10 7" />
+            </Style>
+            <Style TargetType="{x:Type md:PackIcon}">
+                <Setter Property="Margin" Value="10 10 10 12"  />
+                <Setter Property="VerticalAlignment" Value="Bottom" />
+                <Setter Property="HorizontalAlignment" Value="Center" />
+            </Style>
+        </Grid.Resources>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="80"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="Nuova Indagine Range" Style="{StaticResource MaterialDesignDisplay1TextBlock}" />
+
+        <md:PackIcon Grid.Row="1" Grid.Column="0" Kind="Pencil" Foreground="{Binding ElementName=TextBoxTesto, Path=BorderBrush}" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="10,25,10,0" />
+        <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" MinLines="2" x:Name="TextBoxTesto" md:HintAssist.Hint="Inserire il testo dell'indagine"
+                                 Text="{Binding Path=Testo, UpdateSourceTrigger=PropertyChanged}" VerticalContentAlignment="Top"  TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True">
+        </TextBox>
+
+        <md:PackIcon Grid.Row="2" Grid.Column="2" Kind="ThumbsUpDown" Foreground="{Binding ElementName=ComboBoxIdoneitaFallimento, Path=BorderBrush}" />
+        <ComboBox Grid.Row="2" Grid.Column="3" x:Name="ComboBoxIdoneitaFallimento" md:HintAssist.Hint="Idoneità in caso di fallimento" ItemsSource="{Binding IdoneitàEnumerable}" VerticalAlignment="Center"
+                                      SelectedItem="{Binding Path=IdoneitaFallimento, UpdateSourceTrigger=PropertyChanged}">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Converter={StaticResource EnumToString}}" />
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+
+        <md:PackIcon Grid.Row="2" Grid.Column="0" Kind="Check" />
+        <Grid Grid.Row="2" Grid.Column="1" Margin="10 10 10 7">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <userControls:FilteredEditableComboBox Grid.Column="0" x:Name="TextBoxRangeMin" md:HintAssist.Hint="Estremo Inferiore" ItemsSource="{Binding Path=RangeEnumerable}" SelectedItem="{Binding Path=RangeMin, UpdateSourceTrigger=PropertyChanged}">
+                <userControls:FilteredEditableComboBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel />
+                    </ItemsPanelTemplate>
+                </userControls:FilteredEditableComboBox.ItemsPanel>
+            </userControls:FilteredEditableComboBox>
+            <userControls:FilteredEditableComboBox Grid.Column="1" x:Name="TextBoxRangeMax" md:HintAssist.Hint="Estremo Superiore" ItemsSource="{Binding Path=RangeEnumerable}" SelectedItem="{Binding Path=RangeMax, UpdateSourceTrigger=PropertyChanged}">
+                <userControls:FilteredEditableComboBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel />
+                    </ItemsPanelTemplate>
+                </userControls:FilteredEditableComboBox.ItemsPanel>
+            </userControls:FilteredEditableComboBox>
+        </Grid>
+        <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Style="{DynamicResource MaterialDesignFlatButton}" Content="SALVA" Command="{xaml:Action Save}" />
+            <Button Style="{DynamicResource MaterialDesignFlatButton}" Content="CANCELLA" Command="md:DialogHost.CloseDialogCommand" />
+        </StackPanel>
+    </Grid>
+</UserControl>
