@@ -79,6 +79,8 @@ namespace BloodBank.ViewModel.ViewModels
     [ImplementPropertyChanged]
     public class NuovaIndagineRangeIntAnalisiDialogViewModel : NuovaIndagineRangeDialogViewModel<Analisi, int>
     {
+        public IEnumerable<int> RangeEnumerable { get; } = Enumerable.Range(-1000, 2000).ToList();
+
         public NuovaIndagineRangeIntAnalisiDialogViewModel(IEventAggregator eventAggregator,
             IModelValidator<NuovaIndagineRangeDialogViewModel<int>> validator) : base(eventAggregator, validator)
         {
@@ -88,6 +90,9 @@ namespace BloodBank.ViewModel.ViewModels
     [ImplementPropertyChanged]
     public class NuovaIndagineRangeDoubleAnalisiDialogViewModel : NuovaIndagineRangeDialogViewModel<Analisi, double>
     {
+        public IEnumerable<double> RangeEnumerable { get; } = Enumerable.Range(-10000, 20000).Select(i => ((double)i) / 10).ToList();
+
+
         public NuovaIndagineRangeDoubleAnalisiDialogViewModel(IEventAggregator eventAggregator,
             IModelValidator<NuovaIndagineRangeDialogViewModel<double>> validator) : base(eventAggregator, validator)
         {
@@ -97,6 +102,8 @@ namespace BloodBank.ViewModel.ViewModels
     [ImplementPropertyChanged]
     public class NuovaIndagineRangeIntQuestionarioDialogViewModel : NuovaIndagineRangeDialogViewModel<Questionario, int>
     {
+        public IEnumerable<int> RangeEnumerable { get; } = Enumerable.Range(-1000, 2000).ToList();
+
         public NuovaIndagineRangeIntQuestionarioDialogViewModel(IEventAggregator eventAggregator, IModelValidator<NuovaIndagineRangeDialogViewModel<int>> validator) : base(eventAggregator, validator)
         {
         }
@@ -105,6 +112,9 @@ namespace BloodBank.ViewModel.ViewModels
     [ImplementPropertyChanged]
     public class NuovaIndagineRangeDoubleQuestionarioDialogViewModel : NuovaIndagineRangeDialogViewModel<Questionario, double>
     {
+        public IEnumerable<double> RangeEnumerable { get; } = Enumerable.Range(-10000, 20000).Select(i => ((double)i) / 10).ToList();
+
+
         public NuovaIndagineRangeDoubleQuestionarioDialogViewModel(IEventAggregator eventAggregator, IModelValidator<NuovaIndagineRangeDialogViewModel<double>> validator) : base(eventAggregator, validator)
         {
         }

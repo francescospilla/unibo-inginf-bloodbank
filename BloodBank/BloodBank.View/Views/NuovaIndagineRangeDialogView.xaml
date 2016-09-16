@@ -6,7 +6,6 @@
              xmlns:md="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
              xmlns:xaml="https://github.com/canton7/Stylet"
              xmlns:userControls="clr-namespace:BloodBank.View.UserControls"
-             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              mc:Ignorable="d" d:DesignHeight="600" d:DesignWidth="800">
 
     <UserControl.Resources>
@@ -14,6 +13,9 @@
 
     <Grid Margin="10">
         <Grid.Resources>
+            <Style TargetType="{x:Type userControls:FilteredEditableComboBox}" BasedOn="{StaticResource MaterialDesignFloatingHintComboBox}">
+                <Setter Property="Margin" Value="10 10 10 7" />
+            </Style>
             <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource MaterialDesignFloatingHintComboBox}">
                 <Setter Property="Margin" Value="10 10 10 7" />
             </Style>
@@ -22,11 +24,6 @@
             </Style>
             <Style TargetType="{x:Type md:PackIcon}">
                 <Setter Property="Margin" Value="10 10 10 12"  />
-                <Setter Property="VerticalAlignment" Value="Bottom" />
-                <Setter Property="HorizontalAlignment" Value="Center" />
-            </Style>
-            <Style TargetType="{x:Type xctk:DecimalUpDown}">
-                <Setter Property="Margin" Value="10 10 10 7"  />
                 <Setter Property="VerticalAlignment" Value="Bottom" />
                 <Setter Property="HorizontalAlignment" Value="Center" />
             </Style>
@@ -68,15 +65,20 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <xctk:DecimalUpDown Grid.Column="0" x:Name="DecimalUpDownRangeMin" Watermark="Estremo Inferiore" Text="{Binding Path=RangeMin, UpdateSourceTrigger=PropertyChanged}" AllowSpin="True"/>
-            <xctk:DecimalUpDown Grid.Column="1" x:Name="DecimalUpDownRangeMax" Watermark="Estremo Superiore" Text="{Binding Path=RangeMax, UpdateSourceTrigger=PropertyChanged}" AllowSpin="True" Increment=".1"/>
-
-            <!--<userControls:NoBlankSpacesTextBox Grid.Column="0" x:Name="TextBoxRangeMin" md:HintAssist.Hint="Estremo Inferiore" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                                     Text="{Binding Path=RangeMin, UpdateSourceTrigger=PropertyChanged}">
-            </userControls:NoBlankSpacesTextBox>
-            <userControls:NoBlankSpacesTextBox Grid.Column="1" x:Name="TextBoxRangeMax" md:HintAssist.Hint="Estremo Superiore" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                                     Text="{Binding Path=RangeMax, UpdateSourceTrigger=PropertyChanged}">
-            </userControls:NoBlankSpacesTextBox>-->
+            <userControls:FilteredEditableComboBox Grid.Column="0" x:Name="TextBoxRangeMin" md:HintAssist.Hint="Estremo Inferiore" ItemsSource="{Binding Path=RangeEnumerable}" SelectedItem="{Binding Path=RangeMin, UpdateSourceTrigger=PropertyChanged}">
+                <userControls:FilteredEditableComboBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel />
+                    </ItemsPanelTemplate>
+                </userControls:FilteredEditableComboBox.ItemsPanel>
+            </userControls:FilteredEditableComboBox>
+            <userControls:FilteredEditableComboBox Grid.Column="1" x:Name="TextBoxRangeMax" md:HintAssist.Hint="Estremo Superiore" ItemsSource="{Binding Path=RangeEnumerable}" SelectedItem="{Binding Path=RangeMax, UpdateSourceTrigger=PropertyChanged}">
+                <userControls:FilteredEditableComboBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel />
+                    </ItemsPanelTemplate>
+                </userControls:FilteredEditableComboBox.ItemsPanel>
+            </userControls:FilteredEditableComboBox>
         </Grid>
         <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button Style="{DynamicResource MaterialDesignFlatButton}" Content="SALVA" Command="{xaml:Action Save}" />

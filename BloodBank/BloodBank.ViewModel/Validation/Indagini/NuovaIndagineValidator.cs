@@ -20,15 +20,17 @@ namespace BloodBank.ViewModel.Validation.Indagini
         }
     }
 
-    public class NuovaIndagineRangeValidator<T> : AbstractValidator<NuovaIndagineRangeDialogViewModel<T>> where T : struct, IComparable<T>
+    public class NuovaIndagineRangeValidator<T> : AbstractValidator<NuovaIndagineRangeDialogViewModel<T>> where T : struct, IComparable<T>, IComparable
     {
         public NuovaIndagineRangeValidator()
         {
             RuleFor(vm => vm.Testo).NotEmpty();
             RuleFor(vm => vm.IdoneitaFallimento).NotNull().IsInEnum();
-            RuleFor(vm => vm.RangeMin).NotEmpty();
-            RuleFor(vm => vm.RangeMax).NotEmpty();
-            RuleFor(vm => vm).Must(vm => vm.RangeMin.GetValueOrDefault().CompareTo(vm.RangeMax.GetValueOrDefault()) <= 0);
+            RuleSet("Range", () => {
+                RuleFor(vm => vm.RangeMin).NotEmpty().LessThanOrEqualTo(vm => vm.RangeMax);
+                RuleFor(vm => vm.RangeMax).NotEmpty().GreaterThanOrEqualTo(vm => vm.RangeMin);
+            });
+
         }
     }
 

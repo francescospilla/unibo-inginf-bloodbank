@@ -11,6 +11,7 @@
 			 xmlns:viewModel="clr-namespace:BloodBank.ViewModel;assembly=BloodBank.ViewModel"
 			 xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
 			 xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+			 xmlns:userControls="clr-namespace:BloodBank.View.UserControls"
 			 mc:Ignorable="d ignore">
 
     <Application.Resources>
@@ -120,6 +121,9 @@
             <Style TargetType="{x:Type ListBox}" BasedOn="{StaticResource MaterialDesignListBox}">
                 <Setter Property="ItemContainerStyle" Value="{StaticResource NoPaddingMaterialDesignListBoxItem}" />
             </Style>
+            
+            <!-- SpecialComboBox Material Design theme -->
+            <Style TargetType="{x:Type userControls:FilteredEditableComboBox}" BasedOn="{StaticResource MaterialDesignComboBox}" />
 
             <!-- EditableViewModel Helper Icon -->
             <Style x:Key="EditableHelperIconStyle" TargetType="{x:Type md:PackIcon}">
