@@ -7,6 +7,7 @@ using BloodBank.Core.Extensions;
 using BloodBank.Model.Models;
 using BloodBank.Model.Models.Indagini.Tipi;
 using BloodBank.Model.Models.Tests;
+using BloodBank.ViewModel.Events;
 using PropertyChanged;
 using Stylet;
 
@@ -15,6 +16,8 @@ namespace BloodBank.ViewModel.ViewModels
     [ImplementPropertyChanged]
     public abstract class NuovaIndagineRangeDialogViewModel<T> : Screen where T : struct, IComparable<T>
     {
+        private readonly IEventAggregator _eventAggregator;
+
         protected NuovaIndagineRangeDialogViewModel(IEventAggregator eventAggregator,
             IModelValidator<NuovaIndagineRangeDialogViewModel<T>> validator) : base(validator)
         {
@@ -22,6 +25,7 @@ namespace BloodBank.ViewModel.ViewModels
                 AutoValidate = true;
                 Validate();
             }
+            _eventAggregator = eventAggregator;
         }
 
         #region Properties
@@ -50,9 +54,8 @@ namespace BloodBank.ViewModel.ViewModels
         public void Save()
         {
             if (Validator != null && !Validate()) return;
-            object model = CreateModelFromViewModel();
-            //TODO: notifica al view parent
-
+            SaveIndagineEvent e = new SaveIndagineEvent(CreateModelFromViewModel());
+           _eventAggregator.PublishOnUIThread(e);
         }
 
         protected abstract object CreateModelFromViewModel();
@@ -62,7 +65,7 @@ namespace BloodBank.ViewModel.ViewModels
     }
 
     [ImplementPropertyChanged]
-    public class NuovaIndagineRangeDialogViewModel<U, T> : NuovaIndagineRangeDialogViewModel<T> where T : struct , IComparable<T>
+    public class NuovaIndagineRangeDialogViewModel<U, T> : NuovaIndagineRangeDialogViewModel<T> where T : struct, IComparable<T>
         where U : ListaVoci
     {
         public NuovaIndagineRangeDialogViewModel(IEventAggregator eventAggregator,
