@@ -13,7 +13,11 @@
 
     <Grid Margin="10">
         <Grid.Resources>
-            <Style TargetType="{x:Type DatePicker}" BasedOn="{StaticResource MaterialDesignDatePicker}">
+            <Style TargetType="{x:Type DatePicker}" BasedOn="{StaticResource MaterialDesignFloatingHintDatePicker}">
+                <Setter Property="Margin" Value="10 10 10 7" />
+                <Setter Property="VerticalAlignment" Value="Bottom" />
+            </Style>
+            <Style TargetType="{x:Type md:TimePicker}" BasedOn="{StaticResource MaterialDesignFloatingHintTimePicker}">
                 <Setter Property="Margin" Value="10 10 10 7" />
                 <Setter Property="VerticalAlignment" Value="Bottom" />
             </Style>
