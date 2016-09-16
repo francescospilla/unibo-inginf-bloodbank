@@ -57,10 +57,14 @@
         </ComboBox>
 
         <md:PackIcon Grid.Row="1" Grid.Column="2" Kind="Calendar" Foreground="{Binding ElementName=DatePickerDataVisitaMedica, Path=BorderBrush}" />
-        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="3">
-            <DatePicker x:Name="DatePickerDataVisitaMedica" md:HintAssist.Hint="Data della Visita"  IsEnabled="{Binding IsInitialized, Converter={StaticResource BoolInverter}}" SelectedDate="{Binding Path=Data.Date, UpdateSourceTrigger=PropertyChanged}" />
-            <md:TimePicker x:Name="TimePickerOraVisitaMedica" md:HintAssist.Hint="Ora della Visita" IsEnabled="{Binding IsInitialized, Converter={StaticResource BoolInverter}}" SelectedTime="{Binding Path=Data.Time, UpdateSourceTrigger=PropertyChanged}"  />
-        </StackPanel>
+        <Grid Grid.Row="1" Grid.Column="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <DatePicker Grid.Column="0" x:Name="DatePickerDataVisitaMedica" md:HintAssist.Hint="Data della Visita"  IsEnabled="{Binding IsInitialized, Converter={StaticResource BoolInverter}}" SelectedDate="{Binding Path=Data, UpdateSourceTrigger=PropertyChanged}" />
+            <md:TimePicker Grid.Column="1" x:Name="TimePickerOraVisitaMedica" md:HintAssist.Hint="Ora della Visita" IsEnabled="{Binding IsInitialized, Converter={StaticResource BoolInverter}}" Is24Hours="True" SelectedTime="{Binding Path=DataOra, UpdateSourceTrigger=PropertyChanged}"  />
+        </Grid>
 
         <md:PackIcon Grid.Row="2" Grid.Column="0" Kind="Account" Foreground="{Binding ElementName=ComboBoxNomeDonatore, Path=BorderBrush}" />
         <ComboBox Grid.Row="2" Grid.Column="1" x:Name="ComboBoxNomeDonatore" md:HintAssist.Hint="Nome Paziente" ItemsSource="{Binding Path=DonatoreEnumerable}" IsEnabled="{Binding IsInitialized, Converter={StaticResource BoolInverter}}"

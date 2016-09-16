@@ -15,7 +15,13 @@ namespace BloodBank.ViewModel.Validation.Tests
             RuleFor(vm => vm.Medico).NotEmpty();
             RuleFor(vm => vm.DescrizioneBreve).NotEmpty();
             RuleFor(vm => vm.Idoneità).NotNull().IsInEnum();
-            RuleFor(vm => vm.Data).GreaterThan(vm => vm.Donatore.ListaTest.Last().Data).When(vm => vm.Donatore != null && vm.Donatore.ListaTest.Any());
+            RuleFor(vm => vm.DataOra).GreaterThan(vm => vm.Donatore.ListaTest.Last().Data).When(vm =>
+            {
+                if (vm.Donatore == null) return false;
+                Test lastTest = vm.Donatore.ListaTest.LastOrDefault();
+                if (lastTest == null) return false;
+                return !ReferenceEquals(lastTest, vm.Model);
+            });
             RuleFor(vm => vm.Referto).NotEmpty();
         }
     }

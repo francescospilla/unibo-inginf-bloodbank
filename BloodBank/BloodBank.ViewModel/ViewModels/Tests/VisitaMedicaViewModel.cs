@@ -40,10 +40,25 @@ namespace BloodBank.ViewModel.ViewModels.Tests
 
         public string StringaRicerca => this.PropertyList(typeof(SearchableAttribute));
 
+        #region Data e Ora
+        private DateTime _data = DateTime.Now;
+        public DateTime Data
+        {
+            get { return _data; }
+            set { _data = value.Date; }
+        }
+
+        private DateTime _dataOra = DateTime.Now;
+        public DateTime DataOra
+        {
+            get { return _dataOra; }
+            set { _dataOra = Data.Add(value.TimeOfDay); }
+        }
+        #endregion
+
         [Searchable]
         public Donatore Donatore { get; set; }
         public string DescrizioneBreve { get; set;  }
-        public DateTime Data { get; set;  } = DateTime.Now;
         public Idoneità Idoneità { get; set;  }
         public Medico Medico { get; set; }
         public string Referto { get; set; }
@@ -61,6 +76,7 @@ namespace BloodBank.ViewModel.ViewModels.Tests
             Donatore = Model.Donatore;
             DescrizioneBreve = Model.DescrizioneBreve;
             Data = Model.Data;
+            DataOra = Model.Data;
             Idoneità = Model.Idoneità;
             Medico = Model.Medico;
             Referto = Model.Referto;
@@ -68,7 +84,7 @@ namespace BloodBank.ViewModel.ViewModels.Tests
 
         protected override VisitaMedica CreateModelFromViewModel()
         {
-            return new VisitaMedica(Donatore, DescrizioneBreve, Data, Idoneità, Medico, Referto);
+            return new VisitaMedica(Donatore, DescrizioneBreve, DataOra, Idoneità, Medico, Referto);
         }
 
         protected override void SyncViewModelToModel()
