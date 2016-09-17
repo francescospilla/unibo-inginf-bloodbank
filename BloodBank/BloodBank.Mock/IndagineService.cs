@@ -5,18 +5,28 @@ using BloodBank.Model.Models.Indagini.Tipi;
 using BloodBank.Model.Models.Tests;
 using BloodBank.Model.Service;
 
-namespace BloodBank.Mock
-{
+namespace BloodBank.Mock {
 
-    public abstract class IndagineService<U> : DataService<Indagine<U>> where U : ListaVoci
-    {
-        protected IndagineService(IList<Indagine<U>> items) : base(items)
-        {
+    public abstract class IndagineService<U> : DataService<Indagine<U>>, IDataService<Indagine> where U : ListaVoci {
+        protected IndagineService(IList<Indagine<U>> items) : base(items) {
         }
+
+        #region Implementation of IDataService<Indagine>
+
+        void IDataService<Indagine>.AddModel(Indagine model)
+        {
+            AddModel((Indagine<U>) model);
+        }
+
+        IEnumerable<Indagine> IDataService<Indagine>.GetModels()
+        {
+            return GetModels();
+        }
+
+        #endregion
     }
 
-    public class IndagineQuestionarioService : IndagineService<Questionario>
-    {
+    public class IndagineQuestionarioService : IndagineService<Questionario> {
 
         internal static IndagineBoolean<Questionario> Q1 = new IndagineBoolean<Questionario>("È attualmente in buona salute?", Idoneità.Idoneo, true);
         internal static IndagineBoolean<Questionario> Q2 = new IndagineBoolean<Questionario>("Ha attualmente manifestazioni allergiche?", Idoneità.Sospeso, false);
@@ -37,13 +47,11 @@ namespace BloodBank.Mock
             Q1, Q2, Q3, Q4, Q5, Q6, Q7, Q8, Q9, Q10, Q11, Q12
         };
 
-        public IndagineQuestionarioService() : base(Items)
-        {
+        public IndagineQuestionarioService() : base(Items) {
         }
     }
 
-    public class IndagineAnalisiService : IndagineService<Analisi>
-    {
+    public class IndagineAnalisiService : IndagineService<Analisi> {
 
         internal static IndagineRange<Analisi, double> A1 = new IndagineRange<Analisi, double>("Esame emocromocitometrico completo (milioni per ml di sangue)", Idoneità.Sospeso, 3.8, 5.9);
         internal static IndagineRange<Analisi, int> A2 = new IndagineRange<Analisi, int>("Transaminasi ALT con metodo ottimizzato (U/I)", Idoneità.NonIdoneo, 40, int.MaxValue);
@@ -57,8 +65,7 @@ namespace BloodBank.Mock
             A1, A2, A3, A4, A5, A6
         };
 
-        public IndagineAnalisiService() : base(Items)
-        {
+        public IndagineAnalisiService() : base(Items) {
         }
     }
 

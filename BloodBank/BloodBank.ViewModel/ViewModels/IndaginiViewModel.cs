@@ -17,7 +17,7 @@ namespace BloodBank.ViewModel.ViewModels
 {
 
     [ImplementPropertyChanged]
-    public class IndaginiViewModel : Screen, IHandle<SaveIndagineEvent>
+    public class IndaginiViewModel : Screen, IHandle<NuovaIndagineEvent>
     {
         private readonly IEventAggregator _eventAggregator;
         private readonly IDataService<Indagine<Analisi>> _indagineAnalisiDataService;
@@ -108,9 +108,11 @@ namespace BloodBank.ViewModel.ViewModels
         }
 
 
-        #endregion NuovaIndagineButton
+        #endregion
 
-        public void Handle(SaveIndagineEvent e)
+        #region NuovaIndagineEvent
+
+        public void Handle(NuovaIndagineEvent e)
         {
             _eventAggregator.Publish(new DialogEvent(false, null));
 
@@ -118,6 +120,7 @@ namespace BloodBank.ViewModel.ViewModels
             if (indagineAnalisi != null)
             {
                 IndaginiAnalisi.Add(indagineAnalisi);
+                _indagineAnalisiDataService.AddModel(indagineAnalisi);
                 NotifyOfPropertyChange(() => IndaginiAnalisi);
             }
 
@@ -125,9 +128,13 @@ namespace BloodBank.ViewModel.ViewModels
             if (indagineQuestionario != null)
             {
                 IndaginiQuestionario.Add(indagineQuestionario);
+                _indagineQuestionarioDataService.AddModel(indagineQuestionario);
                 NotifyOfPropertyChange(() => IndaginiQuestionario);
             }
         }
+
+        #endregion
+
         #endregion Actions
     }
 }

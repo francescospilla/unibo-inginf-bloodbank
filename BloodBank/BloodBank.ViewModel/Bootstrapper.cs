@@ -1,10 +1,13 @@
-﻿using BloodBank.Model.Service;
+﻿using System.Collections.Generic;
+using BloodBank.Model.Service;
 using BloodBank.ViewModel.Service;
 using StructureMap;
 using Stylet;
 using Stylet.FluentValidation;
 using System.Reflection;
 using BloodBank.Mock;
+using BloodBank.Model.Models.Indagini;
+using BloodBank.Model.Models.Tests;
 using StructureMap.Pipeline;
 using ValidatorExtensions = BloodBank.ViewModel.Validation.ValidatorExtensions;
 

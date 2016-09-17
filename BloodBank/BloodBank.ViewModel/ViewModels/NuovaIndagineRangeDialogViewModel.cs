@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BloodBank.Core.Extensions;
 using BloodBank.Model.Models;
+using BloodBank.Model.Models.Indagini;
 using BloodBank.Model.Models.Indagini.Tipi;
 using BloodBank.Model.Models.Tests;
 using BloodBank.ViewModel.Events;
@@ -14,66 +15,33 @@ using Stylet;
 namespace BloodBank.ViewModel.ViewModels
 {
     [ImplementPropertyChanged]
-    public abstract class NuovaIndagineRangeDialogViewModel<T> : Screen where T : struct, IComparable<T>
+    public abstract class NuovaIndagineRangeDialogViewModel<T> : NuovaIndagineDialogViewModel where T : struct, IComparable<T>
     {
-        private readonly IEventAggregator _eventAggregator;
-
         protected NuovaIndagineRangeDialogViewModel(IEventAggregator eventAggregator,
-            IModelValidator<NuovaIndagineRangeDialogViewModel<T>> validator) : base(validator)
-        {
-            if (validator != null) {
-                AutoValidate = true;
-                Validate();
-            }
-            _eventAggregator = eventAggregator;
-        }
+            IModelValidator<NuovaIndagineRangeDialogViewModel<T>> validator) : base(eventAggregator, validator) { }
 
         #region Properties
 
         public new string DisplayName = "Nuova Indagine Range";
-
-        public string Testo { get; set; }
-        public Idoneità IdoneitaFallimento { get; set; }
+        
         public T? RangeMin { get; set; }
         public T? RangeMax { get; set; }
 
         #endregion Properties
 
-        public IEnumerable<Idoneità> IdoneitàEnumerable { get; } = EnumExtensions.Values<Idoneità>();
-
-        protected override void OnValidationStateChanged(IEnumerable<string> changedProperties) {
-            base.OnValidationStateChanged(changedProperties);
-            // Fody can't weave other assemblies, so we have to manually raise this
-            NotifyOfPropertyChange(() => CanSave);
-        }
-
-        #region Save
-
-        public bool CanSave => !HasErrors;
-
-        public void Save()
-        {
-            if (Validator != null && !Validate()) return;
-            SaveIndagineEvent e = new SaveIndagineEvent(CreateModelFromViewModel());
-           _eventAggregator.Publish(e);
-        }
-
-        protected abstract object CreateModelFromViewModel();
-
-        #endregion Save
-
+        public abstract IEnumerable<T> RangeEnumerable { get; }
     }
 
     [ImplementPropertyChanged]
-    public class NuovaIndagineRangeDialogViewModel<U, T> : NuovaIndagineRangeDialogViewModel<T> where T : struct, IComparable<T>
+    public abstract class NuovaIndagineRangeDialogViewModel<U, T> : NuovaIndagineRangeDialogViewModel<T> where T : struct, IComparable<T>
         where U : ListaVoci
     {
-        public NuovaIndagineRangeDialogViewModel(IEventAggregator eventAggregator,
+        protected NuovaIndagineRangeDialogViewModel(IEventAggregator eventAggregator,
             IModelValidator<NuovaIndagineRangeDialogViewModel<T>> validator) : base(eventAggregator, validator)
         {
         }
-
-        protected override object CreateModelFromViewModel()
+        
+        protected override Indagine CreateModelFromViewModel()
         {
             return new IndagineRange<U, T>(Testo, IdoneitaFallimento, RangeMin.GetValueOrDefault(), RangeMax.GetValueOrDefault());
         }
@@ -82,7 +50,7 @@ namespace BloodBank.ViewModel.ViewModels
     [ImplementPropertyChanged]
     public class NuovaIndagineRangeIntAnalisiDialogViewModel : NuovaIndagineRangeDialogViewModel<Analisi, int>
     {
-        public IEnumerable<int> RangeEnumerable { get; } = Enumerable.Range(-1000, 2000).ToList();
+        public override IEnumerable<int> RangeEnumerable { get; } = Enumerable.Range(-1000, 2001).ToList();
 
         public NuovaIndagineRangeIntAnalisiDialogViewModel(IEventAggregator eventAggregator,
             IModelValidator<NuovaIndagineRangeDialogViewModel<int>> validator) : base(eventAggregator, validator)
@@ -93,7 +61,15 @@ namespace BloodBank.ViewModel.ViewModels
     [ImplementPropertyChanged]
     public class NuovaIndagineRangeDoubleAnalisiDialogViewModel : NuovaIndagineRangeDialogViewModel<Analisi, double>
     {
-        public IEnumerable<double> RangeEnumerable { get; } = Enumerable.Range(-10000, 20000).Select(i => ((double)i) / 10).ToList();
+        public override IEnumerable<double> RangeEnumerable
+        {
+            get
+            {   List<double> lista = Enumerable.Range(-10000, 20001).Select(i => (double) i/10).ToList();
+                lista.Insert(0, double.NegativeInfinity);
+                lista.Add(double.PositiveInfinity);
+                return lista;
+            }
+        }
 
 
         public NuovaIndagineRangeDoubleAnalisiDialogViewModel(IEventAggregator eventAggregator,
@@ -105,7 +81,7 @@ namespace BloodBank.ViewModel.ViewModels
     [ImplementPropertyChanged]
     public class NuovaIndagineRangeIntQuestionarioDialogViewModel : NuovaIndagineRangeDialogViewModel<Questionario, int>
     {
-        public IEnumerable<int> RangeEnumerable { get; } = Enumerable.Range(-1000, 2000).ToList();
+        public override IEnumerable<int> RangeEnumerable { get; } = Enumerable.Range(-1000, 2001).ToList();
 
         public NuovaIndagineRangeIntQuestionarioDialogViewModel(IEventAggregator eventAggregator, IModelValidator<NuovaIndagineRangeDialogViewModel<int>> validator) : base(eventAggregator, validator)
         {
@@ -115,7 +91,14 @@ namespace BloodBank.ViewModel.ViewModels
     [ImplementPropertyChanged]
     public class NuovaIndagineRangeDoubleQuestionarioDialogViewModel : NuovaIndagineRangeDialogViewModel<Questionario, double>
     {
-        public IEnumerable<double> RangeEnumerable { get; } = Enumerable.Range(-10000, 20000).Select(i => ((double)i) / 10).ToList();
+        public override IEnumerable<double> RangeEnumerable {
+            get {
+                List<double> lista = Enumerable.Range(-10000, 20001).Select(i => (double)i / 10).ToList();
+                lista.Insert(0, double.NegativeInfinity);
+                lista.Add(double.PositiveInfinity);
+                return lista;
+            }
+        }
 
 
         public NuovaIndagineRangeDoubleQuestionarioDialogViewModel(IEventAggregator eventAggregator, IModelValidator<NuovaIndagineRangeDialogViewModel<double>> validator) : base(eventAggregator, validator)

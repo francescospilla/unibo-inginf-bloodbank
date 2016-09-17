@@ -8,12 +8,12 @@ using BloodBank.Model.Models.Tests;
 
 namespace BloodBank.ViewModel.Events
 {
-    public class SaveIndagineEvent
+    public class NuovaIndagineEvent
     {
-        public SaveIndagineEvent(object indagine)
+        public NuovaIndagineEvent(Indagine indagine)
         {
             Indagine = indagine;
         }
-        public object Indagine { get; }
+        public Indagine Indagine { get; }
     }
 }

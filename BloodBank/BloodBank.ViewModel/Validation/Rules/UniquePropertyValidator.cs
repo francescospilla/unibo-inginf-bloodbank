@@ -12,7 +12,7 @@ namespace BloodBank.ViewModel.Validation.Rules {
         private readonly Func<IEnumerable<U>> _modelCollectionAccessorFunc;
         private readonly Predicate<T> _whenPredicate;
 
-        public UniquePropertyValidator(Func<U, object> propertyAccessorFromModelFunc, Func<T, object> propertyAccessorFromViewModelFunc, Func<T, U> modelAccessorFromViewModelFunc, Func<IEnumerable<U>> modelCollectionAccessorFunc, Predicate<T> whenPredicate) : base("'{PropertyName}' non è univoco.")
+        public UniquePropertyValidator(Func<U, object> propertyAccessorFromModelFunc, Func<T, object> propertyAccessorFromViewModelFunc, Func<IEnumerable<U>> modelCollectionAccessorFunc, Func<T, U> modelAccessorFromViewModelFunc = null, Predicate<T> whenPredicate = null) : base("'{PropertyName}' non è univoco.")
         {
             _propertyAccessorFromModelFunc = propertyAccessorFromModelFunc;
             _propertyAccessorFromViewModelFunc = propertyAccessorFromViewModelFunc;
@@ -31,6 +31,10 @@ namespace BloodBank.ViewModel.Validation.Rules {
             object propertyValue = _propertyAccessorFromViewModelFunc(entity);
             
             U matchingEntity = entities.SingleOrDefault(e => Equals(propertyValue, _propertyAccessorFromModelFunc(e)));
+
+            if (_whenPredicate == null || _modelAccessorFromViewModelFunc == null)
+                return matchingEntity == null;
+
             return matchingEntity == null || _whenPredicate(entity) && Equals(_modelAccessorFromViewModelFunc(entity),matchingEntity);
         }
     }

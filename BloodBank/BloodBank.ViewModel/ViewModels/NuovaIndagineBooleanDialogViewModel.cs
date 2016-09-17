@@ -16,53 +16,21 @@ using Stylet;
 namespace BloodBank.ViewModel.ViewModels
 {
     [ImplementPropertyChanged]
-    public abstract class NuovaIndagineBooleanDialogViewModel : Screen
+    public abstract class NuovaIndagineBooleanDialogViewModel : NuovaIndagineDialogViewModel
     {
-        private readonly IEventAggregator _eventAggregator;
-
-        protected NuovaIndagineBooleanDialogViewModel(IEventAggregator eventAggregator, IModelValidator<NuovaIndagineBooleanDialogViewModel> validator) : base(validator) {
-            if (validator != null) {
-                AutoValidate = true;
-                Validate();
-            }
-            _eventAggregator = eventAggregator;
-
+        protected NuovaIndagineBooleanDialogViewModel(IEventAggregator eventAggregator, IModelValidator<NuovaIndagineBooleanDialogViewModel> validator) : base(eventAggregator, validator) {
         }
 
         #region Properties
 
         public new string DisplayName = "Nuova Indagine Boolean";
 
-        public string Testo { get; set; }
-        public Idoneità IdoneitaFallimento { get; set; }
         public bool RisultatoCorretto { get; set; }
 
         #endregion Properties
 
         public IEnumerable<bool> RisultatoCorrettoEnumerable { get; } = new[] { true, false };
-        public IEnumerable<Idoneità> IdoneitàEnumerable { get; } = EnumExtensions.Values<Idoneità>();
 
-        protected override void OnValidationStateChanged(IEnumerable<string> changedProperties) {
-            base.OnValidationStateChanged(changedProperties);
-            // Fody can't weave other assemblies, so we have to manually raise this
-            NotifyOfPropertyChange(() => CanSave);
-        }
-
-        #region Save
-
-        public bool CanSave => !HasErrors;
-
-        public void Save()
-        {
-            if (Validator != null && !Validate()) return;
-            SaveIndagineEvent e = new SaveIndagineEvent(CreateModelFromViewModel());
-            _eventAggregator.Publish(e);
-
-        }
-
-        protected abstract object CreateModelFromViewModel();
-
-        #endregion Save
     }
 
     [ImplementPropertyChanged]
@@ -72,7 +40,7 @@ namespace BloodBank.ViewModel.ViewModels
         {
         }
 
-        protected override object CreateModelFromViewModel()
+        protected override Indagine CreateModelFromViewModel()
         {
             return new IndagineBoolean<U>(Testo, IdoneitaFallimento, RisultatoCorretto);
         }

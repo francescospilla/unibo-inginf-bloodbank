@@ -3,6 +3,7 @@ using StructureMap.Pipeline;
 using Stylet;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Reflection;
 
 namespace BloodBank.ViewModel {
@@ -21,6 +22,8 @@ namespace BloodBank.ViewModel {
                 this.DefaultConfigureIoC(config);
                 this.ConfigureIoC(config);
             });
+
+            Debug.WriteLine(container.WhatDoIHave());
         }
 
         /// <summary>
