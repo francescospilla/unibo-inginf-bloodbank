@@ -10,17 +10,17 @@ namespace BloodBank.ViewModel.Components {
     [ImplementPropertyChanged]
     public class WorkspaceViewModel<TModel, TViewModel> : Conductor<TViewModel>.Collection.OneActive where TModel : class where TViewModel : ViewModel<TModel> {
         protected readonly IEventAggregator _eventAggregator;
-        private readonly IDataService<TModel, TViewModel> _dataService;
+        private readonly IDataService<TModel, TViewModel> _donatoreDataService;
         private readonly Func<TViewModel> _viewModelFactory;
 
-        public WorkspaceViewModel(IEventAggregator eventAggregator, IDataService<TModel, TViewModel> dataService, Func<TViewModel> viewModelFactory) {
+        public WorkspaceViewModel(IEventAggregator eventAggregator, IDataService<TModel, TViewModel> donatoreDataService, Func<TViewModel> viewModelFactory) {
             _eventAggregator = eventAggregator;
-            _dataService = dataService;
+            _donatoreDataService = donatoreDataService;
             _viewModelFactory = viewModelFactory;
 
             DisplayName = typeof(TViewModel).Name;
 
-            Items.AddRange(_dataService.GetViewModels());
+            Items.AddRange(_donatoreDataService.GetViewModels());
         }
 
         public void OpenNavMenu() {

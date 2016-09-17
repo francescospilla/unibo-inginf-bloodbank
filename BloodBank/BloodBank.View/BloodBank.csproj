@@ -149,8 +149,8 @@
       <DependentUpon>AppBar.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\IntegerTextBox.cs" />
-    <Compile Include="Views\NewDonazioneView.xaml.cs">
-      <DependentUpon>NewDonazioneView.xaml</DependentUpon>
+    <Compile Include="Views\NuovaDonazioneDialogView.xaml.cs">
+      <DependentUpon>NuovaDonazioneDialogView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\NewListaVociQuestionarioView.cs" />
     <Compile Include="Views\NewListaVociView.xaml.cs">
@@ -218,7 +218,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\NewDonazioneView.xaml">
+    <Page Include="Views\NuovaDonazioneDialogView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

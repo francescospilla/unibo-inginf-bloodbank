@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace BloodBank.View.Views
 {
     /// <summary>
-    /// Interaction logic for NewDonazioneView.xaml
+    /// Interaction logic for NuovaDonazioneDialogView.xaml
     /// </summary>
-    public partial class NewDonazioneView : UserControl
+    public partial class NuovaDonazioneDialogView : UserControl
     {
-        public NewDonazioneView()
+        public NuovaDonazioneDialogView()
         {
             InitializeComponent();
         }
