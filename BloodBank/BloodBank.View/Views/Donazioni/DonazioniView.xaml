@@ -14,10 +14,10 @@
     <UserControl.Resources>
         <CollectionViewSource IsLiveSortingRequested="True" Source="{Binding Items}" x:Key="ListaDonazioniOrdinata">
             <CollectionViewSource.LiveSortingProperties>
-                <system:String>Data</system:String>
+                <system:String>DataOra</system:String>
             </CollectionViewSource.LiveSortingProperties>
             <CollectionViewSource.SortDescriptions>
-                <componentModel:SortDescription  PropertyName="Data" />
+                <componentModel:SortDescription  PropertyName="DataOra" />
             </CollectionViewSource.SortDescriptions>
         </CollectionViewSource>
     </UserControl.Resources>
@@ -65,7 +65,7 @@
         <Grid>
             <ContentControl Style="{StaticResource CardContentControlStyle}" s:View.Model="{Binding ActiveItem}" />
 
-            <Button ToolTip="Aggiungi questionario" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,20,20">
+            <Button ToolTip="Effettua Donazione" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,20,20" Command="{s:Action OpenNewDialog}">
                 <md:PackIcon Kind="Plus" Height="24" Width="24" />
             </Button>
         </Grid>

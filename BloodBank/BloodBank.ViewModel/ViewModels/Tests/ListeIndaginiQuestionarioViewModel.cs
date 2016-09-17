@@ -14,7 +14,7 @@ namespace BloodBank.ViewModel.ViewModels.Tests {
     [ImplementPropertyChanged]
     public class ListeIndaginiQuestionarioViewModel : WorkspaceViewModel<ListaIndagini<Questionario>, ListaIndaginiQuestionarioViewModel> {
 
-        public ListeIndaginiQuestionarioViewModel(IEventAggregator eventAggregator, IDataService<ListaIndagini<Questionario>, ListaIndaginiQuestionarioViewModel> dataService, Func<ListaIndaginiQuestionarioViewModel> viewModelFactory) : base(eventAggregator, dataService, viewModelFactory) {
+        public ListeIndaginiQuestionarioViewModel(IEventAggregator eventAggregator, IDataService<ListaIndagini<Questionario>, ListaIndaginiQuestionarioViewModel> donatoreDataService, Func<ListaIndaginiQuestionarioViewModel> viewModelFactory) : base(eventAggregator, donatoreDataService, viewModelFactory) {
         }
 
 

@@ -21,16 +21,15 @@ using Stylet;
 namespace BloodBank.ViewModel.ViewModels
 {
     [ImplementPropertyChanged]
-    public class NewDonazioneViewModel : Screen
+    public class NuovaDonazioneDialogViewModel : Screen
     {
         private readonly IEventAggregator _eventAggregator;
         private readonly IDataService<Donatore, DonatoreViewModel> _donatoreDataService;
-
         private readonly IDataService<VisitaMedica, VisitaMedicaViewModel> _visitaMedicaDataService;
         private IDataService<ListaVoci<Questionario>, ListaVociQuestionarioViewModel> _listaVociQuestionarioDataService;
         private IDataService<ListaVoci<Analisi>, ListaVociAnalisiViewModel> _listaVociAnalisiDataService;
 
-        public NewDonazioneViewModel(IEventAggregator eventAggregator,
+        public NuovaDonazioneDialogViewModel(IEventAggregator eventAggregator,
             IDataService<Donatore, DonatoreViewModel> donatoreDataService,
             IDataService<ListaVoci<Questionario>, ListaVociQuestionarioViewModel> listaVociQuestionarioDataService,
             IDataService<ListaVoci<Analisi>, ListaVociAnalisiViewModel> listaVociAnalisiDataService,
@@ -80,6 +79,17 @@ namespace BloodBank.ViewModel.ViewModels
         public void OpenNavMenu()
         {
             _eventAggregator.Publish(new NavMenuEvent(NavMenuEvent.NavMenuStates.Open));
+        }
+
+        public void Finish()
+        {
+            NuovaDonazioneEvent message = new NuovaDonazioneEvent(new Donazione(SelectedDonatore.Model, SelectedTipoDonazione, DateTime.Now, SelectedVisitaMedica.Model, (Analisi) SelectedListaVociAnalisi.Model, (Questionario) SelectedListaVociQuestionario.Model));
+            _eventAggregator.Publish(message);
+        }
+
+        public void Cancel()
+        {
+            _eventAggregator.Publish(new DialogEvent(false, null));
         }
 
     }
