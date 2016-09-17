@@ -76,12 +76,12 @@
 
         <md:PackIcon Grid.Row="2" Grid.Column="0" Kind="TagOutline" Foreground="{Binding ElementName=TextBoxTipoDonazione, Path=BorderBrush}" />
         <TextBox Grid.Row="2" Grid.Column="1" x:Name="TextBoxTipoDonazione" md:HintAssist.Hint="Tipo Donazione" IsEnabled="False"
-                                 Text="{Binding Path=TipoDonazione, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" VerticalContentAlignment="Top"  TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True">
+                                 Text="{Binding Path=TipoDonazione, UpdateSourceTrigger=PropertyChanged, Mode=OneWay, Converter={StaticResource EnumToString}}" VerticalContentAlignment="Top"  TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True">
         </TextBox>
 
         <md:PackIcon Grid.Row="2" Grid.Column="2" Kind="Water" Foreground="{Binding ElementName=TextBoxGruppoSanguigno, Path=BorderBrush}" />
         <TextBox Grid.Row="2" Grid.Column="3" x:Name="TextBoxGruppoSanguigno" md:HintAssist.Hint="Gruppo Sanguigno" IsEnabled="False"
-                                 Text="{Binding Path=TipoDonazione, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" VerticalContentAlignment="Top"  TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True">
+                                 Text="{Binding Path=Donatore.GruppoSanguigno, UpdateSourceTrigger=PropertyChanged, Mode=OneWay, Converter={StaticResource EnumToString}}" VerticalContentAlignment="Top"  TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True">
         </TextBox>
 
         <TextBlock Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"  Text="Test Associati" Style="{StaticResource MaterialDesignDisplay1TextBlock}" />
