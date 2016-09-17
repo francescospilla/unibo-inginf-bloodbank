@@ -12,8 +12,8 @@ using FluentValidation;
 namespace BloodBank.ViewModel.Validation.Indagini {
 
     public class NuovaIndagineBooleanValidator : AbstractValidator<NuovaIndagineBooleanDialogViewModel> {
-        public NuovaIndagineBooleanValidator() {
-            RuleFor(vm => vm.Testo).NotEmpty();
+        public NuovaIndagineBooleanValidator(IEnumerable<IDataService<Indagine>> dataServices) {
+            RuleFor(vm => vm.Testo).NotEmpty().MustBeUnique(m => m.Testo, vm => vm.Testo, dataServices.PoolAllModels);
             RuleFor(vm => vm.IdoneitaFallimento).NotNull().IsInEnum();
             RuleFor(vm => vm.RisultatoCorretto).NotNull();
         }

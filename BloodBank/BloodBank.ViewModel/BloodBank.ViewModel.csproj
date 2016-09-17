@@ -69,7 +69,6 @@
     <Compile Include="Events\DialogEvent.cs" />
     <Compile Include="Events\NuovaIndagineEvent.cs" />
     <Compile Include="Events\NuovaDonazioneEvent.cs" />
-    <Compile Include="Events\SaveIndagineEvent.cs" />
     <Compile Include="Events\ViewModelCollectionChangedEvent.cs" />
     <Compile Include="ViewModels\Donazioni\DonazioneViewModel.cs" />
     <Compile Include="ViewModels\NuovaDonazioneDialogViewModel.cs" />
