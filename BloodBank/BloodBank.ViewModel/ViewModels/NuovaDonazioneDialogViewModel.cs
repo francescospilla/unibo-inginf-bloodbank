@@ -83,7 +83,7 @@ namespace BloodBank.ViewModel.ViewModels
 
         public void Finish()
         {
-            SaveDonazioneEvent message = new SaveDonazioneEvent(new Donazione(SelectedDonatore.Model, SelectedTipoDonazione, DateTime.Now, SelectedVisitaMedica.Model, (Analisi) SelectedListaVociAnalisi.Model, (Questionario) SelectedListaVociQuestionario.Model));
+            NuovaDonazioneEvent message = new NuovaDonazioneEvent(new Donazione(SelectedDonatore.Model, SelectedTipoDonazione, DateTime.Now, SelectedVisitaMedica.Model, (Analisi) SelectedListaVociAnalisi.Model, (Questionario) SelectedListaVociQuestionario.Model));
             _eventAggregator.Publish(message);
         }
 

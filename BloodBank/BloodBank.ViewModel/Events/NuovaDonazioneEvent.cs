@@ -7,9 +7,9 @@ using BloodBank.Model.Models.Donazioni;
 
 namespace BloodBank.ViewModel.Events
 {
-    public class SaveDonazioneEvent
+    public class NuovaDonazioneEvent
     {
-        public SaveDonazioneEvent(Donazione donazione)
+        public NuovaDonazioneEvent(Donazione donazione)
         {
             Donazione = donazione;
         }

@@ -14,13 +14,13 @@ namespace BloodBank.ViewModel.ViewModels.Donazioni
 {
 
     [ImplementPropertyChanged]
-    public class DonazioniViewModel : WorkspaceViewModel<Donazione, DonazioneViewModel>, IHandle<SaveDonazioneEvent>
+    public class DonazioniViewModel : WorkspaceViewModel<Donazione, DonazioneViewModel>, IHandle<NuovaDonazioneEvent>
     {
         private readonly IDataService<Donatore, DonatoreViewModel> _donatoreDataService;
         private readonly IDataService<VisitaMedica, VisitaMedicaViewModel> _visitaMedicaDataService;
         private readonly IDataService<ListaVoci<Questionario>, ListaVociQuestionarioViewModel> _listaVociQuestionarioDataService;
         private readonly IDataService<ListaVoci<Analisi>, ListaVociAnalisiViewModel> _listaVociAnalisiDataService;
-        private IDataService<Donazione, DonazioneViewModel> _donazioneDataService;
+        private readonly IDataService<Donazione, DonazioneViewModel> _donazioneDataService;
 
         public DonazioniViewModel(IEventAggregator eventAggregator, IDataService<Donazione, DonazioneViewModel> donazioneDataService, IDataService<Donatore, DonatoreViewModel> donatoreDataService, IDataService<ListaVoci<Questionario>, ListaVociQuestionarioViewModel> listaVociQuestionarioDataService,
             IDataService<ListaVoci<Analisi>, ListaVociAnalisiViewModel> listaVociAnalisiDataService,
@@ -47,7 +47,7 @@ namespace BloodBank.ViewModel.ViewModels.Donazioni
 
         #endregion Actions
 
-        public void Handle(SaveDonazioneEvent message)
+        public void Handle(NuovaDonazioneEvent message)
         {
             _eventAggregator.Publish(new DialogEvent(false, null));
             _donazioneDataService.AddModelAndCreatedViewModel(message.Donazione);

@@ -14,10 +14,10 @@
     <UserControl.Resources>
         <CollectionViewSource IsLiveSortingRequested="True" Source="{Binding Items}" x:Key="ListaDonazioniOrdinata">
             <CollectionViewSource.LiveSortingProperties>
-                <system:String>Data</system:String>
+                <system:String>DataOra</system:String>
             </CollectionViewSource.LiveSortingProperties>
             <CollectionViewSource.SortDescriptions>
-                <componentModel:SortDescription  PropertyName="Data" />
+                <componentModel:SortDescription  PropertyName="DataOra" />
             </CollectionViewSource.SortDescriptions>
         </CollectionViewSource>
     </UserControl.Resources>

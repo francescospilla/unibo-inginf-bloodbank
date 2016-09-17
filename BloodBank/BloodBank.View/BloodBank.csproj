@@ -133,7 +133,6 @@
     <Compile Include="Converters\ObjectToDictionaryConverter.cs" />
     <Compile Include="Converters\StringToPackIconConverter.cs" />
     <Compile Include="UserControls\FilterControl.cs" />
-    <Compile Include="Views\Donazioni\DonazioniView.xaml.cs" />
     <Compile Include="UserControls\FilteredEditableComboBox.cs" />
     <Compile Include="Views\IndaginiView.xaml.cs">
       <DependentUpon>IndaginiView.xaml</DependentUpon>

@@ -8,7 +8,7 @@ using Stylet;
 namespace BloodBank.ViewModel.Components {
 
     [ImplementPropertyChanged]
-    public class WorkspaceViewModel<TModel, TViewModel> : Conductor<TViewModel>.Collection.OneActive where TModel : class where TViewModel : ViewModel<TModel> {
+    public class WorkspaceViewModel<TModel, TViewModel> : Conductor<TViewModel>.Collection.OneActive, IHandle<ViewModelCollectionChangedEvent<TViewModel>> where TModel : class where TViewModel : ViewModel<TModel> {
         protected readonly IEventAggregator _eventAggregator;
         private readonly IDataService<TModel, TViewModel> _donatoreDataService;
         private readonly Func<TViewModel> _viewModelFactory;
@@ -17,6 +17,8 @@ namespace BloodBank.ViewModel.Components {
             _eventAggregator = eventAggregator;
             _donatoreDataService = donatoreDataService;
             _viewModelFactory = viewModelFactory;
+
+            _eventAggregator.Subscribe(this);
 
             DisplayName = typeof(TViewModel).Name;
 
@@ -36,6 +38,11 @@ namespace BloodBank.ViewModel.Components {
                 ActivateItem(emptyViewModel);
             }
 
+        }
+
+        public void Handle(ViewModelCollectionChangedEvent<TViewModel> message)
+        {
+            Items.Add(message.ViewModel);
         }
     }
 }
