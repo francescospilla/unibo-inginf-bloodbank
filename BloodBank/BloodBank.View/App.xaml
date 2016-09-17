@@ -163,7 +163,7 @@
                 <Setter Property="BackButtonContent" Value="INDIETRO" />
                 <Setter Property="NextButtonContent" Value="AVANTI" />
                 <Setter Property="CancelButtonContent" Value="CANCELLA" />
-                <Setter Property="FinishButtonContent" Value="FINISCI" />
+                <Setter Property="FinishButtonContent" Value="CONFERMA" />
                 <Setter Property="HelpButtonVisibility" Value="Hidden" />
                 <Setter Property="CancelButtonClosesWindow" Value="False" />
                 <Setter Property="FinishButtonClosesWindow" Value="False" />

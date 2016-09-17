@@ -146,7 +146,7 @@
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
 
-                        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource MaterialDesignDisplay2TextBlock}" Margin="0 4 0 4">Donazione avvenuta con successo!</TextBlock>
+                        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource MaterialDesignDisplay2TextBlock}" Margin="0 4 0 4">Riepilogo:</TextBlock>
 
                         <materialDesign:PackIcon Grid.Row="2" Grid.Column="0" Kind="Account" Foreground="{Binding ElementName=TextBoxNomeDonatore, Path=BorderBrush}" />
                         <Label Grid.Row="2" Grid.Column="1" Content="Nome Donatore" Foreground="{Binding ElementName=TextBoxNomeDonatore, Path=BorderBrush}" VerticalAlignment="Center"  HorizontalAlignment="Left" />
@@ -163,7 +163,7 @@
                         <materialDesign:PackIcon Grid.Row="4" Grid.Column="0" Kind="Calendar" Foreground="{Binding ElementName=TextBoxData, Path=BorderBrush}" />
                         <Label Grid.Row="4" Grid.Column="1" Content="Data della Donazione" Foreground="{Binding ElementName=TextBoxData,   Path=BorderBrush}"/>
                         <TextBox Grid.Row="4" Grid.Column="2" x:Name="TextBoxData" materialDesign:HintAssist.Hint="Data Donazione" IsEnabled="False"
-                                    Text="{Binding Path=Data, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}">
+                                    Text="{Binding Path=DataDonazione, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}">
                         </TextBox>
                     </Grid>
                 </xctk:WizardPage>

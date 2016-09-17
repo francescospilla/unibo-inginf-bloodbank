@@ -52,6 +52,7 @@ namespace BloodBank.ViewModel.ViewModels
         public ViewModel<ListaVoci<Analisi>> SelectedListaVociAnalisi { get; set; }
         public VisitaMedicaViewModel SelectedVisitaMedica { get; set; }
         public TipoDonazione SelectedTipoDonazione { get; set; }
+        public DateTime DataDonazione { get; set; }
 
         public bool CanMoveTo2ndPage => SelectedDonatore != null;
         public bool CanMoveTo3rdPage => SelectedListaVociQuestionario != null;
@@ -74,6 +75,7 @@ namespace BloodBank.ViewModel.ViewModels
             ListaVociAnalisiEnumerable = _listaVociAnalisiDataService.GetViewModels().Where(vm => vm.Donatore.Equals(SelectedDonatore.Model) && vm.Data.Date.Equals(DateTime.Today) && vm.Idoneità == Idoneità.Idoneo);
             ListaVociQuestionarioEnumerable = _listaVociQuestionarioDataService.GetViewModels().Where(vm => vm.Donatore.Equals(SelectedDonatore.Model) && vm.Data.Date.Equals(DateTime.Today) && vm.Idoneità == Idoneità.Idoneo);
             VisitaMedicaEnumerable = _visitaMedicaDataService.GetViewModels().Where(vm => vm.Donatore.Equals(SelectedDonatore.Model) && vm.Data.Date.Equals(DateTime.Today) && vm.Idoneità == Idoneità.Idoneo);
+            DataDonazione = DateTime.Now;
         }
 
         public void OpenNavMenu()
