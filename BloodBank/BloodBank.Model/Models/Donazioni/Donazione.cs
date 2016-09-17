@@ -39,6 +39,7 @@ namespace BloodBank.Model.Models.Donazioni
             DataProssimaDonazioneConsentita = data.AddDays(tipoDonazione.GiorniDiRiposo);
 
             EffettuaPrelievo();
+            Donatore.AggiungiDonazione(this);
         }
 
         public Donatore Donatore { get; }
