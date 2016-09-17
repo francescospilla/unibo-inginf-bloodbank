@@ -9,7 +9,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="500">
 
-    <xctk:Wizard>
+    <xctk:Wizard Next="{s:Action OnChangeToNextPage}">
         <xctk:WizardPage Title="Selezione Donatore">
             <Grid>
                 <Grid.RowDefinitions>
@@ -45,6 +45,9 @@
                 <ComboBox Grid.Row="0" Grid.Column="1" DisplayMemberPath="Model" ItemsSource="{Binding ListaIndaginiEnumerable}" SelectedItem="{Binding SelectedListaIndagini}" />
                 <ContentControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" s:View.Model="{Binding SelectedListaIndagini}" components:ReadOnlyPanel.IsReadOnly="True" Margin="20"/>
             </Grid>
+        </xctk:WizardPage>
+        <xctk:WizardPage Title="Compila Indagini">
+            <ItemsControl ItemsSource="{Binding Path=VociViewModelEnumerable}" Style="{StaticResource StyletConductorItemsControl}" />
         </xctk:WizardPage>
     </xctk:Wizard>
 

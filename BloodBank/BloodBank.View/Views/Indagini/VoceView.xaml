@@ -1,0 +1,40 @@
+﻿<UserControl x:Class="BloodBank.View.Views.Indagini.VoceView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BloodBank.View.Views.Indagini"
+             xmlns:userControls="clr-namespace:BloodBank.View.UserControls"
+             xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <Grid.Resources>
+                <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource MaterialDesignFloatingHintComboBox}">
+                    <Setter Property="Margin" Value="10 10 10 7" />
+                </Style>
+                <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignFloatingHintTextBox}">
+                    <Setter Property="Margin" Value="10 10 10 7" />
+                </Style>
+                <Style TargetType="{x:Type md:PackIcon}">
+                    <Setter Property="Margin" Value="10 10 10 12"  />
+                    <Setter Property="VerticalAlignment" Value="Bottom" />
+                    <Setter Property="HorizontalAlignment" Value="Center" />
+                </Style>
+        </Grid.Resources>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <TextBox Grid.Column="0" Text="{Binding Indagine.Testo, Mode=OneWay}" IsEnabled="False" />
+        <userControls:FilteredEditableComboBox Grid.Column="1" ItemsSource="{Binding RisultatoEnumerable}" SelectedItem="{Binding Risultato, UpdateSourceTrigger=PropertyChanged}">
+            <userControls:FilteredEditableComboBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel />
+                </ItemsPanelTemplate>
+            </userControls:FilteredEditableComboBox.ItemsPanel>
+        </userControls:FilteredEditableComboBox>
+        
+    </Grid>
+</UserControl>

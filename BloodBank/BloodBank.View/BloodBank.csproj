@@ -148,6 +148,10 @@
       <DependentUpon>AppBar.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\IntegerTextBox.cs" />
+    <Compile Include="Views\Indagini\VoceView.cs" />
+    <Compile Include="Views\Indagini\VoceView.xaml.cs">
+      <DependentUpon>VoceView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\NuovaDonazioneDialogView.xaml.cs">
       <DependentUpon>NuovaDonazioneDialogView.xaml</DependentUpon>
     </Compile>
@@ -214,6 +218,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="UserControls\AppBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Indagini\VoceView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

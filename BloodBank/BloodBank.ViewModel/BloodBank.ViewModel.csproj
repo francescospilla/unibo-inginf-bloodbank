@@ -109,6 +109,7 @@
     <Compile Include="ViewModels\Tests\ListeVociViewModel.cs" />
     <Compile Include="ViewModels\Tests\VisitaMedicaViewModel.cs" />
     <Compile Include="ViewModels\Tests\VisiteMedicheViewModel.cs" />
+    <Compile Include="ViewModels\Indagini\VoceViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BloodBank.Core\BloodBank.Core.csproj">
