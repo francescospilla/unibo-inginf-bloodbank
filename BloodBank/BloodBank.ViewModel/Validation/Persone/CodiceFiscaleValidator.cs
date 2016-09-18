@@ -1,7 +1,7 @@
 using System.Text.RegularExpressions;
 using FluentValidation.Validators;
 
-namespace BloodBank.ViewModel.Validation.Donatori {
+namespace BloodBank.ViewModel.Validation.Persone {
 
     public class CodiceFiscaleValidator : PropertyValidator {
         public const int ExpectedLength = 16;

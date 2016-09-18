@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using BloodBank.ViewModel.Validation.Rules;
 using FluentValidation;
 
 namespace BloodBank.ViewModel.Validation {

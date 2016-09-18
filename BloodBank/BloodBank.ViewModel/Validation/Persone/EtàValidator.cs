@@ -2,7 +2,7 @@
 using BloodBank.Core.Extensions;
 using FluentValidation.Validators;
 
-namespace BloodBank.ViewModel.Validation.Donatori {
+namespace BloodBank.ViewModel.Validation.Persone {
     public class EtàValidator : PropertyValidator {
         private readonly int _minRange;
         private readonly int _maxRange;

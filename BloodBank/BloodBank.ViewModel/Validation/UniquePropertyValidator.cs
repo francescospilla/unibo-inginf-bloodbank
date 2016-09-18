@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using FluentValidation.Validators;
 
-namespace BloodBank.ViewModel.Validation.Rules {
+namespace BloodBank.ViewModel.Validation {
 
     public class UniquePropertyValidator<T, U> : PropertyValidator {
         private readonly Func<U, object> _propertyAccessorFromModelFunc;

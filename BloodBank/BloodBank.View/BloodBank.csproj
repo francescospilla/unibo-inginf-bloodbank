@@ -121,7 +121,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Components\DoubleClickSelectorItem.cs" />
     <Compile Include="Components\LayoutSetter.cs" />
     <Compile Include="Components\PushBinding\FreezableBinding.cs" />
     <Compile Include="Components\PushBinding\PushBinding.cs" />
@@ -134,7 +133,7 @@
     <Compile Include="Converters\StringToPackIconConverter.cs" />
     <Compile Include="UserControls\FilterControl.cs" />
     <Compile Include="UserControls\FilteredEditableComboBox.cs" />
-    <Compile Include="Views\IndaginiView.xaml.cs">
+    <Compile Include="Views\Indagini\IndaginiView.xaml.cs">
       <DependentUpon>IndaginiView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Indagini\ListaIndaginiView.xaml.cs">
@@ -165,7 +164,7 @@
     <Compile Include="Views\Persone\DonatoriView.xaml.cs">
       <DependentUpon>DonatoriView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Tests\ListeIndaginiView.xaml.cs">
+    <Compile Include="Views\Indagini\ListeIndaginiView.xaml.cs">
       <DependentUpon>ListeIndaginiView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Sangue\SaccaSangueView.xaml.cs">
@@ -194,7 +193,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\IndaginiView.xaml">
+    <Page Include="Views\Indagini\IndaginiView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -242,7 +241,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Tests\ListeIndaginiView.xaml">
+    <Page Include="Views\Indagini\ListeIndaginiView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
