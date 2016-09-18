@@ -156,8 +156,6 @@
     <Compile Include="Views\NewListaVociView.xaml.cs">
       <DependentUpon>NewListaVociView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\NuovaIndagineRangeDialogView.cs" />
-    <Compile Include="Views\NuovaIndagineBooleanDialogView.cs" />
     <Compile Include="Views\Persone\DonatoreView.xaml.cs">
       <DependentUpon>DonatoreView.xaml</DependentUpon>
     </Compile>

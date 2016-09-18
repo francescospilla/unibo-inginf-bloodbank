@@ -1,19 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using BloodBank.Model.Models.Indagini;
+﻿using BloodBank.Model.Models.Indagini;
 using BloodBank.Model.Models.Tests;
 using BloodBank.Model.Service;
 using BloodBank.ViewModel.Events;
-using BloodBank.ViewModel.Service;
-using BloodBank.ViewModel.Validation.Indagini;
 using PropertyChanged;
 using Stylet;
-using Stylet.FluentValidation;
 
-namespace BloodBank.ViewModel.ViewModels
+namespace BloodBank.ViewModel.ViewModels.Indagini
 {
 
     [ImplementPropertyChanged]
@@ -68,40 +60,39 @@ namespace BloodBank.ViewModel.ViewModels
 
         public void OpenNewIndagineBooleanAnalisiDialog()
         {
-            var dialog = new NuovaIndagineBooleanAnalisiDialogViewModel(_eventAggregator, _nuovaIndagineBooleanDialogValidator);
+            var dialog = new NuovaIndagineBooleanDialogViewModel<Analisi>(_eventAggregator, _nuovaIndagineBooleanDialogValidator);
             OpenNewDialog(dialog);
         }
 
         public void OpenNewIndagineBooleanQuestionarioDialog()
         {
-            var dialog = new NuovaIndagineBooleanQuestionarioDialogViewModel(_eventAggregator, _nuovaIndagineBooleanDialogValidator);
+            var dialog = new NuovaIndagineBooleanDialogViewModel<Questionario>(_eventAggregator, _nuovaIndagineBooleanDialogValidator);
             OpenNewDialog(dialog);
         }
 
 
         public void OpenNewIndagineRangeIntAnalisiDialog()
         {
-            var dialog = new NuovaIndagineRangeIntAnalisiDialogViewModel(_eventAggregator, _nuovaIndagineAnalisiIntDialogValidator);
+            var dialog = new NuovaIndagineRangeIntDialogViewModel<Analisi>(_eventAggregator, _nuovaIndagineAnalisiIntDialogValidator);
             OpenNewDialog(dialog);
         }
 
 
         public void OpenNewIndagineRangeDoubleAnalisiDialog()
         {
-            var dialog = new NuovaIndagineRangeDoubleAnalisiDialogViewModel(_eventAggregator, _nuovaIndagineAnalisiDoubleDialogValidator);
+            var dialog = new NuovaIndagineRangeDoubleDialogViewModel<Analisi>(_eventAggregator, _nuovaIndagineAnalisiDoubleDialogValidator);
             OpenNewDialog(dialog);
         }
 
         public void OpenNewIndagineRangeIntQuestionarioDialog()
         {
-            var dialog = new NuovaIndagineRangeIntQuestionarioDialogViewModel(_eventAggregator, _nuovaIndagineAnalisiIntDialogValidator);
+            var dialog = new NuovaIndagineRangeIntDialogViewModel<Questionario>(_eventAggregator, _nuovaIndagineAnalisiIntDialogValidator);
             OpenNewDialog(dialog);
         }
 
-
         public void OpenNewIndagineRangeDoubleQuestionarioDialog()
         {
-            var dialog = new NuovaIndagineRangeDoubleQuestionarioDialogViewModel(_eventAggregator, _nuovaIndagineAnalisiDoubleDialogValidator);
+            var dialog = new NuovaIndagineRangeDoubleDialogViewModel<Questionario>(_eventAggregator, _nuovaIndagineAnalisiDoubleDialogValidator);
             OpenNewDialog(dialog);
         }
 

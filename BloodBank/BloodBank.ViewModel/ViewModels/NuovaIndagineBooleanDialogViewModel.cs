@@ -16,14 +16,13 @@ using Stylet;
 namespace BloodBank.ViewModel.ViewModels
 {
     [ImplementPropertyChanged]
+    [AssociatedView("NuovaIndagineBooleanDialogView")]
     public abstract class NuovaIndagineBooleanDialogViewModel : NuovaIndagineDialogViewModel
     {
         protected NuovaIndagineBooleanDialogViewModel(IEventAggregator eventAggregator, IModelValidator<NuovaIndagineBooleanDialogViewModel> validator) : base(eventAggregator, validator) {
         }
 
         #region Properties
-
-        public new string DisplayName = "Nuova Indagine Boolean";
 
         public bool RisultatoCorretto { get; set; }
 
@@ -45,21 +44,5 @@ namespace BloodBank.ViewModel.ViewModels
             return new IndagineBoolean<U>(Testo, IdoneitaFallimento, RisultatoCorretto);
         }
 
-    }
-
-    [ImplementPropertyChanged]
-    public class NuovaIndagineBooleanQuestionarioDialogViewModel : NuovaIndagineBooleanDialogViewModel<Questionario>
-    {
-        public NuovaIndagineBooleanQuestionarioDialogViewModel(IEventAggregator eventAggregator, IModelValidator<NuovaIndagineBooleanDialogViewModel> validator) : base(eventAggregator, validator)
-        {
-        }
-    }
-
-    [ImplementPropertyChanged]
-    public class NuovaIndagineBooleanAnalisiDialogViewModel : NuovaIndagineBooleanDialogViewModel<Analisi>
-    {
-        public NuovaIndagineBooleanAnalisiDialogViewModel(IEventAggregator eventAggregator, IModelValidator<NuovaIndagineBooleanDialogViewModel> validator) : base(eventAggregator, validator)
-        {
-        }
     }
 }

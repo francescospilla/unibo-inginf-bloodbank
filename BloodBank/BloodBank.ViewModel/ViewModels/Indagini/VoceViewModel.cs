@@ -80,27 +80,4 @@ namespace BloodBank.ViewModel.ViewModels.Indagini {
 
     #endregion
 
-    public class VoceBooleanQuestionarioViewModel : VoceBooleanViewModel<Questionario> {
-        public VoceBooleanQuestionarioViewModel(IndagineBoolean<Questionario> indagine) : base(indagine)
-        {
-        }
-    }
-
-    public class VoceBooleanAnalisiViewModel : VoceBooleanViewModel<Analisi> {
-        public VoceBooleanAnalisiViewModel(IndagineBoolean<Analisi> indagine) : base(indagine) {
-        }
-    }
-
-    public class VoceRangeIntQuestionarioViewModel : VoceRangeIntViewModel<Questionario> {
-        public VoceRangeIntQuestionarioViewModel(IndagineRange<Questionario, int> indagine) : base(indagine)
-        {
-        }
-    }
-
-    public class VoceRangeIntAnalisiViewModel : VoceRangeIntViewModel<Analisi> {
-        public VoceRangeIntAnalisiViewModel(IndagineRange<Analisi, int> indagine) : base(indagine) {
-        }
-    }
-
-
 }

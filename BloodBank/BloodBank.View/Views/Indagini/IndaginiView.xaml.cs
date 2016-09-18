@@ -12,16 +12,10 @@ namespace BloodBank.View.Views.Indagini {
 
         }
 
-        private void Grid_OnAutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
-        {
-            DataGridTextColumn column = (DataGridTextColumn) e.Column;
+        private void Grid_OnAutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e) {
+            DataGridTextColumn column = (DataGridTextColumn)e.Column;
             if (column != null)
                 column.ElementStyle = Resources["WrappedTextBlockStyle"] as Style;
-        }
-
-        private void DataGrid_OnAddingNewItem(object sender, AddingNewItemEventArgs e)
-        {
-            Console.WriteLine("aggiunto nuovo elemento, sarcazzoville: " + e.NewItem);
         }
     }
 }

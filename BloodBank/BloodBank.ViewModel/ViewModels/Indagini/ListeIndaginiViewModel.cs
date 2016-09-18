@@ -2,15 +2,11 @@
 using BloodBank.Model.Models.Indagini;
 using BloodBank.Model.Models.Tests;
 using BloodBank.ViewModel.Components;
-using BloodBank.ViewModel.Events;
 using BloodBank.ViewModel.Service;
-using BloodBank.ViewModel.Validation.Indagini;
-using BloodBank.ViewModel.ViewModels.Indagini;
 using PropertyChanged;
 using Stylet;
-using Stylet.FluentValidation;
 
-namespace BloodBank.ViewModel.ViewModels.Tests {
+namespace BloodBank.ViewModel.ViewModels.Indagini {
 
     [ImplementPropertyChanged]
     [AssociatedView("ListeIndaginiView")]
