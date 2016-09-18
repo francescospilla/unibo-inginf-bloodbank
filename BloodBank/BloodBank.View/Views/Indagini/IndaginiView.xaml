@@ -8,7 +8,6 @@
              xmlns:userControls="clr-namespace:BloodBank.View.UserControls"
              xmlns:s="https://github.com/canton7/Stylet"
              xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
-             xmlns:tests="clr-namespace:BloodBank.Model.Models.Tests;assembly=BloodBank.Model"
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="500">
 

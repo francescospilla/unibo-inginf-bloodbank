@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using BloodBank.Core.Extensions;
 using BloodBank.Model.Models;
 using BloodBank.Model.Models.Indagini;
@@ -11,6 +10,7 @@ using BloodBank.Model.Models.Tests;
 using BloodBank.ViewModel.Events;
 using PropertyChanged;
 using Stylet;
+using Stylet.DictionaryViewManager;
 
 namespace BloodBank.ViewModel.ViewModels
 {

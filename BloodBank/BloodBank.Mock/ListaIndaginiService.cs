@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using BloodBank.Core.Extensions;
 using BloodBank.Model.Models.Indagini;
 using BloodBank.Model.Models.Tests;
 using BloodBank.Model.Service;

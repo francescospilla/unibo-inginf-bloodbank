@@ -6,6 +6,7 @@ using BloodBank.Model.Models.Indagini.Tipi;
 using BloodBank.Model.Models.Tests;
 using PropertyChanged;
 using Stylet;
+using Stylet.DictionaryViewManager;
 
 namespace BloodBank.ViewModel.ViewModels.Indagini {
 

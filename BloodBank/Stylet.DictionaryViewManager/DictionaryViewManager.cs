@@ -3,24 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using Stylet;
-using Stylet.Logging;
 
-namespace BloodBank.ViewModel {
-
-    [AttributeUsage(AttributeTargets.Class, Inherited = true, AllowMultiple = false)]
-    internal sealed class AssociatedViewAttribute : Attribute {
-
-        public string View { get; }
-
-        public AssociatedViewAttribute(string view) {            
-            View = view;
-        }
-    }
-
+namespace Stylet.DictionaryViewManager {
     internal class TypeIgnoreGenericsEqualityCompararer : IEqualityComparer<Type> {
 
         public bool Equals(Type x, Type y)
@@ -38,11 +22,11 @@ namespace BloodBank.ViewModel {
         // Dictionary of ViewModel type -> View type
         private readonly Dictionary<Type, Type> _viewModelToViewMapping;
 
-        public DictionaryViewManager(ViewManagerConfig config)
+        public DictionaryViewManager(ViewManagerConfig config, Assembly viewModeAssembly)
             : base(config)
         {
             var attributes =
-                Assembly.GetExecutingAssembly().GetExportedTypes()
+                viewModeAssembly.GetExportedTypes()
                     .Select(type => new {type, attribute = type.GetCustomAttribute<AssociatedViewAttribute>()})
                     .Where(t => t.attribute != null && typeof (IScreen).IsAssignableFrom(t.type));
 

@@ -9,6 +9,7 @@ using BloodBank.ViewModel.Components;
 using BloodBank.ViewModel.Service;
 using PropertyChanged;
 using Stylet;
+using Stylet.DictionaryViewManager;
 
 namespace BloodBank.ViewModel.ViewModels.Indagini {
 

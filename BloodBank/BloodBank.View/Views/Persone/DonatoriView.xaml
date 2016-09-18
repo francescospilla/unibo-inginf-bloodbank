@@ -7,7 +7,6 @@
              xmlns:s="https://github.com/canton7/Stylet"
              xmlns:dragablz="http://dragablz.net/winfx/xaml/dragablz"
              xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
-             xmlns:vm="clr-namespace:BloodBank.ViewModel;assembly=BloodBank.ViewModel"
              xmlns:componentModel="clr-namespace:System.ComponentModel;assembly=WindowsBase"
              xmlns:system="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d" d:DesignHeight="600" d:DesignWidth="800">

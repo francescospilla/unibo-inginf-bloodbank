@@ -4,14 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{9F6EE4E9-BE2F-4726-A208-081FD7EB38CA}</ProjectGuid>
+    <ProjectGuid>{EE4779C0-CA96-4055-B8B1-35467D709983}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BloodBank.Mock</RootNamespace>
-    <AssemblyName>BloodBank.Mock</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <RootNamespace>Stylet.DictionaryViewManager</RootNamespace>
+    <AssemblyName>Stylet.DictionaryViewManager</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -31,26 +30,21 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Stylet, Version=1.1.16.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Stylet.1.1.16\lib\net45\Stylet.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DonatoreService.cs" />
-    <Compile Include="DonazioneService.cs" />
-    <Compile Include="IndagineService.cs" />
-    <Compile Include="ListaIndaginiService.cs" />
-    <Compile Include="ListaVociService.cs" />
-    <Compile Include="MedicoService.cs" />
+    <Compile Include="AssociatedViewAttribute.cs" />
+    <Compile Include="CreateViewManager.cs" />
+    <Compile Include="DictionaryViewManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SaccaSangueService.cs" />
-    <Compile Include="VisitaMedicaService.cs" />
-    <Compile Include="VoceService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BloodBank.Model\BloodBank.Model.csproj">
-      <Project>{85debb74-1f91-474f-9f84-592a873573ba}</Project>
-      <Name>BloodBank.Model</Name>
-    </ProjectReference>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

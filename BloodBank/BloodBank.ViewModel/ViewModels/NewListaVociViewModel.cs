@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using BloodBank.Mock;
 using BloodBank.Model.Models;
 using BloodBank.Model.Models.Indagini;
 using BloodBank.Model.Models.Indagini.Tipi;
@@ -14,6 +13,7 @@ using BloodBank.ViewModel.ViewModels.Indagini;
 using BloodBank.ViewModel.ViewModels.Persone;
 using PropertyChanged;
 using Stylet;
+using Stylet.DictionaryViewManager;
 
 namespace BloodBank.ViewModel.ViewModels {
 

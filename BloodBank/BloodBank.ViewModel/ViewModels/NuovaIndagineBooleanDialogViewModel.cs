@@ -12,6 +12,7 @@ using BloodBank.ViewModel.Service;
 using BloodBank.ViewModel.Validation.Indagini;
 using PropertyChanged;
 using Stylet;
+using Stylet.DictionaryViewManager;
 
 namespace BloodBank.ViewModel.ViewModels
 {

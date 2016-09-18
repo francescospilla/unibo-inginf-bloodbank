@@ -8,10 +8,13 @@ using System.Reflection;
 using BloodBank.Mock;
 using BloodBank.Model.Models.Indagini;
 using BloodBank.Model.Models.Tests;
+using BloodBank.View;
+using BloodBank.ViewModel;
 using StructureMap.Pipeline;
+using Stylet.DictionaryViewManager;
 using ValidatorExtensions = BloodBank.ViewModel.Validation.ValidatorExtensions;
 
-namespace BloodBank.ViewModel {
+namespace BloodBank {
 
     public class Bootstrapper : StructureMapBootstrapper<ShellViewModel> {
 
@@ -29,18 +32,8 @@ namespace BloodBank.ViewModel {
             config.ConfigureForFluentValidation(typeof(ValidatorExtensions));
         }
         
-
-        protected override ViewManager CreateViewManager(ViewManagerConfig viewManagerConfig)
-        {
-            viewManagerConfig.ViewAssemblies.Add(Assembly.GetEntryAssembly());
-            return new DictionaryViewManager(viewManagerConfig);
-        }
-        
-
-        protected override void Configure() {
-            base.Configure();
-
-            ViewManager viewManager = (ViewManager)GetInstance(typeof(IViewManager));
+        protected override ViewManager CreateViewManager(ViewManagerConfig config) {
+            return config.ConfigureForDictionaryViewManager(typeof(ShellView), typeof(ShellViewModel));
         }
     }
 }

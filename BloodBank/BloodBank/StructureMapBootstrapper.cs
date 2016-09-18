@@ -1,12 +1,11 @@
-﻿using StructureMap;
+﻿using System;
+using System.Collections.Generic;
+using System.Reflection;
+using StructureMap;
 using StructureMap.Pipeline;
 using Stylet;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Reflection;
 
-namespace BloodBank.ViewModel {
+namespace BloodBank {
 
     public class StructureMapBootstrapper<TRootViewModel> : BootstrapperBase where TRootViewModel : class {
         private IContainer container;
@@ -30,9 +29,10 @@ namespace BloodBank.ViewModel {
         /// Carries out default configuration of the IoC container. Override if you don't want to do this
         /// </summary>
         protected virtual void DefaultConfigureIoC(ConfigurationExpression config) {
-            var viewManagerConfig = new ViewManagerConfig();
-            viewManagerConfig.ViewAssemblies = new List<Assembly> { this.GetType().Assembly };
-            viewManagerConfig.ViewFactory = this.GetInstance;
+            var viewManagerConfig = new ViewManagerConfig {
+                ViewAssemblies = new List<Assembly> {this.GetType().Assembly},
+                ViewFactory = this.GetInstance
+            };
 
             ViewManager viewManager = CreateViewManager(viewManagerConfig);
             config.For<IViewManager>().Add(viewManager);

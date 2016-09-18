@@ -38,7 +38,6 @@
       <HintPath>..\packages\FluentValidation.6.2.1.0\lib\Net45\FluentValidation.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
-    <Reference Include="PresentationFramework" />
     <Reference Include="PropertyChanged, Version=1.51.3.0, Culture=neutral, PublicKeyToken=ee3ee20bcf148ddd, processorArchitecture=MSIL">
       <HintPath>..\packages\PropertyChanged.Fody.1.51.3\lib\dotnet\PropertyChanged.dll</HintPath>
       <Private>False</Private>
@@ -54,30 +53,21 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xaml" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Bootstrapper.cs" />
     <Compile Include="Components\ViewModel.cs" />
     <Compile Include="Components\WorkspaceViewModel.cs" />
     <Compile Include="Events\DialogEvent.cs" />
     <Compile Include="Events\NuovaIndagineEvent.cs" />
     <Compile Include="Events\NuovaDonazioneEvent.cs" />
     <Compile Include="Events\ViewModelCollectionChangedEvent.cs" />
-    <Compile Include="ViewManager.cs" />
     <Compile Include="ViewModels\Donazioni\DonazioneViewModel.cs" />
     <Compile Include="ViewModels\NuovaDonazioneDialogViewModel.cs" />
     <Compile Include="ViewModels\NewListaVociViewModel.cs" />
     <Compile Include="ViewModels\Indagini\IndaginiViewModel.cs" />
     <Compile Include="Service\DataService.cs" />
     <Compile Include="Service\IDataService.cs" />
-    <Compile Include="StructureMapBootstrapper.cs" />
     <Compile Include="Validation\Persone\CodiceFiscaleValidator.cs" />
     <Compile Include="Validation\Persone\DonatoreValidator.cs" />
     <Compile Include="Validation\Persone\EtàValidator.cs" />
@@ -113,17 +103,13 @@
       <Project>{7fb4caf6-148f-424e-bfde-d117f13de185}</Project>
       <Name>BloodBank.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\BloodBank.Mock\BloodBank.Mock.csproj">
-      <Project>{9F6EE4E9-BE2F-4726-A208-081FD7EB38CA}</Project>
-      <Name>BloodBank.Mock</Name>
-    </ProjectReference>
     <ProjectReference Include="..\BloodBank.Model\BloodBank.Model.csproj">
       <Project>{85debb74-1f91-474f-9f84-592a873573ba}</Project>
       <Name>BloodBank.Model</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Stylet.FluentValidation\Stylet.FluentValidation.csproj">
-      <Project>{bc9bc04d-1d1a-43a3-be2d-d80509f03e3c}</Project>
-      <Name>Stylet.FluentValidation</Name>
+    <ProjectReference Include="..\Stylet.DictionaryViewManager\Stylet.DictionaryViewManager.csproj">
+      <Project>{EE4779C0-CA96-4055-B8B1-35467D709983}</Project>
+      <Name>Stylet.DictionaryViewManager</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

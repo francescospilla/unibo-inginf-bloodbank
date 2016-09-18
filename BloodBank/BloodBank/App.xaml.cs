@@ -3,7 +3,7 @@ using System.Threading;
 using System.Windows;
 using System.Windows.Markup;
 
-namespace BloodBank.View {
+namespace BloodBank {
 
     /// <summary>
     /// Interaction logic for App.xaml

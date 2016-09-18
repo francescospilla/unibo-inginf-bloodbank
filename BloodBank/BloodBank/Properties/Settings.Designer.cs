@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BloodBank.View.Properties {
+namespace BloodBank.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

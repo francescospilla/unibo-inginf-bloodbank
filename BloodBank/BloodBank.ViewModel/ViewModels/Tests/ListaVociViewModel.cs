@@ -9,6 +9,7 @@ using BloodBank.Model.Models.Tests;
 using BloodBank.ViewModel.Components;
 using PropertyChanged;
 using Stylet;
+using Stylet.DictionaryViewManager;
 
 namespace BloodBank.ViewModel.ViewModels.Tests
 {
