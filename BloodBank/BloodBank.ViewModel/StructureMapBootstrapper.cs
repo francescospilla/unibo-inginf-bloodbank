@@ -23,7 +23,7 @@ namespace BloodBank.ViewModel {
                 this.ConfigureIoC(config);
             });
 
-            Debug.WriteLine(container.WhatDoIHave());
+            // Debug.WriteLine(container.WhatDoIHave());
         }
 
         /// <summary>
@@ -34,13 +34,23 @@ namespace BloodBank.ViewModel {
             viewManagerConfig.ViewAssemblies = new List<Assembly> { this.GetType().Assembly };
             viewManagerConfig.ViewFactory = this.GetInstance;
 
-            var viewManager = new ViewManager(viewManagerConfig);
+            ViewManager viewManager = CreateViewManager(viewManagerConfig);
             config.For<IViewManager>().Add(viewManager);
 
             config.For<IWindowManagerConfig>().Add(this);
             config.For<IWindowManager>().Add<WindowManager>().LifecycleIs<SingletonLifecycle>();
             config.For<IEventAggregator>().Add<EventAggregator>().LifecycleIs<SingletonLifecycle>();
             config.For<IMessageBoxViewModel>().Add<MessageBoxViewModel>().LifecycleIs<UniquePerRequestLifecycle>();
+        }
+
+        /// <summary>
+        /// Override to add your own ViewManager to the IoC container.
+        /// </summary>
+        /// <param name="viewManagerConfig"></param>
+        /// <returns></returns>
+        protected virtual ViewManager CreateViewManager(ViewManagerConfig viewManagerConfig)
+        {
+            return new ViewManager(viewManagerConfig);
         }
 
         /// <summary>

@@ -39,8 +39,6 @@ namespace BloodBank.ViewModel.ViewModels
 
             _eventAggregator.Subscribe(this);
 
-            DisplayName = typeof(Indagine).Name;
-
             IndaginiAnalisi = new BindableCollection<Indagine<Analisi>>(_indagineAnalisiDataService.GetModels());
             IndaginiQuestionario = new BindableCollection<Indagine<Questionario>>(_indagineQuestionarioDataService.GetModels());
         }

@@ -18,6 +18,7 @@ using Stylet;
 namespace BloodBank.ViewModel.ViewModels {
 
     [ImplementPropertyChanged]
+    [AssociatedView("NewListaVociView")]
     public class NewListaVociViewModel<U> : Screen where U : ListaVoci {
         private readonly IEventAggregator _eventAggregator;
         private readonly IDataService<Donatore, DonatoreViewModel> _donatoreDataService;

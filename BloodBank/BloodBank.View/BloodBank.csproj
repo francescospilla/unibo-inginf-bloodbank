@@ -148,14 +148,12 @@
       <DependentUpon>AppBar.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\IntegerTextBox.cs" />
-    <Compile Include="Views\Indagini\VoceView.cs" />
     <Compile Include="Views\Indagini\VoceView.xaml.cs">
       <DependentUpon>VoceView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\NuovaDonazioneDialogView.xaml.cs">
       <DependentUpon>NuovaDonazioneDialogView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\NewListaVociQuestionarioView.cs" />
     <Compile Include="Views\NewListaVociView.xaml.cs">
       <DependentUpon>NewListaVociView.xaml</DependentUpon>
     </Compile>
@@ -167,11 +165,8 @@
     <Compile Include="Views\Persone\DonatoriView.xaml.cs">
       <DependentUpon>DonatoriView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Tests\ListaIndaginiQuestionarioView.cs" />
-    <Compile Include="Views\Tests\ListaVociAnalisiView.cs" />
-    <Compile Include="Views\Tests\ListaVociQuestionarioView.cs" />
-    <Compile Include="Views\Tests\ListeIndaginiQuestionarioView.xaml.cs">
-      <DependentUpon>ListeIndaginiQuestionarioView.xaml</DependentUpon>
+    <Compile Include="Views\Tests\ListeIndaginiView.xaml.cs">
+      <DependentUpon>ListeIndaginiView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Sangue\SaccaSangueView.xaml.cs">
       <DependentUpon>SaccaSangueView.xaml</DependentUpon>
@@ -179,8 +174,6 @@
     <Compile Include="Views\Sangue\SaccheSangueView.xaml.cs">
       <DependentUpon>SaccheSangueView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Tests\ListeVociAnalisiView.cs" />
-    <Compile Include="Views\Tests\ListeVociQuestionarioView.cs" />
     <Compile Include="Views\Tests\ListeVociView.xaml.cs">
       <DependentUpon>ListeVociView.xaml</DependentUpon>
     </Compile>
@@ -249,7 +242,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Tests\ListeIndaginiQuestionarioView.xaml">
+    <Page Include="Views\Tests\ListeIndaginiView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

@@ -21,30 +21,30 @@ namespace BloodBank.ViewModel {
     [ImplementPropertyChanged]
     public class ShellViewModel : Conductor<NavigationMenuItem>.Collection.OneActive, IHandle<NavMenuEvent>, IHandle<DialogEvent> {
 
-        public ShellViewModel(IEventAggregator eventAggregator, DonatoriViewModel donatoriViewModel, DonazioniViewModel donazioniViewModel, SaccheSangueViewModel saccheSangueViewModel, ListeIndaginiQuestionarioViewModel listeIndaginiQuestionarioViewModel, VisiteMedicheViewModel visiteMedicheViewModel, ListeVociAnalisiViewModel listeVociAnalisiViewModel, ListeVociQuestionarioViewModel listeVociQuestionarioViewModel, IndaginiViewModel indaginiViewModel, NewListaVociQuestionarioViewModel newListaVociViewModel) {
+        public ShellViewModel(IEventAggregator eventAggregator, DonatoriViewModel donatoriViewModel, DonazioniViewModel donazioniViewModel, SaccheSangueViewModel saccheSangueViewModel, ListeIndaginiViewModel<Questionario> listeIndaginiQuestionarioViewModel, VisiteMedicheViewModel visiteMedicheViewModel, ListeVociViewModel<Analisi> listeVociAnalisiViewModel, ListeVociViewModel<Questionario> listeVociQuestionarioViewModel, IndaginiViewModel indaginiViewModel, NewListaVociViewModel<Questionario> newListaVociQuestionarioViewModel) {
 
             eventAggregator.Subscribe(this);
 
             DisplayName = "BloodBank";
 
-            List<Voce> voci = new List<Voce>(){
-                new Voce<Questionario, bool>(new IndagineBoolean<Questionario>("Domanda 1", Idoneità.NonIdoneo, true), true),
-                 new Voce<Questionario, int>(new IndagineRange<Questionario, int>("Domanda 10", Idoneità.NonIdoneo, 0, 10), -1)
-            };
-
-            Items.Add(new NavigationMenuItem("Donatori", "AccountMultiple", donatoriViewModel));
-            Items.Add(new NavigationMenuItem("Donazioni", "Heart", donazioniViewModel));
-            Items.Add(new NavigationMenuItem("Analisi", "Hospital", listeVociAnalisiViewModel));
-            Items.Add(new NavigationMenuItem("Questionari", "Book", listeVociQuestionarioViewModel));
-            Items.Add(new NavigationMenuItem("Sacche di Sangue", "Water", saccheSangueViewModel));
-            Items.Add(new NavigationMenuItem("Questionari", "Pencil", listeIndaginiQuestionarioViewModel));
-            Items.Add(new NavigationMenuItem("Visite Mediche", "Stethoscope", visiteMedicheViewModel));            
-            Items.Add(new NavigationMenuItem("Indagini", "Help", indaginiViewModel));
-            Items.Add(new NavigationMenuItem("Nuovo Questionario", "Help", newListaVociViewModel));
+            AddNewNavigationMenuItem(donatoriViewModel, "Donatori", "AccountMultiple");
+            AddNewNavigationMenuItem(donazioniViewModel, "Donazioni", "Heart");
+            AddNewNavigationMenuItem(listeVociAnalisiViewModel, "Analisi", "Hospital");
+            AddNewNavigationMenuItem(listeVociQuestionarioViewModel, "Questionari", "Book");
+            AddNewNavigationMenuItem(saccheSangueViewModel, "Sacche di Sangue", "Water");
+            AddNewNavigationMenuItem(listeIndaginiQuestionarioViewModel, "Questionari", "Pencil");
+            AddNewNavigationMenuItem(visiteMedicheViewModel, "Visite Mediche", "Stethoscope");            
+            AddNewNavigationMenuItem(indaginiViewModel, "Indagini", "Help");
+            AddNewNavigationMenuItem(newListaVociQuestionarioViewModel, "Nuovo Questionario", "Help");
 
         }
-
+        
         #region NavMenu
+
+        private void AddNewNavigationMenuItem(IScreen viewModel, string name, string icon) {
+            viewModel.DisplayName = name;
+            Items.Add(new NavigationMenuItem(name, icon, viewModel));
+        }
 
         public bool IsNavMenuOpen { get; set; }
 

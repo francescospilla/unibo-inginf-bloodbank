@@ -70,9 +70,9 @@
     <Compile Include="Events\NuovaIndagineEvent.cs" />
     <Compile Include="Events\NuovaDonazioneEvent.cs" />
     <Compile Include="Events\ViewModelCollectionChangedEvent.cs" />
+    <Compile Include="ViewManager.cs" />
     <Compile Include="ViewModels\Donazioni\DonazioneViewModel.cs" />
     <Compile Include="ViewModels\NuovaDonazioneDialogViewModel.cs" />
-    <Compile Include="ViewModels\NewListaVociQuestionarioViewModel.cs" />
     <Compile Include="ViewModels\NewListaVociViewModel.cs" />
     <Compile Include="ViewModels\IndaginiViewModel.cs" />
     <Compile Include="Service\DataService.cs" />
@@ -101,11 +101,8 @@
     <Compile Include="ViewModels\Persone\DonatoriViewModel.cs" />
     <Compile Include="ViewModels\Sangue\SaccaSangueViewModel.cs" />
     <Compile Include="ViewModels\Sangue\SaccheSangueViewModel.cs" />
-    <Compile Include="ViewModels\Tests\ListaIndaginiQuestionarioViewModel.cs" />
-    <Compile Include="ViewModels\Tests\ListaVociAnalisiViewModel.cs" />
-    <Compile Include="ViewModels\Tests\ListaVociQuestionarioViewModel.cs" />
     <Compile Include="ViewModels\Tests\ListaVociViewModel.cs" />
-    <Compile Include="ViewModels\Tests\ListeIndaginiQuestionarioViewModel.cs" />
+    <Compile Include="ViewModels\Tests\ListeIndaginiViewModel.cs" />
     <Compile Include="ViewModels\Tests\ListeVociViewModel.cs" />
     <Compile Include="ViewModels\Tests\VisitaMedicaViewModel.cs" />
     <Compile Include="ViewModels\Tests\VisiteMedicheViewModel.cs" />

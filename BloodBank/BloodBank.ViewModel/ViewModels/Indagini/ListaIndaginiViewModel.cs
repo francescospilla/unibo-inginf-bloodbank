@@ -13,6 +13,7 @@ using Stylet;
 namespace BloodBank.ViewModel.ViewModels.Indagini {
 
     [ImplementPropertyChanged]
+    [AssociatedView("ListaIndaginiView")]
     public class ListaIndaginiViewModel<U> : EditableViewModel<ListaIndagini<U>>, IListaIndagini where U : ListaVoci {
         private readonly IDataService<Indagine<U>> _indagineDataService;
 

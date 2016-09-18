@@ -18,23 +18,20 @@ using BloodBank.ViewModel.ViewModels.Tests;
 using PropertyChanged;
 using Stylet;
 
-namespace BloodBank.ViewModel.ViewModels
-{
+namespace BloodBank.ViewModel.ViewModels {
     [ImplementPropertyChanged]
-    public class NuovaDonazioneDialogViewModel : Screen
-    {
+    public class NuovaDonazioneDialogViewModel : Screen {
         private readonly IEventAggregator _eventAggregator;
         private readonly IDataService<Donatore, DonatoreViewModel> _donatoreDataService;
         private readonly IDataService<VisitaMedica, VisitaMedicaViewModel> _visitaMedicaDataService;
-        private IDataService<ListaVoci<Questionario>, ListaVociQuestionarioViewModel> _listaVociQuestionarioDataService;
-        private IDataService<ListaVoci<Analisi>, ListaVociAnalisiViewModel> _listaVociAnalisiDataService;
+        private readonly IDataService<ListaVoci<Questionario>, ListaVociViewModel<Questionario>> _listaVociQuestionarioDataService;
+        private readonly IDataService<ListaVoci<Analisi>, ListaVociViewModel<Analisi>> _listaVociAnalisiDataService;
 
         public NuovaDonazioneDialogViewModel(IEventAggregator eventAggregator,
             IDataService<Donatore, DonatoreViewModel> donatoreDataService,
-            IDataService<ListaVoci<Questionario>, ListaVociQuestionarioViewModel> listaVociQuestionarioDataService,
-            IDataService<ListaVoci<Analisi>, ListaVociAnalisiViewModel> listaVociAnalisiDataService,
-            IDataService<VisitaMedica, VisitaMedicaViewModel> visitaMedicaDataService)
-        {
+            IDataService<ListaVoci<Questionario>, ListaVociViewModel<Questionario>> listaVociQuestionarioDataService,
+            IDataService<ListaVoci<Analisi>, ListaVociViewModel<Analisi>> listaVociAnalisiDataService,
+            IDataService<VisitaMedica, VisitaMedicaViewModel> visitaMedicaDataService) {
             _eventAggregator = eventAggregator;
             _donatoreDataService = donatoreDataService;
             _listaVociQuestionarioDataService = listaVociQuestionarioDataService;
@@ -63,13 +60,14 @@ namespace BloodBank.ViewModel.ViewModels
         #endregion
 
         public IEnumerable<DonatoreViewModel> DonatoreEnumerable { get; }
-        public IEnumerable<ListaVociQuestionarioViewModel> ListaVociQuestionarioEnumerable { get; private set; }
-        public IEnumerable<ListaVociAnalisiViewModel> ListaVociAnalisiEnumerable { get; private set; }
+        public IEnumerable<ListaVociViewModel<Questionario>> ListaVociQuestionarioEnumerable { get; private set; }
+        public IEnumerable<ListaVociViewModel<Analisi>> ListaVociAnalisiEnumerable { get; private set; }
         public IEnumerable<VisitaMedicaViewModel> VisitaMedicaEnumerable { get; private set; }
         public IEnumerable<TipoDonazione> TipoDonazioneEnumerable => TipoDonazione.Values;
 
-        public void RefreshComboBoxes(object sender, EventArgs e)
-        {
+        #region Actions
+
+        public void RefreshComboBoxes(object sender, EventArgs e) {
             if (SelectedDonatore == null)
                 return;
             ListaVociAnalisiEnumerable = _listaVociAnalisiDataService.GetViewModels().Where(vm => vm.Donatore.Equals(SelectedDonatore.Model) && vm.Data.Date.Equals(DateTime.Today) && vm.Idoneità == Idoneità.Idoneo);
@@ -78,21 +76,20 @@ namespace BloodBank.ViewModel.ViewModels
             DataDonazione = DateTime.Now;
         }
 
-        public void OpenNavMenu()
-        {
+        public void OpenNavMenu() {
             _eventAggregator.Publish(new NavMenuEvent(NavMenuEvent.NavMenuStates.Open));
         }
 
-        public void Finish()
-        {
-            NuovaDonazioneEvent message = new NuovaDonazioneEvent(new Donazione(SelectedDonatore.Model, SelectedTipoDonazione, DateTime.Now, SelectedVisitaMedica.Model, (Analisi) SelectedListaVociAnalisi.Model, (Questionario) SelectedListaVociQuestionario.Model));
+        public void Finish() {
+            NuovaDonazioneEvent message = new NuovaDonazioneEvent(new Donazione(SelectedDonatore.Model, SelectedTipoDonazione, DateTime.Now, SelectedVisitaMedica.Model, (Analisi)SelectedListaVociAnalisi.Model, (Questionario)SelectedListaVociQuestionario.Model));
             _eventAggregator.Publish(message);
         }
 
-        public void Cancel()
-        {
+        public void Cancel() {
             _eventAggregator.Publish(new DialogEvent(false, null));
         }
+
+        #endregion
 
     }
 

@@ -9,6 +9,8 @@ using Stylet;
 
 namespace BloodBank.ViewModel.ViewModels.Indagini {
 
+    [ImplementPropertyChanged]
+    [AssociatedView("VoceView")]
     public abstract class VoceViewModel<U> : Screen where U : ListaVoci {
         
     }
@@ -39,6 +41,7 @@ namespace BloodBank.ViewModel.ViewModels.Indagini {
 
     #region Voce???ViewModel<U> where U : ListaVoci
 
+    [ImplementPropertyChanged]
     public class VoceBooleanViewModel<U> : VoceViewModel<U, bool> where U : ListaVoci
     {
         public VoceBooleanViewModel(IndagineBoolean<U> indagine) : base(indagine)
@@ -49,6 +52,7 @@ namespace BloodBank.ViewModel.ViewModels.Indagini {
         
     }
 
+    [ImplementPropertyChanged]
     public class VoceRangeIntViewModel<U> : VoceViewModel<U, int> where U : ListaVoci {
         public VoceRangeIntViewModel(IndagineRange<U, int> indagine) : base(indagine)
         {
@@ -58,6 +62,7 @@ namespace BloodBank.ViewModel.ViewModels.Indagini {
 
     }
 
+    [ImplementPropertyChanged]
     public class VoceRangeDoubleViewModel<U> : VoceViewModel<U, double> where U : ListaVoci {
         public VoceRangeDoubleViewModel(IndagineRange<U, double> indagine) : base(indagine) {
         }

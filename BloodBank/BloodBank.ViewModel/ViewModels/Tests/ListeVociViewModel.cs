@@ -11,17 +11,10 @@ using Stylet;
 
 namespace BloodBank.ViewModel.ViewModels.Tests
 {
-
-    public class ListeVociQuestionarioViewModel : TabWorkspaceViewModel<ListaVoci<Questionario>, ListaVociQuestionarioViewModel>
+    [AssociatedView("ListeVociView")]
+    public class ListeVociViewModel<U> : TabWorkspaceViewModel<ListaVoci<U>, ListaVociViewModel<U>> where U : ListaVoci
     {
-        public ListeVociQuestionarioViewModel(IEventAggregator eventAggregator, IDataService<ListaVoci<Questionario>, ListaVociQuestionarioViewModel> dataService, Func<ListaVociQuestionarioViewModel> viewModelFactory) : base(eventAggregator, dataService, viewModelFactory)
-        {
-        }
-    }
-
-    public class ListeVociAnalisiViewModel : TabWorkspaceViewModel<ListaVoci<Analisi>, ListaVociAnalisiViewModel>
-    {
-        public ListeVociAnalisiViewModel(IEventAggregator eventAggregator, IDataService<ListaVoci<Analisi>, ListaVociAnalisiViewModel> dataService, Func<ListaVociAnalisiViewModel> viewModelFactory) : base(eventAggregator, dataService, viewModelFactory)
+        public ListeVociViewModel(IEventAggregator eventAggregator, IDataService<ListaVoci<U>, ListaVociViewModel<U>> dataService, Func<ListaVociViewModel<U>> viewModelFactory) : base(eventAggregator, dataService, viewModelFactory)
         {
         }
     }

@@ -18,12 +18,12 @@ namespace BloodBank.ViewModel.ViewModels.Donazioni
     {
         private readonly IDataService<Donatore, DonatoreViewModel> _donatoreDataService;
         private readonly IDataService<VisitaMedica, VisitaMedicaViewModel> _visitaMedicaDataService;
-        private readonly IDataService<ListaVoci<Questionario>, ListaVociQuestionarioViewModel> _listaVociQuestionarioDataService;
-        private readonly IDataService<ListaVoci<Analisi>, ListaVociAnalisiViewModel> _listaVociAnalisiDataService;
+        private readonly IDataService<ListaVoci<Questionario>, ListaVociViewModel<Questionario>> _listaVociQuestionarioDataService;
+        private readonly IDataService<ListaVoci<Analisi>, ListaVociViewModel<Analisi>> _listaVociAnalisiDataService;
         private readonly IDataService<Donazione, DonazioneViewModel> _donazioneDataService;
 
-        public DonazioniViewModel(IEventAggregator eventAggregator, IDataService<Donazione, DonazioneViewModel> donazioneDataService, IDataService<Donatore, DonatoreViewModel> donatoreDataService, IDataService<ListaVoci<Questionario>, ListaVociQuestionarioViewModel> listaVociQuestionarioDataService,
-            IDataService<ListaVoci<Analisi>, ListaVociAnalisiViewModel> listaVociAnalisiDataService,
+        public DonazioniViewModel(IEventAggregator eventAggregator, IDataService<Donazione, DonazioneViewModel> donazioneDataService, IDataService<Donatore, DonatoreViewModel> donatoreDataService, IDataService<ListaVoci<Questionario>, ListaVociViewModel<Questionario>> listaVociQuestionarioDataService,
+            IDataService<ListaVoci<Analisi>, ListaVociViewModel<Analisi>> listaVociAnalisiDataService,
             IDataService<VisitaMedica, VisitaMedicaViewModel> visitaMedicaDataService, Func<DonazioneViewModel> viewModelFactory) : base(eventAggregator, donazioneDataService, viewModelFactory)
         {
             _eventAggregator.Subscribe(this);

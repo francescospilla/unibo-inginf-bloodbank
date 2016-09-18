@@ -28,12 +28,19 @@ namespace BloodBank.ViewModel {
             config.For(typeof (IDataService<,>)).Use(typeof (DataService<,>)).LifecycleIs<SingletonLifecycle>();
             config.ConfigureForFluentValidation(typeof(ValidatorExtensions));
         }
+        
+
+        protected override ViewManager CreateViewManager(ViewManagerConfig viewManagerConfig)
+        {
+            viewManagerConfig.ViewAssemblies.Add(Assembly.GetEntryAssembly());
+            return new DictionaryViewManager(viewManagerConfig);
+        }
+        
 
         protected override void Configure() {
             base.Configure();
 
             ViewManager viewManager = (ViewManager)GetInstance(typeof(IViewManager));
-            viewManager.ViewAssemblies.Add(Assembly.GetEntryAssembly());
         }
     }
 }
