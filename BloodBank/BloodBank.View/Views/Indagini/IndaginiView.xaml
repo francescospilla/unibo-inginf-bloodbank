@@ -46,7 +46,7 @@
                     <md:Card Margin="20 10" Padding="10 0 10 30" MaxWidth="1000">
                         <StackPanel>
                             <TextBlock Margin="0 10 0 0" Text="Indagini Analisi" Style="{StaticResource MaterialDesignDisplay1TextBlock}" />
-                            <DataGrid ItemsSource="{Binding IndaginiAnalisi, Converter={StaticResource IndaginiToDataTable}}" IsReadOnly="True" FrozenColumnCount="1" CanUserResizeColumns="False" AutoGenerateColumns="True" AutoGeneratingColumn="Grid_OnAutoGeneratingColumn"  />
+                            <DataGrid ItemsSource="{Binding IndaginiAnalisi, Converter={StaticResource IndaginiToDataTable}}" IsReadOnly="True" FrozenColumnCount="1" CanUserResizeColumns="False" CanUserSortColumns="False" AutoGenerateColumns="True" AutoGeneratingColumn="Grid_OnAutoGeneratingColumn" />
                         </StackPanel>
                     </md:Card>
                     <md:PopupBox ToolTip="Aggiungi ... per Analisi" Style="{StaticResource MaterialDesignMultiFloatingActionAccentPopupBox}" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10" PlacementMode="TopAndAlignCentres">
@@ -68,7 +68,7 @@
                     <md:Card Margin="20 10" Padding="10 0 10 30" MaxWidth="1000">
                         <StackPanel>
                             <TextBlock Margin="0 10 0 0" Text="Indagini Questionario" Style="{StaticResource MaterialDesignDisplay1TextBlock}" />
-                            <DataGrid ItemsSource="{Binding IndaginiQuestionario, Converter={StaticResource IndaginiToDataTable}}" IsReadOnly="True" FrozenColumnCount="1" CanUserResizeColumns="False" AutoGenerateColumns="True" AutoGeneratingColumn="Grid_OnAutoGeneratingColumn" />
+                            <DataGrid ItemsSource="{Binding IndaginiQuestionario, Converter={StaticResource IndaginiToDataTable}}" IsReadOnly="True" FrozenColumnCount="1" CanUserResizeColumns="False" CanUserSortColumns="False" AutoGenerateColumns="True" AutoGeneratingColumn="Grid_OnAutoGeneratingColumn"/>
                         </StackPanel>
                     </md:Card>
                     <md:PopupBox ToolTip="Aggiungi ... per Questionario" Style="{StaticResource MaterialDesignMultiFloatingActionAccentPopupBox}" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10" PlacementMode="TopAndAlignCentres">
