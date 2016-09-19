@@ -73,26 +73,26 @@ namespace BloodBank.ViewModel.ViewModels.Indagini
 
         public void OpenNewIndagineRangeIntAnalisiDialog()
         {
-            var dialog = new NuovaIndagineRangeIntDialogViewModel<Analisi>(_eventAggregator, _nuovaIndagineAnalisiIntDialogValidator);
+            var dialog = new NuovaIndagineRangeDialogViewModel<Analisi, int>(_eventAggregator, _nuovaIndagineAnalisiIntDialogValidator);
             OpenNewDialog(dialog);
         }
 
 
         public void OpenNewIndagineRangeDoubleAnalisiDialog()
         {
-            var dialog = new NuovaIndagineRangeDoubleDialogViewModel<Analisi>(_eventAggregator, _nuovaIndagineAnalisiDoubleDialogValidator);
+            var dialog = new NuovaIndagineRangeDialogViewModel<Analisi, double>(_eventAggregator, _nuovaIndagineAnalisiDoubleDialogValidator);
             OpenNewDialog(dialog);
         }
 
         public void OpenNewIndagineRangeIntQuestionarioDialog()
         {
-            var dialog = new NuovaIndagineRangeIntDialogViewModel<Questionario>(_eventAggregator, _nuovaIndagineAnalisiIntDialogValidator);
+            var dialog = new NuovaIndagineRangeDialogViewModel<Questionario, int>(_eventAggregator, _nuovaIndagineAnalisiIntDialogValidator);
             OpenNewDialog(dialog);
         }
 
         public void OpenNewIndagineRangeDoubleQuestionarioDialog()
         {
-            var dialog = new NuovaIndagineRangeDoubleDialogViewModel<Questionario>(_eventAggregator, _nuovaIndagineAnalisiDoubleDialogValidator);
+            var dialog = new NuovaIndagineRangeDialogViewModel<Questionario, double>(_eventAggregator, _nuovaIndagineAnalisiDoubleDialogValidator);
             OpenNewDialog(dialog);
         }
 

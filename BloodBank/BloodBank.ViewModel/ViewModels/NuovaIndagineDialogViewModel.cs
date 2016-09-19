@@ -5,18 +5,17 @@ using BloodBank.Model.Models.Indagini;
 using BloodBank.ViewModel.Events;
 using Stylet;
 
-namespace BloodBank.ViewModel.ViewModels
-{
-    public abstract class NuovaIndagineDialogViewModel : Screen
-    {
+namespace BloodBank.ViewModel.ViewModels {
+    public abstract class NuovaIndagineDialogViewModel : Screen {
         private readonly IEventAggregator _eventAggregator;
 
         protected NuovaIndagineDialogViewModel(IEventAggregator eventAggregator, IModelValidator validator) : base(validator) {
+            _eventAggregator = eventAggregator;
+
             if (validator != null) {
                 AutoValidate = true;
                 Validate();
             }
-            _eventAggregator = eventAggregator;
 
         }
 
@@ -34,8 +33,7 @@ namespace BloodBank.ViewModel.ViewModels
 
         public bool CanSave => !HasErrors;
 
-        public void Save()
-        {
+        public void Save() {
             if (Validator != null && !Validate()) return;
             NuovaIndagineEvent e = new NuovaIndagineEvent(CreateModelFromViewModel());
             _eventAggregator.Publish(e);

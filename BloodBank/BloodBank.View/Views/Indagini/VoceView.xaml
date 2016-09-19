@@ -28,7 +28,7 @@
         </Grid.ColumnDefinitions>
 
         <TextBox Grid.Column="0" Text="{Binding Indagine.Testo, Mode=OneWay}" IsEnabled="False" />
-        <userControls:FilteredEditableComboBox Grid.Column="1" ItemsSource="{Binding RisultatoEnumerable}" SelectedItem="{Binding Risultato, UpdateSourceTrigger=PropertyChanged}">
+        <userControls:FilteredEditableComboBox Grid.Column="1" ItemsSource="{Binding Path=RisultatoEnumerable}" SelectedItem="{Binding Path=Risultato, UpdateSourceTrigger=PropertyChanged}">
             <userControls:FilteredEditableComboBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <VirtualizingStackPanel />

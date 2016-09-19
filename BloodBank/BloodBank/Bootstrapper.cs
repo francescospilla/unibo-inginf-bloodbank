@@ -10,6 +10,7 @@ using BloodBank.Model.Models.Indagini;
 using BloodBank.Model.Models.Tests;
 using BloodBank.View;
 using BloodBank.ViewModel;
+using BloodBank.ViewModel.ViewModels.Indagini;
 using StructureMap.Pipeline;
 using Stylet.DictionaryViewManager;
 using ValidatorExtensions = BloodBank.ViewModel.Validation.ValidatorExtensions;

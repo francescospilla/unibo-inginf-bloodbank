@@ -38,6 +38,7 @@
   <ItemGroup>
     <Compile Include="Attributes\SearchableAttribute.cs" />
     <Compile Include="Extensions\DateTimeExtensions.cs" />
+    <Compile Include="Extensions\EnumerableExtensions.cs" />
     <Compile Include="Extensions\EnumExtensions.cs" />
     <Compile Include="Extensions\LINQExtensions.cs" />
     <Compile Include="Extensions\ParsingExtensions.cs" />

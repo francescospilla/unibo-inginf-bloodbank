@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using BloodBank.Model.Models;
 using BloodBank.Model.Models.Indagini;
 using BloodBank.Model.Models.Indagini.Tipi;
@@ -12,6 +13,8 @@ using BloodBank.ViewModel.Service;
 using BloodBank.ViewModel.ViewModels.Indagini;
 using BloodBank.ViewModel.ViewModels.Persone;
 using PropertyChanged;
+using StructureMap;
+using StructureMap.TypeRules;
 using Stylet;
 using Stylet.DictionaryViewManager;
 
@@ -22,15 +25,16 @@ namespace BloodBank.ViewModel.ViewModels {
     public class NewListaVociViewModel<U> : Screen where U : ListaVoci {
         private readonly IEventAggregator _eventAggregator;
         private readonly IDataService<Donatore, DonatoreViewModel> _donatoreDataService;
-        private readonly IDataService<ListaIndagini<U>, EditableViewModel<ListaIndagini<U>>> _listaIndaginiDataService;
-
-
+        private readonly IDataService<ListaIndagini<U>, ListaIndaginiViewModel<U>> _listaIndaginiDataService;
+        private readonly IModelValidator<VoceViewModel> _voceValidator;
+        
         #region Constructors
 
-        public NewListaVociViewModel(IEventAggregator eventAggregator, IDataService<Donatore, DonatoreViewModel> donatoreDataService, IDataService<ListaIndagini<U>, EditableViewModel<ListaIndagini<U>>> listaIndaginiDataService) {
+        public NewListaVociViewModel(IEventAggregator eventAggregator, IDataService<Donatore, DonatoreViewModel> donatoreDataService, IDataService<ListaIndagini<U>, ListaIndaginiViewModel<U>> listaIndaginiDataService, IModelValidator<VoceViewModel> voceValidator) {
             _eventAggregator = eventAggregator;
             _donatoreDataService = donatoreDataService;
             _listaIndaginiDataService = listaIndaginiDataService;
+            _voceValidator = voceValidator;
 
             DonatoreEnumerable = _donatoreDataService.GetViewModels();
             ListaIndaginiEnumerable = _listaIndaginiDataService.GetViewModels();
@@ -41,34 +45,30 @@ namespace BloodBank.ViewModel.ViewModels {
         #region Properties
 
         public DonatoreViewModel SelectedDonatore { get; set; }
-        public EditableViewModel<ListaIndagini<U>> SelectedListaIndagini { get; set; }
+        public ListaIndaginiViewModel<U> SelectedListaIndagini { get; set; }
 
         #endregion
 
         public IEnumerable<DonatoreViewModel> DonatoreEnumerable { get; }
-        public IEnumerable<EditableViewModel<ListaIndagini<U>>> ListaIndaginiEnumerable { get; }
-        // TODO : Cambiare in U
+        public IEnumerable<ListaIndaginiViewModel<U>> ListaIndaginiEnumerable { get; }
         public IEnumerable<VoceViewModel<U>> VociViewModelEnumerable { get; private set; }
 
-        public void OnChangeToNextPage()
-        {
-            if (SelectedListaIndagini != null)
-            {
+        public void OnChangeToNextPage() {
+            if (SelectedListaIndagini != null) {
                 VociViewModelEnumerable = CreateViewModelsFrom(SelectedListaIndagini);
             }
         }
 
-        // TODO: Sostituire sto mock
-        private static IEnumerable<VoceViewModel<U>> CreateViewModelsFrom(EditableViewModel<ListaIndagini<U>> selectedListaIndagini)
-        {
+        private IEnumerable<VoceViewModel<U>> CreateViewModelsFrom(ListaIndaginiViewModel<U> selectedListaIndagini) {
             return selectedListaIndagini.Model.Cast<Indagine<U>>().Select(CreateViewModelFrom).ToList();
         }
 
-        private static VoceViewModel<U> CreateViewModelFrom(Indagine<U> indagine)
-        {
-            Type thisType = indagine.GetType();
-            Type[] genericTypeArguments = indagine.GetType().GenericTypeArguments;
-            return null;
+        private VoceViewModel<U> CreateViewModelFrom(Indagine<U> indagine) {
+
+            Type[] genericTypeArguments = indagine.GetType().BaseType.GenericTypeArguments;
+            Type viewModelType = typeof (VoceViewModel<,>).MakeGenericType(genericTypeArguments);
+            object viewModel = Activator.CreateInstance(viewModelType, _eventAggregator, _voceValidator, indagine);
+            return viewModel as VoceViewModel<U>;
         }
     }
 }

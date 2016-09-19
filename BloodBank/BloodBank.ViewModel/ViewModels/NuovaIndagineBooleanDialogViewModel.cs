@@ -29,8 +29,7 @@ namespace BloodBank.ViewModel.ViewModels
 
         #endregion Properties
 
-        public IEnumerable<bool> RisultatoCorrettoEnumerable { get; } = new[] { true, false };
-
+        public IEnumerable<bool> RisultatoCorrettoEnumerable => typeof (bool).Enumerable() as IEnumerable<bool>;
     }
 
     [ImplementPropertyChanged]
