@@ -10,7 +10,7 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
         <Grid.Resources>
-                <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource MaterialDesignFloatingHintComboBox}">
+                <Style TargetType="{x:Type userControls:FilteredEditableComboBox}" BasedOn="{StaticResource MaterialDesignFloatingHintComboBox}">
                     <Setter Property="Margin" Value="10 10 10 7" />
                 </Style>
                 <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignFloatingHintTextBox}">
@@ -27,8 +27,8 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <TextBox Grid.Column="0" Text="{Binding Indagine.Testo, Mode=OneWay}" IsEnabled="False" />
-        <userControls:FilteredEditableComboBox Grid.Column="1" ItemsSource="{Binding Path=RisultatoEnumerable}" SelectedItem="{Binding Path=Risultato, UpdateSourceTrigger=PropertyChanged}">
+        <TextBox Grid.Column="0" md:HintAssist.Hint="Indagine" Text="{Binding Indagine.Testo, Mode=OneWay}" IsEnabled="False" />
+        <userControls:FilteredEditableComboBox Grid.Column="1" md:HintAssist.Hint="Risposta" ItemsSource="{Binding Path=RisultatoEnumerable}" SelectedItem="{Binding Path=Risposta, UpdateSourceTrigger=PropertyChanged}">
             <userControls:FilteredEditableComboBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <VirtualizingStackPanel />

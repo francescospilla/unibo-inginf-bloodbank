@@ -26,15 +26,15 @@ namespace BloodBank.ViewModel.ViewModels {
         private readonly IEventAggregator _eventAggregator;
         private readonly IDataService<Donatore, DonatoreViewModel> _donatoreDataService;
         private readonly IDataService<ListaIndagini<U>, ListaIndaginiViewModel<U>> _listaIndaginiDataService;
-        private readonly IModelValidator<VoceViewModel> _voceValidator;
-        
+        private readonly VoceViewModelFactory<U>_voceViewModelFactory;
+
         #region Constructors
 
-        public NewListaVociViewModel(IEventAggregator eventAggregator, IDataService<Donatore, DonatoreViewModel> donatoreDataService, IDataService<ListaIndagini<U>, ListaIndaginiViewModel<U>> listaIndaginiDataService, IModelValidator<VoceViewModel> voceValidator) {
+        public NewListaVociViewModel(IEventAggregator eventAggregator, IDataService<Donatore, DonatoreViewModel> donatoreDataService, IDataService<ListaIndagini<U>, ListaIndaginiViewModel<U>> listaIndaginiDataService, VoceViewModelFactory<U> voceViewModelFactory) {
             _eventAggregator = eventAggregator;
             _donatoreDataService = donatoreDataService;
             _listaIndaginiDataService = listaIndaginiDataService;
-            _voceValidator = voceValidator;
+            _voceViewModelFactory = voceViewModelFactory;
 
             DonatoreEnumerable = _donatoreDataService.GetViewModels();
             ListaIndaginiEnumerable = _listaIndaginiDataService.GetViewModels();
@@ -51,24 +51,12 @@ namespace BloodBank.ViewModel.ViewModels {
 
         public IEnumerable<DonatoreViewModel> DonatoreEnumerable { get; }
         public IEnumerable<ListaIndaginiViewModel<U>> ListaIndaginiEnumerable { get; }
-        public IEnumerable<VoceViewModel<U>> VociViewModelEnumerable { get; private set; }
+        public IEnumerable<VoceViewModel> VociViewModelEnumerable { get; private set; }
 
         public void OnChangeToNextPage() {
             if (SelectedListaIndagini != null) {
-                VociViewModelEnumerable = CreateViewModelsFrom(SelectedListaIndagini);
+                VociViewModelEnumerable = _voceViewModelFactory.CreateViewModelsFrom(SelectedListaIndagini);
             }
-        }
-
-        private IEnumerable<VoceViewModel<U>> CreateViewModelsFrom(ListaIndaginiViewModel<U> selectedListaIndagini) {
-            return selectedListaIndagini.Model.Cast<Indagine<U>>().Select(CreateViewModelFrom).ToList();
-        }
-
-        private VoceViewModel<U> CreateViewModelFrom(Indagine<U> indagine) {
-
-            Type[] genericTypeArguments = indagine.GetType().BaseType.GenericTypeArguments;
-            Type viewModelType = typeof (VoceViewModel<,>).MakeGenericType(genericTypeArguments);
-            object viewModel = Activator.CreateInstance(viewModelType, _eventAggregator, _voceValidator, indagine);
-            return viewModel as VoceViewModel<U>;
         }
     }
 }
