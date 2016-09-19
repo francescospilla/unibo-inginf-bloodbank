@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Reflection;
 using StructureMap;
 using StructureMap.Pipeline;
@@ -22,7 +23,7 @@ namespace BloodBank {
                 this.ConfigureIoC(config);
             });
 
-            // Debug.WriteLine(container.WhatDoIHave());
+            Debug.WriteLine(container.WhatDoIHave());
         }
 
         /// <summary>

@@ -43,6 +43,7 @@
     <Compile Include="Extensions\LINQExtensions.cs" />
     <Compile Include="Extensions\ParsingExtensions.cs" />
     <Compile Include="Extensions\ReflectionExtensions.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Extensions\RandomExtensions.cs" />
   </ItemGroup>

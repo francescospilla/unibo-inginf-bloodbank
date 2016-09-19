@@ -79,8 +79,6 @@
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Converters\CollectionToDataTableConverter.cs" />
     <Compile Include="Converters\EnumDisplayAttributeOrHumanizeConverter.cs" />
-    <Compile Include="Converters\ObjectToDictionaryConverter.cs" />
-    <Compile Include="Converters\PriorityPropertyComparer.cs" />
     <Compile Include="Converters\StringToPackIconConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShellView.xaml.cs">

@@ -25,5 +25,9 @@ namespace BloodBank.Core.Extensions {
             }
             return sb.ToString();
         }
+
+        public static Dictionary<string, object> ToPropertyDictionary(this object obj) {
+            return obj.GetType().GetProperties(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic).ToDictionary(prop => prop.Name, prop => prop.GetValue(obj, null));
+        }
     }
 }

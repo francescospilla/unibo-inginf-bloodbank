@@ -29,10 +29,10 @@ namespace BloodBank {
             });
 
             config.Policies.SetAllProperties(policy => policy.Matching(info => info.Name.EndsWith("FactoryFunc") && info.CanWrite));
-            config.For(typeof (IDataService<,>)).Use(typeof (DataService<,>)).LifecycleIs<SingletonLifecycle>();
+            config.For(typeof(IDataService<,>)).Use(typeof(DataService<,>)).LifecycleIs<SingletonLifecycle>();
             config.ConfigureForFluentValidation(typeof(ValidatorExtensions));
         }
-        
+
         protected override ViewManager CreateViewManager(ViewManagerConfig config) {
             return config.ConfigureForDictionaryViewManager(typeof(ShellView), typeof(ShellViewModel));
         }
