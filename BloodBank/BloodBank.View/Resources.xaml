@@ -8,7 +8,7 @@
     xmlns:converters="clr-namespace:BloodBank.View.Converters"
     xmlns:system="clr-namespace:System;assembly=mscorlib"
     xmlns:dragablz="http://dragablz.net/winfx/xaml/dragablz"
-    xmlns:xaml="https://github.com/canton7/Stylet"
+    xmlns:s="https://github.com/canton7/Stylet"
     xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
     mc:Ignorable="d">
 
@@ -99,7 +99,7 @@
         <Setter Property="ContentTemplate">
             <Setter.Value>
                 <DataTemplate>
-                    <ContentControl Style="{StaticResource CardContentControlStyle}" xaml:View.Model="{Binding }" />
+                    <ContentControl Style="{StaticResource CardContentControlStyle}" s:View.Model="{Binding }" />
                 </DataTemplate>
             </Setter.Value>
         </Setter>
