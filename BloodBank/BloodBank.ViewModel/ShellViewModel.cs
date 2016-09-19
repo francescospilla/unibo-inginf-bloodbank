@@ -22,7 +22,7 @@ namespace BloodBank.ViewModel {
     [ImplementPropertyChanged]
     public class ShellViewModel : Conductor<NavigationMenuItem>.Collection.OneActive, IHandle<NavMenuEvent>, IHandle<DialogEvent> {
 
-        public ShellViewModel(IEventAggregator eventAggregator, DonatoriViewModel donatoriViewModel, DonazioniViewModel donazioniViewModel, SaccheSangueViewModel saccheSangueViewModel, ListeIndaginiViewModel<Questionario> listeIndaginiQuestionarioViewModel, VisiteMedicheViewModel visiteMedicheViewModel, ListeVociViewModel<Analisi> listeVociAnalisiViewModel, ListeVociViewModel<Questionario> listeVociQuestionarioViewModel, IndaginiViewModel indaginiViewModel, NewListaVociViewModel<Questionario> newListaVociQuestionarioViewModel) {
+        public ShellViewModel(IEventAggregator eventAggregator, DonatoriViewModel donatoriViewModel, DonazioniViewModel donazioniViewModel, SaccheSangueViewModel saccheSangueViewModel, ListeIndaginiViewModel<Questionario> listeIndaginiQuestionarioViewModel, VisiteMedicheViewModel visiteMedicheViewModel, ListeVociViewModel<Analisi> listeVociAnalisiViewModel, ListeVociViewModel<Questionario> listeVociQuestionarioViewModel, IndaginiViewModel indaginiViewModel) {
 
             eventAggregator.Subscribe(this);
 
@@ -36,7 +36,6 @@ namespace BloodBank.ViewModel {
             AddNewNavigationMenuItem(listeIndaginiQuestionarioViewModel, "Questionari", "Pencil");
             AddNewNavigationMenuItem(visiteMedicheViewModel, "Visite Mediche", "Stethoscope");            
             AddNewNavigationMenuItem(indaginiViewModel, "Indagini", "Help");
-            AddNewNavigationMenuItem(newListaVociQuestionarioViewModel, "Nuovo Questionario", "Help");
 
         }
         

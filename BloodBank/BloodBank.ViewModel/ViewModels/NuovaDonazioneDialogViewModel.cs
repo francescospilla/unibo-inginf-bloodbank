@@ -66,7 +66,7 @@ namespace BloodBank.ViewModel.ViewModels {
 
         #region Actions
 
-        public void RefreshComboBoxes(object sender, EventArgs e) {
+        public void OnChangeToNextPage(object sender, EventArgs e) {
             if (SelectedDonatore == null)
                 return;
             ListaVociAnalisiEnumerable = _listaVociAnalisiDataService.GetViewModels().Where(vm => vm.Donatore.Equals(SelectedDonatore.Model) && vm.Data.Date.Equals(DateTime.Today) && vm.Idoneità == Idoneità.Idoneo);
@@ -80,7 +80,7 @@ namespace BloodBank.ViewModel.ViewModels {
         }
 
         public void Finish() {
-            NuovaDonazioneEvent message = new NuovaDonazioneEvent(new Donazione(SelectedDonatore.Model, SelectedTipoDonazione, DateTime.Now, SelectedVisitaMedica.Model, (Analisi)SelectedListaVociAnalisi.Model, (Questionario)SelectedListaVociQuestionario.Model));
+            NuovaDonazioneEvent message = new NuovaDonazioneEvent(new Donazione(SelectedDonatore.Model, SelectedTipoDonazione, DataDonazione, SelectedVisitaMedica.Model, (Analisi)SelectedListaVociAnalisi.Model, (Questionario) SelectedListaVociQuestionario.Model));
             _eventAggregator.Publish(message);
         }
 

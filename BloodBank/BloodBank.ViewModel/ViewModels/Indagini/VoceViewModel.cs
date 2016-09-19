@@ -14,7 +14,7 @@ namespace BloodBank.ViewModel.ViewModels.Indagini {
     [ImplementPropertyChanged]
     [AssociatedView("VoceView")]
     public abstract class VoceViewModel : Screen {
-        private readonly IEventAggregator _eventAggregator;
+        protected readonly IEventAggregator _eventAggregator;
 
         protected VoceViewModel(IEventAggregator eventAggregator, IModelValidator validator)
             : base(validator) {
@@ -25,14 +25,35 @@ namespace BloodBank.ViewModel.ViewModels.Indagini {
                 Validate();
             }
         }
-        
+
+        #region Save
+
+        protected override void OnValidationStateChanged(IEnumerable<string> changedProperties) {
+            base.OnValidationStateChanged(changedProperties);
+            // Fody can't weave other assemblies, so we have to manually raise this
+            NotifyOfPropertyChange(() => CanSave);
+        }
+
+        public bool CanSave => !HasErrors;
+
+        public Voce Save() {
+            if (Validator != null && !Validate()) return null;
+            return CreateModelFromViewModel();
+
+        }
+
+        protected abstract Voce CreateModelFromViewModel();
+
+        #endregion
+
     }
 
     public abstract class VoceViewModel<T> : VoceViewModel where T : struct {
         protected VoceViewModel(IEventAggregator eventAggregator, IModelValidator<VoceViewModel<T>> validator) : base(eventAggregator, validator) {
         }
         
-        public T? Risultato { get; set; }
+        public T? Risposta { get; set; }
+
     }
 
 
@@ -58,8 +79,11 @@ namespace BloodBank.ViewModel.ViewModels.Indagini {
 
         public IEnumerable<T> RisultatoEnumerable => typeof(T).Enumerable() as IEnumerable<T>;
 
-        #region Overrides of VoceViewModel<U>
+        #region Overrides of VoceViewModel<T>
 
+        protected override Voce CreateModelFromViewModel() {
+            return new Voce<U, T>(Indagine, Risposta.GetValueOrDefault());
+        }
 
         #endregion
     }

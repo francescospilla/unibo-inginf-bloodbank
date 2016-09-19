@@ -15,10 +15,10 @@ using System.Windows.Shapes;
 
 namespace BloodBank.View.Views {
     /// <summary>
-    /// Interaction logic for NewListaVociView.xaml
+    /// Interaction logic for NuovaListaVociView.xaml
     /// </summary>
-    public partial class NewListaVociView : UserControl {
-        public NewListaVociView() {
+    public partial class NuovaListaVociView : UserControl {
+        public NuovaListaVociView() {
             InitializeComponent();
         }
     }

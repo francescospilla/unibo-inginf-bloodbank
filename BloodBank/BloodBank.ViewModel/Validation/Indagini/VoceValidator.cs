@@ -11,7 +11,7 @@ namespace BloodBank.ViewModel.Validation.Indagini {
     public class VoceValidator<T> : AbstractValidator<VoceViewModel<T>> where T : struct, IComparable<T> {
 
         public VoceValidator() {
-            RuleFor(vm => vm.Risultato).NotNull();
+            RuleFor(vm => vm.Risposta).NotNull();
         }
     }
 

@@ -39,5 +39,12 @@ namespace BloodBank.ViewModel.Service {
             object viewModel = Activator.CreateInstance(viewModelType, _eventAggregator, validator, indagine);
             return viewModel as VoceViewModel;
         }
+
+        public IEnumerable<Voce<U>> GetModelsFromViewModels(IEnumerable<VoceViewModel> vociViewModels) {
+            if (vociViewModels == null || !vociViewModels.Any() || vociViewModels.Any(vm => !vm.CanSave))
+                throw new InvalidOperationException("At least one viewModel in the collection has errors.");
+
+            return vociViewModels.Select(vm => (Voce<U>) vm.Save()).ToList();
+        }
     }
 }

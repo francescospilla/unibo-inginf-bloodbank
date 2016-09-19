@@ -104,8 +104,8 @@
     <Compile Include="Views\Indagini\VoceView.xaml.cs">
       <DependentUpon>VoceView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\NewListaVociView.xaml.cs">
-      <DependentUpon>NewListaVociView.xaml</DependentUpon>
+    <Compile Include="Views\NuovaListaVociView.xaml.cs">
+      <DependentUpon>NuovaListaVociView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\NuovaDonazioneDialogView.xaml.cs">
       <DependentUpon>NuovaDonazioneDialogView.xaml</DependentUpon>
@@ -167,7 +167,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\NewListaVociView.xaml">
+    <Page Include="Views\NuovaListaVociView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

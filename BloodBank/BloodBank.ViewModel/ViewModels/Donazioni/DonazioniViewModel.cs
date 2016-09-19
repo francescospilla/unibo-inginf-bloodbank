@@ -16,22 +16,14 @@ namespace BloodBank.ViewModel.ViewModels.Donazioni
     [ImplementPropertyChanged]
     public class DonazioniViewModel : WorkspaceViewModel<Donazione, DonazioneViewModel>, IHandle<NuovaDonazioneEvent>
     {
-        private readonly IDataService<Donatore, DonatoreViewModel> _donatoreDataService;
-        private readonly IDataService<VisitaMedica, VisitaMedicaViewModel> _visitaMedicaDataService;
-        private readonly IDataService<ListaVoci<Questionario>, ListaVociViewModel<Questionario>> _listaVociQuestionarioDataService;
-        private readonly IDataService<ListaVoci<Analisi>, ListaVociViewModel<Analisi>> _listaVociAnalisiDataService;
+        private readonly Func<NuovaDonazioneDialogViewModel> _dialogFactory;
         private readonly IDataService<Donazione, DonazioneViewModel> _donazioneDataService;
 
-        public DonazioniViewModel(IEventAggregator eventAggregator, IDataService<Donazione, DonazioneViewModel> donazioneDataService, IDataService<Donatore, DonatoreViewModel> donatoreDataService, IDataService<ListaVoci<Questionario>, ListaVociViewModel<Questionario>> listaVociQuestionarioDataService,
-            IDataService<ListaVoci<Analisi>, ListaVociViewModel<Analisi>> listaVociAnalisiDataService,
-            IDataService<VisitaMedica, VisitaMedicaViewModel> visitaMedicaDataService, Func<DonazioneViewModel> viewModelFactory) : base(eventAggregator, donazioneDataService, viewModelFactory)
+        public DonazioniViewModel(IEventAggregator eventAggregator, IDataService<Donazione, DonazioneViewModel> donazioneDataService, Func<DonazioneViewModel> viewModelFactory, Func<NuovaDonazioneDialogViewModel> dialogFactory) : base(eventAggregator, donazioneDataService, viewModelFactory)
         {
             _eventAggregator.Subscribe(this);
             _donazioneDataService = donazioneDataService;
-            _donatoreDataService = donatoreDataService;
-            _listaVociQuestionarioDataService = listaVociQuestionarioDataService;
-            _listaVociAnalisiDataService = listaVociAnalisiDataService;
-            _visitaMedicaDataService = visitaMedicaDataService;
+            _dialogFactory = dialogFactory;
         }
 
 
@@ -39,18 +31,18 @@ namespace BloodBank.ViewModel.ViewModels.Donazioni
 
         public void OpenNewDialog()
         {
-            var dialog = new NuovaDonazioneDialogViewModel(_eventAggregator, _donatoreDataService,
-                _listaVociQuestionarioDataService, _listaVociAnalisiDataService, _visitaMedicaDataService);
+            var dialog = _dialogFactory();
             DialogEvent e = new DialogEvent(true, dialog);
             _eventAggregator.Publish(e);
         }
 
-        #endregion Actions
-
-        public void Handle(NuovaDonazioneEvent message)
-        {
+        public void Handle(NuovaDonazioneEvent message) {
             _eventAggregator.Publish(new DialogEvent(false, null));
             _donazioneDataService.AddModelAndCreatedViewModel(message.Donazione);
         }
+
+        #endregion Actions
+
+
     }
 }

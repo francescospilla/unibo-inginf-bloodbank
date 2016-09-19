@@ -8,9 +8,9 @@ namespace BloodBank.ViewModel.Components {
 
     [ImplementPropertyChanged]
     public class TabWorkspaceViewModel<TModel, TViewModel> : Conductor<TViewModel>.Collection.OneActive, IHandle<ViewModelCollectionChangedEvent<TViewModel>> where TModel : class where TViewModel : ViewModel<TModel> {
-        private readonly IEventAggregator _eventAggregator;
-        private readonly IDataService<TModel, TViewModel> _dataService;
-        private readonly Func<TViewModel> _viewModelFactory;
+        protected readonly IEventAggregator _eventAggregator;
+        protected readonly IDataService<TModel, TViewModel> _dataService;
+        protected readonly Func<TViewModel> _viewModelFactory;
 
         public TabWorkspaceViewModel(IEventAggregator eventAggregator, IDataService<TModel, TViewModel> dataService, Func<TViewModel> viewModelFactory) {
             _eventAggregator = eventAggregator;

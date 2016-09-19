@@ -66,7 +66,7 @@
     <Compile Include="Validation\Indagini\VoceValidator.cs" />
     <Compile Include="ViewModels\Donazioni\DonazioneViewModel.cs" />
     <Compile Include="ViewModels\NuovaDonazioneDialogViewModel.cs" />
-    <Compile Include="ViewModels\NewListaVociViewModel.cs" />
+    <Compile Include="ViewModels\NuovaListaVociViewModel.cs" />
     <Compile Include="ViewModels\Indagini\IndaginiViewModel.cs" />
     <Compile Include="Service\DataService.cs" />
     <Compile Include="Service\IDataService.cs" />
@@ -89,6 +89,7 @@
     <Compile Include="ViewModels\NuovaIndagineBooleanDialogViewModel.cs" />
     <Compile Include="ViewModels\NuovaIndagineDialogViewModel.cs" />
     <Compile Include="ViewModels\NuovaIndagineRangeDialogViewModel.cs" />
+    <Compile Include="Events\NuovaListaVociEvent.cs" />
     <Compile Include="ViewModels\Persone\DonatoreViewModel.cs" />
     <Compile Include="ViewModels\Persone\DonatoriViewModel.cs" />
     <Compile Include="ViewModels\Sangue\SaccaSangueViewModel.cs" />

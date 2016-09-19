@@ -6,168 +6,183 @@
              xmlns:s="https://github.com/canton7/Stylet"
              xmlns:components="clr-namespace:BloodBank.View.Components"
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
-             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             xmlns:userControls="clr-namespace:BloodBank.View.UserControls"
+             xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="500">
-    
+
+    <UserControl.Resources>
+        <Style TargetType="{x:Type DatePicker}" BasedOn="{StaticResource MaterialDesignFloatingHintDatePicker}">
+            <Setter Property="Margin" Value="10 10 10 7" />
+            <Setter Property="VerticalAlignment" Value="Bottom" />
+        </Style>
+        <Style TargetType="{x:Type md:TimePicker}" BasedOn="{StaticResource MaterialDesignFloatingHintTimePicker}">
+            <Setter Property="Margin" Value="10 10 10 7" />
+            <Setter Property="VerticalAlignment" Value="Bottom" />
+        </Style>
+        <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource MaterialDesignFloatingHintComboBox}">
+            <Setter Property="Margin" Value="10 10 10 7" />
+        </Style>
+        <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignFloatingHintTextBox}">
+            <Setter Property="Margin" Value="10 10 10 7" />
+        </Style>
+        <Style TargetType="{x:Type md:PackIcon}">
+            <Setter Property="Margin" Value="10 10 10 12"  />
+            <Setter Property="VerticalAlignment" Value="Bottom" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+        </Style>
+    </UserControl.Resources>
+
     <ScrollViewer VerticalScrollBarVisibility="Auto">
-        <StackPanel>
-            <xctk:Wizard Next="{s:Action RefreshComboBoxes}" Finish="{s:Action Finish}" Cancel="{s:Action Cancel}">
-                <xctk:WizardPage Title="Selezione Donatore" Description="Scegliere fra i Donatori disponibili quello su cui effettuare la Donazione. Vengono mostrati solo i Donatori Attivi e Idonei." CanSelectNextPage="{Binding CanMoveTo2ndPage}">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
+        <xctk:Wizard Next="{s:Action OnChangeToNextPage}" Finish="{s:Action Finish}" Cancel="{s:Action Cancel}">
+            <xctk:WizardPage Title="Selezione Donatore" Description="Scegliere fra i Donatori disponibili quello su cui effettuare la Donazione. Vengono mostrati solo i Donatori Attivi e Idonei." CanSelectNextPage="{Binding CanMoveTo2ndPage}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
 
-                        <Label Grid.Row="0" Grid.Column="0" Margin="10 20">Donatore:</Label>
-                        <ComboBox Grid.Row="0" Grid.Column="1" DisplayMemberPath="Model" ItemsSource="{Binding DonatoreEnumerable}" SelectedItem="{Binding SelectedDonatore}" />
-                        <ContentControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" s:View.Model="{Binding SelectedDonatore}" components:ReadOnlyPanel.IsReadOnly="True" Margin="20"/>
-                    </Grid>
-                </xctk:WizardPage>
-                <xctk:WizardPage Title="Seleziona Questionario" Description="Vengono mostrati nella lista sottostante i Questionari compilati dal Donatore precedentemente selezionato in data odierna con esito Idoneo." CanSelectNextPage="{Binding CanMoveTo3rdPage}">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" Margin="10 20">Donatore:</Label>
+                    <ComboBox Grid.Row="0" Grid.Column="1" DisplayMemberPath="Model" ItemsSource="{Binding DonatoreEnumerable}" SelectedItem="{Binding SelectedDonatore}" />
+                    <ContentControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" s:View.Model="{Binding SelectedDonatore}" components:ReadOnlyPanel.IsReadOnly="True" Margin="20"/>
+                </Grid>
+            </xctk:WizardPage>
+            <xctk:WizardPage Title="Seleziona Questionario" Description="Vengono mostrati nella lista sottostante i Questionari compilati dal Donatore precedentemente selezionato in data odierna con esito Idoneo." CanSelectNextPage="{Binding CanMoveTo3rdPage}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
 
-                        <Label Grid.Row="0" Grid.Column="0" Margin="10 20">Questionario:</Label>
-                        <ComboBox Grid.Row="0" Grid.Column="1" ItemsSource="{Binding ListaVociQuestionarioEnumerable}" SelectedItem="{Binding SelectedListaVociQuestionario}" >
-                            <ComboBox.ItemTemplate>
-                                <DataTemplate>
-                                    <StackPanel Margin="8">
-                                        <TextBlock Text="{Binding Data, StringFormat=Data: {0:dddd dd MMMM}}" />
-                                        <TextBlock Text="{Binding DescrizioneBreve}" />
-                                    </StackPanel>
-                                </DataTemplate>
-                            </ComboBox.ItemTemplate>
-                        </ComboBox>
-                        <ContentControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" s:View.Model="{Binding SelectedListaVociQuestionario}" components:ReadOnlyPanel.IsReadOnly="True" Margin="20"/>
-                    </Grid>
-                </xctk:WizardPage>
-                <xctk:WizardPage Title="Seleziona Analisi" Description="Vengono mostrate nella lista sottostante le Analisi effettuate dal Donatore precedentemente selezionato in data odierna con esito Idoneo." CanSelectNextPage="{Binding CanMoveTo4thPage}">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" Margin="10 20">Questionario:</Label>
+                    <ComboBox Grid.Row="0" Grid.Column="1" ItemsSource="{Binding ListaVociQuestionarioEnumerable}" SelectedItem="{Binding SelectedListaVociQuestionario}" >
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Margin="8">
+                                    <TextBlock Text="{Binding Data, StringFormat=Data: {0:dddd dd MMMM}}" />
+                                    <TextBlock Text="{Binding DescrizioneBreve}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <ContentControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" s:View.Model="{Binding SelectedListaVociQuestionario}" components:ReadOnlyPanel.IsReadOnly="True" Margin="20"/>
+                </Grid>
+            </xctk:WizardPage>
+            <xctk:WizardPage Title="Seleziona Analisi" Description="Vengono mostrate nella lista sottostante le Analisi effettuate dal Donatore precedentemente selezionato in data odierna con esito Idoneo." CanSelectNextPage="{Binding CanMoveTo4thPage}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
 
-                        <Label Grid.Row="0" Grid.Column="0" Margin="10 20">Analisi:</Label>
-                        <ComboBox Grid.Row="0" Grid.Column="1" ItemsSource="{Binding ListaVociAnalisiEnumerable}" SelectedItem="{Binding SelectedListaVociAnalisi}" >
-                            <ComboBox.ItemTemplate>
-                                <DataTemplate>
-                                    <StackPanel Margin="8">
-                                        <TextBlock Text="{Binding Data, StringFormat=Data: {0:dddd dd MMMM}}" />
-                                        <TextBlock Text="{Binding DescrizioneBreve}" />
-                                    </StackPanel>
-                                </DataTemplate>
-                            </ComboBox.ItemTemplate>
-                        </ComboBox>
-                        <ContentControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" s:View.Model="{Binding SelectedListaVociAnalisi}" components:ReadOnlyPanel.IsReadOnly="True" Margin="20"/>
-                    </Grid>
-                </xctk:WizardPage>
-                <xctk:WizardPage Title="Seleziona Visita Medica" Description="Vengono mostrate nella lista sottostante le Visite Mediche effettuate dal Donatore precedentemente selezionato in data odierna con esito Idoneo." CanSelectNextPage="{Binding CanMoveTo5thPage}">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" Margin="10 20">Analisi:</Label>
+                    <ComboBox Grid.Row="0" Grid.Column="1" ItemsSource="{Binding ListaVociAnalisiEnumerable}" SelectedItem="{Binding SelectedListaVociAnalisi}" >
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Margin="8">
+                                    <TextBlock Text="{Binding Data, StringFormat=Data: {0:dddd dd MMMM}}" />
+                                    <TextBlock Text="{Binding DescrizioneBreve}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <ContentControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" s:View.Model="{Binding SelectedListaVociAnalisi}" components:ReadOnlyPanel.IsReadOnly="True" Margin="20"/>
+                </Grid>
+            </xctk:WizardPage>
+            <xctk:WizardPage Title="Seleziona Visita Medica" Description="Vengono mostrate nella lista sottostante le Visite Mediche effettuate dal Donatore precedentemente selezionato in data odierna con esito Idoneo." CanSelectNextPage="{Binding CanMoveTo5thPage}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
 
-                        <Label Grid.Row="0" Grid.Column="0" Margin="10 20">Visita Medica:</Label>
-                        <ComboBox Grid.Row="0" Grid.Column="1" ItemsSource="{Binding VisitaMedicaEnumerable}" SelectedItem="{Binding SelectedVisitaMedica}">
-                            <ComboBox.ItemTemplate>
-                                <DataTemplate>
-                                    <StackPanel Margin="8">
-                                        <TextBlock Text="{Binding Data, StringFormat=Data: {0:dddd dd MMMM}}" />
-                                        <TextBlock Text="{Binding DescrizioneBreve}" />
-                                    </StackPanel>
-                                </DataTemplate>
-                            </ComboBox.ItemTemplate>
-                        </ComboBox>
-                        <ContentControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" s:View.Model="{Binding SelectedVisitaMedica}" components:ReadOnlyPanel.IsReadOnly="True" Margin="20"/>
-                    </Grid>
-                </xctk:WizardPage>
-                <xctk:WizardPage Title="Selezionare il Tipo di Donazione che si intende fare tra le possibilità sotto elencate." CanSelectNextPage="{Binding CanMoveToLastPage}">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" Margin="10 20">Visita Medica:</Label>
+                    <ComboBox Grid.Row="0" Grid.Column="1" ItemsSource="{Binding VisitaMedicaEnumerable}" SelectedItem="{Binding SelectedVisitaMedica}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Margin="8">
+                                    <TextBlock Text="{Binding Data, StringFormat=Data: {0:dddd dd MMMM}}" />
+                                    <TextBlock Text="{Binding DescrizioneBreve}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <ContentControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" s:View.Model="{Binding SelectedVisitaMedica}" components:ReadOnlyPanel.IsReadOnly="True" Margin="20"/>
+                </Grid>
+            </xctk:WizardPage>
+            <xctk:WizardPage Title="Selezionare il Tipo di Donazione che si intende fare tra le possibilità sotto elencate." CanSelectNextPage="{Binding CanMoveToLastPage}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
 
-                        <Label Grid.Row="0" Grid.Column="0" Margin="10 20">Tipo di Donazione:</Label>
-                        <ComboBox Grid.Row="0" Grid.Column="1" x:Name="ComboBoxTipoDonazione" materialDesign:HintAssist.Hint="Tipo Donazione" ItemsSource="{Binding Path=TipoDonazioneEnumerable}" IsEnabled="{Binding IsInitialized, Converter={StaticResource BoolInverter}}"
+                    <Label Grid.Row="0" Grid.Column="0" Margin="10 20">Tipo di Donazione:</Label>
+                    <ComboBox Grid.Row="0" Grid.Column="1" x:Name="ComboBoxTipoDonazione" md:HintAssist.Hint="Tipo Donazione" ItemsSource="{Binding Path=TipoDonazioneEnumerable}" IsEnabled="{Binding IsInitialized, Converter={StaticResource BoolInverter}}"
                                   SelectedItem="{Binding Path=SelectedTipoDonazione, UpdateSourceTrigger=PropertyChanged}" />
-                    </Grid>
-                </xctk:WizardPage>
-                <xctk:WizardPage Title="Termine inserimento Donazione" BackButtonVisibility="Hidden" CancelButtonVisibility="Hidden" NextButtonVisibility="Hidden" CanFinish="True">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="20"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
+                </Grid>
+            </xctk:WizardPage>
+            <xctk:WizardPage Title="Riepilogo" CanFinish="True">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
 
-                        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource MaterialDesignDisplay2TextBlock}" Margin="0 4 0 4">Riepilogo:</TextBlock>
+                    <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource MaterialDesignHeadlineTextBlock}" Margin="0 4 0 4">Riepilogo:</TextBlock>
 
-                        <materialDesign:PackIcon Grid.Row="2" Grid.Column="0" Kind="Account" Foreground="{Binding ElementName=TextBoxNomeDonatore, Path=BorderBrush}" />
-                        <Label Grid.Row="2" Grid.Column="1" Content="Nome Donatore" Foreground="{Binding ElementName=TextBoxNomeDonatore, Path=BorderBrush}" VerticalAlignment="Center"  HorizontalAlignment="Left" />
-                        <TextBox Grid.Row="2" Grid.Column="2" x:Name="TextBoxNomeDonatore" materialDesign:HintAssist.Hint="Nome Donatore" IsEnabled="False"
+                    <md:PackIcon Grid.Row="1" Grid.Column="0" Kind="Account" Foreground="{Binding ElementName=TextBoxNomeDonatore, Path=BorderBrush}" />
+                    <TextBox Grid.Row="1" Grid.Column="1" x:Name="TextBoxNomeDonatore" md:HintAssist.Hint="Nome Donatore" IsEnabled="False"
                                  Text="{Binding Path=SelectedDonatore.Model, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}">
-                        </TextBox>
+                    </TextBox>
 
-                        <materialDesign:PackIcon Grid.Row="3" Grid.Column="0" Kind="TagOutline" Foreground="{Binding ElementName=TextBoxTipoDonazione, Path=BorderBrush}" />
-                        <Label Grid.Row="3" Grid.Column="1" Content="Tipo di Donazione effettuata" Foreground="{Binding ElementName=TextBoxTipoDonazione, Path=BorderBrush}"/>
-                        <TextBox Grid.Row="3" Grid.Column="2" x:Name="TextBoxTipoDonazione" materialDesign:HintAssist.Hint="Tipo Donazione" IsEnabled="False"
+                    <md:PackIcon Grid.Row="2" Grid.Column="0" Kind="TagOutline" Foreground="{Binding ElementName=TextBoxTipoDonazione, Path=BorderBrush}" />
+                    <TextBox Grid.Row="2" Grid.Column="1" x:Name="TextBoxTipoDonazione" md:HintAssist.Hint="Tipo Donazione" IsEnabled="False"
                                  Text="{Binding Path=SelectedTipoDonazione, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" VerticalContentAlignment="Top"  TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True">
-                        </TextBox>
+                    </TextBox>
 
-                        <materialDesign:PackIcon Grid.Row="4" Grid.Column="0" Kind="Calendar" Foreground="{Binding ElementName=TextBoxData, Path=BorderBrush}" />
-                        <Label Grid.Row="4" Grid.Column="1" Content="Data della Donazione" Foreground="{Binding ElementName=TextBoxData,   Path=BorderBrush}"/>
-                        <TextBox Grid.Row="4" Grid.Column="2" x:Name="TextBoxData" materialDesign:HintAssist.Hint="Data Donazione" IsEnabled="False"
+                    <md:PackIcon Grid.Row="3" Grid.Column="0" Kind="Calendar" Foreground="{Binding ElementName=TextBoxData, Path=BorderBrush}" />
+                    <TextBox Grid.Row="3" Grid.Column="1" x:Name="TextBoxData" md:HintAssist.Hint="Data Donazione" IsEnabled="False"
                                     Text="{Binding Path=DataDonazione, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}">
-                        </TextBox>
-                    </Grid>
-                </xctk:WizardPage>
-            </xctk:Wizard>
-        </StackPanel>
+                    </TextBox>
+                </Grid>
+            </xctk:WizardPage>
+        </xctk:Wizard>
     </ScrollViewer>
+
 </UserControl>
