@@ -28,6 +28,7 @@ namespace BloodBank.ViewModel.Validation.Indagini {
         }
     }
 
+    // TODO: Perchè non posso rimuoverli?
     public class NuovaIndagineIntRangeValidator : NuovaIndagineRangeValidator<int> {
         public NuovaIndagineIntRangeValidator(IEnumerable<IDataService<Indagine>> dataService) : base(dataService) {
         }

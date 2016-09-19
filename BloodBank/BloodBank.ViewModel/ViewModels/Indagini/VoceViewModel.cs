@@ -16,7 +16,7 @@ namespace BloodBank.ViewModel.ViewModels.Indagini {
     public abstract class VoceViewModel : Screen {
         private readonly IEventAggregator _eventAggregator;
 
-        protected VoceViewModel(IEventAggregator eventAggregator, IModelValidator<VoceViewModel> validator)
+        protected VoceViewModel(IEventAggregator eventAggregator, IModelValidator validator)
             : base(validator) {
             _eventAggregator = eventAggregator;
 
@@ -25,27 +25,27 @@ namespace BloodBank.ViewModel.ViewModels.Indagini {
                 Validate();
             }
         }
-
-        public abstract object Risultato { get; set; }
+        
     }
 
-    public abstract class VoceViewModel<U> : VoceViewModel where U : ListaVoci {
-        protected VoceViewModel(IEventAggregator eventAggregator, IModelValidator<VoceViewModel> validator) : base(eventAggregator, validator) {
+    public abstract class VoceViewModel<T> : VoceViewModel where T : struct {
+        protected VoceViewModel(IEventAggregator eventAggregator, IModelValidator<VoceViewModel<T>> validator) : base(eventAggregator, validator) {
         }
+        
+        public T? Risultato { get; set; }
     }
 
 
-    // TODO: Deve ritornare T?
     [ImplementPropertyChanged]
-    public class VoceViewModel<U, T> : VoceViewModel<U> where T : IComparable<T> where U : ListaVoci {
+    public class VoceViewModel<U, T> : VoceViewModel<T> where T : struct, IComparable<T> where U : ListaVoci {
 
         #region Constructor
 
-        public VoceViewModel(IEventAggregator eventAggregator, IModelValidator<VoceViewModel> validator, Indagine<U, T> indagine) : base(eventAggregator, validator) {
+        public VoceViewModel(IEventAggregator eventAggregator, IModelValidator<VoceViewModel<T>> validator, Indagine<U, T> indagine) : base(eventAggregator, validator) {
             Indagine = indagine;
         }
 
-        public VoceViewModel(IEventAggregator eventAggregator, IModelValidator<VoceViewModel> validator, Indagine<U> indagine) : this(eventAggregator, validator, indagine as Indagine<U, T>) {
+        public VoceViewModel(IEventAggregator eventAggregator, IModelValidator<VoceViewModel<T>> validator, Indagine<U> indagine) : this(eventAggregator, validator, indagine as Indagine<U, T>) {
         }
 
         #endregion
@@ -54,17 +54,9 @@ namespace BloodBank.ViewModel.ViewModels.Indagini {
 
         public Indagine<U, T> Indagine { get; }
 
-        public T RisultatoTyped { get; set; }
-
-        public override object Risultato {
-            get { return RisultatoTyped; }
-            set { RisultatoTyped = (T) value; }
-        }
-
-
         #endregion
 
-        public IEnumerable<T> RisultatoEnumerable => (IEnumerable<T>)typeof(T).Enumerable();
+        public IEnumerable<T> RisultatoEnumerable => typeof(T).Enumerable() as IEnumerable<T>;
 
         #region Overrides of VoceViewModel<U>
 

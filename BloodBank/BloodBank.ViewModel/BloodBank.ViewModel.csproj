@@ -62,6 +62,7 @@
     <Compile Include="Events\NuovaIndagineEvent.cs" />
     <Compile Include="Events\NuovaDonazioneEvent.cs" />
     <Compile Include="Events\ViewModelCollectionChangedEvent.cs" />
+    <Compile Include="Service\VoceViewModelFactory.cs" />
     <Compile Include="Validation\Indagini\VoceValidator.cs" />
     <Compile Include="ViewModels\Donazioni\DonazioneViewModel.cs" />
     <Compile Include="ViewModels\NuovaDonazioneDialogViewModel.cs" />
@@ -111,6 +112,10 @@
     <ProjectReference Include="..\Stylet.DictionaryViewManager\Stylet.DictionaryViewManager.csproj">
       <Project>{EE4779C0-CA96-4055-B8B1-35467D709983}</Project>
       <Name>Stylet.DictionaryViewManager</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Stylet.FluentValidation\Stylet.FluentValidation.csproj">
+      <Project>{BC9BC04D-1D1A-43A3-BE2D-D80509F03E3C}</Project>
+      <Name>Stylet.FluentValidation</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
