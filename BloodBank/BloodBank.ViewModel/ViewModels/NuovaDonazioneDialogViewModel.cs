@@ -21,17 +21,19 @@ namespace BloodBank.ViewModel.ViewModels {
         private readonly IDataService<VisitaMedica, VisitaMedicaViewModel> _visitaMedicaDataService;
         private readonly IDataService<ListaVoci<Questionario>, ListaVociViewModel<Questionario>> _listaVociQuestionarioDataService;
         private readonly IDataService<ListaVoci<Analisi>, ListaVociViewModel<Analisi>> _listaVociAnalisiDataService;
+        private readonly IDataService<SaccaSangue> _saccaSangueDataService; 
 
         public NuovaDonazioneDialogViewModel(IEventAggregator eventAggregator,
             IDataService<Donatore, DonatoreViewModel> donatoreDataService,
             IDataService<ListaVoci<Questionario>, ListaVociViewModel<Questionario>> listaVociQuestionarioDataService,
             IDataService<ListaVoci<Analisi>, ListaVociViewModel<Analisi>> listaVociAnalisiDataService,
-            IDataService<VisitaMedica, VisitaMedicaViewModel> visitaMedicaDataService) {
+            IDataService<VisitaMedica, VisitaMedicaViewModel> visitaMedicaDataService, IDataService<SaccaSangue> saccaSangueDataService) {
             _eventAggregator = eventAggregator;
             _donatoreDataService = donatoreDataService;
             _listaVociQuestionarioDataService = listaVociQuestionarioDataService;
             _listaVociAnalisiDataService = listaVociAnalisiDataService;
             _visitaMedicaDataService = visitaMedicaDataService;
+            _saccaSangueDataService = saccaSangueDataService;
 
             DonatoreEnumerable =
                 _donatoreDataService.GetViewModels().Where(vm => vm.Idoneità == Idoneità.Idoneo && vm.Attivo && (vm.DataProssimaDonazioneConsentita == null || vm.DataProssimaDonazioneConsentita <= DateTime.Today));
@@ -76,7 +78,7 @@ namespace BloodBank.ViewModel.ViewModels {
         }
 
         public void Finish() {
-            NuovaDonazioneEvent message = new NuovaDonazioneEvent(new Donazione(SelectedDonatore.Model, SelectedTipoDonazione, DataDonazione, SelectedVisitaMedica.Model, (Analisi)SelectedListaVociAnalisi.Model, (Questionario) SelectedListaVociQuestionario.Model));
+            NuovaDonazioneEvent message = new NuovaDonazioneEvent(new Donazione(SelectedDonatore.Model, SelectedTipoDonazione, DataDonazione, SelectedVisitaMedica.Model, (Analisi)SelectedListaVociAnalisi.Model, (Questionario) SelectedListaVociQuestionario.Model, _saccaSangueDataService));
             _eventAggregator.Publish(message);
         }
 

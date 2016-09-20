@@ -4,19 +4,19 @@ using System.Linq;
 using BloodBank.Model.Models.Persone;
 using BloodBank.Model.Models.Sangue;
 using BloodBank.Model.Models.Tests;
+using BloodBank.Model.Service;
 using PropertyChanged;
 
-namespace BloodBank.Model.Models.Donazioni
-{
+namespace BloodBank.Model.Models.Donazioni {
 
     [ImplementPropertyChanged]
-    public class Donazione
-    {
+    public class Donazione {
+        private readonly IDataService<SaccaSangue> _saccaSangueDataService;
 
         public Donazione(Donatore donatore, TipoDonazione tipoDonazione, DateTime data, VisitaMedica visitaMedica,
-            Analisi analisi, Questionario questionario)
-        {
-           // Contract.Requires<ArgumentNullException>(donatore != null && data != null && visitaMedica != null && analisi != null && questionario != null, "Tutti i parametri devono essere diversi da null.");
+            Analisi analisi, Questionario questionario, IDataService<SaccaSangue> saccaSangueDataService) {
+            _saccaSangueDataService = saccaSangueDataService;
+            // Contract.Requires<ArgumentNullException>(donatore != null && data != null && visitaMedica != null && analisi != null && questionario != null, "Tutti i parametri devono essere diversi da null.");
 
             if (donatore.Idoneità != Idoneità.Idoneo)
                 throw new ArgumentException("Non si può effettuare la donazione se il donatore non è " + Idoneità.Idoneo);
@@ -37,8 +37,7 @@ namespace BloodBank.Model.Models.Donazioni
             SaccheSangue = new List<SaccaSangue>();
             DataProssimaDonazioneConsentita = data.AddDays(tipoDonazione.GiorniDiRiposo);
 
-            EffettuaPrelievo();
-            Donatore.AggiungiDonazione(this);
+            //Donatore.AggiungiDonazione(this);
         }
 
         public Donatore Donatore { get; }
@@ -51,45 +50,38 @@ namespace BloodBank.Model.Models.Donazioni
 
         public DateTime DataProssimaDonazioneConsentita { get; }
 
-        public void EffettuaPrelievo()
-        {
+        public void EffettuaPrelievo() {
             // Contract.Requires<InvalidOperationException>(SaccheSangue.Count == 0, "SaccheSangue.Count == 0");
 
             foreach (ComponenteEmatico componente in TipoDonazione.ComponentiDerivati)
                 for (int i = 0; i < TipoDonazione.QuantitàComponente(componente); i++)
-                SaccheSangue.Add(new SaccaSangue(this, Donatore.GruppoSanguigno, componente, Data));
+                    new SaccaSangueFactory(_saccaSangueDataService).CreateModel(this, Donatore.GruppoSanguigno, componente, Data);
 
             // Contract.Ensures(SaccheSangue.Count > 0, "SaccheSangue.Count > 0");
         }
 
-        private static bool AreDateTestValide(DateTime dataDonazione, params DateTime[] dateTest)
-        {
+        private static bool AreDateTestValide(DateTime dataDonazione, params DateTime[] dateTest) {
             return dateTest.All(data => data.Date.Equals(dataDonazione.Date) && data.CompareTo(dataDonazione) < 0);
         }
 
-        protected bool Equals(Donazione other)
-        {
+        protected bool Equals(Donazione other) {
             return Equals(Donatore, other.Donatore) && Data.Date.Equals(other.Data.Date);
         }
 
-        public override bool Equals(object obj)
-        {
+        public override bool Equals(object obj) {
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
             Donazione other = obj as Donazione;
             return other != null && Equals(other);
         }
 
-        public override int GetHashCode()
-        {
-            unchecked
-            {
+        public override int GetHashCode() {
+            unchecked {
                 return ((Donatore?.GetHashCode() ?? 0) * 397) ^ Data.Date.GetHashCode();
             }
         }
 
-        public override string ToString()
-        {
+        public override string ToString() {
             return "Donatore: " + Donatore + ", Data: " + Data + ", Tipo: " + TipoDonazione;
         }
     }

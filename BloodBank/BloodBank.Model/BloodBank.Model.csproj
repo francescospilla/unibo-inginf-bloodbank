@@ -66,6 +66,7 @@
     <Compile Include="Models\Tests\Questionario.cs" />
     <Compile Include="Models\Tests\Test.cs" />
     <Compile Include="Models\Tests\VisitaMedica.cs" />
+    <Compile Include="Service\IFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="FodyWeavers.xml" />
