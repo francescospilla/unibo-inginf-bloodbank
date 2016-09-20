@@ -47,7 +47,7 @@
                                  Text="{Binding Path=Donatore, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}">
         </TextBox>
 
-        <md:PackIcon Grid.Row="1" Grid.Column="2" Kind="Calendar" Foreground="{Binding ElementName=TextBoxData, Path=BorderBrush}" />
+        <md:PackIcon Grid.Row="1" Grid.Column="2" Kind="Calendar" Foreground="{Binding ElementName=TextBoxDataTest, Path=BorderBrush}" />
          <Grid Grid.Row="1" Grid.Column="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />

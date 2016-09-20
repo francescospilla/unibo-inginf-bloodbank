@@ -56,7 +56,7 @@
 
         <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="Riepilogo Donazione" Style="{StaticResource MaterialDesignDisplay1TextBlock}" />
 
-        <md:PackIcon Grid.Row="1" Grid.Column="2" Kind="Calendar" Foreground="{Binding ElementName=DatePickerDataDonazione, Path=BorderBrush}" />
+        <md:PackIcon Grid.Row="1" Grid.Column="2" Kind="Calendar" Foreground="{Binding ElementName=TextBoxDataDonazione, Path=BorderBrush}" />
         <Grid Grid.Row="1" Grid.Column="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
@@ -86,7 +86,7 @@
 
         <TextBlock Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"  Text="Test Associati" Style="{StaticResource MaterialDesignDisplay1TextBlock}" />
 
-        <md:PackIcon Grid.Row="5" Grid.Column="0" Kind="Pencil" Foreground="{Binding ElementName=TextBoxVisitaMedica, Path=BorderBrush}" />
+        <md:PackIcon Grid.Row="5" Grid.Column="0" Kind="Pencil" Foreground="{Binding ElementName=TextBoxDataVisitaMedica, Path=BorderBrush}" />
         <Grid Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.5*" />
@@ -97,14 +97,14 @@
             <Label Grid.Column="0" Content="Visita Medica" Foreground="{Binding ElementName=TextBoxDataVisitaMedica, Path=BorderBrush}" VerticalAlignment="Center"  HorizontalAlignment="Left" />
 
             <TextBox Grid.Column="1" x:Name="TextBoxDataVisitaMedica" md:HintAssist.Hint="Data VM" IsEnabled="False"
-                                 Text="{Binding Path=VisitaMedica.data, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" VerticalContentAlignment="Top">
+                                 Text="{Binding Path=VisitaMedica.Data, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" VerticalContentAlignment="Top">
             </TextBox>
             <TextBox Grid.Column="2" x:Name="TextBoxDescrizioneVisitaMedica" md:HintAssist.Hint="Descrizione VM" IsEnabled="False"
-                                 Text="{Binding Path=VisitaMedica.descrizioneBreve, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" VerticalContentAlignment="Top" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True">
+                                 Text="{Binding Path=VisitaMedica.DescrizioneBreve, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" VerticalContentAlignment="Top" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True">
             </TextBox>
         </Grid>
 
-        <md:PackIcon Grid.Row="6" Grid.Column="0" Kind="Pencil" Foreground="{Binding ElementName=TextBoxAnalisi, Path=BorderBrush}" />
+        <md:PackIcon Grid.Row="6" Grid.Column="0" Kind="Pencil" Foreground="{Binding ElementName=TextBoxDataAnalisi, Path=BorderBrush}" />
         <Grid Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.5*" />
@@ -115,14 +115,14 @@
             <Label Grid.Column="0" Content="Analisi" Foreground="{Binding ElementName=TextBoxDataAnalisi, Path=BorderBrush}" VerticalAlignment="Center"  HorizontalAlignment="Left" />
 
             <TextBox Grid.Column="1" x:Name="TextBoxDataAnalisi" md:HintAssist.Hint="Data Analisi" IsEnabled="False"
-                                 Text="{Binding Path=Analisi.data, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" VerticalContentAlignment="Top">
+                                 Text="{Binding Path=Analisi.Data, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" VerticalContentAlignment="Top">
             </TextBox>
             <TextBox Grid.Column="2" x:Name="TextBoxDescrizioneAnalisi" md:HintAssist.Hint="Descrizione Analisi" IsEnabled="False"
-                                 Text="{Binding Path=Analisi.descrizioneBreve, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" VerticalContentAlignment="Top" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True">
+                                 Text="{Binding Path=Analisi.DescrizioneBreve, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" VerticalContentAlignment="Top" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True">
             </TextBox>
         </Grid>
 
-        <md:PackIcon Grid.Row="7" Grid.Column="0" Kind="Pencil" Foreground="{Binding ElementName=TextBoxTipoQuestionario, Path=BorderBrush}" />
+        <md:PackIcon Grid.Row="7" Grid.Column="0" Kind="Pencil" Foreground="{Binding ElementName=TextBoxDataQuestionario, Path=BorderBrush}" />
         <Grid Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.5*" />
@@ -133,10 +133,10 @@
             <Label Grid.Column="0" Content="Questionario" Foreground="{Binding ElementName=TextBoxDataQuestionario, Path=BorderBrush}" VerticalAlignment="Center"  HorizontalAlignment="Left" />
 
             <TextBox Grid.Column="1" x:Name="TextBoxDataQuestionario" md:HintAssist.Hint="Data Questionario" IsEnabled="False"
-                                 Text="{Binding Path=Questionario.data, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" VerticalContentAlignment="Top">
+                                 Text="{Binding Path=Questionario.Data, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" VerticalContentAlignment="Top">
             </TextBox>
             <TextBox Grid.Column="2" x:Name="TextBoxDescrizioneQuestionario" md:HintAssist.Hint="Descrizione Questionario" IsEnabled="False"
-                                 Text="{Binding Path=Questionario.descrizioneBreve, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" VerticalContentAlignment="Top" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True">
+                                 Text="{Binding Path=Questionario.DescrizioneBreve, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" VerticalContentAlignment="Top" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True">
             </TextBox>
         </Grid>
 
