@@ -1,25 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using BloodBank.Model.Models.Donazioni;
-using BloodBank.Model.Models.Persone;
 using BloodBank.Model.Service;
-using static BloodBank.Mock.DonatoreService;
-using static BloodBank.Mock.ListaVociAnalisiService;
-using static BloodBank.Mock.ListaVociQuestionarioService;
-using static BloodBank.Mock.VisitaMedicaService;
 using static BloodBank.Model.Models.Donazioni.TipoDonazione;
 
 namespace BloodBank.Mock {
-    public class DonazioneService : DataService<Donazione> {
+    public sealed class DonazioneDataService : DataService<Donazione> {
         public DonazioneFactory DonazioneFactory { get; set; }
 
         internal Donazione Donazione2;
         internal Donazione Donazione3;
         internal Donazione Donazione4;
 
-        public DonazioneService(DonatoreService d, VisitaMedicaService v, ListaVociAnalisiService a, ListaVociQuestionarioService q, SaccaSangueService s) : base() {
+        public DonazioneDataService(DonatoreDataService d, VisitaMedicaDataService v, ListaVociAnalisiDataService a, ListaVociQuestionarioDataService q, SaccaSangueDataService s) {
             _models = new ObservableCollection<Donazione>();
 
             DonazioneFactory = new DonazioneFactory(this, s);

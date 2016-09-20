@@ -1,15 +1,14 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
+using BloodBank.Model.Models.Indagini;
 using BloodBank.Model.Models.Tests;
 using BloodBank.Model.Service;
-using BloodBank.Model.Models.Indagini;
 
 namespace BloodBank.Mock {
 
-    public abstract class VoceService<U> : DataService<Voce<U>> where U : ListaVoci {
+    public abstract class VoceDataService<U> : DataService<Voce<U>> where U : ListaVoci {
     }
 
-    public class VoceQuestionarioService : VoceService<Questionario> {
+    public sealed class VoceQuestionarioDataService : VoceDataService<Questionario> {
         internal Voce<Questionario> Vq1;
         internal Voce<Questionario> Vq2;
         internal Voce<Questionario> Vq3;
@@ -23,7 +22,7 @@ namespace BloodBank.Mock {
         internal Voce<Questionario> Vq11;
         internal Voce<Questionario> Vq12;
         
-        public VoceQuestionarioService(IndagineQuestionarioService iq) : base() {
+        public VoceQuestionarioDataService(IndagineQuestionarioDataService iq) {
 
             Vq1 = new Voce<Questionario, bool>(iq.Q1, true);
             Vq2 = new Voce<Questionario, bool>(iq.Q1, false);
@@ -38,12 +37,12 @@ namespace BloodBank.Mock {
             Vq11 = new Voce<Questionario, double>(iq.Q6, 5.6);
             Vq12 = new Voce<Questionario, double>(iq.Q6, 15.0);
 
-            _models = new ObservableCollection<Voce<Questionario>>(){Vq1, Vq1, Vq2, Vq3, Vq4, Vq5, Vq6, Vq7, Vq8, Vq9, Vq10, Vq11, Vq12};
+            _models = new ObservableCollection<Voce<Questionario>> {Vq1, Vq1, Vq2, Vq3, Vq4, Vq5, Vq6, Vq7, Vq8, Vq9, Vq10, Vq11, Vq12};
         }
 
     }
 
-    public class VoceAnalisiService : VoceService<Analisi> {
+    public sealed class VoceAnalisiDataService : VoceDataService<Analisi> {
 
         internal Voce<Analisi> Va1;
         internal Voce<Analisi> Va2;
@@ -58,7 +57,7 @@ namespace BloodBank.Mock {
         internal Voce<Analisi> Va11;
         internal Voce<Analisi> Va12;
 
-        public VoceAnalisiService(IndagineAnalisiService ia) : base() {
+        public VoceAnalisiDataService(IndagineAnalisiDataService ia) {
             Va1 = new Voce<Analisi, double>(ia.A1, 4.2);
             Va2 = new Voce<Analisi, double>(ia.A1, 8.6);
             Va3 = new Voce<Analisi, int>(ia.A2, 25);
@@ -72,7 +71,7 @@ namespace BloodBank.Mock {
             Va11 = new Voce<Analisi, bool>(ia.A6, true);
             Va12 = new Voce<Analisi, bool>(ia.A6, false);
 
-            _models = new ObservableCollection<Voce<Analisi>>(){Va1, Va2, Va3, Va4, Va5, Va6, Va7, Va8, Va9, Va10, Va11, Va12};
+            _models = new ObservableCollection<Voce<Analisi>> {Va1, Va2, Va3, Va4, Va5, Va6, Va7, Va8, Va9, Va10, Va11, Va12};
         }
 
     }

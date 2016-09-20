@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using BloodBank.Model.Models.Tests;
 using BloodBank.Model.Service;
-using static BloodBank.Mock.DonatoreService;
-using static BloodBank.Mock.MedicoService;
 using static BloodBank.Model.Models.Idoneità;
 
 namespace BloodBank.Mock {
-    public class VisitaMedicaService : DataService<VisitaMedica> {
+    public sealed class VisitaMedicaDataService : DataService<VisitaMedica> {
         internal VisitaMedica V1;
         internal VisitaMedica V2;
         internal VisitaMedica V3;
@@ -21,7 +18,7 @@ namespace BloodBank.Mock {
         internal VisitaMedica V9;
         internal VisitaMedica V10;
 
-        public VisitaMedicaService(DonatoreService d, MedicoService m) : base() {
+        public VisitaMedicaDataService(DonatoreDataService d, MedicoDataService m) {
             V1 = new VisitaMedica(d.D1, "Descrizione breve", DateTime.Now.AddMinutes(-2), Idoneo, m.M1, "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
             V2 = new VisitaMedica(d.D2, "Descrizione brevissima", new DateTime(2016, 08, 23, 11, 30, 10), Idoneo, m.M2, "Lorem ipsum dolor sit amet.");
             V3 = new VisitaMedica(d.D3, "Descrizione corta", new DateTime(2016, 05, 15, 17, 32, 55), Idoneo, m.M3, "Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?");
@@ -33,7 +30,7 @@ namespace BloodBank.Mock {
             V9 = new VisitaMedica(d.D9, "Descrizione", new DateTime(2016, 09, 17, 16, 08, 52), NonIdoneo, m.M1, "Non credo vada proprio bene così però.");
             V10 = new VisitaMedica(d.D10, "Descrizione superbreve", new DateTime(2016, 04, 13, 14, 37, 43), NonIdoneo, m.M2, "Facciamo che torni un'altra volta.");
 
-            _models = new ObservableCollection<VisitaMedica>(new ObservableCollection<VisitaMedica>() { V1, V2, V3, V4, V5, V6, V7, V8, V9, V10 }.OrderBy(test => test.Data));
+            _models = new ObservableCollection<VisitaMedica>(new ObservableCollection<VisitaMedica> { V1, V2, V3, V4, V5, V6, V7, V8, V9, V10 }.OrderBy(test => test.Data));
         }
 
     }

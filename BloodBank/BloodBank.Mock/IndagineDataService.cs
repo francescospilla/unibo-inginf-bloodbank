@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Linq;
 using BloodBank.Model.Models;
 using BloodBank.Model.Models.Indagini;
@@ -9,10 +8,7 @@ using BloodBank.Model.Service;
 
 namespace BloodBank.Mock {
 
-    public abstract class IndagineService<U> : DataService<Indagine<U>>, IDataService<Indagine> where U : ListaVoci {
-        protected IndagineService() : base() {
-        }
-
+    public abstract class IndagineDataService<U> : DataService<Indagine<U>>, IDataService<Indagine> where U : ListaVoci {
         #region Implementation of IDataService<Indagine>
 
         void IDataService<Indagine>.AddModel(Indagine model) {
@@ -26,7 +22,7 @@ namespace BloodBank.Mock {
         #endregion
     }
 
-    public class IndagineQuestionarioService : IndagineService<Questionario> {
+    public sealed class IndagineQuestionarioDataService : IndagineDataService<Questionario> {
 
         internal IndagineBoolean<Questionario> Q1;
         internal IndagineBoolean<Questionario> Q2;
@@ -42,7 +38,7 @@ namespace BloodBank.Mock {
         internal IndagineRange<Questionario, int> Q12;
         internal IndagineBoolean<Questionario> Q13;
 
-        public IndagineQuestionarioService() : base() {
+        public IndagineQuestionarioDataService() {
             Q1 = new IndagineBoolean<Questionario>("È attualmente in buona salute?", Idoneità.Idoneo, true);
             Q2 = new IndagineBoolean<Questionario>("Ha attualmente manifestazioni allergiche?", Idoneità.Sospeso, false);
             Q3 = new IndagineBoolean<Questionario>("Nell'ultima settimana si è sottoposto a cure odontoiatriche o ad interventi di piccola chirurgia ambulatoriale?", Idoneità.NonIdoneo, false);
@@ -57,13 +53,13 @@ namespace BloodBank.Mock {
             Q12 = new IndagineRange<Questionario, int>("Pulsazioni (battiti/minuto)", Idoneità.Sospeso, 50, 100);
             Q13 = new IndagineBoolean<Questionario>("È mai stato affetto da brucellosi?", Idoneità.NonIdoneo, false);
 
-            _models = new ObservableCollection<Indagine<Questionario>>() { Q1, Q2, Q3, Q4, Q5, Q6, Q7, Q8, Q9, Q10, Q11, Q12 };
+            _models = new ObservableCollection<Indagine<Questionario>> { Q1, Q2, Q3, Q4, Q5, Q6, Q7, Q8, Q9, Q10, Q11, Q12 };
         }
 
 
     }
 
-    public class IndagineAnalisiService : IndagineService<Analisi> {
+    public sealed class IndagineAnalisiDataService : IndagineDataService<Analisi> {
 
         internal IndagineRange<Analisi, double> A1;
         internal IndagineRange<Analisi, int> A2;
@@ -72,7 +68,7 @@ namespace BloodBank.Mock {
         internal IndagineBoolean<Analisi> A5;
         internal IndagineBoolean<Analisi> A6;
 
-        public IndagineAnalisiService() : base() {
+        public IndagineAnalisiDataService() {
             A1 = new IndagineRange<Analisi, double>("Esame emocromocitometrico completo (milioni per ml di sangue)", Idoneità.Sospeso, 3.8, 5.9);
             A2 = new IndagineRange<Analisi, int>("Transaminasi ALT con metodo ottimizzato (U/I)", Idoneità.NonIdoneo, 40, int.MaxValue);
             A3 = new IndagineBoolean<Analisi>("Sierodiagnosi per la Lue (per sifilide)", Idoneità.NonIdoneo, false);
@@ -80,7 +76,7 @@ namespace BloodBank.Mock {
             A5 = new IndagineBoolean<Analisi>("HIVAb 1-2 (per l'AIDS)", Idoneità.NonIdoneo, false);
             A6 = new IndagineBoolean<Analisi>("HCVAb e costituenti virali (per l'epatite C)", Idoneità.NonIdoneo, false);
 
-            _models = new ObservableCollection<Indagine<Analisi>>() { A1, A2, A3, A4, A5, A6 };
+            _models = new ObservableCollection<Indagine<Analisi>> { A1, A2, A3, A4, A5, A6 };
         }
 
     }

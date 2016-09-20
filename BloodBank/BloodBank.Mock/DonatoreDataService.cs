@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using BloodBank.Model.Models.Persone;
 using BloodBank.Model.Models.Sangue;
@@ -7,7 +6,7 @@ using BloodBank.Model.Service;
 
 namespace BloodBank.Mock {
 
-    public class DonatoreService : DataService<Donatore> {
+    public sealed class DonatoreDataService : DataService<Donatore>, IDataService<Donatore> {
         internal Donatore D1;
         internal Donatore D2;
         internal Donatore D3;
@@ -24,7 +23,7 @@ namespace BloodBank.Mock {
         internal Donatore D13;
         internal Donatore D14;
 
-        public DonatoreService() : base() {
+        public DonatoreDataService() {
             D1 = new Donatore(new Contatto("Pasquale", "Cafiero", Sesso.Maschio, new DateTime(1971, 12, 24), "DQCSRN36T14A704A", "Via Capo di Monte, 33", "Bologna", "Italia", "40135"), GruppoSanguigno.AB_Neg, true);
             D2 = new Donatore(new Contatto("Ginevra", "Rossi", Sesso.Femmina, new DateTime(1994, 06, 05), "NDUYTG69C71H501J", "Via Andrea Costa", "Bologna", "Italia", "40135"), GruppoSanguigno.O_Pos, true);
             D3 = new Donatore(new Contatto("Gino", "Paoli", Sesso.Maschio, new DateTime(1994, 07, 24), "ZVRVSZ41C41H679X", "Via Albiroli", "Bologna", "Italia", "40135"), GruppoSanguigno.O_Neg, true);
@@ -41,7 +40,7 @@ namespace BloodBank.Mock {
             D13 = new Donatore(new Contatto("Marta", "Martinelli", Sesso.Femmina, new DateTime(1926, 05, 03), "MOEXFV77A48L614A", "Via Battibecco", "Bologna", "Italia", "12341"), GruppoSanguigno.AB_Pos, false);
             D14 = new Donatore(new Contatto("Xing", "Li", Sesso.Femmina, new DateTime(2004, 06, 01), "VXGFFM39D17F716B", "Wood Duck Drive", "Sand River", "Indiana", "46563"), GruppoSanguigno.AB_Pos, false);
 
-            _models = new ObservableCollection<Donatore>() {D1, D2, D3, D4, D5, D6, D7, D8, D9, D10, D11, D12, D13, D14};
+            _models = new ObservableCollection<Donatore> {D1, D2, D3, D4, D5, D6, D7, D8, D9, D10, D11, D12, D13, D14};
         }
     }
 }

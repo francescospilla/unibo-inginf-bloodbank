@@ -2,7 +2,15 @@
 using Stylet;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Reflection;
+using BloodBank.Mock;
+using BloodBank.Model.Models.Donazioni;
+using BloodBank.Model.Models.Persone;
+using BloodBank.Model.Models.Sangue;
+using BloodBank.Model.Service;
+using Castle.Core.Logging;
+using Ninject.Activation.Strategies;
 
 namespace BloodBank {
     public class NinjectBootstrapper<TRootViewModel> : BootstrapperBase where TRootViewModel : class {
@@ -15,6 +23,7 @@ namespace BloodBank {
 
         protected override void ConfigureBootstrapper() {
             this.kernel = new StandardKernel();
+            //this.kernel.Components.Add<IActivationStrategy, MyMonitorActivationStrategy>();
             this.DefaultConfigureIoC(this.kernel);
             this.ConfigureIoC(this.kernel);
         }
@@ -66,6 +75,20 @@ namespace BloodBank {
             ScreenExtensions.TryDispose(this._rootViewModel);
             if (this.kernel != null)
                 this.kernel.Dispose();
+        }
+    }
+
+    public class MyMonitorActivationStrategy : ActivationStrategy {
+
+        public override void Activate(Ninject.Activation.IContext context, Ninject.Activation.InstanceReference reference) {
+
+            Debug.WriteLine("Ninject Activate: " + reference.Instance.GetType());
+            base.Activate(context, reference);
+        }
+
+        public override void Deactivate(Ninject.Activation.IContext context, Ninject.Activation.InstanceReference reference) {
+            Debug.WriteLine("Ninject DeActivate: " + reference.Instance.GetType());
+            base.Deactivate(context, reference);
         }
     }
 }
