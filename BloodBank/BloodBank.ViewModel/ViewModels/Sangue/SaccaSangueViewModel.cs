@@ -53,14 +53,13 @@ namespace BloodBank.ViewModel.ViewModels.Sangue {
         public GruppoSanguigno Gruppo { get; set; }
         [Searchable]
         public ComponenteEmatico Componente { get; set; }
-        [Searchable]
         public bool Disponibile { get; set; }
+        public bool Scaduta { get; set; }
+        [Searchable]
+        public string DisponibileString => !Disponibile ? "Non Disponibile" : Scaduta ? "Scaduta" : "Disponibile";
 
         #endregion
-
-        public IEnumerable<GruppoSanguigno> GruppoSanguignoEnumerable { get; } = EnumExtensions.Values<GruppoSanguigno>();
-        public IEnumerable<bool> DisponibileEnumerable { get; } = new[] { true, false };
-        public IEnumerable<ComponenteEmatico> ComponenteEmaticoEnumerable { get; } = ComponenteEmatico.Values;
+        
 
         #region Mappings
 
@@ -73,13 +72,14 @@ namespace BloodBank.ViewModel.ViewModels.Sangue {
             Gruppo = Model.Gruppo;
             Componente = Model.Componente;
             Disponibile = Model.Disponibile;
+            Scaduta = Model.Scaduta;
         }
 
         #endregion
 
         #region Actions
 
-        public bool CanPrelevaSacca => Disponibile;
+        public bool CanPrelevaSacca => Disponibile && !Scaduta;
         public void PrelevaSacca() {
             Model.Preleva();
         }

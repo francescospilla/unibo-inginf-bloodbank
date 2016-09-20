@@ -27,12 +27,13 @@ namespace BloodBank.Model.Models.Sangue
         public GruppoSanguigno Gruppo { get; }
         public ComponenteEmatico Componente { get; }
         public bool Disponibile { get; private set; }
+        public bool Scaduta => DateTime.Now >= DataScadenza;
 
         public void Preleva()
         {
             if (!Disponibile)
                 throw new AccessViolationException("La sacca di sangue è già stata prelevata");
-            if (DateTime.Now >= DataScadenza)
+            if (Scaduta)
                 throw new AccessViolationException("La sacca di sangue è già scaduta");
 
             Disponibile = false;
