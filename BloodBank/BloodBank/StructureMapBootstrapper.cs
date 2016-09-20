@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Reflection;
+using BloodBank.Model.Models.Donazioni;
+using BloodBank.Model.Service;
 using StructureMap;
 using StructureMap.Pipeline;
 using Stylet;
@@ -31,7 +33,7 @@ namespace BloodBank {
         /// </summary>
         protected virtual void DefaultConfigureIoC(ConfigurationExpression config) {
             var viewManagerConfig = new ViewManagerConfig {
-                ViewAssemblies = new List<Assembly> {this.GetType().Assembly},
+                ViewAssemblies = new List<Assembly> { this.GetType().Assembly },
                 ViewFactory = this.GetInstance
             };
 
@@ -49,8 +51,7 @@ namespace BloodBank {
         /// </summary>
         /// <param name="viewManagerConfig"></param>
         /// <returns></returns>
-        protected virtual ViewManager CreateViewManager(ViewManagerConfig viewManagerConfig)
-        {
+        protected virtual ViewManager CreateViewManager(ViewManagerConfig viewManagerConfig) {
             return new ViewManager(viewManagerConfig);
         }
 

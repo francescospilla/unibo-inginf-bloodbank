@@ -12,7 +12,7 @@ namespace BloodBank.Model.Models.Tests {
         protected ListaVoci(Donatore donatore, string descrizioneBreve, DateTime data, IEnumerable<Voce> listaVoci)
             : base(donatore, data, descrizioneBreve) {
             _listaVoci = listaVoci;
-            Idoneità = _listaVoci.Select(e => e.Idoneità).CalculateIdoneitàFromList();
+            Idoneità = Idoneità.Idoneo;//Idoneità = _listaVoci.Select(e => e.Idoneità).CalculateIdoneitàFromList();
         }
 
         public IEnumerable<Voce> Voci => _listaVoci;

@@ -6,7 +6,9 @@ using Stylet;
 using Stylet.FluentValidation;
 using System.Reflection;
 using BloodBank.Mock;
+using BloodBank.Model.Models.Donazioni;
 using BloodBank.Model.Models.Indagini;
+using BloodBank.Model.Models.Persone;
 using BloodBank.Model.Models.Tests;
 using BloodBank.View;
 using BloodBank.ViewModel;
@@ -29,7 +31,9 @@ namespace BloodBank {
             });
 
             config.Policies.SetAllProperties(policy => policy.Matching(info => info.Name.EndsWith("FactoryFunc") && info.CanWrite));
+            config.Policies.SetAllProperties(policy => policy.TypeMatches(type => type == typeof(IFactory<>)));
             config.For(typeof(IDataService<,>)).Use(typeof(DataService<,>)).LifecycleIs<SingletonLifecycle>();
+
             config.ConfigureForFluentValidation(typeof(ValidatorExtensions));
         }
 
