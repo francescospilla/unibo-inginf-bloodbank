@@ -4,6 +4,8 @@ using System.Diagnostics;
 using System.Reflection;
 using BloodBank.Model.Models.Donazioni;
 using BloodBank.Model.Service;
+using BloodBank.ViewModel.Service;
+using BloodBank.ViewModel.ViewModels.Donazioni;
 using StructureMap;
 using StructureMap.Pipeline;
 using Stylet;
@@ -24,6 +26,18 @@ namespace BloodBank {
                 this.DefaultConfigureIoC(config);
                 this.ConfigureIoC(config);
             });
+
+
+            var singleton = container.GetInstance<IDataService<Donazione, DonazioneViewModel>>();
+            Debug.WriteLine(singleton == container.GetInstance<IDataService<Donazione, DonazioneViewModel>>());
+            Debug.WriteLine(singleton == container.GetInstance<IDataService<Donazione, DonazioneViewModel>>());
+            Debug.WriteLine(singleton == container.GetInstance<IDataService<Donazione, DonazioneViewModel>>());
+
+
+            var singleton2 = container.GetInstance<IDataService<Donazione>>();
+            Debug.WriteLine(singleton2 == container.GetInstance<IDataService<Donazione>>());
+            Debug.WriteLine(singleton2 == container.GetInstance<IDataService<Donazione>>());
+            Debug.WriteLine(singleton2 == container.GetInstance<IDataService<Donazione>>());
 
             Debug.WriteLine(container.WhatDoIHave());
         }

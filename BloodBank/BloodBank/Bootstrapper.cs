@@ -27,12 +27,12 @@ namespace BloodBank {
             config.Scan(x => {
                 x.AssemblyContainingType(typeof(DonatoreService));
                 x.ConnectImplementationsToTypesClosing(typeof(IDataService<>)).OnAddedPluginTypes(c => c.Singleton());
-                x.WithDefaultConventions();
+                x.ConnectImplementationsToTypesClosing(typeof(DataService<>)).OnAddedPluginTypes(c => c.Singleton());
             });
 
             config.Policies.SetAllProperties(policy => policy.Matching(info => info.Name.EndsWith("FactoryFunc") && info.CanWrite));
             config.Policies.SetAllProperties(policy => policy.TypeMatches(type => type == typeof(IFactory<>)));
-            config.For(typeof(IDataService<,>)).Use(typeof(DataService<,>)).LifecycleIs<SingletonLifecycle>();
+            config.For(typeof (IDataService<,>)).Use(typeof (DataService<,>)).LifecycleIs<SingletonLifecycle>();
 
             config.ConfigureForFluentValidation(typeof(ValidatorExtensions));
         }

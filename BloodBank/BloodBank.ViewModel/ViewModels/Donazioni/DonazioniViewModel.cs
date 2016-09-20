@@ -38,7 +38,7 @@ namespace BloodBank.ViewModel.ViewModels.Donazioni
 
         public void Handle(NuovaDonazioneEvent message) {
             _eventAggregator.Publish(new DialogEvent(false, null));
-            _donazioneDataService.AddModelAndCreateViewModel(message.Donazione);
+            _donazioneDataService.AddModelAndCreatedViewModel(message.Donazione);
         }
 
         #endregion Actions

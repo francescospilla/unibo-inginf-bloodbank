@@ -12,7 +12,7 @@ using static BloodBank.Mock.VisitaMedicaService;
 using static BloodBank.Model.Models.Donazioni.TipoDonazione;
 
 namespace BloodBank.Mock {
-    public sealed class DonazioneService : DataService<Donazione> {
+    public class DonazioneService : DataService<Donazione> {
         public DonazioneFactory DonazioneFactory { get; set; }
 
         internal Donazione Donazione2;

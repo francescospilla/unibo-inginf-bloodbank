@@ -7,7 +7,7 @@ using BloodBank.Model.Service;
 
 namespace BloodBank.Mock {
 
-    public sealed class DonatoreService : DataService<Donatore> {
+    public class DonatoreService : DataService<Donatore> {
         internal Donatore D1;
         internal Donatore D2;
         internal Donatore D3;
