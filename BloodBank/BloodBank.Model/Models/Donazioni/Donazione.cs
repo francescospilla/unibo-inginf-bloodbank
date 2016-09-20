@@ -12,9 +12,11 @@ namespace BloodBank.Model.Models.Donazioni {
 
     [ImplementPropertyChanged]
     public class Donazione {
+        private readonly IDataService<SaccaSangue> _saccaSangueDataService;
 
         public Donazione(Donatore donatore, TipoDonazione tipoDonazione, DateTime data, VisitaMedica visitaMedica,
-            Analisi analisi, Questionario questionario) {
+            Analisi analisi, Questionario questionario, IDataService<SaccaSangue> saccaSangueDataService) {
+            _saccaSangueDataService = saccaSangueDataService;
             // Contract.Requires<ArgumentNullException>(donatore != null && data != null && visitaMedica != null && analisi != null && questionario != null, "Tutti i parametri devono essere diversi da null.");
 
             if (donatore.Idoneità != Idoneità.Idoneo)
@@ -54,7 +56,7 @@ namespace BloodBank.Model.Models.Donazioni {
 
             foreach (ComponenteEmatico componente in TipoDonazione.ComponentiDerivati)
                 for (int i = 0; i < TipoDonazione.QuantitàComponente(componente); i++)
-                    new SaccaSangue(this, Donatore.GruppoSanguigno, componente, Data);
+                    new SaccaSangueFactory(_saccaSangueDataService).CreateModel(this, Donatore.GruppoSanguigno, componente, Data);
 
             // Contract.Ensures(SaccheSangue.Count > 0, "SaccheSangue.Count > 0");
         }

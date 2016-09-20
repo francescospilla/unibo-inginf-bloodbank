@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using BloodBank.Model.Models.Indagini;
 using BloodBank.Model.Models.Tests;
@@ -43,7 +44,7 @@ namespace BloodBank.Mock {
             A3 = new Analisi(d.D3, "Descrizione 3", new DateTime(2016, 05, 15, 17, 03, 00), Lva3);
             A4 = new Analisi(d.D4, "Descrizione 4", new DateTime(2016, 07, 02, 15, 00, 12), Lva1);
 
-            _models = new List<ListaVoci<Analisi>>() { A1, A2, A3, A4 }.OrderBy(analisi => analisi.Data).ToList();
+            _models = new ObservableCollection<ListaVoci<Analisi>>(new ObservableCollection<ListaVoci<Analisi>>() {A1, A2, A3, A4}.OrderBy(test => test.Data));
         }
 
 
@@ -82,7 +83,7 @@ namespace BloodBank.Mock {
             Q4 = new Questionario(d.D4, "Descrizione questionario 1", new DateTime(2016, 07, 02, 14, 40, 00), Lvq4);
             Q5 = new Questionario(d.D5, "Descrizione questionario 1", new DateTime(2016, 09, 14, 09, 25, 00), Lvq1);
 
-            _models = new List<ListaVoci<Questionario>>() { Q1, Q2, Q3, Q4, Q5 }.OrderBy(questionario => questionario.Data).ToList();
+            _models = new ObservableCollection<ListaVoci<Questionario>>(new ObservableCollection<ListaVoci<Questionario>>() { Q1, Q2, Q3, Q4, Q5 }.OrderBy(test => test.Data));
 
         }
 

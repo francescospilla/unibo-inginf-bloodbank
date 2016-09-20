@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using BloodBank.Model.Models.Indagini;
 
@@ -8,7 +9,7 @@ namespace BloodBank.Model.Service {
 
         void AddModel(TModel model);
 
-        IEnumerable<TModel> GetModels();
+        ObservableCollection<TModel> GetModels();
     }
 
     public static class DataServiceExtension {

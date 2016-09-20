@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using BloodBank.Model.Models.Tests;
 using BloodBank.Model.Service;
 using BloodBank.Mock;
@@ -38,7 +39,7 @@ namespace BloodBank.Mock {
             Vq11 = new Voce<Questionario, double>(iq.Q6, 5.6);
             Vq12 = new Voce<Questionario, double>(iq.Q6, 15.0);
 
-            _models = new List<Voce<Questionario>>(){Vq1, Vq1, Vq2, Vq3, Vq4, Vq5, Vq6, Vq7, Vq8, Vq9, Vq10, Vq11, Vq12};
+            _models = new ObservableCollection<Voce<Questionario>>(){Vq1, Vq1, Vq2, Vq3, Vq4, Vq5, Vq6, Vq7, Vq8, Vq9, Vq10, Vq11, Vq12};
         }
 
     }
@@ -72,7 +73,7 @@ namespace BloodBank.Mock {
             Va11 = new Voce<Analisi, bool>(ia.A6, true);
             Va12 = new Voce<Analisi, bool>(ia.A6, false);
 
-            _models = new List<Voce<Analisi>>(){Va1, Va2, Va3, Va4, Va5, Va6, Va7, Va8, Va9, Va10, Va11, Va12};
+            _models = new ObservableCollection<Voce<Analisi>>(){Va1, Va2, Va3, Va4, Va5, Va6, Va7, Va8, Va9, Va10, Va11, Va12};
         }
 
     }

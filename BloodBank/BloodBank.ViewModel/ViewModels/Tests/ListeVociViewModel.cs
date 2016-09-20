@@ -32,7 +32,7 @@ namespace BloodBank.ViewModel.ViewModels.Tests
 
         public void Handle(NuovaListaVociEvent<U> message) {
             _eventAggregator.Publish(new DialogEvent(false, null));
-            _dataService.AddModelAndCreatedViewModel(message.ListaVoci);
+            _dataService.AddModelAndCreateViewModel(message.ListaVoci);
         }
 
         #endregion

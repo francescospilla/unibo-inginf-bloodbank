@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using BloodBank.Model.Models.Persone;
 using BloodBank.Model.Service;
 
@@ -18,7 +19,7 @@ namespace BloodBank.Mock {
             M4 = new Medico(new Contatto("Nicola", "Bianchi", Sesso.Maschio, new DateTime(1966, 04, 01), "BMONRJ71B06L229S", "Sotto a un ponte", "Bologna", "Italia", "12341"));
             M5 = new Medico(new Contatto("Renzo", "Verdi", Sesso.Maschio, new DateTime(1960, 08, 12), "JLDHDW45C14S951E", "Sotto a un ponte", "Bologna", "Italia", "12341"));
 
-            _models = new List<Medico>() { M1, M2, M3, M4, M5 };
+            _models = new ObservableCollection<Medico>() { M1, M2, M3, M4, M5 };
         }
         
     }

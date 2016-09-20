@@ -62,6 +62,7 @@
     <Compile Include="Events\NuovaIndagineEvent.cs" />
     <Compile Include="Events\NuovaDonazioneEvent.cs" />
     <Compile Include="Events\ViewModelCollectionChangedEvent.cs" />
+    <Compile Include="Service\IDataService.cs" />
     <Compile Include="Service\VoceViewModelFactory.cs" />
     <Compile Include="Validation\Indagini\VoceValidator.cs" />
     <Compile Include="ViewModels\Donazioni\DonazioneViewModel.cs" />
@@ -69,7 +70,6 @@
     <Compile Include="ViewModels\NuovaListaVociViewModel.cs" />
     <Compile Include="ViewModels\Indagini\IndaginiViewModel.cs" />
     <Compile Include="Service\DataService.cs" />
-    <Compile Include="Service\IDataService.cs" />
     <Compile Include="Validation\Persone\CodiceFiscaleValidator.cs" />
     <Compile Include="Validation\Persone\DonatoreValidator.cs" />
     <Compile Include="Validation\Persone\EtàValidator.cs" />

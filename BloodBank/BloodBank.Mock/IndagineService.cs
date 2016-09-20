@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 using BloodBank.Model.Models;
 using BloodBank.Model.Models.Indagini;
 using BloodBank.Model.Models.Indagini.Tipi;
@@ -17,8 +19,8 @@ namespace BloodBank.Mock {
             AddModel((Indagine<U>)model);
         }
 
-        IEnumerable<Indagine> IDataService<Indagine>.GetModels() {
-            return GetModels();
+        ObservableCollection<Indagine> IDataService<Indagine>.GetModels() {
+            return (ObservableCollection<Indagine>) GetModels().Cast<Indagine>();
         }
 
         #endregion
@@ -55,7 +57,7 @@ namespace BloodBank.Mock {
             Q12 = new IndagineRange<Questionario, int>("Pulsazioni (battiti/minuto)", Idoneità.Sospeso, 50, 100);
             Q13 = new IndagineBoolean<Questionario>("È mai stato affetto da brucellosi?", Idoneità.NonIdoneo, false);
 
-            _models = new List<Indagine<Questionario>>() { Q1, Q2, Q3, Q4, Q5, Q6, Q7, Q8, Q9, Q10, Q11, Q12 };
+            _models = new ObservableCollection<Indagine<Questionario>>() { Q1, Q2, Q3, Q4, Q5, Q6, Q7, Q8, Q9, Q10, Q11, Q12 };
         }
 
 
@@ -78,7 +80,7 @@ namespace BloodBank.Mock {
             A5 = new IndagineBoolean<Analisi>("HIVAb 1-2 (per l'AIDS)", Idoneità.NonIdoneo, false);
             A6 = new IndagineBoolean<Analisi>("HCVAb e costituenti virali (per l'epatite C)", Idoneità.NonIdoneo, false);
 
-            _models = new List<Indagine<Analisi>>() { A1, A2, A3, A4, A5, A6 };
+            _models = new ObservableCollection<Indagine<Analisi>>() { A1, A2, A3, A4, A5, A6 };
         }
 
     }
