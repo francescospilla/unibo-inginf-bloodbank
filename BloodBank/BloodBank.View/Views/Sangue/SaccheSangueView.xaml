@@ -14,11 +14,9 @@
     <UserControl.Resources>
         <CollectionViewSource IsLiveSortingRequested="True" Source="{Binding ListItems}" x:Key="ListaSaccheSangueOrdinata">
             <CollectionViewSource.LiveSortingProperties>
-                <system:String>Componente</system:String>
                 <system:String>DataScadenza</system:String>
             </CollectionViewSource.LiveSortingProperties>
             <CollectionViewSource.SortDescriptions>
-                <componentModel:SortDescription  PropertyName="Componente" />
                 <componentModel:SortDescription  PropertyName="DataScadenza" />
             </CollectionViewSource.SortDescriptions>
         </CollectionViewSource>
