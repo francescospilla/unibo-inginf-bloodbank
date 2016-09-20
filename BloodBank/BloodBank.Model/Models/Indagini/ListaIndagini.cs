@@ -10,7 +10,7 @@ namespace BloodBank.Model.Models.Indagini {
     public abstract class ListaIndagini : IEnumerable<Indagine>, IListaIndagini {
         private readonly List<Indagine> _indagini;
 
-        protected ListaIndagini(string nome = null) {
+        protected ListaIndagini(string nome) {
             Nome = nome;
             _indagini = new List<Indagine>();
             DataCreazione = DateTime.Now;

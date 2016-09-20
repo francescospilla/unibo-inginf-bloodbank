@@ -10,7 +10,7 @@ namespace BloodBank.Model.Models.Tests {
     [ImplementPropertyChanged]
 	public class Analisi : ListaVoci<Analisi> {
 
-        public Analisi(Donatore donatore, string descrizioneBreve, DateTime data, IEnumerable<Voce> listaIndagini)
+        public Analisi(Donatore donatore, string descrizioneBreve, DateTime data, IEnumerable<Voce<Analisi>> listaIndagini)
             : base(donatore, descrizioneBreve, data, listaIndagini)
         {
         }

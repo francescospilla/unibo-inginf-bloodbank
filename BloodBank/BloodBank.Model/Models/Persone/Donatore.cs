@@ -130,12 +130,13 @@ namespace BloodBank.Model.Models.Persone
         public void AggiungiTest(Test test)
         {
             _listaTest.Add(test.Data, test);
-            Idoneità = _listaTest.LastOrDefault().Value?.Idoneità;
+            Idoneità = test.Idoneità;
         }
 
         public void AggiungiDonazione(Donazione donazione)
         {
             _listaDonazioni.Add(donazione.Data, donazione);
+            // TODO: gestire DataProssimaDonazione 
         }
     }
 }

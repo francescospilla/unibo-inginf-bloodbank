@@ -65,7 +65,7 @@ namespace BloodBank.Model.Models.Donazioni
 
         private static bool AreDateTestValide(DateTime dataDonazione, params DateTime[] dateTest)
         {
-            return dateTest.All(data => data.Date.Equals(dataDonazione.Date));
+            return dateTest.All(data => data.Date.Equals(dataDonazione.Date) && data.CompareTo(dataDonazione) < 0);
         }
 
         protected bool Equals(Donazione other)
