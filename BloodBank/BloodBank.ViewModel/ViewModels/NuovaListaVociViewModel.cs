@@ -1,22 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Reflection;
 using BloodBank.Model.Models;
 using BloodBank.Model.Models.Indagini;
-using BloodBank.Model.Models.Indagini.Tipi;
 using BloodBank.Model.Models.Persone;
 using BloodBank.Model.Models.Tests;
-using BloodBank.Model.Service;
-using BloodBank.ViewModel.Components;
 using BloodBank.ViewModel.Events;
 using BloodBank.ViewModel.Service;
 using BloodBank.ViewModel.ViewModels.Indagini;
 using BloodBank.ViewModel.ViewModels.Persone;
 using PropertyChanged;
-using StructureMap;
-using StructureMap.TypeRules;
 using Stylet;
 using Stylet.DictionaryViewManager;
 

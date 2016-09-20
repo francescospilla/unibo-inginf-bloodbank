@@ -2,15 +2,8 @@
 using PropertyChanged;
 using Stylet;
 using System;
-using System.Collections.Generic;
-using BloodBank.Model.Models;
-using BloodBank.Model.Models.Indagini;
-using BloodBank.Model.Models.Indagini.Tipi;
-using BloodBank.Model.Models.Persone;
-using BloodBank.Model.Models.Sangue;
 using BloodBank.Model.Models.Tests;
 using BloodBank.ViewModel.Components;
-using BloodBank.ViewModel.ViewModels;
 using BloodBank.ViewModel.ViewModels.Donazioni;
 using BloodBank.ViewModel.ViewModels.Indagini;
 using BloodBank.ViewModel.ViewModels.Persone;

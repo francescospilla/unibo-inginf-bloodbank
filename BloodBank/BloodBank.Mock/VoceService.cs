@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using BloodBank.Model.Models.Tests;
 using BloodBank.Model.Service;
-using BloodBank.Mock;
 using BloodBank.Model.Models.Indagini;
 
 namespace BloodBank.Mock

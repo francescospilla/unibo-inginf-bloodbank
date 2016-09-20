@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using BloodBank.Core.Attributes;
 using BloodBank.Core.Extensions;
 using BloodBank.Model.Models.Donazioni;

@@ -19,7 +19,7 @@ namespace BloodBank.ViewModel.ViewModels.Indagini {
         private readonly IDataService<Indagine<U>> _indagineDataService;
 
         public ListaIndaginiViewModel(IEventAggregator eventAggregator, IDataService<Indagine<U>> indagineDataService,
-            IDataService<ListaIndagini<U>, EditableViewModel<ListaIndagini<U>>> dataService, IModelValidator<IListaIndagini> validator)
+            IDataService<ListaIndagini<U>, ListaIndaginiViewModel<U>> dataService, IModelValidator<IListaIndagini> validator)
             : base(eventAggregator, dataService, validator) {
             _indagineDataService = indagineDataService;
 

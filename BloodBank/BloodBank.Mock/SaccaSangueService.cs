@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using BloodBank.Model.Models.Sangue;
 using BloodBank.Model.Service;
-using static BloodBank.Mock.DonatoreService;
-using static BloodBank.Model.Models.Donazioni.TipoDonazione;
 
 namespace BloodBank.Mock
 {

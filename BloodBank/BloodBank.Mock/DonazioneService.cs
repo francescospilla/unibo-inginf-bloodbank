@@ -23,7 +23,7 @@ namespace BloodBank.Mock
             /*Donazione1,*/ Donazione2, Donazione3, Donazione4
         };
 
-        public DonazioneService(IList<Donazione> items) : base(Items.OrderBy(donazione => donazione.Data).ToList())
+        public DonazioneService() : base(Items.OrderBy(donazione => donazione.Data).ToList())
         {
         }
     }

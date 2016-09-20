@@ -1,7 +1,5 @@
 ﻿using System.Linq;
 using BloodBank.Model.Models.Tests;
-using BloodBank.Model.Service;
-using BloodBank.ViewModel.ViewModels;
 using BloodBank.ViewModel.ViewModels.Tests;
 using FluentValidation;
 

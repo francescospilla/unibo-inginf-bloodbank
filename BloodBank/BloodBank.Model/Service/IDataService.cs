@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using BloodBank.Model.Models.Indagini;
 
 namespace BloodBank.Model.Service {
 

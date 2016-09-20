@@ -37,14 +37,14 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\FluentValidation.6.2.1.0\lib\Net45\FluentValidation.dll</HintPath>
     </Reference>
+    <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PropertyChanged, Version=1.51.3.0, Culture=neutral, PublicKeyToken=ee3ee20bcf148ddd, processorArchitecture=MSIL">
       <HintPath>..\packages\PropertyChanged.Fody.1.51.3\lib\dotnet\PropertyChanged.dll</HintPath>
       <Private>False</Private>
-    </Reference>
-    <Reference Include="StructureMap, Version=4.3.0.449, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\StructureMap.4.4.0\lib\net45\StructureMap.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="Stylet, Version=1.1.16.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Stylet.1.1.16\lib\net45\Stylet.dll</HintPath>

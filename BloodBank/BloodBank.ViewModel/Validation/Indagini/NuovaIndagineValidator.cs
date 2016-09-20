@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using BloodBank.Model.Models.Indagini;
-using BloodBank.Model.Models.Tests;
 using BloodBank.Model.Service;
 using BloodBank.ViewModel.ViewModels;
 using FluentValidation;

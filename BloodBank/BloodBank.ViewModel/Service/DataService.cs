@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using BloodBank.ViewModel.Components;
+using Ninject;
 
 namespace BloodBank.ViewModel.Service {
 
@@ -15,6 +16,7 @@ namespace BloodBank.ViewModel.Service {
         private ObservableCollection<TViewModel> _viewModelList;
 
         // Deve essere inizializzata, preferibilmente con un IoC container.
+        [Inject]
         public Func<TViewModel> ViewModelFactoryFunc { get; set; }
 
         public DataService(IEventAggregator eventAggregator, IDataService<TModel> modelService) {

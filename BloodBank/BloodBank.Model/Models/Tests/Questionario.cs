@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using BloodBank.Model.Models.Indagini;
 using BloodBank.Model.Models.Persone;
-using BloodBank.Model.Models.Tests;
 using PropertyChanged;
 
 namespace BloodBank.Model.Models.Tests

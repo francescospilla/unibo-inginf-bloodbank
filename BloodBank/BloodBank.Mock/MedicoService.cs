@@ -32,7 +32,7 @@ namespace BloodBank.Mock
             M1, M2, M3, M4, M5
         };
 
-        public MedicoService(IList<Medico> models) : base(Items)
+        public MedicoService() : base(Items)
         {
         }
     }

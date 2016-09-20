@@ -1,6 +1,4 @@
-﻿using System.Threading;
-using System.Windows.Markup;
-using MahApps.Metro.Controls;
+﻿using MahApps.Metro.Controls;
 
 namespace BloodBank.View {
 

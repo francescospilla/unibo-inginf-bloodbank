@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using BloodBank.Model.Models.Persone;
 
 namespace BloodBank.Model.Models.Tests {

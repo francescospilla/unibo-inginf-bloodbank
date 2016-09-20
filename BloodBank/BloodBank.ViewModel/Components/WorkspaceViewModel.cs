@@ -40,9 +40,9 @@ namespace BloodBank.ViewModel.Components {
 
         }
 
-        public void Handle(ViewModelCollectionChangedEvent<TViewModel> message)
-        {
-            Items.Add(message.ViewModel);
+        public void Handle(ViewModelCollectionChangedEvent<TViewModel> message) {
+            if (!Items.Contains(message.ViewModel))
+                Items.Add(message.ViewModel);
         }
     }
 }

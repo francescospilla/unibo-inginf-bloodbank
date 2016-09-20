@@ -1,14 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using BloodBank.Model.Models;
 using BloodBank.Model.Models.Donazioni;
-using BloodBank.Model.Models.Indagini;
 using BloodBank.Model.Models.Persone;
-using BloodBank.Model.Models.Sangue;
 using BloodBank.Model.Models.Tests;
-using BloodBank.Model.Service;
 using BloodBank.ViewModel.Components;
 using BloodBank.ViewModel.Events;
 using BloodBank.ViewModel.Service;
