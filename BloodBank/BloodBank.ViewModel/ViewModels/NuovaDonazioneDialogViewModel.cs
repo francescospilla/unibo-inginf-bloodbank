@@ -38,7 +38,7 @@ namespace BloodBank.ViewModel.ViewModels {
             _visitaMedicaDataService = visitaMedicaDataService;
 
             DonatoreEnumerable =
-                _donatoreDataService.GetViewModels().Where(vm => vm.Idoneità == Idoneità.Idoneo && vm.Attivo);
+                _donatoreDataService.GetViewModels().Where(vm => vm.Idoneità == Idoneità.Idoneo && vm.Attivo && (vm.DataProssimaDonazioneConsentita == null || vm.DataProssimaDonazioneConsentita <= DateTime.Today));
         }
 
         #region Properties

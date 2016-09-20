@@ -96,6 +96,7 @@ namespace BloodBank.Model.Models.Persone
 
         public GruppoSanguigno GruppoSanguigno { get; }
         public Idoneità? Idoneità { get; private set; }
+        public DateTime? DataProssimaDonazioneConsentita { get; private set; }
         public bool Attivo { get; set; }
 
         public IEnumerable<Test> ListaTest => _listaTest.Values;
@@ -136,7 +137,7 @@ namespace BloodBank.Model.Models.Persone
         public void AggiungiDonazione(Donazione donazione)
         {
             _listaDonazioni.Add(donazione.Data, donazione);
-            // TODO: gestire DataProssimaDonazione 
+            DataProssimaDonazioneConsentita = donazione.DataProssimaDonazioneConsentita;
         }
     }
 }

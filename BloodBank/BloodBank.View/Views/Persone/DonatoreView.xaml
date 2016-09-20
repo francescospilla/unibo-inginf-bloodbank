@@ -112,17 +112,17 @@
 
         <Grid Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="4" components:LayoutSetter.Margin="10">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*" MinWidth="90" />
-                <ColumnDefinition Width="2*" />
-                <ColumnDefinition Width="1*" MinWidth="80" />
-                <ColumnDefinition Width="2*" />
-                <ColumnDefinition Width="1*"  MinWidth="70" />
-                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
             <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="6" Text="Scheda donatore" Style="{StaticResource MaterialDesignDisplay1TextBlock}" />
@@ -144,13 +144,13 @@
                 </ComboBox.SelectedItem>
             </ComboBox>
 
-            <Label Grid.Row="2" Grid.Column="2" Content="Idoneità" Foreground="{Binding ElementName=TextBoxIdoneità, Path=BorderBrush}" VerticalAlignment="Center"  HorizontalAlignment="Right" />
-            <TextBox Grid.Row="2" Grid.Column="3" x:Name="TextBoxIdoneità" md:HintAssist.Hint="da valutare" IsEnabled="False" VerticalAlignment="Center"
+            <Label Grid.Row="3" Grid.Column="3" Content="Idoneità" Foreground="{Binding ElementName=TextBoxIdoneità, Path=BorderBrush}" VerticalAlignment="Center"  HorizontalAlignment="Right" />
+            <TextBox Grid.Row="3" Grid.Column="4" x:Name="TextBoxIdoneità" md:HintAssist.Hint="da valutare" IsEnabled="False" VerticalAlignment="Center"
                                      Text="{Binding Path=Idoneità, Mode=OneWay, Converter={StaticResource EnumToString}, UpdateSourceTrigger=PropertyChanged}">
             </TextBox>
 
-            <Label Grid.Row="2" Grid.Column="4" Content="Attivo" Foreground="{Binding ElementName=ComboBoxAttivo, Path=BorderBrush}" VerticalAlignment="Center"  HorizontalAlignment="Right" />
-            <ComboBox Grid.Row="2" Grid.Column="5" x:Name="ComboBoxAttivo" md:HintAssist.Hint="Attività" ItemsSource="{Binding AttivoEnumerable}" VerticalAlignment="Center"
+            <Label Grid.Row="2" Grid.Column="3" Content="Attivo" Foreground="{Binding ElementName=ComboBoxAttivo, Path=BorderBrush}" VerticalAlignment="Center"  HorizontalAlignment="Right" />
+            <ComboBox Grid.Row="2" Grid.Column="4" x:Name="ComboBoxAttivo" md:HintAssist.Hint="Attività" ItemsSource="{Binding AttivoEnumerable}" VerticalAlignment="Center"
                                       SelectedItem="{Binding Path=Attivo, UpdateSourceTrigger=PropertyChanged}">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
@@ -158,7 +158,16 @@
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>
+
+            <Label Grid.Row="3" Grid.Column="0" VerticalAlignment="Bottom" HorizontalAlignment="Right">
+                <Label.Content>
+                    <TextBlock Text="Data Prossima Donazione Consentita" Foreground="{Binding ElementName=TextBoxDataProssimaDonazioneConsentita, Path=BorderBrush}" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" />
+                </Label.Content>
+            </Label>
+            <TextBox Grid.Row="3" Grid.Column="1" x:Name="TextBoxDataProssimaDonazioneConsentita" md:HintAssist.Hint="da valutare" IsEnabled="False" VerticalAlignment="Center"
+                                     Text="{Binding Path=DataProssimaDonazioneConsentita, StringFormat=d, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+            </TextBox>
         </Grid>
     </Grid>
-    
+
 </UserControl>

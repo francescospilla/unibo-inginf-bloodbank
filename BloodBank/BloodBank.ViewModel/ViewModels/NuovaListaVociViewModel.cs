@@ -38,7 +38,7 @@ namespace BloodBank.ViewModel.ViewModels {
             _listaIndaginiDataService = listaIndaginiDataService;
             _voceViewModelFactory = voceViewModelFactory;
 
-            DonatoreEnumerable = _donatoreDataService.GetViewModels();
+            DonatoreEnumerable = _donatoreDataService.GetViewModels().Where(vm => vm.Idoneità != Idoneità.NonIdoneo && vm.Attivo);
             ListaIndaginiEnumerable = _listaIndaginiDataService.GetViewModels();
         }
 

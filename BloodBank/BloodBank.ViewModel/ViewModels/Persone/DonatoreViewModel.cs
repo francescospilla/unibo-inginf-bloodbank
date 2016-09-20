@@ -58,6 +58,8 @@ namespace BloodBank.ViewModel.ViewModels.Persone {
         [Searchable]
         public Idoneità? Idoneità { get; set; }
         public bool Attivo { get; set; }
+        [Searchable]
+        public DateTime? DataProssimaDonazioneConsentita { get; set; }
 
         #endregion Properties
 
@@ -83,6 +85,7 @@ namespace BloodBank.ViewModel.ViewModels.Persone {
             GruppoSanguigno = Model.GruppoSanguigno;
             Idoneità = Model.Idoneità;
             Attivo = Model.Attivo;
+            DataProssimaDonazioneConsentita = Model.DataProssimaDonazioneConsentita;
         }
 
         protected override Donatore CreateModelFromViewModel() {
