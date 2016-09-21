@@ -7,7 +7,7 @@ using static BloodBank.Model.Models.Idoneità;
 
 namespace BloodBank.Mock {
     public sealed class VisitaMedicaDataService : DataService<VisitaMedica> {
-        public VisitaMedicaFactory Factory { get; set; }
+        public VisitaMedica.VisitaMedicaFactory Factory { get; set; }
 
         internal VisitaMedica V1;
         internal VisitaMedica V2;
@@ -22,7 +22,7 @@ namespace BloodBank.Mock {
 
         public VisitaMedicaDataService(DonatoreDataService d, MedicoDataService m) {
             _models = new ObservableCollection<object>();
-            Factory = new VisitaMedicaFactory(this);
+            Factory = new VisitaMedica.VisitaMedicaFactory(this);
             
             V1 = Factory.CreateModel(d.D1, "Descrizione breve", DateTime.Now.AddMinutes(-2), Idoneo, m.M1, "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
             V2 = Factory.CreateModel(d.D2, "Descrizione brevissima", new DateTime(2016, 08, 23, 11, 30, 10), Idoneo, m.M2, "Lorem ipsum dolor sit amet.");

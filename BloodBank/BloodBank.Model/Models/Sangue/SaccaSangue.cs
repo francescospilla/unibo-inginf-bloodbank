@@ -1,5 +1,6 @@
 ﻿using System;
 using BloodBank.Model.Models.Donazioni;
+using BloodBank.Model.Service;
 using PropertyChanged;
 
 namespace BloodBank.Model.Models.Sangue
@@ -9,7 +10,7 @@ namespace BloodBank.Model.Models.Sangue
     public class SaccaSangue
     {
 
-        public SaccaSangue(Donazione donazione, GruppoSanguigno gruppo, ComponenteEmatico componente, DateTime dataPrelievo)
+        private SaccaSangue(Donazione donazione, GruppoSanguigno gruppo, ComponenteEmatico componente, DateTime dataPrelievo)
         {
             Id = Guid.NewGuid();
             Donazione = donazione;
@@ -60,6 +61,21 @@ namespace BloodBank.Model.Models.Sangue
         public override string ToString()
         {
             return Id + ", " + Componente + " " + Gruppo + " (" + DataPrelievo + ")";
+        }
+
+        public class SaccaSangueFactory : IFactory<SaccaSangue> {
+            private readonly IDataService<SaccaSangue> _dataService;
+
+            public SaccaSangueFactory(IDataService<SaccaSangue> dataService) {
+                _dataService = dataService;
+            }
+
+            public SaccaSangue CreateModel(Donazione donazione, GruppoSanguigno gruppo, ComponenteEmatico componente, DateTime dataPrelievo) {
+                var model = new SaccaSangue(donazione, gruppo, componente, dataPrelievo);
+                donazione.SaccheSangue.Add(model);
+                _dataService.AddModel(model);
+                return model;
+            }
         }
     }
 }

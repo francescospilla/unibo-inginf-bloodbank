@@ -6,10 +6,10 @@ namespace BloodBank.Mock
 {
     public sealed class SaccaSangueDataService : DataService<SaccaSangue> {
 
-        public SaccaSangueFactory SaccaSangueFactory { get; set; }
+        public SaccaSangue.SaccaSangueFactory SaccaSangueFactory { get; set; }
         
         public SaccaSangueDataService() {
-            SaccaSangueFactory = new SaccaSangueFactory(this);
+            SaccaSangueFactory = new SaccaSangue.SaccaSangueFactory(this);
             _models = new ObservableCollection<object>();
         }
         

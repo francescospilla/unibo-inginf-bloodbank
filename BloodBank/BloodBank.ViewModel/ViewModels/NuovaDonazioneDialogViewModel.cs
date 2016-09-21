@@ -23,21 +23,19 @@ namespace BloodBank.ViewModel.ViewModels {
         private readonly IDataService<VisitaMedica, VisitaMedicaViewModel> _visitaMedicaDataService;
         private readonly IDataService<Questionario, ListaVociViewModel<Questionario>> _listaVociQuestionarioDataService;
         private readonly IDataService<Analisi, ListaVociViewModel<Analisi>> _listaVociAnalisiDataService;
-        private readonly IDataService<SaccaSangue> _saccaSangueDataService;
-        private readonly IDataService<Donazione> _donazioneDataService; 
+        private readonly Donazione.DonazioneFactory _donazioneFactory;
 
         public NuovaDonazioneDialogViewModel(IEventAggregator eventAggregator,
             IDataService<Donatore, DonatoreViewModel> donatoreDataService,
             IDataService<Questionario, ListaVociViewModel<Questionario>> listaVociQuestionarioDataService,
             IDataService<Analisi, ListaVociViewModel<Analisi>> listaVociAnalisiDataService,
-            IDataService<VisitaMedica, VisitaMedicaViewModel> visitaMedicaDataService, IDataService<SaccaSangue> saccaSangueDataService, IDataService<Donazione> donazioneDataService) {
+            IDataService<VisitaMedica, VisitaMedicaViewModel> visitaMedicaDataService, IDataService<SaccaSangue> saccaSangueDataService, IDataService<Donazione> donazioneDataService, Donazione.DonazioneFactory donazioneFactory) {
             _eventAggregator = eventAggregator;
             _donatoreDataService = donatoreDataService;
             _listaVociQuestionarioDataService = listaVociQuestionarioDataService;
             _listaVociAnalisiDataService = listaVociAnalisiDataService;
             _visitaMedicaDataService = visitaMedicaDataService;
-            _saccaSangueDataService = saccaSangueDataService;
-            _donazioneDataService = donazioneDataService;
+            _donazioneFactory = donazioneFactory;
 
             DonatoreEnumerable =
                 _donatoreDataService.GetViewModels().Where(vm => vm.Idoneità == Idoneità.Idoneo && vm.Attivo && (vm.DataProssimaDonazioneConsentita == null || vm.DataProssimaDonazioneConsentita <= DateTime.Today));
@@ -82,7 +80,7 @@ namespace BloodBank.ViewModel.ViewModels {
         }
 
         public void Finish() {
-            NuovaDonazioneEvent message = new NuovaDonazioneEvent(new DonazioneFactory(_donazioneDataService, _saccaSangueDataService).CreateModel(SelectedDonatore.Model, SelectedTipoDonazione, DataDonazione, SelectedVisitaMedica.Model, (Analisi)SelectedListaVociAnalisi.Model, (Questionario) SelectedListaVociQuestionario.Model));
+            NuovaDonazioneEvent message = new NuovaDonazioneEvent(_donazioneFactory.CreateModel(SelectedDonatore.Model, SelectedTipoDonazione, DataDonazione, SelectedVisitaMedica.Model, SelectedListaVociAnalisi.Model, SelectedListaVociQuestionario.Model));
             _eventAggregator.Publish(message);
         }
 

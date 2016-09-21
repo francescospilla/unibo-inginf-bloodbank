@@ -8,8 +8,8 @@ using BloodBank.Model.Service;
 
 namespace BloodBank.Mock {
 
-    public sealed class ListaVociAnalisiDataService : DataService<Analisi> {
-        public AnalisiFactory Factory { get; set; }
+    public sealed class AnalisiDataService : DataService<Analisi> {
+        public Analisi.AnalisiFactory Factory { get; set; }
 
         // liste di voci generiche
         internal IEnumerable<Voce<Analisi>> Lva1;
@@ -24,9 +24,9 @@ namespace BloodBank.Mock {
         internal Analisi A3;
         internal Analisi A4;
 
-        public ListaVociAnalisiDataService(DonatoreDataService d, VoceAnalisiDataService va) {
+        public AnalisiDataService(DonatoreDataService d, VoceAnalisiDataService va) {
             _models = new ObservableCollection<object>();
-            Factory = new AnalisiFactory(this);
+            Factory = new Analisi.AnalisiFactory(this);
 
             // liste di voci generiche
             Lva1 = new List<Voce<Analisi>> { va.Va1, va.Va6, va.Va8, va.Va12 };
@@ -47,8 +47,8 @@ namespace BloodBank.Mock {
 
     }
 
-    public sealed class ListaVociQuestionarioDataService : DataService<Questionario> {
-        public QuestionarioFactory Factory { get; set; }
+    public sealed class QuestionarioDataService : DataService<Questionario> {
+        public Questionario.QuestionarioFactory Factory { get; set; }
 
         // liste di voci generiche
         internal IEnumerable<Voce<Questionario>> Lvq1;
@@ -65,9 +65,9 @@ namespace BloodBank.Mock {
         internal Questionario Q4;
         internal Questionario Q5;
 
-        public ListaVociQuestionarioDataService(DonatoreDataService d, VoceQuestionarioDataService vq) {
+        public QuestionarioDataService(DonatoreDataService d, VoceQuestionarioDataService vq) {
             _models = new ObservableCollection<object>();
-            Factory = new QuestionarioFactory(this);
+            Factory = new Questionario.QuestionarioFactory(this);
 
             // liste di voci generiche
             Lvq1 = new List<Voce<Questionario>> { vq.Vq1, vq.Vq4, vq.Vq6, vq.Vq10, vq.Vq8 };

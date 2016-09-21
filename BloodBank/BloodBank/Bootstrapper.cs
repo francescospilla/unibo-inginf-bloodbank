@@ -30,16 +30,16 @@ namespace BloodBank {
             kernel.Bind<IDataService<Indagine<Questionario>>, IndagineQuestionarioDataService>().To<IndagineQuestionarioDataService>().InSingletonScope();
             kernel.Bind<IDataService<ListaIndagini<Analisi>>, ListaIndaginiAnalisiDataService>().To<ListaIndaginiAnalisiDataService>().InSingletonScope();
             kernel.Bind<IDataService<ListaIndagini<Questionario>>, ListaIndaginiQuestionarioDataService>().To<ListaIndaginiQuestionarioDataService>().InSingletonScope();
-            kernel.Bind<IDataService<Analisi>, ListaVociAnalisiDataService>().To<ListaVociAnalisiDataService>().InSingletonScope();
-            kernel.Bind<IDataService<Questionario>, ListaVociQuestionarioDataService>().To<ListaVociQuestionarioDataService>().InSingletonScope();
+            kernel.Bind<IDataService<Analisi>, AnalisiDataService>().To<AnalisiDataService>().InSingletonScope();
+            kernel.Bind<IDataService<Questionario>, QuestionarioDataService>().To<QuestionarioDataService>().InSingletonScope();
             kernel.Bind<IDataService<Medico>, MedicoDataService>().To<MedicoDataService>().InSingletonScope();
             kernel.Bind<IDataService<SaccaSangue>, SaccaSangueDataService>().To<SaccaSangueDataService>().InSingletonScope();
             kernel.Bind<IDataService<VisitaMedica>, VisitaMedicaDataService > ().To<VisitaMedicaDataService>().InSingletonScope();
             kernel.Bind<IDataService<Voce<Analisi>>, VoceAnalisiDataService>().To<VoceAnalisiDataService>().InSingletonScope();
             kernel.Bind<IDataService<Voce<Questionario>>, VoceQuestionarioDataService>().To<VoceQuestionarioDataService>().InSingletonScope();
 
-            kernel.Bind<ListaVociFactory<Analisi>>().To<AnalisiFactory>().InSingletonScope();
-            kernel.Bind<ListaVociFactory<Questionario>>().To<QuestionarioFactory>().InSingletonScope();
+            kernel.Bind<IFactory<Analisi>, ListaVoci.ListaVociFactory<Analisi>>().To<Analisi.AnalisiFactory>().InSingletonScope();
+            kernel.Bind<IFactory<Questionario>, ListaVoci.ListaVociFactory<Questionario>>().To<Questionario.QuestionarioFactory>().InSingletonScope();
 
 
             kernel.ConfigureForFluentValidation(typeof(ValidatorExtensions));

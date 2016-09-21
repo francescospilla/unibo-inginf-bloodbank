@@ -23,11 +23,11 @@ namespace BloodBank.ViewModel.ViewModels {
         private readonly IDataService<Donatore, DonatoreViewModel> _donatoreDataService;
         private readonly IDataService<ListaIndagini<U>, ListaIndaginiViewModel<U>> _listaIndaginiDataService;
         private readonly VoceViewModelFactory<U> _voceViewModelFactory;
-        private readonly ListaVociFactory<U> _listaVociFactory; 
+        private readonly ListaVoci.ListaVociFactory<U> _listaVociFactory; 
 
         #region Constructors
 
-        public NuovaListaVociViewModel(IEventAggregator eventAggregator, IDataService<Donatore, DonatoreViewModel> donatoreDataService, IDataService<ListaIndagini<U>, ListaIndaginiViewModel<U>> listaIndaginiDataService, VoceViewModelFactory<U> voceViewModelFactory, ListaVociFactory<U> listaVociFactory) {
+        public NuovaListaVociViewModel(IEventAggregator eventAggregator, IDataService<Donatore, DonatoreViewModel> donatoreDataService, IDataService<ListaIndagini<U>, ListaIndaginiViewModel<U>> listaIndaginiDataService, VoceViewModelFactory<U> voceViewModelFactory, ListaVoci.ListaVociFactory<U> listaVociFactory) {
             _eventAggregator = eventAggregator;
             _donatoreDataService = donatoreDataService;
             _listaIndaginiDataService = listaIndaginiDataService;
