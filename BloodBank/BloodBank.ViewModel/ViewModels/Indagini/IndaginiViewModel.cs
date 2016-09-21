@@ -1,4 +1,5 @@
-﻿using BloodBank.Model.Models.Indagini;
+﻿using System.Collections.ObjectModel;
+using BloodBank.Model.Models.Indagini;
 using BloodBank.Model.Models.Tests;
 using BloodBank.Model.Service;
 using BloodBank.ViewModel.Events;
@@ -9,7 +10,7 @@ namespace BloodBank.ViewModel.ViewModels.Indagini
 {
 
     [ImplementPropertyChanged]
-    public class IndaginiViewModel : Screen, IHandle<NuovaIndagineEvent>
+    public class IndaginiViewModel : Screen
     {
         private readonly IEventAggregator _eventAggregator;
         private readonly IDataService<Indagine<Analisi>> _indagineAnalisiDataService;
@@ -29,17 +30,19 @@ namespace BloodBank.ViewModel.ViewModels.Indagini
             _nuovaIndagineAnalisiIntDialogValidator = nuovaIndagineAnalisiIntDialogValidator;
             _nuovaIndagineAnalisiDoubleDialogValidator = nuovaIndagineAnalisiDoubleDialogValidator;
 
-            _eventAggregator.Subscribe(this);
+            IndaginiAnalisi = _indagineAnalisiDataService.GetObservableCollection();
+            IndaginiQuestionario = _indagineQuestionarioDataService.GetObservableCollection();
 
-            IndaginiAnalisi = new BindableCollection<Indagine<Analisi>>(_indagineAnalisiDataService.GetModels());
-            IndaginiQuestionario = new BindableCollection<Indagine<Questionario>>(_indagineQuestionarioDataService.GetModels());
+            IndaginiAnalisi.CollectionChanged += (sender, e) => NotifyOfPropertyChange(() => IndaginiAnalisi);
+            IndaginiQuestionario.CollectionChanged += (sender, e) => NotifyOfPropertyChange(() => IndaginiQuestionario);
+
         }
         #endregion
 
         #region Properties
 
-        public BindableCollection<Indagine<Analisi>> IndaginiAnalisi { get; set; }
-        public BindableCollection<Indagine<Questionario>> IndaginiQuestionario { get; set; }
+        public ObservableCollection<Indagine<Analisi>> IndaginiAnalisi { get; set; }
+        public ObservableCollection<Indagine<Questionario>> IndaginiQuestionario { get; set; }
 
         #endregion
 
@@ -60,70 +63,45 @@ namespace BloodBank.ViewModel.ViewModels.Indagini
 
         public void OpenNewIndagineBooleanAnalisiDialog()
         {
-            var dialog = new NuovaIndagineBooleanDialogViewModel<Analisi>(_eventAggregator, _nuovaIndagineBooleanDialogValidator);
+            var dialog = new NuovaIndagineBooleanDialogViewModel<Analisi>(_eventAggregator, _indagineAnalisiDataService, _nuovaIndagineBooleanDialogValidator);
             OpenNewDialog(dialog);
         }
 
         public void OpenNewIndagineBooleanQuestionarioDialog()
         {
-            var dialog = new NuovaIndagineBooleanDialogViewModel<Questionario>(_eventAggregator, _nuovaIndagineBooleanDialogValidator);
+            var dialog = new NuovaIndagineBooleanDialogViewModel<Questionario>(_eventAggregator, _indagineQuestionarioDataService, _nuovaIndagineBooleanDialogValidator);
             OpenNewDialog(dialog);
         }
 
 
         public void OpenNewIndagineRangeIntAnalisiDialog()
         {
-            var dialog = new NuovaIndagineRangeDialogViewModel<Analisi, int>(_eventAggregator, _nuovaIndagineAnalisiIntDialogValidator);
+            var dialog = new NuovaIndagineRangeDialogViewModel<Analisi, int>(_eventAggregator, _indagineAnalisiDataService,_nuovaIndagineAnalisiIntDialogValidator);
             OpenNewDialog(dialog);
         }
 
 
         public void OpenNewIndagineRangeDoubleAnalisiDialog()
         {
-            var dialog = new NuovaIndagineRangeDialogViewModel<Analisi, double>(_eventAggregator, _nuovaIndagineAnalisiDoubleDialogValidator);
+            var dialog = new NuovaIndagineRangeDialogViewModel<Analisi, double>(_eventAggregator, _indagineAnalisiDataService, _nuovaIndagineAnalisiDoubleDialogValidator);
             OpenNewDialog(dialog);
         }
 
         public void OpenNewIndagineRangeIntQuestionarioDialog()
         {
-            var dialog = new NuovaIndagineRangeDialogViewModel<Questionario, int>(_eventAggregator, _nuovaIndagineAnalisiIntDialogValidator);
+            var dialog = new NuovaIndagineRangeDialogViewModel<Questionario, int>(_eventAggregator, _indagineQuestionarioDataService, _nuovaIndagineAnalisiIntDialogValidator);
             OpenNewDialog(dialog);
         }
 
         public void OpenNewIndagineRangeDoubleQuestionarioDialog()
         {
-            var dialog = new NuovaIndagineRangeDialogViewModel<Questionario, double>(_eventAggregator, _nuovaIndagineAnalisiDoubleDialogValidator);
+            var dialog = new NuovaIndagineRangeDialogViewModel<Questionario, double>(_eventAggregator, _indagineQuestionarioDataService, _nuovaIndagineAnalisiDoubleDialogValidator);
             OpenNewDialog(dialog);
         }
 
 
         #endregion
-
-        #region NuovaIndagineEvent
-
-        public void Handle(NuovaIndagineEvent e)
-        {
-            _eventAggregator.Publish(new DialogEvent(false, null));
-
-            Indagine<Analisi> indagineAnalisi = e.Indagine as Indagine<Analisi>;
-            if (indagineAnalisi != null)
-            {
-                IndaginiAnalisi.Add(indagineAnalisi);
-                _indagineAnalisiDataService.AddModel(indagineAnalisi);
-                NotifyOfPropertyChange(() => IndaginiAnalisi);
-            }
-
-            Indagine<Questionario> indagineQuestionario = e.Indagine as Indagine<Questionario>;
-            if (indagineQuestionario != null)
-            {
-                IndaginiQuestionario.Add(indagineQuestionario);
-                _indagineQuestionarioDataService.AddModel(indagineQuestionario);
-                NotifyOfPropertyChange(() => IndaginiQuestionario);
-            }
-        }
-
-        #endregion
-
+        
         #endregion Actions
     }
 }

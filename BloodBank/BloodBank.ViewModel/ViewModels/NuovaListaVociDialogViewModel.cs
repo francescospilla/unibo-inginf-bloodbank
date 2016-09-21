@@ -104,8 +104,9 @@ namespace BloodBank.ViewModel.ViewModels {
             if (_stepCorrente != Step.Riepilogo)
                 throw new InvalidOperationException("stepCorrente != Step.Riepilogo");
 
-            NuovaListaVociEvent<U> message = new NuovaListaVociEvent<U>(_listaVociFactory.CreateModel(SelectedDonatore.Model, SelectedListaIndagini.Nome, DataTest, GeneratedListVoci));
-            _eventAggregator.Publish(message);
+            _listaVociFactory.CreateModel(SelectedDonatore.Model, SelectedListaIndagini.Nome, DataTest, GeneratedListVoci);
+            _eventAggregator.Publish(new DialogEvent(false, null));
+
         }
 
         public void Cancel() {

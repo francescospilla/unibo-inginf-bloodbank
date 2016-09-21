@@ -3,6 +3,8 @@ using BloodBank.Core.Extensions;
 using BloodBank.Model.Models.Indagini;
 using BloodBank.Model.Models.Indagini.Tipi;
 using BloodBank.Model.Models.Tests;
+using BloodBank.Model.Service;
+using BloodBank.ViewModel.Service;
 using PropertyChanged;
 using Stylet;
 using Stylet.DictionaryViewManager;
@@ -28,8 +30,10 @@ namespace BloodBank.ViewModel.ViewModels
     [ImplementPropertyChanged]
     public class NuovaIndagineBooleanDialogViewModel<U> : NuovaIndagineBooleanDialogViewModel where U : ListaVoci
     {
-        public NuovaIndagineBooleanDialogViewModel(IEventAggregator eventAggregator, IModelValidator<NuovaIndagineBooleanDialogViewModel> validator) : base(eventAggregator, validator)
-        {
+        private readonly IDataService<Indagine<U>> _dataService;
+
+        public NuovaIndagineBooleanDialogViewModel(IEventAggregator eventAggregator, IDataService<Indagine<U>> dataService, IModelValidator<NuovaIndagineBooleanDialogViewModel> validator) : base(eventAggregator, validator) {
+            _dataService = dataService;
         }
 
         protected override Indagine CreateModelFromViewModel()
@@ -37,5 +41,8 @@ namespace BloodBank.ViewModel.ViewModels
             return new IndagineBoolean<U>(Testo, IdoneitaFallimento, RisultatoCorretto);
         }
 
+        protected override void AddModel(Indagine model) {
+            _dataService.AddModel((Indagine<U>) model);
+        }
     }
 }

@@ -2,7 +2,9 @@ using System.Collections.Generic;
 using BloodBank.Core.Extensions;
 using BloodBank.Model.Models;
 using BloodBank.Model.Models.Indagini;
+using BloodBank.Model.Service;
 using BloodBank.ViewModel.Events;
+using BloodBank.ViewModel.Service;
 using Stylet;
 
 namespace BloodBank.ViewModel.ViewModels {
@@ -35,13 +37,21 @@ namespace BloodBank.ViewModel.ViewModels {
 
         public void Save() {
             if (Validator != null && !Validate()) return;
-            NuovaIndagineEvent e = new NuovaIndagineEvent(CreateModelFromViewModel());
-            _eventAggregator.Publish(e);
+            AddModel(CreateModelFromViewModel());
+            _eventAggregator.Publish(new DialogEvent(false, null));
+        }
 
+        #endregion
+
+        #region Cancel
+
+        public void Cancel() {
+            _eventAggregator.Publish(new DialogEvent(false, null));
         }
 
         #endregion
 
         protected abstract Indagine CreateModelFromViewModel();
+        protected abstract void AddModel(Indagine model);
     }
 }

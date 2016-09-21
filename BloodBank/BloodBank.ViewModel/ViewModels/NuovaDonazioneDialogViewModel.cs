@@ -79,8 +79,8 @@ namespace BloodBank.ViewModel.ViewModels {
         }
 
         public void Finish() {
-            NuovaDonazioneEvent message = new NuovaDonazioneEvent(_donazioneFactory.CreateModel(SelectedDonatore.Model, SelectedTipoDonazione, DataDonazione, SelectedVisitaMedica.Model, SelectedListaVociAnalisi.Model, SelectedListaVociQuestionario.Model));
-            _eventAggregator.Publish(message);
+            _donazioneFactory.CreateModel(SelectedDonatore.Model, SelectedTipoDonazione, DataDonazione, SelectedVisitaMedica.Model, SelectedListaVociAnalisi.Model, SelectedListaVociQuestionario.Model);
+            _eventAggregator.Publish(new DialogEvent(false, null));
         }
 
         public void Cancel() {

@@ -10,7 +10,7 @@ namespace BloodBank.ViewModel.ViewModels.Donazioni
 {
 
     [ImplementPropertyChanged]
-    public class DonazioniViewModel : WorkspaceViewModel<Donazione, DonazioneViewModel>, IHandle<NuovaDonazioneEvent>
+    public class DonazioniViewModel : WorkspaceViewModel<Donazione, DonazioneViewModel>
     {
         private readonly Func<NuovaDonazioneDialogViewModel> _dialogFactory;
         private readonly IDataService<Donazione, DonazioneViewModel> _donazioneDataService;
@@ -31,12 +31,7 @@ namespace BloodBank.ViewModel.ViewModels.Donazioni
             DialogEvent e = new DialogEvent(true, dialog);
             _eventAggregator.Publish(e);
         }
-
-        public void Handle(NuovaDonazioneEvent message) {
-            _eventAggregator.Publish(new DialogEvent(false, null));
-            _donazioneDataService.AddModelAndCreatedViewModel(message.Donazione);
-        }
-
+        
         #endregion Actions
 
 

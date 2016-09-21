@@ -63,7 +63,7 @@
 
         <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button Style="{DynamicResource MaterialDesignFlatButton}" Content="SALVA" Command="{s:Action Save}" />
-            <Button Style="{DynamicResource MaterialDesignFlatButton}" Content="CANCELLA" Command="md:DialogHost.CloseDialogCommand" />
+            <Button Style="{DynamicResource MaterialDesignFlatButton}" Content="CANCELLA" Command="{s:Action Cancel}" />
         </StackPanel>
 
     </Grid>

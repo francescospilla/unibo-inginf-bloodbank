@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:md="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
-             xmlns:xaml="https://github.com/canton7/Stylet"
+             xmlns:s="https://github.com/canton7/Stylet"
              xmlns:userControls="clr-namespace:BloodBank.View.UserControls"
              mc:Ignorable="d" d:DesignHeight="600" d:DesignWidth="800">
 
@@ -81,8 +81,8 @@
             </userControls:FilteredEditableComboBox>
         </Grid>
         <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4" Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button Style="{DynamicResource MaterialDesignFlatButton}" Content="SALVA" Command="{xaml:Action Save}" />
-            <Button Style="{DynamicResource MaterialDesignFlatButton}" Content="CANCELLA" Command="md:DialogHost.CloseDialogCommand" />
+            <Button Style="{DynamicResource MaterialDesignFlatButton}" Content="SALVA" Command="{s:Action Save}" />
+            <Button Style="{DynamicResource MaterialDesignFlatButton}" Content="CANCELLA" Command="{s:Action Cancel}" />
         </StackPanel>
     </Grid>
 </UserControl>
