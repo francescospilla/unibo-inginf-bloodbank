@@ -14,7 +14,7 @@
         <converters:BoolToStringConverter x:Key="AttivoToString" TrueValue="Attivo" FalseValue="Non attivo" />
     </UserControl.Resources>
 
-    <Grid components:LayoutSetter.Margin="10">
+    <Grid components:LayoutSetter.Margin="10" x:Name="ViewModelRootPanel">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="2*" />
@@ -31,7 +31,7 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Orientation="Horizontal" HorizontalAlignment="Right">
+        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Orientation="Horizontal" HorizontalAlignment="Right" Visibility="{Binding IsEnabled, Converter={StaticResource BoolToVisibility}, ElementName=ViewModelRootPanel}">
             <TextBlock Text="Modifiche:" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,20,0" FontWeight="Bold" />
             <Button Style="{DynamicResource MaterialDesignFlatButton}" Content="SALVA" Command="{s:Action Save}" />
             <Button Style="{DynamicResource MaterialDesignFlatButton}" Content="CANCELLA" Command="{s:Action Cancel}" />

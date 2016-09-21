@@ -11,7 +11,7 @@
              mc:Ignorable="d"
              d:DesignHeight="600" d:DesignWidth="800">
 
-    <Grid components:LayoutSetter.Margin="10">
+    <Grid components:LayoutSetter.Margin="10" x:Name="ViewModelRootPanel">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" />
             <ColumnDefinition Width="Auto" />
@@ -33,7 +33,7 @@
             </Grid.ColumnDefinitions>
 
             <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Type}" Style="{StaticResource MaterialDesignDisplay1TextBlock}" />
-            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="10 0 0 0">
+            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="10 0 0 0"  Visibility="{Binding IsEnabled, Converter={StaticResource BoolToVisibility}, ElementName=ViewModelRootPanel}">
                 <TextBlock Text="Modifiche:" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 0 20 0" FontWeight="Bold" />
                 <Button Style="{DynamicResource MaterialDesignFlatButton}" Content="SALVA" Command="{s:Action Save}" />
                 <Button Style="{DynamicResource MaterialDesignFlatButton}" Content="CANCELLA" Command="{s:Action Cancel}" />

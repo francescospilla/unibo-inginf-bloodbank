@@ -35,9 +35,7 @@
                 <Border.Effect>
                     <DropShadowEffect BlurRadius="5" ShadowDepth="2" Direction="270" Opacity=".5" />
                 </Border.Effect>
-                <md:ColorZone Mode="Standard" Background="{DynamicResource PrimaryHueMidBrush}" Height="38">
-                    <TextBlock Text="Sacche Prelevate" Style="{DynamicResource MaterialDesignBody2TextBlock}" Foreground="{DynamicResource MaterialDesignDarkForeground}" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="18,0,0,6" />
-                </md:ColorZone>
+                <md:ColorZone Mode="Standard" Background="{DynamicResource PrimaryHueMidBrush}" Height="38" />
             </Border>
 
             <Border Grid.Row="1" Width="250" Background="{DynamicResource MaterialDesignPaper}" BorderThickness="0,0,1,0" BorderBrush="{DynamicResource PrimaryHueMidBrush}" Padding="0 6 0 0">

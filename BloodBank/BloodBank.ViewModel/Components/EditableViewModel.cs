@@ -7,63 +7,30 @@ using Stylet;
 namespace BloodBank.ViewModel.Components {
 
     [ImplementPropertyChanged]
-    public abstract class EditableViewModel<TModel> : ViewModel<TModel> where TModel : class {
-        protected readonly IDataService<TModel, ViewModel<TModel>> DataService;
+    public abstract class EditableViewModel<TModel> : CreatableViewModel<TModel> where TModel : class {
 
-        #region Constructors
-
-        protected EditableViewModel(IEventAggregator eventAggregator, IDataService<TModel, ViewModel<TModel>> dataService, IModelValidator validator = null) : base(eventAggregator, validator) {
-            DataService = dataService;
-            if (validator != null) {
-                AutoValidate = true;
-                Validate();
-            }
-            IsChanged = false;
+        protected EditableViewModel(IEventAggregator eventAggregator, IDataService<TModel, ViewModel<TModel>> dataService, IModelValidator validator = null) : base(eventAggregator, dataService, validator) {
         }
-
-        #endregion Constructors
 
         protected override void OnValidationStateChanged(IEnumerable<string> changedProperties) {
             base.OnValidationStateChanged(changedProperties);
             // Fody can't weave other assemblies, so we have to manually raise this
-            NotifyOfPropertyChange(() => CanSave);
             NotifyOfPropertyChange(() => CanCancel);
         }
-
-        #region Properties
-        
-        [DoNotSetChanged]
-        public override TModel Model {
-            get { return base.Model; }
-            set {
-                base.Model = value;
-                IsChanged = false;
-                INotifyPropertyChanged notifyPropertyChanged = Model as INotifyPropertyChanged;
-                if (notifyPropertyChanged != null)
-                    notifyPropertyChanged.PropertyChanged += (sender, args) => { IsChanged = false; };            
-            }
-        }
-
-        public bool IsChanged { get; set; }
-
-        #endregion
 
         #region Actions
 
         #region Save
 
-        public bool CanSave {
-            get { return IsChanged && !HasErrors; }
-        }
-
-        public void Save() {
+        public override void Save() {
             if (Validator != null && !Validate()) return;
             if (!IsInitialized) {
                 Model = CreateModelFromViewModel();
                 // Fody can't weave other assemblies, so we have to manually raise this
                 NotifyOfPropertyChange(() => DisplayName);
                 DataService.AddModelAndExistingViewModel(Model, this);
-            } else
+            }
+            else
                 SyncViewModelToModel();
             IsChanged = false;
         }
@@ -80,13 +47,12 @@ namespace BloodBank.ViewModel.Components {
             SyncModelToViewModel();
             IsChanged = false;
         }
-
-        protected abstract TModel CreateModelFromViewModel();
-
-        protected abstract void SyncViewModelToModel();
-
+        
         #endregion Cancel
 
         #endregion Actions
+
+        protected abstract void SyncViewModelToModel();
+
     }
 }
