@@ -51,18 +51,18 @@ namespace BloodBank.Model.Models.Donazioni {
         public static readonly TipoDonazione SangueIntero = new TipoDonazione("Sangue Intero", 90, new Dictionary<ComponenteEmatico, int>
             {
                 {ComponenteEmatico.GlobuliRossi, 1},
-                {ComponenteEmatico.Plasma, 2},
-                {ComponenteEmatico.Piastrine, 6}
+                {ComponenteEmatico.Plasma, 1},
+                {ComponenteEmatico.Piastrine, 1}
             });
 
         public static readonly TipoDonazione Plasmaferesi = new TipoDonazione("Plasmaferesi", 14, new Dictionary<ComponenteEmatico, int>
             {
-                {ComponenteEmatico.Plasma, 1}
+                {ComponenteEmatico.Plasma, 2}
             });
 
         public static readonly TipoDonazione Piastrinoaferesi = new TipoDonazione("Piastrinoaferesi", 30, new Dictionary<ComponenteEmatico, int>
             {
-                {ComponenteEmatico.Piastrine, 1}
+                {ComponenteEmatico.Piastrine, 6}
             });
 
         #endregion Public Static Instances
