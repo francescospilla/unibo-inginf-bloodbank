@@ -8,4 +8,12 @@ namespace BloodBank.Model.Service {
     public interface IListaVociFactory<U> where U : ListaVoci {
         U CreateModel(Donatore donatore, string descrizioneBreve, DateTime data, IEnumerable<Voce<U>> listaVoci);
     }
+
+    public interface IAnalisiFactory : IListaVociFactory<Analisi> {
+        
+    }
+
+    public interface IQuestionarioFactory : IListaVociFactory<Questionario> {
+
+    }
 }

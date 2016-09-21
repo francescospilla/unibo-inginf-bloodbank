@@ -11,7 +11,6 @@ using BloodBank.Model.Models.Tests;
 using BloodBank.View;
 using BloodBank.ViewModel;
 using Ninject;
-using Ninject.Extensions.Conventions;
 using Stylet.DictionaryViewManager;
 using ValidatorExtensions = BloodBank.ViewModel.Validation.ValidatorExtensions;
 
@@ -38,11 +37,11 @@ namespace BloodBank {
             kernel.Bind<IDataService<Voce<Analisi>>, VoceMockAnalisiDataService>().To<VoceMockAnalisiDataService>().InSingletonScope();
             kernel.Bind<IDataService<Voce<Questionario>>, VoceMockQuestionarioDataService>().To<VoceMockQuestionarioDataService>().InSingletonScope();
 
-            kernel.Bind<IDonazioneFactory, Donazione.DonazioneFactory>().To<Donazione.DonazioneFactory>();
-            kernel.Bind<IListaVociFactory<Analisi>, ListaVoci.ListaVociFactory<Analisi>>().To<Analisi.AnalisiFactory>().InSingletonScope();
-            kernel.Bind<IListaVociFactory<Questionario>, ListaVoci.ListaVociFactory<Questionario>>().To<Questionario.QuestionarioFactory>().InSingletonScope();
-            kernel.Bind<ISaccaSangueFactory, SaccaSangue.SaccaSangueFactory>().To<SaccaSangue.SaccaSangueFactory>();
-            kernel.Bind<IVisitaMedicaFactory, VisitaMedica.VisitaMedicaFactory>().To<VisitaMedica.VisitaMedicaFactory>();
+            kernel.Bind<IDonazioneFactory, Donazione.DonazioneFactory>().To<Donazione.DonazioneFactory>().InSingletonScope();
+            kernel.Bind<IAnalisiFactory, ListaVoci.ListaVociFactory<Analisi>>().To<Analisi.AnalisiFactory>().InSingletonScope();
+            kernel.Bind<IQuestionarioFactory, ListaVoci.ListaVociFactory<Questionario>>().To<Questionario.QuestionarioFactory>().InSingletonScope();
+            kernel.Bind<ISaccaSangueFactory, SaccaSangue.SaccaSangueFactory>().To<SaccaSangue.SaccaSangueFactory>().InSingletonScope();
+            kernel.Bind<IVisitaMedicaFactory, VisitaMedica.VisitaMedicaFactory>().To<VisitaMedica.VisitaMedicaFactory>().InSingletonScope();
 
             kernel.ConfigureForFluentValidation(typeof(ValidatorExtensions));
         }

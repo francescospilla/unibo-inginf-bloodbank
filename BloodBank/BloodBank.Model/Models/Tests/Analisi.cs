@@ -16,7 +16,7 @@ namespace BloodBank.Model.Models.Tests {
         {
         }
 
-        public class AnalisiFactory : ListaVociFactory<Analisi> {
+        public class AnalisiFactory : ListaVociFactory<Analisi>, IAnalisiFactory {
             public AnalisiFactory(IDataService<Analisi> dataService) : base(dataService) {
             }
 
