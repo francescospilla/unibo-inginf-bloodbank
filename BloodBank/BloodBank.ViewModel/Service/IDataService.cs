@@ -7,12 +7,8 @@ namespace BloodBank.ViewModel.Service {
         where TModel : class
         where TViewModel : ViewModel<TModel> {
 
-        void AddModel(TModel model);
-
         void AddModelAndCreatedViewModel(TModel model);
-
-        void AddExistingViewModel(object viewModel);
-
+        
         void AddModelAndExistingViewModel(TModel model, object viewModel);
 
         IEnumerable<TModel> GetModels();

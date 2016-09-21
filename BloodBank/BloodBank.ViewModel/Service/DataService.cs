@@ -13,7 +13,7 @@ namespace BloodBank.ViewModel.Service {
     public class DataService<TModel, TViewModel> : IDataService<TModel, TViewModel> where TModel : class where TViewModel : ViewModel<TModel> {
         private readonly IEventAggregator _eventAggregator;
         private readonly IDataService<TModel> _modelService;
-        private ObservableCollection<TViewModel> _viewModelList;
+        private readonly ObservableCollection<TViewModel> _viewModelList;
 
         // Deve essere inizializzata, preferibilmente con un IoC container.
         [Inject]
@@ -22,46 +22,46 @@ namespace BloodBank.ViewModel.Service {
         public DataService(IEventAggregator eventAggregator, IDataService<TModel> modelService) {
             _eventAggregator = eventAggregator;
             _modelService = modelService;
+
+            _viewModelList = new ObservableCollection<TViewModel>();
+
+            _modelService.GetModels().CollectionChanged += (sender, e) => {
+                foreach (TModel model in e.NewItems) {
+                    if (_viewModelList.Select(vm => vm.Model).Contains(model)) continue;
+                    TViewModel viewModel = CreateViewModel(model);
+                    _viewModelList.Add(viewModel);
+                }
+            };
+
+            _viewModelList.CollectionChanged += (sender, e) => {
+                foreach (object item in e.NewItems) {
+                    _eventAggregator.Publish(new ViewModelCollectionChangedEvent<TViewModel>((TViewModel)item));
+                }
+            };
         }
 
         private void Inizialize() {
             if (ViewModelFactoryFunc == null)
                 throw new ArgumentNullException("La proprietà '" + nameof(ViewModelFactoryFunc) + "' non è stata assegnata.");
 
-            if (_viewModelList == null) {
-                _viewModelList = new ObservableCollection<TViewModel>(_modelService.GetModels().Select(CreateViewModel));
-                _viewModelList.CollectionChanged += (sender, e) => {
-                    foreach (object item in e.NewItems) {
-                        _eventAggregator.Publish(new ViewModelCollectionChangedEvent<TViewModel>((TViewModel)item));
-                    }
-                };
+            if (_viewModelList.Any()) return;
+            foreach (TModel model in _modelService.GetModels()) {
+                var viewModel = CreateViewModel(model);
+                _viewModelList.Add(viewModel);
             }
-        }
-
-        public void AddModel(TModel model) {
-            Inizialize();
-
-            _modelService.AddModel(model);
         }
 
         public void AddModelAndCreatedViewModel(TModel model) {
             Inizialize();
 
-            AddModel(model);
-            _viewModelList.Add(CreateViewModel(model));
-        }
-
-        public void AddExistingViewModel(object viewModel) {
-            Inizialize();
-
-            _viewModelList.Add((TViewModel)viewModel);
+            _modelService.GetModels().Add(model);
         }
 
         public void AddModelAndExistingViewModel(TModel model, object viewModel) {
             Inizialize();
-
-            AddModel(model);
-            AddExistingViewModel(viewModel);
+            
+            _viewModelList.Add((TViewModel) viewModel);
+            _modelService.GetModels().Add(model);
         }
 
         private TViewModel CreateViewModel(TModel model) {

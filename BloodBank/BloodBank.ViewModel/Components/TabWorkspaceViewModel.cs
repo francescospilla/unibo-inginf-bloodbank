@@ -17,11 +17,10 @@ namespace BloodBank.ViewModel.Components {
             _dataService = dataService;
             _viewModelFactory = viewModelFactory;
 
-            _eventAggregator.Subscribe(this);
-
             DisplayName = typeof(TViewModel).Name;
 
             ListItems = new BindableCollection<TViewModel>(_dataService.GetViewModels());
+            _eventAggregator.Subscribe(this);
 
             AddTab();
         }
@@ -37,7 +36,8 @@ namespace BloodBank.ViewModel.Components {
         }
 
         public void Handle(ViewModelCollectionChangedEvent<TViewModel> message) {
-            ListItems.Add(message.ViewModel);
+            if (!ListItems.Contains(message.ViewModel))
+                ListItems.Add(message.ViewModel);
         }
     }
 }
