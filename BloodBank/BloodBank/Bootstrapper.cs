@@ -3,6 +3,11 @@ using BloodBank.ViewModel.Service;
 using Stylet;
 using Stylet.FluentValidation;
 using BloodBank.Mock;
+using BloodBank.Mock.Donazioni;
+using BloodBank.Mock.Indagini;
+using BloodBank.Mock.Persone;
+using BloodBank.Mock.Sangue;
+using BloodBank.Mock.Test;
 using BloodBank.Model.Models.Donazioni;
 using BloodBank.Model.Models.Indagini;
 using BloodBank.Model.Models.Persone;
@@ -34,8 +39,8 @@ namespace BloodBank {
             kernel.Bind<IDataService<Medico>, MedicoMockDataService>().To<MedicoMockDataService>().InSingletonScope();
             kernel.Bind<IDataService<SaccaSangue>, SaccaSangueMockDataService>().To<SaccaSangueMockDataService>().InSingletonScope();
             kernel.Bind<IDataService<VisitaMedica>, VisitaMedicaMockDataService > ().To<VisitaMedicaMockDataService>().InSingletonScope();
-            kernel.Bind<IDataService<Voce<Analisi>>, VoceMockAnalisiDataService>().To<VoceMockAnalisiDataService>().InSingletonScope();
-            kernel.Bind<IDataService<Voce<Questionario>>, VoceMockQuestionarioDataService>().To<VoceMockQuestionarioDataService>().InSingletonScope();
+            kernel.Bind<IDataService<Voce<Analisi>>, VoceAnalisiMockDataService>().To<VoceAnalisiMockDataService>().InSingletonScope();
+            kernel.Bind<IDataService<Voce<Questionario>>, VoceQuestionarioMockDataService>().To<VoceQuestionarioMockDataService>().InSingletonScope();
 
             kernel.Bind<IDonazioneFactory, Donazione.DonazioneFactory>().To<Donazione.DonazioneFactory>().InSingletonScope();
             kernel.Bind<IAnalisiFactory, IListaVociFactory<Analisi>, ListaVoci.ListaVociFactory<Analisi>>().To<Analisi.AnalisiFactory>().InSingletonScope();

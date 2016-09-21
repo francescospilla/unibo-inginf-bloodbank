@@ -4,7 +4,7 @@ using BloodBank.Model.Models.Persone;
 using BloodBank.Model.Models.Sangue;
 using BloodBank.Model.Service;
 
-namespace BloodBank.Mock {
+namespace BloodBank.Mock.Persone {
 
     public sealed class DonatoreMockDataService : MockDataService<Donatore>, IDataService<Donatore> {
         internal Donatore D1;

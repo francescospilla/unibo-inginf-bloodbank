@@ -1,8 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using BloodBank.Model.Models.Sangue;
-using BloodBank.Model.Service;
 
-namespace BloodBank.Mock
+namespace BloodBank.Mock.Sangue
 {
     public sealed class SaccaSangueMockDataService : MockDataService<SaccaSangue> {
         

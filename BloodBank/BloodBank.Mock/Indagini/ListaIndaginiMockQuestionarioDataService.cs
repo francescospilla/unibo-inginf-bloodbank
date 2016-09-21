@@ -1,30 +1,9 @@
 using System.Collections.ObjectModel;
 using BloodBank.Model.Models.Indagini;
 using BloodBank.Model.Models.Tests;
-using BloodBank.Model.Service;
 
-namespace BloodBank.Mock {
-
-    public abstract class ListaIndaginiMockDataService<U> : MockDataService<ListaIndagini<U>> where U : ListaVoci {
-    }
-
-    public sealed class ListaIndaginiMockAnalisiDataService : ListaIndaginiMockDataService<Analisi> {
-
-        internal static ListaIndagini<Analisi> Lia1;
-        internal static ListaIndagini<Analisi> Lia2;
-        internal static ListaIndagini<Analisi> Lia3;
-
-        public ListaIndaginiMockAnalisiDataService(IndagineAnalisiMockDataService ia) {
-            Lia1 = new ListaIndagini<Analisi>("Analisi parziali 1") { ia.A1, ia.A2, ia.A3, ia.A4 };
-            Lia2 = new ListaIndagini<Analisi>("Analisi complete") { ia.A1, ia.A2, ia.A3, ia.A4, ia.A5 };
-            Lia3 = new ListaIndagini<Analisi>("Analisi parziali 1") { ia.A1, ia.A2 };
-
-            _models = new ObservableCollection<object> { Lia1, Lia2, Lia3 };
-        }
-
-    }
-
-    public sealed class ListaIndaginiMockQuestionarioDataService : ListaIndaginiMockDataService<Questionario> {
+namespace BloodBank.Mock.Indagini {
+    public sealed class ListaIndaginiMockQuestionarioDataService : MockDataService<ListaIndagini<Questionario>> {
 
         internal static ListaIndagini<Questionario> Liq1;
         internal static ListaIndagini<Questionario> Liq2;

@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using BloodBank.Model.Models.Persone;
-using BloodBank.Model.Service;
 
-namespace BloodBank.Mock {
+namespace BloodBank.Mock.Persone {
     public sealed class MedicoMockDataService : MockDataService<Medico> {
         internal Medico M1;
         internal Medico M2;

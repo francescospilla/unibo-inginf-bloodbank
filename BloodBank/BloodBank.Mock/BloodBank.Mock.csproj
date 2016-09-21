@@ -39,17 +39,21 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DonatoreMockDataService.cs" />
-    <Compile Include="DonazioneMockDataService.cs" />
-    <Compile Include="IndagineMockDataService.cs" />
-    <Compile Include="ListaIndaginiMockDataService.cs" />
-    <Compile Include="ListaVociMockDataService.cs" />
-    <Compile Include="MedicoMockDataService.cs" />
+    <Compile Include="Persone\DonatoreMockDataService.cs" />
+    <Compile Include="Donazioni\DonazioneMockDataService.cs" />
+    <Compile Include="Indagini\IndagineAnalisiMockDataService.cs" />
+    <Compile Include="Indagini\IndagineQuestionarioMockDataService.cs" />
+    <Compile Include="Indagini\ListaIndaginiMockAnalisiDataService.cs" />
+    <Compile Include="Indagini\ListaIndaginiMockQuestionarioDataService.cs" />
+    <Compile Include="Test\AnalisiMockDataService.cs" />
+    <Compile Include="Persone\MedicoMockDataService.cs" />
     <Compile Include="MockDataService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SaccaSangueMockDataService.cs" />
-    <Compile Include="VisitaMedicaMockDataService.cs" />
-    <Compile Include="VoceMockDataService.cs" />
+    <Compile Include="Test\QuestionarioMockDataService.cs" />
+    <Compile Include="Sangue\SaccaSangueMockDataService.cs" />
+    <Compile Include="Test\VisitaMedicaMockDataService.cs" />
+    <Compile Include="Indagini\VoceAnalisiMockDataService.cs" />
+    <Compile Include="Indagini\VoceQuestionarioMockDataService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BloodBank.Model\BloodBank.Model.csproj">
@@ -57,6 +61,7 @@
       <Name>BloodBank.Model</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
