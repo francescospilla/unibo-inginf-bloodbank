@@ -17,8 +17,8 @@ using Stylet.DictionaryViewManager;
 namespace BloodBank.ViewModel.ViewModels {
 
     [ImplementPropertyChanged]
-    [AssociatedView("NuovaListaVociView")]
-    public class NuovaListaVociViewModel<U> : Screen where U : ListaVoci {
+    [AssociatedView("NuovaListaVociDialogView")]
+    public class NuovaListaVociDialogViewModel<U> : Screen where U : ListaVoci {
         private readonly IEventAggregator _eventAggregator;
         private readonly IDataService<Donatore, DonatoreViewModel> _donatoreDataService;
         private readonly IDataService<ListaIndagini<U>, ListaIndaginiViewModel<U>> _listaIndaginiDataService;
@@ -27,7 +27,7 @@ namespace BloodBank.ViewModel.ViewModels {
 
         #region Constructors
 
-        public NuovaListaVociViewModel(IEventAggregator eventAggregator, IDataService<Donatore, DonatoreViewModel> donatoreDataService, IDataService<ListaIndagini<U>, ListaIndaginiViewModel<U>> listaIndaginiDataService, VoceViewModelFactory<U> voceViewModelFactory, IListaVociFactory<U> listaVociFactory) {
+        public NuovaListaVociDialogViewModel(IEventAggregator eventAggregator, IDataService<Donatore, DonatoreViewModel> donatoreDataService, IDataService<ListaIndagini<U>, ListaIndaginiViewModel<U>> listaIndaginiDataService, VoceViewModelFactory<U> voceViewModelFactory, IListaVociFactory<U> listaVociFactory) {
             _eventAggregator = eventAggregator;
             _donatoreDataService = donatoreDataService;
             _listaIndaginiDataService = listaIndaginiDataService;
