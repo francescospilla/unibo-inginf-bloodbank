@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq.Expressions;
+using System.Threading.Tasks;
 using BloodBank.ViewModel.Service;
 using PropertyChanged;
 using Stylet;
@@ -30,7 +32,7 @@ namespace BloodBank.ViewModel.Components {
                 IsChanged = false;
                 INotifyPropertyChanged notifyPropertyChanged = Model as INotifyPropertyChanged;
                 if (notifyPropertyChanged != null)
-                    notifyPropertyChanged.PropertyChanged += (sender, args) => { IsChanged = false; };            
+                    notifyPropertyChanged.PropertyChanged += (sender, args) => { IsChanged = false; };
             }
         }
 

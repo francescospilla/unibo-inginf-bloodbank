@@ -1,6 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using BloodBank.Model.Models;
-using BloodBank.Model.Models.Tests;
 using BloodBank.ViewModel.ViewModels.Tests;
 using FluentValidation;
 
@@ -9,23 +9,15 @@ namespace BloodBank.ViewModel.Validation.Tests
     public class VisitaMedicaValidator : AbstractValidator<VisitaMedicaViewModel>
     {
         public VisitaMedicaValidator() {
-            RuleFor(vm => vm.Donatore)
-                .NotEmpty()
-                .Must(donatore => donatore?.Idoneità != Idoneità.NonIdoneo)
-                .When(vm => !vm.IsInitialized);
-            RuleFor(vm => vm.Medico).NotEmpty();
-            RuleFor(vm => vm.DescrizioneBreve).NotEmpty();
-            RuleFor(vm => vm.Idoneità).NotNull().IsInEnum();
-            RuleFor(vm => vm.DataOra).GreaterThan(vm =>
-            vm.Donatore.ListaTest.Last().Data).When(vm => {
-                if (vm.IsInitialized) return false;
-
-                Test lastTest = vm.Donatore?.ListaTest.LastOrDefault();
-                if (lastTest == null) return false;
-
-                return true;
-            });
-            RuleFor(vm => vm.Referto).NotEmpty();
+            RuleFor(vm => vm.Donatore).NotEmpty().Must(donatore => donatore?.Idoneità != Idoneità.NonIdoneo).When(vm => !vm.IsInitialized);
+            RuleFor(vm => vm.Medico).NotEmpty().When(vm => !vm.IsInitialized);
+            RuleFor(vm => vm.DescrizioneBreve).NotEmpty().When(vm => !vm.IsInitialized);
+            RuleFor(vm => vm.Idoneità).NotNull().IsInEnum().When(vm => !vm.IsInitialized);
+            RuleFor(vm => vm.Data).NotNull().LessThanOrEqualTo(vm => DateTime.Today).When(vm => !vm.IsInitialized);
+            RuleFor(vm => vm.Data).GreaterThanOrEqualTo(vm => vm.Donatore.ListaTest.LastOrDefault().Data.Date).When(vm => vm.Donatore != null).When(vm => !vm.IsInitialized);
+            RuleFor(vm => vm.DataOra).NotNull().LessThanOrEqualTo(vm => DateTime.Now).WithName("Ora").When(vm => !vm.IsInitialized);
+            RuleFor(vm => vm.DataOra).GreaterThan(vm => vm.Donatore.ListaTest.LastOrDefault().Data).WithName("Ora").When(vm => vm.Donatore != null).When(vm => !vm.IsInitialized);
+            RuleFor(vm => vm.Referto).NotEmpty().When(vm => !vm.IsInitialized);
         }
     }
 }

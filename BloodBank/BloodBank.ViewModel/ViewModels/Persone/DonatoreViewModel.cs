@@ -38,7 +38,7 @@ namespace BloodBank.ViewModel.ViewModels.Persone {
         [Searchable]
         public Sesso Sesso { get; set; }
         [Searchable]
-        public DateTime DataNascita { get; set; } = DateTime.Today;
+        public DateTime? DataNascita { get; set; } = DateTime.Today;
         [Searchable]
         public string CodiceFiscale { get; set; }
         [Searchable]
@@ -89,7 +89,7 @@ namespace BloodBank.ViewModel.ViewModels.Persone {
         }
 
         protected override Donatore CreateModelFromViewModel() {
-            return new Donatore(new Contatto(Nome, Cognome, Sesso, DataNascita, CodiceFiscale, Indirizzo, Città, Stato, CodicePostale, Telefono, Email), GruppoSanguigno, Attivo);
+            return new Donatore(new Contatto(Nome, Cognome, Sesso, DataNascita.GetValueOrDefault(), CodiceFiscale, Indirizzo, Città, Stato, CodicePostale, Telefono, Email), GruppoSanguigno, Attivo);
         }
 
         protected override void SyncViewModelToModel() {

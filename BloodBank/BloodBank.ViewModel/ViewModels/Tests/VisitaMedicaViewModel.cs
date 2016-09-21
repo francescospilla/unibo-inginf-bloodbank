@@ -12,19 +12,16 @@ using BloodBank.ViewModel.Service;
 using PropertyChanged;
 using Stylet;
 
-namespace BloodBank.ViewModel.ViewModels.Tests
-{
+namespace BloodBank.ViewModel.ViewModels.Tests {
     [ImplementPropertyChanged]
-    public class VisitaMedicaViewModel : CreatableViewModel<VisitaMedica>
-    {
+    public class VisitaMedicaViewModel : CreatableViewModel<VisitaMedica> {
         private readonly IDataService<Donatore> _donatoreDataService;
         private readonly IDataService<Medico> _medicoDataService;
         private readonly IVisitaMedicaFactory _visitaMedicaFactory;
 
         #region Constructors
 
-        public VisitaMedicaViewModel(IEventAggregator eventAggregator, IDataService<Donatore> donatoreDataService, IDataService<VisitaMedica, VisitaMedicaViewModel> dataService, IDataService<Medico> medicoDataService, IModelValidator<VisitaMedicaViewModel> validator, IVisitaMedicaFactory visitaMedicaFactory) : base(eventAggregator, dataService, validator)
-        {
+        public VisitaMedicaViewModel(IEventAggregator eventAggregator, IDataService<Donatore> donatoreDataService, IDataService<VisitaMedica, VisitaMedicaViewModel> dataService, IDataService<Medico> medicoDataService, IModelValidator<VisitaMedicaViewModel> validator, IVisitaMedicaFactory visitaMedicaFactory) : base(eventAggregator, dataService, validator) {
             _donatoreDataService = donatoreDataService;
             _medicoDataService = medicoDataService;
             _visitaMedicaFactory = visitaMedicaFactory;
@@ -39,43 +36,59 @@ namespace BloodBank.ViewModel.ViewModels.Tests
         public new string DisplayName => IsInitialized ? NomeCognomeIdoneità : "Nuova Visita Medica";
 
         public string NomeCognomeIdoneità => Donatore.Nome + " " + Donatore.Cognome + " (" + Idoneità + ")";
-        public string CognomeNome =>  Donatore.Cognome + " " + Donatore.Nome;
+        public string CognomeNome => Donatore.Cognome + " " + Donatore.Nome;
 
         public string StringaRicerca => this.PropertyList(typeof(SearchableAttribute));
 
         #region Data e Ora
-        private DateTime _data = DateTime.Today;
-        public DateTime Data
-        {
+        private DateTime? _data = DateTime.Today;
+        public DateTime? Data {
             get { return _data; }
-            set { _data = value.Date; }
+            set {
+                _data = value?.Date;
+                if (Data.HasValue && DataOra.HasValue)
+                    _dataOra = Data.Value.Add(DataOra.Value.TimeOfDay);
+                ValidateProperty(() => DataOra);
+            }
         }
 
-        private DateTime _dataOra = DateTime.Now;
-        public DateTime DataOra
-        {
+        private DateTime? _dataOra = DateTime.Now;
+        public DateTime? DataOra {
             get { return _dataOra; }
-            set { _dataOra = Data.Add(value.TimeOfDay); }
+            set {
+                if (Data.HasValue && value.HasValue)
+                    _dataOra = Data.Value.Add(value.Value.TimeOfDay);
+                else
+                    _dataOra = value;
+                ValidateProperty(() => Data);
+            }
         }
         #endregion
 
+        private Donatore _donatore;
         [Searchable]
-        public Donatore Donatore { get; set; }
-        public string DescrizioneBreve { get; set;  }
-        public Idoneità Idoneità { get; set;  }
+        public Donatore Donatore {
+            get { return _donatore; }
+            set {
+                _donatore = value; ValidateProperty(() => Data); ValidateProperty(() => DataOra);
+            }
+        }
+
+        public string DescrizioneBreve { get; set; }
+        public Idoneità Idoneità { get; set; }
         public Medico Medico { get; set; }
         public string Referto { get; set; }
 
         #endregion Properties
 
         public IEnumerable<Idoneità> IdoneitàEnumerable { get; } = EnumExtensions.Values<Idoneità>();
-        public IEnumerable<Donatore> DonatoreEnumerable { get; }
+        public IEnumerable<Donatore> DonatoreEnumerable { get; set; }
         public IEnumerable<Medico> MedicoEnumerable { get; }
 
-    #region Mappings
+        #region Mappings
 
-    protected override void SyncModelToViewModel()
-        {
+        protected override void SyncModelToViewModel() {
+            DonatoreEnumerable = _donatoreDataService.GetModels();
             Donatore = Model.Donatore;
             DescrizioneBreve = Model.DescrizioneBreve;
             Data = Model.Data;
@@ -85,10 +98,9 @@ namespace BloodBank.ViewModel.ViewModels.Tests
             Referto = Model.Referto;
         }
 
-        protected override VisitaMedica CreateModelFromViewModel()
-        {
-            return _visitaMedicaFactory.CreateModel(Donatore, DescrizioneBreve, DataOra, Idoneità, Medico, Referto);
-        }       
+        protected override VisitaMedica CreateModelFromViewModel() {
+            return _visitaMedicaFactory.CreateModel(Donatore, DescrizioneBreve, DataOra.GetValueOrDefault(), Idoneità, Medico, Referto);
+        }
 
         #endregion Mappings
     }

@@ -68,9 +68,9 @@ namespace BloodBank.ViewModel.ViewModels {
         public void OnChangeToNextPage(object sender, EventArgs e) {
             if (SelectedDonatore == null)
                 return;
-            ListaVociAnalisiEnumerable = _listaVociAnalisiDataService.GetViewModels().Where(vm => vm.Donatore.Equals(SelectedDonatore.Model) && vm.Data.Date.Equals(DateTime.Today) && vm.Idoneità == Idoneità.Idoneo);
-            ListaVociQuestionarioEnumerable = _listaVociQuestionarioDataService.GetViewModels().Where(vm => vm.Donatore.Equals(SelectedDonatore.Model) && vm.Data.Date.Equals(DateTime.Today) && vm.Idoneità == Idoneità.Idoneo);
-            VisitaMedicaEnumerable = _visitaMedicaDataService.GetViewModels().Where(vm => vm.Donatore.Equals(SelectedDonatore.Model) && vm.Data.Date.Equals(DateTime.Today) && vm.Idoneità == Idoneità.Idoneo);
+            ListaVociAnalisiEnumerable = _listaVociAnalisiDataService.GetViewModels().Where(vm => vm.Model.Donatore.Equals(SelectedDonatore.Model) && vm.Model.Data.Date.Equals(DateTime.Today) && vm.Model.Idoneità == Idoneità.Idoneo);
+            ListaVociQuestionarioEnumerable = _listaVociQuestionarioDataService.GetViewModels().Where(vm => vm.Model.Donatore.Equals(SelectedDonatore.Model) && vm.Model.Data.Date.Equals(DateTime.Today) && vm.Model.Idoneità == Idoneità.Idoneo);
+            VisitaMedicaEnumerable = _visitaMedicaDataService.GetViewModels().Where(vm => vm.Model.Donatore.Equals(SelectedDonatore.Model) && vm.Model.Data.Date.Equals(DateTime.Today) && vm.Model.Idoneità == Idoneità.Idoneo);
             DataDonazione = DateTime.Now;
         }
 
