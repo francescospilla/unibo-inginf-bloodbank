@@ -38,7 +38,7 @@ namespace BloodBank.ViewModel.ViewModels.Tests
         public IEnumerable<Voce> Voci { get; set; }
 
         #region Data e Ora
-        private DateTime _data = DateTime.Now;
+        private DateTime _data = DateTime.Today;
         public DateTime Data
         {
             get { return _data; }
@@ -51,7 +51,7 @@ namespace BloodBank.ViewModel.ViewModels.Tests
             get { return _dataOra; }
             set { _dataOra = Data.Add(value.TimeOfDay); }
         }
-        #endregion Data e Ora
+        #endregion
 
         #endregion Properties
 

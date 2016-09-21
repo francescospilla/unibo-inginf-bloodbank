@@ -29,7 +29,7 @@ namespace BloodBank.ViewModel.ViewModels.Donazioni
         public string StringaRicerca => this.PropertyList(typeof(SearchableAttribute));
 
         #region Data e Ora
-        private DateTime _data = DateTime.Now;
+        private DateTime _data = DateTime.Today;
         public DateTime Data
         {
             get { return _data; }
