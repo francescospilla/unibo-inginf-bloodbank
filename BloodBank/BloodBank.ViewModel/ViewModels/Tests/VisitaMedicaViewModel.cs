@@ -15,7 +15,7 @@ using Stylet;
 namespace BloodBank.ViewModel.ViewModels.Tests
 {
     [ImplementPropertyChanged]
-    public class VisitaMedicaViewModel : EditableViewModel<VisitaMedica>
+    public class VisitaMedicaViewModel : CreatableViewModel<VisitaMedica>
     {
         private readonly IDataService<Donatore> _donatoreDataService;
         private readonly IDataService<Medico> _medicoDataService;
@@ -88,12 +88,7 @@ namespace BloodBank.ViewModel.ViewModels.Tests
         protected override VisitaMedica CreateModelFromViewModel()
         {
             return _visitaMedicaFactory.CreateModel(Donatore, DescrizioneBreve, DataOra, Idoneità, Medico, Referto);
-        }
-
-        protected override void SyncViewModelToModel()
-        {
-            throw new InvalidOperationException();
-        }
+        }       
 
         #endregion Mappings
     }
