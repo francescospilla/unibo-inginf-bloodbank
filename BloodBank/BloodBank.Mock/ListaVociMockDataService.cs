@@ -8,7 +8,7 @@ using BloodBank.Model.Service;
 
 namespace BloodBank.Mock {
 
-    public sealed class AnalisiDataService : DataService<Analisi> {
+    public sealed class AnalisiMockDataService : MockDataService<Analisi> {
         public Analisi.AnalisiFactory Factory { get; set; }
 
         // liste di voci generiche
@@ -24,7 +24,7 @@ namespace BloodBank.Mock {
         internal Analisi A3;
         internal Analisi A4;
 
-        public AnalisiDataService(DonatoreDataService d, VoceAnalisiDataService va) {
+        public AnalisiMockDataService(DonatoreMockDataService d, VoceMockAnalisiDataService va) {
             _models = new ObservableCollection<object>();
             Factory = new Analisi.AnalisiFactory(this);
 
@@ -47,7 +47,7 @@ namespace BloodBank.Mock {
 
     }
 
-    public sealed class QuestionarioDataService : DataService<Questionario> {
+    public sealed class QuestionarioMockDataService : MockDataService<Questionario> {
         public Questionario.QuestionarioFactory Factory { get; set; }
 
         // liste di voci generiche
@@ -65,7 +65,7 @@ namespace BloodBank.Mock {
         internal Questionario Q4;
         internal Questionario Q5;
 
-        public QuestionarioDataService(DonatoreDataService d, VoceQuestionarioDataService vq) {
+        public QuestionarioMockDataService(DonatoreMockDataService d, VoceMockQuestionarioDataService vq) {
             _models = new ObservableCollection<object>();
             Factory = new Questionario.QuestionarioFactory(this);
 

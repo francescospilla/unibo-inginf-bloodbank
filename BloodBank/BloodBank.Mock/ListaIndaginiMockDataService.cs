@@ -5,16 +5,16 @@ using BloodBank.Model.Service;
 
 namespace BloodBank.Mock {
 
-    public abstract class ListaIndaginiDataService<U> : DataService<ListaIndagini<U>> where U : ListaVoci {
+    public abstract class ListaIndaginiMockDataService<U> : MockDataService<ListaIndagini<U>> where U : ListaVoci {
     }
 
-    public sealed class ListaIndaginiAnalisiDataService : ListaIndaginiDataService<Analisi> {
+    public sealed class ListaIndaginiMockAnalisiDataService : ListaIndaginiMockDataService<Analisi> {
 
         internal static ListaIndagini<Analisi> Lia1;
         internal static ListaIndagini<Analisi> Lia2;
         internal static ListaIndagini<Analisi> Lia3;
 
-        public ListaIndaginiAnalisiDataService(IndagineAnalisiDataService ia) {
+        public ListaIndaginiMockAnalisiDataService(IndagineAnalisiMockDataService ia) {
             Lia1 = new ListaIndagini<Analisi>("Analisi parziali 1") { ia.A1, ia.A2, ia.A3, ia.A4 };
             Lia2 = new ListaIndagini<Analisi>("Analisi complete") { ia.A1, ia.A2, ia.A3, ia.A4, ia.A5 };
             Lia3 = new ListaIndagini<Analisi>("Analisi parziali 1") { ia.A1, ia.A2 };
@@ -24,7 +24,7 @@ namespace BloodBank.Mock {
 
     }
 
-    public sealed class ListaIndaginiQuestionarioDataService : ListaIndaginiDataService<Questionario> {
+    public sealed class ListaIndaginiMockQuestionarioDataService : ListaIndaginiMockDataService<Questionario> {
 
         internal static ListaIndagini<Questionario> Liq1;
         internal static ListaIndagini<Questionario> Liq2;
@@ -32,7 +32,7 @@ namespace BloodBank.Mock {
         internal static ListaIndagini<Questionario> Liq4;
         internal static ListaIndagini<Questionario> Liq5;
 
-        public ListaIndaginiQuestionarioDataService(IndagineQuestionarioDataService iq) {
+        public ListaIndaginiMockQuestionarioDataService(IndagineQuestionarioMockDataService iq) {
             Liq1 = new ListaIndagini<Questionario>("Questionario Parziale 1") { iq.Q1, iq.Q2, iq.Q3, iq.Q4, iq.Q5, iq.Q6, iq.Q7, iq.Q8 };
             Liq2 = new ListaIndagini<Questionario>("Questionario Parziale 2") { iq.Q9, iq.Q10, iq.Q11, iq.Q12 };
             Liq3 = new ListaIndagini<Questionario>("Questionario Completo") { iq.Q1, iq.Q2, iq.Q3, iq.Q4, iq.Q5, iq.Q6, iq.Q7, iq.Q8, iq.Q9, iq.Q10, iq.Q11, iq.Q12 };

@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using BloodBank.Model.Service;
 
-namespace BloodBank.Model.Service {
+namespace BloodBank.Mock {
 
-    public abstract class DataService<TModel> : IDataService<TModel> where TModel : class {
+    public abstract class MockDataService<TModel> : IDataService<TModel> where TModel : class {
         protected ObservableCollection<object> _models;
 
         public void AddModel(object model) {

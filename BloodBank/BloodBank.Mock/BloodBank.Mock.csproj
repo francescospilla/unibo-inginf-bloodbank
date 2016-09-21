@@ -35,16 +35,17 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DonatoreDataService.cs" />
-    <Compile Include="DonazioneDataService.cs" />
-    <Compile Include="IndagineDataService.cs" />
-    <Compile Include="ListaIndaginiDataService.cs" />
-    <Compile Include="ListaVociDataService.cs" />
-    <Compile Include="MedicoDataService.cs" />
+    <Compile Include="DonatoreMockDataService.cs" />
+    <Compile Include="DonazioneMockDataService.cs" />
+    <Compile Include="IndagineMockDataService.cs" />
+    <Compile Include="ListaIndaginiMockDataService.cs" />
+    <Compile Include="ListaVociMockDataService.cs" />
+    <Compile Include="MedicoMockDataService.cs" />
+    <Compile Include="MockDataService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SaccaSangueDataService.cs" />
-    <Compile Include="VisitaMedicaDataService.cs" />
-    <Compile Include="VoceDataService.cs" />
+    <Compile Include="SaccaSangueMockDataService.cs" />
+    <Compile Include="VisitaMedicaMockDataService.cs" />
+    <Compile Include="VoceMockDataService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BloodBank.Model\BloodBank.Model.csproj">

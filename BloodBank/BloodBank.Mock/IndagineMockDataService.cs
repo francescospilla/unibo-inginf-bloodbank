@@ -7,7 +7,7 @@ using BloodBank.Model.Service;
 
 namespace BloodBank.Mock {
 
-    public sealed class IndagineQuestionarioDataService : DataService<Indagine<Questionario>> {
+    public sealed class IndagineQuestionarioMockDataService : MockDataService<Indagine<Questionario>> {
 
         internal IndagineBoolean<Questionario> Q1;
         internal IndagineBoolean<Questionario> Q2;
@@ -23,7 +23,7 @@ namespace BloodBank.Mock {
         internal IndagineRange<Questionario, int> Q12;
         internal IndagineBoolean<Questionario> Q13;
 
-        public IndagineQuestionarioDataService() {
+        public IndagineQuestionarioMockDataService() {
             Q1 = new IndagineBoolean<Questionario>("È attualmente in buona salute?", Idoneità.Idoneo, true);
             Q2 = new IndagineBoolean<Questionario>("Ha attualmente manifestazioni allergiche?", Idoneità.Sospeso, false);
             Q3 = new IndagineBoolean<Questionario>("Nell'ultima settimana si è sottoposto a cure odontoiatriche o ad interventi di piccola chirurgia ambulatoriale?", Idoneità.NonIdoneo, false);
@@ -44,7 +44,7 @@ namespace BloodBank.Mock {
 
     }
 
-    public sealed class IndagineAnalisiDataService : DataService<Indagine<Analisi>> {
+    public sealed class IndagineAnalisiMockDataService : MockDataService<Indagine<Analisi>> {
 
         internal IndagineRange<Analisi, double> A1;
         internal IndagineRange<Analisi, int> A2;
@@ -53,7 +53,7 @@ namespace BloodBank.Mock {
         internal IndagineBoolean<Analisi> A5;
         internal IndagineBoolean<Analisi> A6;
 
-        public IndagineAnalisiDataService() {
+        public IndagineAnalisiMockDataService() {
             A1 = new IndagineRange<Analisi, double>("Esame emocromocitometrico completo (milioni per ml di sangue)", Idoneità.Sospeso, 3.8, 5.9);
             A2 = new IndagineRange<Analisi, int>("Transaminasi ALT con metodo ottimizzato (U/I)", Idoneità.NonIdoneo, 40, int.MaxValue);
             A3 = new IndagineBoolean<Analisi>("Sierodiagnosi per la Lue (per sifilide)", Idoneità.NonIdoneo, false);

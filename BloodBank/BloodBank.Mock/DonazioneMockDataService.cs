@@ -7,14 +7,14 @@ using BloodBank.Model.Service;
 using static BloodBank.Model.Models.Donazioni.TipoDonazione;
 
 namespace BloodBank.Mock {
-    public sealed class DonazioneDataService : DataService<Donazione> {
+    public sealed class DonazioneMockDataService : MockDataService<Donazione> {
         public Donazione.DonazioneFactory DonazioneFactory { get; set; }
 
         internal Donazione Donazione2;
         internal Donazione Donazione3;
         internal Donazione Donazione4;
 
-        public DonazioneDataService(DonatoreDataService d, VisitaMedicaDataService v, AnalisiDataService a, QuestionarioDataService q, SaccaSangue.SaccaSangueFactory saccaSangueFactory) {
+        public DonazioneMockDataService(DonatoreMockDataService d, VisitaMedicaMockDataService v, AnalisiMockDataService a, QuestionarioMockDataService q, SaccaSangue.SaccaSangueFactory saccaSangueFactory) {
             _models = new ObservableCollection<object>();
 
             DonazioneFactory = new Donazione.DonazioneFactory(this, saccaSangueFactory);

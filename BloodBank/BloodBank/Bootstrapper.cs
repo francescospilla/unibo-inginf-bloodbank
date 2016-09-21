@@ -24,19 +24,19 @@ namespace BloodBank {
 
             kernel.Bind(typeof(IDataService<,>)).To(typeof(DataService<,>)).InSingletonScope();
             
-            kernel.Bind<IDataService<Donatore>, DonatoreDataService>().To<DonatoreDataService>().InSingletonScope();
-            kernel.Bind<IDataService<Donazione>, DonazioneDataService>().To<DonazioneDataService>().InSingletonScope();
-            kernel.Bind<IDataService<Indagine<Analisi>>, IndagineAnalisiDataService>().To<IndagineAnalisiDataService>().InSingletonScope();
-            kernel.Bind<IDataService<Indagine<Questionario>>, IndagineQuestionarioDataService>().To<IndagineQuestionarioDataService>().InSingletonScope();
-            kernel.Bind<IDataService<ListaIndagini<Analisi>>, ListaIndaginiAnalisiDataService>().To<ListaIndaginiAnalisiDataService>().InSingletonScope();
-            kernel.Bind<IDataService<ListaIndagini<Questionario>>, ListaIndaginiQuestionarioDataService>().To<ListaIndaginiQuestionarioDataService>().InSingletonScope();
-            kernel.Bind<IDataService<Analisi>, AnalisiDataService>().To<AnalisiDataService>().InSingletonScope();
-            kernel.Bind<IDataService<Questionario>, QuestionarioDataService>().To<QuestionarioDataService>().InSingletonScope();
-            kernel.Bind<IDataService<Medico>, MedicoDataService>().To<MedicoDataService>().InSingletonScope();
-            kernel.Bind<IDataService<SaccaSangue>, SaccaSangueDataService>().To<SaccaSangueDataService>().InSingletonScope();
-            kernel.Bind<IDataService<VisitaMedica>, VisitaMedicaDataService > ().To<VisitaMedicaDataService>().InSingletonScope();
-            kernel.Bind<IDataService<Voce<Analisi>>, VoceAnalisiDataService>().To<VoceAnalisiDataService>().InSingletonScope();
-            kernel.Bind<IDataService<Voce<Questionario>>, VoceQuestionarioDataService>().To<VoceQuestionarioDataService>().InSingletonScope();
+            kernel.Bind<IDataService<Donatore>, DonatoreMockDataService>().To<DonatoreMockDataService>().InSingletonScope();
+            kernel.Bind<IDataService<Donazione>, DonazioneMockDataService>().To<DonazioneMockDataService>().InSingletonScope();
+            kernel.Bind<IDataService<Indagine<Analisi>>, IndagineAnalisiMockDataService>().To<IndagineAnalisiMockDataService>().InSingletonScope();
+            kernel.Bind<IDataService<Indagine<Questionario>>, IndagineQuestionarioMockDataService>().To<IndagineQuestionarioMockDataService>().InSingletonScope();
+            kernel.Bind<IDataService<ListaIndagini<Analisi>>, ListaIndaginiMockAnalisiDataService>().To<ListaIndaginiMockAnalisiDataService>().InSingletonScope();
+            kernel.Bind<IDataService<ListaIndagini<Questionario>>, ListaIndaginiMockQuestionarioDataService>().To<ListaIndaginiMockQuestionarioDataService>().InSingletonScope();
+            kernel.Bind<IDataService<Analisi>, AnalisiMockDataService>().To<AnalisiMockDataService>().InSingletonScope();
+            kernel.Bind<IDataService<Questionario>, QuestionarioMockDataService>().To<QuestionarioMockDataService>().InSingletonScope();
+            kernel.Bind<IDataService<Medico>, MedicoMockDataService>().To<MedicoMockDataService>().InSingletonScope();
+            kernel.Bind<IDataService<SaccaSangue>, SaccaSangueMockDataService>().To<SaccaSangueMockDataService>().InSingletonScope();
+            kernel.Bind<IDataService<VisitaMedica>, VisitaMedicaMockDataService > ().To<VisitaMedicaMockDataService>().InSingletonScope();
+            kernel.Bind<IDataService<Voce<Analisi>>, VoceMockAnalisiDataService>().To<VoceMockAnalisiDataService>().InSingletonScope();
+            kernel.Bind<IDataService<Voce<Questionario>>, VoceMockQuestionarioDataService>().To<VoceMockQuestionarioDataService>().InSingletonScope();
 
             kernel.Bind<IFactory<Analisi>, ListaVoci.ListaVociFactory<Analisi>>().To<Analisi.AnalisiFactory>().InSingletonScope();
             kernel.Bind<IFactory<Questionario>, ListaVoci.ListaVociFactory<Questionario>>().To<Questionario.QuestionarioFactory>().InSingletonScope();

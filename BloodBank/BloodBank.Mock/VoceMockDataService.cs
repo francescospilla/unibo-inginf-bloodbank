@@ -5,10 +5,10 @@ using BloodBank.Model.Service;
 
 namespace BloodBank.Mock {
 
-    public abstract class VoceDataService<U> : DataService<Voce<U>> where U : ListaVoci {
+    public abstract class VoceMockDataService<U> : MockDataService<Voce<U>> where U : ListaVoci {
     }
 
-    public sealed class VoceQuestionarioDataService : VoceDataService<Questionario> {
+    public sealed class VoceMockQuestionarioDataService : VoceMockDataService<Questionario> {
         internal Voce<Questionario> Vq1;
         internal Voce<Questionario> Vq2;
         internal Voce<Questionario> Vq3;
@@ -22,7 +22,7 @@ namespace BloodBank.Mock {
         internal Voce<Questionario> Vq11;
         internal Voce<Questionario> Vq12;
         
-        public VoceQuestionarioDataService(IndagineQuestionarioDataService iq) {
+        public VoceMockQuestionarioDataService(IndagineQuestionarioMockDataService iq) {
 
             Vq1 = new Voce<Questionario, bool>(iq.Q1, true);
             Vq2 = new Voce<Questionario, bool>(iq.Q1, false);
@@ -42,7 +42,7 @@ namespace BloodBank.Mock {
 
     }
 
-    public sealed class VoceAnalisiDataService : VoceDataService<Analisi> {
+    public sealed class VoceMockAnalisiDataService : VoceMockDataService<Analisi> {
 
         internal Voce<Analisi> Va1;
         internal Voce<Analisi> Va2;
@@ -57,7 +57,7 @@ namespace BloodBank.Mock {
         internal Voce<Analisi> Va11;
         internal Voce<Analisi> Va12;
 
-        public VoceAnalisiDataService(IndagineAnalisiDataService ia) {
+        public VoceMockAnalisiDataService(IndagineAnalisiMockDataService ia) {
             Va1 = new Voce<Analisi, double>(ia.A1, 4.2);
             Va2 = new Voce<Analisi, double>(ia.A1, 8.6);
             Va3 = new Voce<Analisi, int>(ia.A2, 25);

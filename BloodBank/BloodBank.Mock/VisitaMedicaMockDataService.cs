@@ -6,7 +6,7 @@ using BloodBank.Model.Service;
 using static BloodBank.Model.Models.Idoneità;
 
 namespace BloodBank.Mock {
-    public sealed class VisitaMedicaDataService : DataService<VisitaMedica> {
+    public sealed class VisitaMedicaMockDataService : MockDataService<VisitaMedica> {
         public VisitaMedica.VisitaMedicaFactory Factory { get; set; }
 
         internal VisitaMedica V1;
@@ -20,7 +20,7 @@ namespace BloodBank.Mock {
         internal VisitaMedica V9;
         internal VisitaMedica V10;
 
-        public VisitaMedicaDataService(DonatoreDataService d, MedicoDataService m) {
+        public VisitaMedicaMockDataService(DonatoreMockDataService d, MedicoMockDataService m) {
             _models = new ObservableCollection<object>();
             Factory = new VisitaMedica.VisitaMedicaFactory(this);
             
