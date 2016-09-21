@@ -38,8 +38,8 @@ namespace BloodBank {
             kernel.Bind<IDataService<Voce<Questionario>>, VoceMockQuestionarioDataService>().To<VoceMockQuestionarioDataService>().InSingletonScope();
 
             kernel.Bind<IDonazioneFactory, Donazione.DonazioneFactory>().To<Donazione.DonazioneFactory>().InSingletonScope();
-            kernel.Bind<IAnalisiFactory, ListaVoci.ListaVociFactory<Analisi>>().To<Analisi.AnalisiFactory>().InSingletonScope();
-            kernel.Bind<IQuestionarioFactory, ListaVoci.ListaVociFactory<Questionario>>().To<Questionario.QuestionarioFactory>().InSingletonScope();
+            kernel.Bind<IAnalisiFactory, IListaVociFactory<Analisi>, ListaVoci.ListaVociFactory<Analisi>>().To<Analisi.AnalisiFactory>().InSingletonScope();
+            kernel.Bind<IQuestionarioFactory, IListaVociFactory<Questionario>, ListaVoci.ListaVociFactory<Questionario>>().To<Questionario.QuestionarioFactory>().InSingletonScope();
             kernel.Bind<ISaccaSangueFactory, SaccaSangue.SaccaSangueFactory>().To<SaccaSangue.SaccaSangueFactory>().InSingletonScope();
             kernel.Bind<IVisitaMedicaFactory, VisitaMedica.VisitaMedicaFactory>().To<VisitaMedica.VisitaMedicaFactory>().InSingletonScope();
 
