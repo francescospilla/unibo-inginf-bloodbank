@@ -25,7 +25,7 @@ namespace BloodBank.ViewModel.Service {
 
             _viewModelList = new ObservableCollection<TViewModel>();
 
-            _modelService.GetModels().CollectionChanged += (sender, e) => {
+            _modelService.GetObservableCollection().CollectionChanged += (sender, e) => {
                 foreach (TModel model in e.NewItems) {
                     if (_viewModelList.Select(vm => vm.Model).Contains(model)) continue;
                     TViewModel viewModel = CreateViewModel(model);
@@ -45,7 +45,7 @@ namespace BloodBank.ViewModel.Service {
                 throw new ArgumentNullException("La proprietà '" + nameof(ViewModelFactoryFunc) + "' non è stata assegnata.");
 
             if (_viewModelList.Any()) return;
-            foreach (TModel model in _modelService.GetModels()) {
+            foreach (TModel model in _modelService.GetObservableCollection()) {
                 var viewModel = CreateViewModel(model);
                 _viewModelList.Add(viewModel);
             }
@@ -54,14 +54,14 @@ namespace BloodBank.ViewModel.Service {
         public void AddModelAndCreatedViewModel(TModel model) {
             Inizialize();
 
-            _modelService.GetModels().Add(model);
+            _modelService.GetObservableCollection().Add(model);
         }
 
         public void AddModelAndExistingViewModel(TModel model, object viewModel) {
             Inizialize();
             
             _viewModelList.Add((TViewModel) viewModel);
-            _modelService.GetModels().Add(model);
+            _modelService.GetObservableCollection().Add(model);
         }
 
         private TViewModel CreateViewModel(TModel model) {

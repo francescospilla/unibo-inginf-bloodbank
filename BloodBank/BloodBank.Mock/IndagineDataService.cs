@@ -1,5 +1,4 @@
 ﻿using System.Collections.ObjectModel;
-using System.Linq;
 using BloodBank.Model.Models;
 using BloodBank.Model.Models.Indagini;
 using BloodBank.Model.Models.Indagini.Tipi;
@@ -8,21 +7,7 @@ using BloodBank.Model.Service;
 
 namespace BloodBank.Mock {
 
-    public abstract class IndagineDataService<U> : DataService<Indagine<U>>, IDataService<Indagine> where U : ListaVoci {
-        #region Implementation of IDataService<Indagine>
-
-        void IDataService<Indagine>.AddModel(Indagine model) {
-            AddModel((Indagine<U>)model);
-        }
-
-        ObservableCollection<Indagine> IDataService<Indagine>.GetModels() {
-            return (ObservableCollection<Indagine>) GetModels().Cast<Indagine>();
-        }
-
-        #endregion
-    }
-
-    public sealed class IndagineQuestionarioDataService : IndagineDataService<Questionario> {
+    public sealed class IndagineQuestionarioDataService : DataService<Indagine<Questionario>> {
 
         internal IndagineBoolean<Questionario> Q1;
         internal IndagineBoolean<Questionario> Q2;
@@ -53,13 +38,13 @@ namespace BloodBank.Mock {
             Q12 = new IndagineRange<Questionario, int>("Pulsazioni (battiti/minuto)", Idoneità.Sospeso, 50, 100);
             Q13 = new IndagineBoolean<Questionario>("È mai stato affetto da brucellosi?", Idoneità.NonIdoneo, false);
 
-            _models = new ObservableCollection<Indagine<Questionario>> { Q1, Q2, Q3, Q4, Q5, Q6, Q7, Q8, Q9, Q10, Q11, Q12 };
+            _models = new ObservableCollection<object> { Q1, Q2, Q3, Q4, Q5, Q6, Q7, Q8, Q9, Q10, Q11, Q12 };
         }
 
 
     }
 
-    public sealed class IndagineAnalisiDataService : IndagineDataService<Analisi> {
+    public sealed class IndagineAnalisiDataService : DataService<Indagine<Analisi>> {
 
         internal IndagineRange<Analisi, double> A1;
         internal IndagineRange<Analisi, int> A2;
@@ -76,7 +61,7 @@ namespace BloodBank.Mock {
             A5 = new IndagineBoolean<Analisi>("HIVAb 1-2 (per l'AIDS)", Idoneità.NonIdoneo, false);
             A6 = new IndagineBoolean<Analisi>("HCVAb e costituenti virali (per l'epatite C)", Idoneità.NonIdoneo, false);
 
-            _models = new ObservableCollection<Indagine<Analisi>> { A1, A2, A3, A4, A5, A6 };
+            _models = new ObservableCollection<object> { A1, A2, A3, A4, A5, A6 };
         }
 
     }

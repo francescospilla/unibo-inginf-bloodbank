@@ -12,8 +12,6 @@ namespace BloodBank.Model.Models.Tests {
             DescrizioneBreve = descrizioneBreve;
             Data = data;
             Donatore = donatore;
-
-            Donatore.AggiungiTest(this);
         }
 
         public Donatore Donatore { get; }

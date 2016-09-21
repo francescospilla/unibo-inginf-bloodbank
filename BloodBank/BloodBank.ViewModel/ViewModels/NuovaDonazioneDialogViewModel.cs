@@ -21,15 +21,15 @@ namespace BloodBank.ViewModel.ViewModels {
         private readonly IEventAggregator _eventAggregator;
         private readonly IDataService<Donatore, DonatoreViewModel> _donatoreDataService;
         private readonly IDataService<VisitaMedica, VisitaMedicaViewModel> _visitaMedicaDataService;
-        private readonly IDataService<ListaVoci<Questionario>, ListaVociViewModel<Questionario>> _listaVociQuestionarioDataService;
-        private readonly IDataService<ListaVoci<Analisi>, ListaVociViewModel<Analisi>> _listaVociAnalisiDataService;
+        private readonly IDataService<Questionario, ListaVociViewModel<Questionario>> _listaVociQuestionarioDataService;
+        private readonly IDataService<Analisi, ListaVociViewModel<Analisi>> _listaVociAnalisiDataService;
         private readonly IDataService<SaccaSangue> _saccaSangueDataService;
         private readonly IDataService<Donazione> _donazioneDataService; 
 
         public NuovaDonazioneDialogViewModel(IEventAggregator eventAggregator,
             IDataService<Donatore, DonatoreViewModel> donatoreDataService,
-            IDataService<ListaVoci<Questionario>, ListaVociViewModel<Questionario>> listaVociQuestionarioDataService,
-            IDataService<ListaVoci<Analisi>, ListaVociViewModel<Analisi>> listaVociAnalisiDataService,
+            IDataService<Questionario, ListaVociViewModel<Questionario>> listaVociQuestionarioDataService,
+            IDataService<Analisi, ListaVociViewModel<Analisi>> listaVociAnalisiDataService,
             IDataService<VisitaMedica, VisitaMedicaViewModel> visitaMedicaDataService, IDataService<SaccaSangue> saccaSangueDataService, IDataService<Donazione> donazioneDataService) {
             _eventAggregator = eventAggregator;
             _donatoreDataService = donatoreDataService;
@@ -46,8 +46,8 @@ namespace BloodBank.ViewModel.ViewModels {
         #region Properties
 
         public DonatoreViewModel SelectedDonatore { get; set; }
-        public ViewModel<ListaVoci<Questionario>> SelectedListaVociQuestionario { get; set; }
-        public ViewModel<ListaVoci<Analisi>> SelectedListaVociAnalisi { get; set; }
+        public ViewModel<Questionario> SelectedListaVociQuestionario { get; set; }
+        public ViewModel<Analisi> SelectedListaVociAnalisi { get; set; }
         public VisitaMedicaViewModel SelectedVisitaMedica { get; set; }
         public TipoDonazione SelectedTipoDonazione { get; set; }
         public DateTime DataDonazione { get; set; }

@@ -1,16 +1,21 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace BloodBank.Model.Service {
 
     public abstract class DataService<TModel> : IDataService<TModel> where TModel : class {
-        protected ObservableCollection<TModel> _models;
+        protected ObservableCollection<object> _models;
 
-        public void AddModel(TModel model) {
+        public void AddModel(object model) {
             _models.Add(model);
         }
 
-        public ObservableCollection<TModel> GetModels() {
+        IEnumerable<TModel> IDataService<TModel>.GetModels() {
+            return _models.Cast<TModel>();
+        }
+
+        public ObservableCollection<object> GetObservableCollection() {
             return _models;
         }
     }

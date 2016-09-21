@@ -7,10 +7,10 @@ using PropertyChanged;
 namespace BloodBank.Model.Models.Tests
 {
     [ImplementPropertyChanged]
-	public class Questionario : ListaVoci<Questionario> {
+	public class Questionario : ListaVoci {
 
-        public Questionario(Donatore donatore, string descrizioneBreve, DateTime data, IEnumerable<Voce<Questionario>> listaIndagini)
-            : base(donatore, descrizioneBreve, data, listaIndagini)
+        public Questionario(Donatore donatore, string descrizioneBreve, DateTime data, IEnumerable<Voce<Questionario>> listaVoci)
+            : base(donatore, descrizioneBreve, data, listaVoci)
         {
         }
     }

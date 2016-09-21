@@ -5,6 +5,7 @@ using BloodBank.Model.Models;
 using BloodBank.Model.Models.Indagini;
 using BloodBank.Model.Models.Persone;
 using BloodBank.Model.Models.Tests;
+using BloodBank.Model.Service;
 using BloodBank.ViewModel.Events;
 using BloodBank.ViewModel.Service;
 using BloodBank.ViewModel.ViewModels.Indagini;
@@ -22,14 +23,16 @@ namespace BloodBank.ViewModel.ViewModels {
         private readonly IDataService<Donatore, DonatoreViewModel> _donatoreDataService;
         private readonly IDataService<ListaIndagini<U>, ListaIndaginiViewModel<U>> _listaIndaginiDataService;
         private readonly VoceViewModelFactory<U> _voceViewModelFactory;
+        private readonly ListaVociFactory<U> _listaVociFactory; 
 
         #region Constructors
 
-        public NuovaListaVociViewModel(IEventAggregator eventAggregator, IDataService<Donatore, DonatoreViewModel> donatoreDataService, IDataService<ListaIndagini<U>, ListaIndaginiViewModel<U>> listaIndaginiDataService, VoceViewModelFactory<U> voceViewModelFactory) {
+        public NuovaListaVociViewModel(IEventAggregator eventAggregator, IDataService<Donatore, DonatoreViewModel> donatoreDataService, IDataService<ListaIndagini<U>, ListaIndaginiViewModel<U>> listaIndaginiDataService, VoceViewModelFactory<U> voceViewModelFactory, ListaVociFactory<U> listaVociFactory) {
             _eventAggregator = eventAggregator;
             _donatoreDataService = donatoreDataService;
             _listaIndaginiDataService = listaIndaginiDataService;
             _voceViewModelFactory = voceViewModelFactory;
+            _listaVociFactory = listaVociFactory;
 
             DonatoreEnumerable = _donatoreDataService.GetViewModels().Where(vm => vm.Idoneità != Idoneità.NonIdoneo && vm.Attivo);
             ListaIndaginiEnumerable = _listaIndaginiDataService.GetViewModels();
@@ -101,7 +104,7 @@ namespace BloodBank.ViewModel.ViewModels {
             if (_stepCorrente != Step.Riepilogo)
                 throw new InvalidOperationException("stepCorrente != Step.Riepilogo");
 
-            NuovaListaVociEvent<U> message = new NuovaListaVociEvent<U>(new ListaVoci<U>(SelectedDonatore.Model, SelectedListaIndagini.Model.Nome, DataTest, GeneratedListVoci));
+            NuovaListaVociEvent<U> message = new NuovaListaVociEvent<U>(_listaVociFactory.CreateModel(SelectedDonatore.Model, SelectedListaIndagini.Nome, DataTest, GeneratedListVoci));
             _eventAggregator.Publish(message);
         }
 

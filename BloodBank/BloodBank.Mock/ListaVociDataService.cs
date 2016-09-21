@@ -7,10 +7,10 @@ using BloodBank.Model.Models.Tests;
 using BloodBank.Model.Service;
 
 namespace BloodBank.Mock {
-    public abstract class ListaVociDataService<U> : DataService<ListaVoci<U>> where U : ListaVoci {
-    }
 
-    public sealed class ListaVociAnalisiDataService : ListaVociDataService<Analisi> {
+    public sealed class ListaVociAnalisiDataService : DataService<Analisi> {
+        public AnalisiFactory Factory { get; set; }
+
         // liste di voci generiche
         internal IEnumerable<Voce<Analisi>> Lva1;
         internal IEnumerable<Voce<Analisi>> Lva2;
@@ -25,6 +25,9 @@ namespace BloodBank.Mock {
         internal Analisi A4;
 
         public ListaVociAnalisiDataService(DonatoreDataService d, VoceAnalisiDataService va) {
+            _models = new ObservableCollection<object>();
+            Factory = new AnalisiFactory(this);
+
             // liste di voci generiche
             Lva1 = new List<Voce<Analisi>> { va.Va1, va.Va6, va.Va8, va.Va12 };
             Lva2 = new List<Voce<Analisi>> { va.Va1, va.Va4, va.Va6, va.Va8, va.Va10, va.Va12 };
@@ -33,18 +36,20 @@ namespace BloodBank.Mock {
             Lva4 = new List<Voce<Analisi>> { va.Va2, va.Va3, va.Va7, va.Va8, va.Va10 };
 
             // analisi specifiche per donatori
-            A1 = new Analisi(d.D1, "Descrizione 1", DateTime.Now.AddMinutes(-3), Lva1);
-            A2 = new Analisi(d.D2, "Descrizione 2", new DateTime(2016, 08, 23, 11, 00, 30), Lva2);
-            A3 = new Analisi(d.D3, "Descrizione 3", new DateTime(2016, 05, 15, 17, 03, 00), Lva3);
-            A4 = new Analisi(d.D4, "Descrizione 4", new DateTime(2016, 07, 02, 15, 00, 12), Lva1);
+            A1 = Factory.CreateModel(d.D1, "Descrizione Analisi 1", DateTime.Now.AddMinutes(-3), Lva1);
+            A2 = Factory.CreateModel(d.D2, "Descrizione Analisi 2", new DateTime(2016, 08, 23, 11, 00, 30), Lva2);
+            A3 = Factory.CreateModel(d.D3, "Descrizione Analisi 3", new DateTime(2016, 05, 15, 17, 03, 00), Lva3);
+            A4 = Factory.CreateModel(d.D4, "Descrizione Analisi 4", new DateTime(2016, 07, 02, 15, 00, 12), Lva1);
 
-            _models = new ObservableCollection<ListaVoci<Analisi>>(new ObservableCollection<ListaVoci<Analisi>> {A1, A2, A3, A4}.OrderBy(test => test.Data));
+            _models = new ObservableCollection<object>(_models.Cast<Analisi>().OrderBy(test => test.Data));
         }
 
 
     }
 
-    public sealed class ListaVociQuestionarioDataService : ListaVociDataService<Questionario> {
+    public sealed class ListaVociQuestionarioDataService : DataService<Questionario> {
+        public QuestionarioFactory Factory { get; set; }
+
         // liste di voci generiche
         internal IEnumerable<Voce<Questionario>> Lvq1;
         internal IEnumerable<Voce<Questionario>> Lvq2;
@@ -61,6 +66,9 @@ namespace BloodBank.Mock {
         internal Questionario Q5;
 
         public ListaVociQuestionarioDataService(DonatoreDataService d, VoceQuestionarioDataService vq) {
+            _models = new ObservableCollection<object>();
+            Factory = new QuestionarioFactory(this);
+
             // liste di voci generiche
             Lvq1 = new List<Voce<Questionario>> { vq.Vq1, vq.Vq4, vq.Vq6, vq.Vq10, vq.Vq8 };
             Lvq2 = new List<Voce<Questionario>> { vq.Vq3, vq.Vq8, vq.Vq6, vq.Vq10 };
@@ -70,13 +78,13 @@ namespace BloodBank.Mock {
             Lvq5 = new List<Voce<Questionario>> { vq.Vq1, vq.Vq3, vq.Vq5, vq.Vq9, vq.Vq11, vq.Vq7 };
 
             // questionari specifici per donatori
-            Q1 = new Questionario(d.D1, "Descrizione questionario 1", DateTime.Now.AddMinutes(-4), Lvq1);
-            Q2 = new Questionario(d.D2, "Descrizione questionario 1", new DateTime(2016, 08, 23, 10, 30, 12), Lvq2);
-            Q3 = new Questionario(d.D3, "Descrizione questionario 1", new DateTime(2016, 05, 15, 16, 45, 36), Lvq3);
-            Q4 = new Questionario(d.D4, "Descrizione questionario 1", new DateTime(2016, 07, 02, 14, 40, 00), Lvq4);
-            Q5 = new Questionario(d.D5, "Descrizione questionario 1", new DateTime(2016, 09, 14, 09, 25, 00), Lvq1);
+            Q1 = Factory.CreateModel(d.D1, "Descrizione Questionario 1", DateTime.Now.AddMinutes(-4), Lvq1);
+            Q2 = Factory.CreateModel(d.D2, "Descrizione Questionario 2", new DateTime(2016, 08, 23, 10, 30, 12), Lvq2);
+            Q3 = Factory.CreateModel(d.D3, "Descrizione Questionario 3", new DateTime(2016, 05, 15, 16, 45, 36), Lvq3);
+            Q4 = Factory.CreateModel(d.D4, "Descrizione Questionario 4", new DateTime(2016, 07, 02, 14, 40, 00), Lvq4);
+            Q5 = Factory.CreateModel(d.D5, "Descrizione Questionario 5", new DateTime(2016, 09, 14, 09, 25, 00), Lvq1);
 
-            _models = new ObservableCollection<ListaVoci<Questionario>>(new ObservableCollection<ListaVoci<Questionario>> { Q1, Q2, Q3, Q4, Q5 }.OrderBy(test => test.Data));
+            _models = new ObservableCollection<object>(_models.Cast<Questionario>().OrderBy(test => test.Data));
 
         }
 

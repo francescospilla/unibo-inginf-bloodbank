@@ -4,11 +4,13 @@ using System.Linq;
 
 namespace BloodBank.Model.Service {
 
-    public interface IDataService<TModel> where TModel : class {
+    public interface IDataService<out TModel> where TModel : class {
 
-        void AddModel(TModel model);
+        void AddModel(object model);
 
-        ObservableCollection<TModel> GetModels();
+        ObservableCollection<object> GetObservableCollection();
+
+        IEnumerable<TModel> GetModels();
     }
 
     public static class DataServiceExtension {

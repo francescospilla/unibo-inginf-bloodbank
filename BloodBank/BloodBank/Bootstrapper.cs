@@ -30,8 +30,8 @@ namespace BloodBank {
             kernel.Bind<IDataService<Indagine<Questionario>>, IndagineQuestionarioDataService>().To<IndagineQuestionarioDataService>().InSingletonScope();
             kernel.Bind<IDataService<ListaIndagini<Analisi>>, ListaIndaginiAnalisiDataService>().To<ListaIndaginiAnalisiDataService>().InSingletonScope();
             kernel.Bind<IDataService<ListaIndagini<Questionario>>, ListaIndaginiQuestionarioDataService>().To<ListaIndaginiQuestionarioDataService>().InSingletonScope();
-            kernel.Bind<IDataService<ListaVoci<Analisi>>, ListaVociAnalisiDataService>().To<ListaVociAnalisiDataService>().InSingletonScope();
-            kernel.Bind<IDataService<ListaVoci<Questionario>>, ListaVociQuestionarioDataService>().To<ListaVociQuestionarioDataService>().InSingletonScope();
+            kernel.Bind<IDataService<Analisi>, ListaVociAnalisiDataService>().To<ListaVociAnalisiDataService>().InSingletonScope();
+            kernel.Bind<IDataService<Questionario>, ListaVociQuestionarioDataService>().To<ListaVociQuestionarioDataService>().InSingletonScope();
             kernel.Bind<IDataService<Medico>, MedicoDataService>().To<MedicoDataService>().InSingletonScope();
             kernel.Bind<IDataService<SaccaSangue>, SaccaSangueDataService>().To<SaccaSangueDataService>().InSingletonScope();
             kernel.Bind<IDataService<VisitaMedica>, VisitaMedicaDataService > ().To<VisitaMedicaDataService>().InSingletonScope();

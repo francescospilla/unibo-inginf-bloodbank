@@ -94,9 +94,10 @@
     <Compile Include="ViewModels\Persone\DonatoriViewModel.cs" />
     <Compile Include="ViewModels\Sangue\SaccaSangueViewModel.cs" />
     <Compile Include="ViewModels\Sangue\SaccheSangueViewModel.cs" />
+    <Compile Include="ViewModels\Tests\QuestionariViewModel.cs" />
     <Compile Include="ViewModels\Tests\ListaVociViewModel.cs" />
     <Compile Include="ViewModels\Indagini\ListeIndaginiViewModel.cs" />
-    <Compile Include="ViewModels\Tests\ListeVociViewModel.cs" />
+    <Compile Include="ViewModels\Tests\AnalisiViewModel.cs" />
     <Compile Include="ViewModels\Tests\VisitaMedicaViewModel.cs" />
     <Compile Include="ViewModels\Tests\VisiteMedicheViewModel.cs" />
     <Compile Include="ViewModels\Indagini\VoceViewModel.cs" />

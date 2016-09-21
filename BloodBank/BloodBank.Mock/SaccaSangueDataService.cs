@@ -10,7 +10,7 @@ namespace BloodBank.Mock
         
         public SaccaSangueDataService() {
             SaccaSangueFactory = new SaccaSangueFactory(this);
-            _models = new ObservableCollection<SaccaSangue>();
+            _models = new ObservableCollection<object>();
         }
         
     }
