@@ -17,12 +17,12 @@ namespace BloodBank.ViewModel.Components {
             _eventAggregator = eventAggregator;
             _dataService = dataService;
             _viewModelFactory = viewModelFactory;
-
-            _eventAggregator.Subscribe(this);
-
+            
             DisplayName = typeof(TViewModel).Name;
 
             Items.AddRange(_dataService.GetViewModels());
+
+            _eventAggregator.Subscribe(this);
         }
 
         public void OpenNavMenu() {
@@ -40,9 +40,9 @@ namespace BloodBank.ViewModel.Components {
 
         }
 
-        public void Handle(ViewModelCollectionChangedEvent<TViewModel> message)
-        {
-            Items.Add(message.ViewModel);
+        public void Handle(ViewModelCollectionChangedEvent<TViewModel> message) {
+            if (!Items.Contains(message.ViewModel))
+                Items.Add(message.ViewModel);
         }
     }
 }

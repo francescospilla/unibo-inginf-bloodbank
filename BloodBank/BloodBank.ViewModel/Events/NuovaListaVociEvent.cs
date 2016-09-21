@@ -3,10 +3,10 @@
 namespace BloodBank.ViewModel.Events {
     public class NuovaListaVociEvent<U> where U : ListaVoci {
 
-        public NuovaListaVociEvent(ListaVoci<U> listaVoci) {
+        public NuovaListaVociEvent(U listaVoci) {
             ListaVoci = listaVoci;
         }
 
-        public ListaVoci<U> ListaVoci { get; }
+        public U ListaVoci { get; }
     }
 }

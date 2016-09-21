@@ -18,13 +18,15 @@ namespace BloodBank.ViewModel.ViewModels.Tests
     {
         private readonly IDataService<Donatore> _donatoreDataService;
         private readonly IDataService<Medico> _medicoDataService;
+        private readonly IVisitaMedicaFactory _visitaMedicaFactory;
 
         #region Constructors
 
-        public VisitaMedicaViewModel(IEventAggregator eventAggregator, IDataService<Donatore> donatoreDataService, IDataService<VisitaMedica, VisitaMedicaViewModel> dataService, IDataService<Medico> medicoDataService, IModelValidator<VisitaMedicaViewModel> validator) : base(eventAggregator, dataService, validator)
+        public VisitaMedicaViewModel(IEventAggregator eventAggregator, IDataService<Donatore> donatoreDataService, IDataService<VisitaMedica, VisitaMedicaViewModel> dataService, IDataService<Medico> medicoDataService, IModelValidator<VisitaMedicaViewModel> validator, IVisitaMedicaFactory visitaMedicaFactory) : base(eventAggregator, dataService, validator)
         {
             _donatoreDataService = donatoreDataService;
             _medicoDataService = medicoDataService;
+            _visitaMedicaFactory = visitaMedicaFactory;
             DonatoreEnumerable = _donatoreDataService.GetModels();
             MedicoEnumerable = _medicoDataService.GetModels();
         }
@@ -84,7 +86,7 @@ namespace BloodBank.ViewModel.ViewModels.Tests
 
         protected override VisitaMedica CreateModelFromViewModel()
         {
-            return new VisitaMedica(Donatore, DescrizioneBreve, DataOra, Idoneità, Medico, Referto);
+            return _visitaMedicaFactory.CreateModel(Donatore, DescrizioneBreve, DataOra, Idoneità, Medico, Referto);
         }
 
         protected override void SyncViewModelToModel()

@@ -37,14 +37,14 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\FluentValidation.6.2.1.0\lib\Net45\FluentValidation.dll</HintPath>
     </Reference>
+    <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PropertyChanged, Version=1.51.3.0, Culture=neutral, PublicKeyToken=ee3ee20bcf148ddd, processorArchitecture=MSIL">
       <HintPath>..\packages\PropertyChanged.Fody.1.51.3\lib\dotnet\PropertyChanged.dll</HintPath>
       <Private>False</Private>
-    </Reference>
-    <Reference Include="StructureMap, Version=4.3.0.449, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\StructureMap.4.4.0\lib\net45\StructureMap.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="Stylet, Version=1.1.16.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Stylet.1.1.16\lib\net45\Stylet.dll</HintPath>
@@ -62,6 +62,7 @@
     <Compile Include="Events\NuovaIndagineEvent.cs" />
     <Compile Include="Events\NuovaDonazioneEvent.cs" />
     <Compile Include="Events\ViewModelCollectionChangedEvent.cs" />
+    <Compile Include="Service\IDataService.cs" />
     <Compile Include="Service\VoceViewModelFactory.cs" />
     <Compile Include="Validation\Indagini\VoceValidator.cs" />
     <Compile Include="ViewModels\Donazioni\DonazioneViewModel.cs" />
@@ -69,7 +70,6 @@
     <Compile Include="ViewModels\NuovaListaVociViewModel.cs" />
     <Compile Include="ViewModels\Indagini\IndaginiViewModel.cs" />
     <Compile Include="Service\DataService.cs" />
-    <Compile Include="Service\IDataService.cs" />
     <Compile Include="Validation\Persone\CodiceFiscaleValidator.cs" />
     <Compile Include="Validation\Persone\DonatoreValidator.cs" />
     <Compile Include="Validation\Persone\EtàValidator.cs" />
@@ -94,9 +94,10 @@
     <Compile Include="ViewModels\Persone\DonatoriViewModel.cs" />
     <Compile Include="ViewModels\Sangue\SaccaSangueViewModel.cs" />
     <Compile Include="ViewModels\Sangue\SaccheSangueViewModel.cs" />
+    <Compile Include="ViewModels\Tests\QuestionariViewModel.cs" />
     <Compile Include="ViewModels\Tests\ListaVociViewModel.cs" />
     <Compile Include="ViewModels\Indagini\ListeIndaginiViewModel.cs" />
-    <Compile Include="ViewModels\Tests\ListeVociViewModel.cs" />
+    <Compile Include="ViewModels\Tests\AnalisiViewModel.cs" />
     <Compile Include="ViewModels\Tests\VisitaMedicaViewModel.cs" />
     <Compile Include="ViewModels\Tests\VisiteMedicheViewModel.cs" />
     <Compile Include="ViewModels\Indagini\VoceViewModel.cs" />

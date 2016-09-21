@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using BloodBank.Model.Models;
 using BloodBank.Model.Models.Donazioni;
-using BloodBank.Model.Models.Indagini;
 using BloodBank.Model.Models.Persone;
-using BloodBank.Model.Models.Sangue;
 using BloodBank.Model.Models.Tests;
 using BloodBank.Model.Service;
 using BloodBank.ViewModel.Components;
@@ -23,19 +20,21 @@ namespace BloodBank.ViewModel.ViewModels {
         private readonly IEventAggregator _eventAggregator;
         private readonly IDataService<Donatore, DonatoreViewModel> _donatoreDataService;
         private readonly IDataService<VisitaMedica, VisitaMedicaViewModel> _visitaMedicaDataService;
-        private readonly IDataService<ListaVoci<Questionario>, ListaVociViewModel<Questionario>> _listaVociQuestionarioDataService;
-        private readonly IDataService<ListaVoci<Analisi>, ListaVociViewModel<Analisi>> _listaVociAnalisiDataService;
+        private readonly IDataService<Questionario, ListaVociViewModel<Questionario>> _listaVociQuestionarioDataService;
+        private readonly IDataService<Analisi, ListaVociViewModel<Analisi>> _listaVociAnalisiDataService;
+        private readonly IDonazioneFactory _donazioneFactory;
 
         public NuovaDonazioneDialogViewModel(IEventAggregator eventAggregator,
             IDataService<Donatore, DonatoreViewModel> donatoreDataService,
-            IDataService<ListaVoci<Questionario>, ListaVociViewModel<Questionario>> listaVociQuestionarioDataService,
-            IDataService<ListaVoci<Analisi>, ListaVociViewModel<Analisi>> listaVociAnalisiDataService,
-            IDataService<VisitaMedica, VisitaMedicaViewModel> visitaMedicaDataService) {
+            IDataService<Questionario, ListaVociViewModel<Questionario>> listaVociQuestionarioDataService,
+            IDataService<Analisi, ListaVociViewModel<Analisi>> listaVociAnalisiDataService,
+            IDataService<VisitaMedica, VisitaMedicaViewModel> visitaMedicaDataService, IDonazioneFactory donazioneFactory) {
             _eventAggregator = eventAggregator;
             _donatoreDataService = donatoreDataService;
             _listaVociQuestionarioDataService = listaVociQuestionarioDataService;
             _listaVociAnalisiDataService = listaVociAnalisiDataService;
             _visitaMedicaDataService = visitaMedicaDataService;
+            _donazioneFactory = donazioneFactory;
 
             DonatoreEnumerable =
                 _donatoreDataService.GetViewModels().Where(vm => vm.Idoneità == Idoneità.Idoneo && vm.Attivo && (vm.DataProssimaDonazioneConsentita == null || vm.DataProssimaDonazioneConsentita <= DateTime.Today));
@@ -44,8 +43,8 @@ namespace BloodBank.ViewModel.ViewModels {
         #region Properties
 
         public DonatoreViewModel SelectedDonatore { get; set; }
-        public ViewModel<ListaVoci<Questionario>> SelectedListaVociQuestionario { get; set; }
-        public ViewModel<ListaVoci<Analisi>> SelectedListaVociAnalisi { get; set; }
+        public ViewModel<Questionario> SelectedListaVociQuestionario { get; set; }
+        public ViewModel<Analisi> SelectedListaVociAnalisi { get; set; }
         public VisitaMedicaViewModel SelectedVisitaMedica { get; set; }
         public TipoDonazione SelectedTipoDonazione { get; set; }
         public DateTime DataDonazione { get; set; }
@@ -80,7 +79,7 @@ namespace BloodBank.ViewModel.ViewModels {
         }
 
         public void Finish() {
-            NuovaDonazioneEvent message = new NuovaDonazioneEvent(new Donazione(SelectedDonatore.Model, SelectedTipoDonazione, DataDonazione, SelectedVisitaMedica.Model, (Analisi)SelectedListaVociAnalisi.Model, (Questionario) SelectedListaVociQuestionario.Model));
+            NuovaDonazioneEvent message = new NuovaDonazioneEvent(_donazioneFactory.CreateModel(SelectedDonatore.Model, SelectedTipoDonazione, DataDonazione, SelectedVisitaMedica.Model, SelectedListaVociAnalisi.Model, SelectedListaVociQuestionario.Model));
             _eventAggregator.Publish(message);
         }
 

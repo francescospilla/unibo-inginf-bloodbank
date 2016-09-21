@@ -1,36 +1,54 @@
-﻿using System.Collections.Generic;
-using BloodBank.Model.Service;
+﻿using BloodBank.Model.Service;
 using BloodBank.ViewModel.Service;
-using StructureMap;
 using Stylet;
 using Stylet.FluentValidation;
-using System.Reflection;
 using BloodBank.Mock;
+using BloodBank.Mock.Donazioni;
+using BloodBank.Mock.Indagini;
+using BloodBank.Mock.Persone;
+using BloodBank.Mock.Sangue;
+using BloodBank.Mock.Test;
+using BloodBank.Model.Models.Donazioni;
 using BloodBank.Model.Models.Indagini;
+using BloodBank.Model.Models.Persone;
+using BloodBank.Model.Models.Sangue;
 using BloodBank.Model.Models.Tests;
 using BloodBank.View;
 using BloodBank.ViewModel;
-using BloodBank.ViewModel.ViewModels.Indagini;
-using StructureMap.Pipeline;
+using Ninject;
 using Stylet.DictionaryViewManager;
 using ValidatorExtensions = BloodBank.ViewModel.Validation.ValidatorExtensions;
 
 namespace BloodBank {
 
-    public class Bootstrapper : StructureMapBootstrapper<ShellViewModel> {
+    public class Bootstrapper : NinjectBootstrapper<ShellViewModel> {
 
-        protected override void ConfigureIoC(ConfigurationExpression config) {
-            base.ConfigureIoC(config);
+        protected override void ConfigureIoC(IKernel kernel) {
+            base.ConfigureIoC(kernel);
 
-            config.Scan(x => {
-                x.AssemblyContainingType(typeof(DonatoreService));
-                x.ConnectImplementationsToTypesClosing(typeof(IDataService<>)).OnAddedPluginTypes(c => c.Singleton());
-                x.WithDefaultConventions();
-            });
+            kernel.Bind(typeof(IDataService<,>)).To(typeof(DataService<,>)).InSingletonScope();
+            
+            kernel.Bind<IDataService<Donatore>, DonatoreMockDataService>().To<DonatoreMockDataService>().InSingletonScope();
+            kernel.Bind<IDataService<Donazione>, DonazioneMockDataService>().To<DonazioneMockDataService>().InSingletonScope();
+            kernel.Bind<IDataService<Indagine<Analisi>>, IndagineAnalisiMockDataService>().To<IndagineAnalisiMockDataService>().InSingletonScope();
+            kernel.Bind<IDataService<Indagine<Questionario>>, IndagineQuestionarioMockDataService>().To<IndagineQuestionarioMockDataService>().InSingletonScope();
+            kernel.Bind<IDataService<ListaIndagini<Analisi>>, ListaIndaginiMockAnalisiDataService>().To<ListaIndaginiMockAnalisiDataService>().InSingletonScope();
+            kernel.Bind<IDataService<ListaIndagini<Questionario>>, ListaIndaginiMockQuestionarioDataService>().To<ListaIndaginiMockQuestionarioDataService>().InSingletonScope();
+            kernel.Bind<IDataService<Analisi>, AnalisiMockDataService>().To<AnalisiMockDataService>().InSingletonScope();
+            kernel.Bind<IDataService<Questionario>, QuestionarioMockDataService>().To<QuestionarioMockDataService>().InSingletonScope();
+            kernel.Bind<IDataService<Medico>, MedicoMockDataService>().To<MedicoMockDataService>().InSingletonScope();
+            kernel.Bind<IDataService<SaccaSangue>, SaccaSangueMockDataService>().To<SaccaSangueMockDataService>().InSingletonScope();
+            kernel.Bind<IDataService<VisitaMedica>, VisitaMedicaMockDataService > ().To<VisitaMedicaMockDataService>().InSingletonScope();
+            kernel.Bind<IDataService<Voce<Analisi>>, VoceAnalisiMockDataService>().To<VoceAnalisiMockDataService>().InSingletonScope();
+            kernel.Bind<IDataService<Voce<Questionario>>, VoceQuestionarioMockDataService>().To<VoceQuestionarioMockDataService>().InSingletonScope();
 
-            config.Policies.SetAllProperties(policy => policy.Matching(info => info.Name.EndsWith("FactoryFunc") && info.CanWrite));
-            config.For(typeof(IDataService<,>)).Use(typeof(DataService<,>)).LifecycleIs<SingletonLifecycle>();
-            config.ConfigureForFluentValidation(typeof(ValidatorExtensions));
+            kernel.Bind<IDonazioneFactory, Donazione.DonazioneFactory>().To<Donazione.DonazioneFactory>().InSingletonScope();
+            kernel.Bind<IAnalisiFactory, IListaVociFactory<Analisi>, ListaVoci.ListaVociFactory<Analisi>>().To<Analisi.AnalisiFactory>().InSingletonScope();
+            kernel.Bind<IQuestionarioFactory, IListaVociFactory<Questionario>, ListaVoci.ListaVociFactory<Questionario>>().To<Questionario.QuestionarioFactory>().InSingletonScope();
+            kernel.Bind<ISaccaSangueFactory, SaccaSangue.SaccaSangueFactory>().To<SaccaSangue.SaccaSangueFactory>().InSingletonScope();
+            kernel.Bind<IVisitaMedicaFactory, VisitaMedica.VisitaMedicaFactory>().To<VisitaMedica.VisitaMedicaFactory>().InSingletonScope();
+
+            kernel.ConfigureForFluentValidation(typeof(ValidatorExtensions));
         }
 
         protected override ViewManager CreateViewManager(ViewManagerConfig config) {

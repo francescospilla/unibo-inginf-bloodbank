@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using BloodBank.Model.Models.Persone;
 
 namespace BloodBank.Model.Models.Tests {
@@ -13,8 +12,6 @@ namespace BloodBank.Model.Models.Tests {
             DescrizioneBreve = descrizioneBreve;
             Data = data;
             Donatore = donatore;
-
-            Donatore.AggiungiTest(this);
         }
 
         public Donatore Donatore { get; }

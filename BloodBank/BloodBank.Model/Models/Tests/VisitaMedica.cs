@@ -1,5 +1,6 @@
 ﻿using System;
 using BloodBank.Model.Models.Persone;
+using BloodBank.Model.Service;
 using PropertyChanged;
 
 namespace BloodBank.Model.Models.Tests
@@ -9,7 +10,7 @@ namespace BloodBank.Model.Models.Tests
     public class VisitaMedica : Test
     {
 
-        public VisitaMedica(Donatore donatore, string descrizioneBreve, DateTime data, Idoneità idoneità, Medico medico, string referto)
+        private VisitaMedica(Donatore donatore, string descrizioneBreve, DateTime data, Idoneità idoneità, Medico medico, string referto)
             : base(donatore, data, descrizioneBreve)
         {
             Idoneità = idoneità;
@@ -20,5 +21,20 @@ namespace BloodBank.Model.Models.Tests
         public override Idoneità Idoneità { get; }
         public Medico Medico { get; }
         public string Referto { get; set; }
+
+        public class VisitaMedicaFactory : IVisitaMedicaFactory {
+            private readonly IDataService<VisitaMedica> _dataService;
+
+            public VisitaMedicaFactory(IDataService<VisitaMedica> dataService) {
+                _dataService = dataService;
+            }
+
+            public VisitaMedica CreateModel(Donatore donatore, string descrizioneBreve, DateTime data, Idoneità idoneità, Medico medico, string referto) {
+                var model = new VisitaMedica(donatore, descrizioneBreve, data, idoneità, medico, referto);
+                donatore.AggiungiTest(model);
+                _dataService.AddModel(model);
+                return model;
+            }
+        }
     }
 }

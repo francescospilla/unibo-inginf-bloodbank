@@ -1,12 +1,8 @@
 ﻿using System;
 using BloodBank.Model.Models.Donazioni;
-using BloodBank.Model.Models.Persone;
-using BloodBank.Model.Models.Tests;
 using BloodBank.ViewModel.Components;
 using BloodBank.ViewModel.Events;
 using BloodBank.ViewModel.Service;
-using BloodBank.ViewModel.ViewModels.Persone;
-using BloodBank.ViewModel.ViewModels.Tests;
 using PropertyChanged;
 using Stylet;
 

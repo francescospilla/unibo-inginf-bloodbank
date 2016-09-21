@@ -1,19 +1,20 @@
 ﻿using FluentValidation;
-using StructureMap;
 using System;
+using Ninject;
+using Ninject.Extensions.Conventions;
 
 namespace Stylet.FluentValidation {
 
     public static class ConfigureIoC {
 
-        public static void ConfigureForFluentValidation(this ConfigurationExpression config, Type typeToScanFor) {
-            config.Scan(x => {
-                x.AssemblyContainingType(typeToScanFor);
-                x.ConnectImplementationsToTypesClosing(typeof(IValidator<>)).OnAddedPluginTypes(c => c.Singleton());
-                x.WithDefaultConventions();
-            });
+        public static void ConfigureForFluentValidation(this IKernel kernel, Type typeToScanFor) {
+            kernel.Bind(x => x
+                .FromAssemblyContaining(typeToScanFor)
+                .SelectAllClasses().InheritedFrom(typeof(IValidator<>))
+                .BindAllInterfaces()
+            );
 
-            config.For(typeof(IModelValidator<>)).Use(typeof(FluentModelValidator<>));
+            kernel.Bind(typeof (IModelValidator<>)).To(typeof (FluentModelValidator<>));
         }
     }
 }

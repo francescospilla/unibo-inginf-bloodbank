@@ -1,13 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using BloodBank.Core.Extensions;
-using BloodBank.Model.Models;
 using BloodBank.Model.Models.Indagini;
 using BloodBank.Model.Models.Indagini.Tipi;
 using BloodBank.Model.Models.Tests;
-using BloodBank.ViewModel.Events;
 using PropertyChanged;
 using Stylet;
 using Stylet.DictionaryViewManager;

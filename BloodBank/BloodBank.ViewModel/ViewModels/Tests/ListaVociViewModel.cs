@@ -16,7 +16,7 @@ namespace BloodBank.ViewModel.ViewModels.Tests
 
     [ImplementPropertyChanged]
     [AssociatedView("ListaVociView")]
-    public class ListaVociViewModel<U> : ViewModel<ListaVoci<U>> where U : ListaVoci
+    public class ListaVociViewModel<U> : ViewModel<U> where U : ListaVoci
     {
         public ListaVociViewModel(IEventAggregator eventAggregator) : base(eventAggregator)
         {

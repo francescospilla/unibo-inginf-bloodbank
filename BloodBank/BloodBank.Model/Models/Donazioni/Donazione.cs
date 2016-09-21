@@ -1,23 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.Contracts;
 using System.Linq;
 using BloodBank.Model.Models.Persone;
 using BloodBank.Model.Models.Sangue;
 using BloodBank.Model.Models.Tests;
+using BloodBank.Model.Service;
 using PropertyChanged;
 
-namespace BloodBank.Model.Models.Donazioni
-{
+namespace BloodBank.Model.Models.Donazioni {
 
     [ImplementPropertyChanged]
-    public class Donazione
-    {
+    public class Donazione {
 
-        public Donazione(Donatore donatore, TipoDonazione tipoDonazione, DateTime data, VisitaMedica visitaMedica,
-            Analisi analisi, Questionario questionario)
-        {
-           // Contract.Requires<ArgumentNullException>(donatore != null && data != null && visitaMedica != null && analisi != null && questionario != null, "Tutti i parametri devono essere diversi da null.");
+        private Donazione(Donatore donatore, TipoDonazione tipoDonazione, DateTime data, VisitaMedica visitaMedica,
+            Analisi analisi, Questionario questionario) {
+            // Contract.Requires<ArgumentNullException>(donatore != null && data != null && visitaMedica != null && analisi != null && questionario != null, "Tutti i parametri devono essere diversi da null.");
 
             if (donatore.Idoneità != Idoneità.Idoneo)
                 throw new ArgumentException("Non si può effettuare la donazione se il donatore non è " + Idoneità.Idoneo);
@@ -38,8 +35,7 @@ namespace BloodBank.Model.Models.Donazioni
             SaccheSangue = new List<SaccaSangue>();
             DataProssimaDonazioneConsentita = data.AddDays(tipoDonazione.GiorniDiRiposo);
 
-            EffettuaPrelievo();
-            Donatore.AggiungiDonazione(this);
+            //Donatore.AggiungiDonazione(this);
         }
 
         public Donatore Donatore { get; }
@@ -52,46 +48,60 @@ namespace BloodBank.Model.Models.Donazioni
 
         public DateTime DataProssimaDonazioneConsentita { get; }
 
-        public void EffettuaPrelievo()
-        {
+        public void EffettuaPrelievo(ISaccaSangueFactory saccaSangueFactory) {
             // Contract.Requires<InvalidOperationException>(SaccheSangue.Count == 0, "SaccheSangue.Count == 0");
 
             foreach (ComponenteEmatico componente in TipoDonazione.ComponentiDerivati)
                 for (int i = 0; i < TipoDonazione.QuantitàComponente(componente); i++)
-                SaccheSangue.Add(new SaccaSangue(this, Donatore.GruppoSanguigno, componente, Data));
+                    saccaSangueFactory.CreateModel(this, Donatore.GruppoSanguigno, componente, Data);
 
             // Contract.Ensures(SaccheSangue.Count > 0, "SaccheSangue.Count > 0");
         }
 
-        private static bool AreDateTestValide(DateTime dataDonazione, params DateTime[] dateTest)
-        {
+        private static bool AreDateTestValide(DateTime dataDonazione, params DateTime[] dateTest) {
             return dateTest.All(data => data.Date.Equals(dataDonazione.Date) && data.CompareTo(dataDonazione) < 0);
         }
 
-        protected bool Equals(Donazione other)
-        {
+        protected bool Equals(Donazione other) {
             return Equals(Donatore, other.Donatore) && Data.Date.Equals(other.Data.Date);
         }
 
-        public override bool Equals(object obj)
-        {
+        public override bool Equals(object obj) {
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
             Donazione other = obj as Donazione;
             return other != null && Equals(other);
         }
 
-        public override int GetHashCode()
-        {
-            unchecked
-            {
+        public override int GetHashCode() {
+            unchecked {
                 return ((Donatore?.GetHashCode() ?? 0) * 397) ^ Data.Date.GetHashCode();
             }
         }
 
-        public override string ToString()
-        {
+        public override string ToString() {
             return "Donatore: " + Donatore + ", Data: " + Data + ", Tipo: " + TipoDonazione;
         }
+
+        public class DonazioneFactory : IDonazioneFactory {
+            private readonly IDataService<Donazione> _dataService;
+            private readonly SaccaSangue.SaccaSangueFactory _saccaSangueFactory;
+
+            public DonazioneFactory(IDataService<Donazione> dataService, SaccaSangue.SaccaSangueFactory saccaSangueFactory) {
+                _dataService = dataService;
+                _saccaSangueFactory = saccaSangueFactory;
+            }
+
+            public Donazione CreateModel(Donatore donatore, TipoDonazione tipoDonazione, DateTime data, VisitaMedica visitaMedica,
+                Analisi analisi, Questionario questionario) {
+                var model = new Donazione(donatore, tipoDonazione, data, visitaMedica, analisi, questionario);
+                model.EffettuaPrelievo(_saccaSangueFactory);
+                donatore.AggiungiDonazione(model);
+                _dataService.AddModel(model);
+                return model;
+            }
+        }
     }
+
+
 }
