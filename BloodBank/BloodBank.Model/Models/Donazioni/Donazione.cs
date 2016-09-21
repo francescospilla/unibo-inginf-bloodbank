@@ -34,8 +34,6 @@ namespace BloodBank.Model.Models.Donazioni {
             Questionario = questionario;
             SaccheSangue = new List<SaccaSangue>();
             DataProssimaDonazioneConsentita = data.AddDays(tipoDonazione.GiorniDiRiposo);
-
-            //Donatore.AggiungiDonazione(this);
         }
 
         public Donatore Donatore { get; }

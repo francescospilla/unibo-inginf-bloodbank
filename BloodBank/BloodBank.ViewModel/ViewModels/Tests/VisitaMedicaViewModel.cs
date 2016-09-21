@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using BloodBank.Core.Attributes;
 using BloodBank.Core.Extensions;
 using BloodBank.Model.Models;
@@ -27,7 +28,7 @@ namespace BloodBank.ViewModel.ViewModels.Tests
             _donatoreDataService = donatoreDataService;
             _medicoDataService = medicoDataService;
             _visitaMedicaFactory = visitaMedicaFactory;
-            DonatoreEnumerable = _donatoreDataService.GetModels();
+            DonatoreEnumerable = _donatoreDataService.GetModels().Where(donatore => donatore.Idoneità != Idoneità.NonIdoneo);
             MedicoEnumerable = _medicoDataService.GetModels();
         }
 

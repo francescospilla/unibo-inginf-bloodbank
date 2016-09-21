@@ -12,9 +12,9 @@ namespace BloodBank.ViewModel.ViewModels.Tests
     [AssociatedView("ListeVociView")]
     public class AnalisiViewModel : TabWorkspaceViewModel<Analisi, ListaVociViewModel<Analisi>>, IHandle<NuovaListaVociEvent<Analisi>>  
     {
-        private readonly Func<NuovaListaVociViewModel<Analisi>> _dialogFactory;
+        private readonly Func<NuovaListaVociDialogViewModel<Analisi>> _dialogFactory;
 
-        public AnalisiViewModel(IEventAggregator eventAggregator, IDataService<Analisi, ListaVociViewModel<Analisi>> dataService, Func<ListaVociViewModel<Analisi>> viewModelFactory, Func<NuovaListaVociViewModel<Analisi>> dialogFactory) : base(eventAggregator, dataService, viewModelFactory) {
+        public AnalisiViewModel(IEventAggregator eventAggregator, IDataService<Analisi, ListaVociViewModel<Analisi>> dataService, Func<ListaVociViewModel<Analisi>> viewModelFactory, Func<NuovaListaVociDialogViewModel<Analisi>> dialogFactory) : base(eventAggregator, dataService, viewModelFactory) {
             _dialogFactory = dialogFactory;
         }
 
