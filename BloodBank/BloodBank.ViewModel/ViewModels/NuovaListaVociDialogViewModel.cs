@@ -50,7 +50,21 @@ namespace BloodBank.ViewModel.ViewModels {
         public bool CanMoveTo2ndPage => SelectedDonatore != null;
         public bool CanMoveTo3rdPage => SelectedListaIndagini != null;
         public bool CanMoveToLastPage => VociViewModelEnumerable != null && VociViewModelEnumerable.All(vm => vm.CanSave);
-        public DateTime DataTest { get; set; }
+
+        #region Data e Ora
+        private DateTime _data = DateTime.Today;
+        public DateTime Data {
+            get { return _data; }
+            set { _data = value.Date; }
+        }
+
+        private DateTime _dataOra = DateTime.Now;
+        public DateTime DataOra {
+            get { return _dataOra; }
+            set { _dataOra = Data.Add(value.TimeOfDay); }
+        }
+        #endregion
+
 
         #endregion
 
@@ -80,7 +94,6 @@ namespace BloodBank.ViewModel.ViewModels {
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-            DataTest = DateTime.Now;
         }
 
 
@@ -104,7 +117,7 @@ namespace BloodBank.ViewModel.ViewModels {
             if (_stepCorrente != Step.Riepilogo)
                 throw new InvalidOperationException("stepCorrente != Step.Riepilogo");
 
-            _listaVociFactory.CreateModel(SelectedDonatore.Model, SelectedListaIndagini.Nome, DataTest, GeneratedListVoci);
+            _listaVociFactory.CreateModel(SelectedDonatore.Model, SelectedListaIndagini.Nome, DataOra, GeneratedListVoci);
             _eventAggregator.Publish(new DialogEvent(false, null));
 
         }

@@ -8,28 +8,28 @@
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
-             d:DesignHeight="500" d:DesignWidth="500">
-    
+             d:DesignHeight="500" d:DesignWidth="600">
+
     <UserControl.Resources>
-            <Style TargetType="{x:Type DatePicker}" BasedOn="{StaticResource MaterialDesignFloatingHintDatePicker}">
-                <Setter Property="Margin" Value="10 10 10 7" />
-                <Setter Property="VerticalAlignment" Value="Bottom" />
-            </Style>
-            <Style TargetType="{x:Type md:TimePicker}" BasedOn="{StaticResource MaterialDesignFloatingHintTimePicker}">
-                <Setter Property="Margin" Value="10 10 10 7" />
-                <Setter Property="VerticalAlignment" Value="Bottom" />
-            </Style>
-            <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource MaterialDesignFloatingHintComboBox}">
-                <Setter Property="Margin" Value="10 10 10 7" />
-            </Style>
-            <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignFloatingHintTextBox}">
-                <Setter Property="Margin" Value="10 10 10 7" />
-            </Style>
-            <Style TargetType="{x:Type md:PackIcon}">
-                <Setter Property="Margin" Value="10 10 10 12"  />
-                <Setter Property="VerticalAlignment" Value="Bottom" />
-                <Setter Property="HorizontalAlignment" Value="Center" />
-            </Style>
+        <Style TargetType="{x:Type DatePicker}" BasedOn="{StaticResource MaterialDesignFloatingHintDatePicker}">
+            <Setter Property="Margin" Value="10 10 10 7" />
+            <Setter Property="VerticalAlignment" Value="Bottom" />
+        </Style>
+        <Style TargetType="{x:Type md:TimePicker}" BasedOn="{StaticResource MaterialDesignFloatingHintTimePicker}">
+            <Setter Property="Margin" Value="10 10 10 7" />
+            <Setter Property="VerticalAlignment" Value="Bottom" />
+        </Style>
+        <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource MaterialDesignFloatingHintComboBox}">
+            <Setter Property="Margin" Value="10 10 10 7" />
+        </Style>
+        <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignFloatingHintTextBox}">
+            <Setter Property="Margin" Value="10 10 10 7" />
+        </Style>
+        <Style TargetType="{x:Type md:PackIcon}">
+            <Setter Property="Margin" Value="10 10 10 12"  />
+            <Setter Property="VerticalAlignment" Value="Bottom" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+        </Style>
     </UserControl.Resources>
 
     <ScrollViewer VerticalScrollBarVisibility="Auto">
@@ -41,21 +41,30 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
                         <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition />
                     </Grid.ColumnDefinitions>
+                    <ComboBox Grid.Row="0" Grid.Column="0" DisplayMemberPath="Model" md:HintAssist.Hint="Donatore" ItemsSource="{Binding DonatoreEnumerable}" SelectedItem="{Binding SelectedDonatore}" />
 
-                    <Label Grid.Row="0" Grid.Column="0" Margin="10 20">Donatore:</Label>
-                    <ComboBox Grid.Row="0" Grid.Column="1" DisplayMemberPath="Model" ItemsSource="{Binding DonatoreEnumerable}" SelectedItem="{Binding SelectedDonatore}" />
-                    <ContentControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" s:View.Model="{Binding SelectedDonatore}" components:ReadOnlyPanel.IsReadOnly="True" Margin="20"/>
+                    <md:PackIcon Grid.Row="0" Grid.Column="1" Kind="Calendar" Foreground="{Binding ElementName=DatePickerDataListaVoci, Path=BorderBrush}" />
+                    <Grid Grid.Row="0" Grid.Column="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <DatePicker Grid.Column="0" x:Name="DatePickerDataListaVoci" md:HintAssist.Hint="Data del Test"  SelectedDate="{Binding Path=Data, UpdateSourceTrigger=PropertyChanged}" />
+                        <md:TimePicker Grid.Column="1" x:Name="TimePickerDataListaVoci" md:HintAssist.Hint="Ora del Test" Is24Hours="True" SelectedTime="{Binding Path=DataOra, UpdateSourceTrigger=PropertyChanged}"  />
+                    </Grid>
+
+                    <ContentControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" s:View.Model="{Binding SelectedDonatore}" components:ReadOnlyPanel.IsReadOnly="True" Margin="10"/>
+
                 </Grid>
             </xctk:WizardPage>
             <xctk:WizardPage Title="Seleziona ListaIndagini" CanSelectNextPage="{Binding CanMoveTo3rdPage}">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
@@ -65,9 +74,10 @@
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
 
-                    <Label Grid.Row="0" Grid.Column="0" Margin="10 20">ListaIndagini:</Label>
-                    <ComboBox Grid.Row="0" Grid.Column="1" DisplayMemberPath="Model" ItemsSource="{Binding ListaIndaginiEnumerable}" SelectedItem="{Binding SelectedListaIndagini}" />
-                    <ContentControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" s:View.Model="{Binding SelectedListaIndagini}" components:ReadOnlyPanel.IsReadOnly="True" Margin="20"/>
+                    <ComboBox Grid.Row="0" Grid.Column="1" md:HintAssist.Hint="ListaIndagini" DisplayMemberPath="Model" ItemsSource="{Binding ListaIndaginiEnumerable}" SelectedItem="{Binding SelectedListaIndagini}" />
+                    
+                    <ContentControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" s:View.Model="{Binding SelectedListaIndagini}" components:ReadOnlyPanel.IsReadOnly="True" Margin="10"/>
+                
                 </Grid>
             </xctk:WizardPage>
             <xctk:WizardPage Title="Compila ListaIndagini" CanSelectNextPage="{Binding CanMoveToLastPage}">
@@ -100,8 +110,9 @@
 
                     <md:PackIcon Grid.Row="3" Grid.Column="0" Kind="Calendar" Foreground="{Binding ElementName=TextBoxData, Path=BorderBrush}" />
                     <TextBox Grid.Row="3" Grid.Column="1" x:Name="TextBoxData" md:HintAssist.Hint="Data Donazione" IsEnabled="False"
-                                    Text="{Binding Path=DataTest, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}">
+                                    Text="{Binding Path=DataOra, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}">
                     </TextBox>
+                
                 </Grid>
             </xctk:WizardPage>
         </xctk:Wizard>
