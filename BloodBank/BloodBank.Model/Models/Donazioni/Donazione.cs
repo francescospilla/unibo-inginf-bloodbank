@@ -48,7 +48,7 @@ namespace BloodBank.Model.Models.Donazioni {
 
         public DateTime DataProssimaDonazioneConsentita { get; }
 
-        public void EffettuaPrelievo(SaccaSangue.SaccaSangueFactory saccaSangueFactory) {
+        public void EffettuaPrelievo(ISaccaSangueFactory saccaSangueFactory) {
             // Contract.Requires<InvalidOperationException>(SaccheSangue.Count == 0, "SaccheSangue.Count == 0");
 
             foreach (ComponenteEmatico componente in TipoDonazione.ComponentiDerivati)

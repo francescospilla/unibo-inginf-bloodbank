@@ -18,11 +18,11 @@ namespace BloodBank.ViewModel.ViewModels.Tests
     {
         private readonly IDataService<Donatore> _donatoreDataService;
         private readonly IDataService<Medico> _medicoDataService;
-        private readonly VisitaMedica.VisitaMedicaFactory _visitaMedicaFactory;
+        private readonly IVisitaMedicaFactory _visitaMedicaFactory;
 
         #region Constructors
 
-        public VisitaMedicaViewModel(IEventAggregator eventAggregator, IDataService<Donatore> donatoreDataService, IDataService<VisitaMedica, VisitaMedicaViewModel> dataService, IDataService<Medico> medicoDataService, IModelValidator<VisitaMedicaViewModel> validator, VisitaMedica.VisitaMedicaFactory visitaMedicaFactory) : base(eventAggregator, dataService, validator)
+        public VisitaMedicaViewModel(IEventAggregator eventAggregator, IDataService<Donatore> donatoreDataService, IDataService<VisitaMedica, VisitaMedicaViewModel> dataService, IDataService<Medico> medicoDataService, IModelValidator<VisitaMedicaViewModel> validator, IVisitaMedicaFactory visitaMedicaFactory) : base(eventAggregator, dataService, validator)
         {
             _donatoreDataService = donatoreDataService;
             _medicoDataService = medicoDataService;
