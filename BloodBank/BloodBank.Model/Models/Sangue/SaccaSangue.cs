@@ -63,7 +63,7 @@ namespace BloodBank.Model.Models.Sangue
             return Id + ", " + Componente + " " + Gruppo + " (" + DataPrelievo + ")";
         }
 
-        public class SaccaSangueFactory : IFactory<SaccaSangue> {
+        public class SaccaSangueFactory : ISaccaSangueFactory {
             private readonly IDataService<SaccaSangue> _dataService;
 
             public SaccaSangueFactory(IDataService<SaccaSangue> dataService) {

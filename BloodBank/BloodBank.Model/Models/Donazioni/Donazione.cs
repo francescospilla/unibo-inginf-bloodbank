@@ -83,7 +83,7 @@ namespace BloodBank.Model.Models.Donazioni {
             return "Donatore: " + Donatore + ", Data: " + Data + ", Tipo: " + TipoDonazione;
         }
 
-        public class DonazioneFactory : IFactory<Donazione> {
+        public class DonazioneFactory : IDonazioneFactory {
             private readonly IDataService<Donazione> _dataService;
             private readonly SaccaSangue.SaccaSangueFactory _saccaSangueFactory;
 

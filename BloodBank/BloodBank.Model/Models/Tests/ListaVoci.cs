@@ -36,7 +36,7 @@ namespace BloodBank.Model.Models.Tests {
             }
         }
 
-        public abstract class ListaVociFactory<U> : IFactory<U> where U : ListaVoci {
+        public abstract class ListaVociFactory<U> : IListaVociFactory<U> where U : ListaVoci {
             private readonly IDataService<ListaVoci> _dataService;
 
             protected ListaVociFactory(IDataService<ListaVoci> dataService) {

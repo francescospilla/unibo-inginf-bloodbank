@@ -22,7 +22,7 @@ namespace BloodBank.Model.Models.Tests
         public Medico Medico { get; }
         public string Referto { get; set; }
 
-        public class VisitaMedicaFactory : IFactory<VisitaMedica> {
+        public class VisitaMedicaFactory : IVisitaMedicaFactory {
             private readonly IDataService<VisitaMedica> _dataService;
 
             public VisitaMedicaFactory(IDataService<VisitaMedica> dataService) {

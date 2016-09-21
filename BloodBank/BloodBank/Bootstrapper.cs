@@ -38,9 +38,11 @@ namespace BloodBank {
             kernel.Bind<IDataService<Voce<Analisi>>, VoceMockAnalisiDataService>().To<VoceMockAnalisiDataService>().InSingletonScope();
             kernel.Bind<IDataService<Voce<Questionario>>, VoceMockQuestionarioDataService>().To<VoceMockQuestionarioDataService>().InSingletonScope();
 
-            kernel.Bind<IFactory<Analisi>, ListaVoci.ListaVociFactory<Analisi>>().To<Analisi.AnalisiFactory>().InSingletonScope();
-            kernel.Bind<IFactory<Questionario>, ListaVoci.ListaVociFactory<Questionario>>().To<Questionario.QuestionarioFactory>().InSingletonScope();
-
+            kernel.Bind<IDonazioneFactory, Donazione.DonazioneFactory>().To<Donazione.DonazioneFactory>();
+            kernel.Bind<IListaVociFactory<Analisi>, ListaVoci.ListaVociFactory<Analisi>>().To<Analisi.AnalisiFactory>().InSingletonScope();
+            kernel.Bind<IListaVociFactory<Questionario>, ListaVoci.ListaVociFactory<Questionario>>().To<Questionario.QuestionarioFactory>().InSingletonScope();
+            kernel.Bind<ISaccaSangueFactory, SaccaSangue.SaccaSangueFactory>().To<SaccaSangue.SaccaSangueFactory>();
+            kernel.Bind<IVisitaMedicaFactory, VisitaMedica.VisitaMedicaFactory>().To<VisitaMedica.VisitaMedicaFactory>();
 
             kernel.ConfigureForFluentValidation(typeof(ValidatorExtensions));
         }
