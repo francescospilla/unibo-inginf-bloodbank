@@ -9,19 +9,28 @@ using PropertyChanged;
 using Stylet;
 using Stylet.DictionaryViewManager;
 
-namespace BloodBank.ViewModel.ViewModels
-{
+namespace BloodBank.ViewModel.ViewModels {
     [ImplementPropertyChanged]
     [AssociatedView("NuovaIndagineRangeDialogView")]
-    public abstract class NuovaIndagineRangeDialogViewModel<T> : NuovaIndagineDialogViewModel where T : struct, IComparable<T>
-    {
+    public abstract class NuovaIndagineRangeDialogViewModel<T> : NuovaIndagineDialogViewModel where T : struct, IComparable<T> {
         protected NuovaIndagineRangeDialogViewModel(IEventAggregator eventAggregator,
             IModelValidator<NuovaIndagineRangeDialogViewModel<T>> validator) : base(eventAggregator, validator) { }
 
         #region Properties
-        
-        public T? RangeMin { get; set; }
-        public T? RangeMax { get; set; }
+
+        private T? _rangeMin;
+        private T? _rangeMax;
+
+        public T? RangeMin {
+            get { return _rangeMin; }
+            set { _rangeMin = value; ValidateProperty(() => RangeMax); }
+        }
+
+
+        public T? RangeMax {
+            get { return _rangeMax; }
+            set { _rangeMax = value; ValidateProperty(() => RangeMin); }
+        }
 
         #endregion Properties
 
@@ -30,8 +39,7 @@ namespace BloodBank.ViewModel.ViewModels
 
     [ImplementPropertyChanged]
     public class NuovaIndagineRangeDialogViewModel<U, T> : NuovaIndagineRangeDialogViewModel<T> where T : struct, IComparable<T>
-        where U : ListaVoci
-    {
+        where U : ListaVoci {
         private readonly IDataService<Indagine<U>> _dataService;
 
         public NuovaIndagineRangeDialogViewModel(IEventAggregator eventAggregator, IDataService<Indagine<U>> dataService,
@@ -39,17 +47,16 @@ namespace BloodBank.ViewModel.ViewModels
             _dataService = dataService;
         }
 
-        public override IEnumerable<T> RangeEnumerable => typeof (T).Enumerable() as IEnumerable<T>;
+        public override IEnumerable<T> RangeEnumerable => typeof(T).Enumerable() as IEnumerable<T>;
 
-        protected override Indagine CreateModelFromViewModel()
-        {
+        protected override Indagine CreateModelFromViewModel() {
             return new IndagineRange<U, T>(Testo, IdoneitaFallimento, RangeMin.GetValueOrDefault(), RangeMax.GetValueOrDefault());
         }
 
         protected override void AddModel(Indagine model) {
-            _dataService.AddModel((Indagine<U>) model);
+            _dataService.AddModel((Indagine<U>)model);
         }
     }
 
-   
+
 }

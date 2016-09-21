@@ -19,8 +19,10 @@ namespace BloodBank.ViewModel.Validation.Indagini {
         public NuovaIndagineRangeValidator(IEnumerable<IDataService<Indagine>> dataServices) {
             RuleFor(vm => vm.Testo).NotEmpty().MustBeUnique(m => m.Testo, vm => vm.Testo, dataServices.PoolAllModels);
             RuleFor(vm => vm.IdoneitaFallimento).NotNull().IsInEnum();
-            RuleFor(vm => vm.RangeMin).NotEmpty().LessThanOrEqualTo(vm => vm.RangeMax);
-            RuleFor(vm => vm.RangeMax).NotEmpty().GreaterThanOrEqualTo(vm => vm.RangeMin);
+            RuleFor(vm => vm.RangeMin).NotEmpty();
+            RuleFor(vm => vm.RangeMin).LessThanOrEqualTo(vm => vm.RangeMax).When(vm => vm.RangeMax != null);
+            RuleFor(vm => vm.RangeMax).NotEmpty();
+            RuleFor(vm => vm.RangeMax).GreaterThanOrEqualTo(vm => vm.RangeMin).When(vm => vm.RangeMin != null);
 
         }
     }
