@@ -26,21 +26,6 @@ namespace BloodBank.ViewModel.ViewModels.Sangue {
 
         public string StringaRicerca => this.PropertyList(typeof(SearchableAttribute));
 
-        #region Data e Ora
-        private DateTime _data = DateTime.Today;
-        public DateTime Data
-        {
-            get { return _data; }
-            set { _data = value.Date; }
-        }
-
-        private DateTime _dataOra = DateTime.Now;
-        public DateTime DataOra
-        {
-            get { return _dataOra; }
-            set { _dataOra = Data.Add(value.TimeOfDay); }
-        }
-        #endregion
 
         [Searchable]
         public Guid Id { get; set; }
@@ -56,9 +41,11 @@ namespace BloodBank.ViewModel.ViewModels.Sangue {
         public bool Scaduta { get; set; }
         [Searchable]
         public string DisponibileString => !Disponibile ? "Non Disponibile" : Scaduta ? "Scaduta" : "Disponibile";
+        public DateTime Data { get; set; }
+        public DateTime DataOra { get; set; }
 
         #endregion
-        
+
 
         #region Mappings
 

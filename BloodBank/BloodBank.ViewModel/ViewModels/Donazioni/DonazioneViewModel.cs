@@ -27,23 +27,7 @@ namespace BloodBank.ViewModel.ViewModels.Donazioni
         public string CognomeNome => Donatore.Cognome + " " + Donatore.Nome;
 
         public string StringaRicerca => this.PropertyList(typeof(SearchableAttribute));
-
-        #region Data e Ora
-        private DateTime _data = DateTime.Today;
-        public DateTime Data
-        {
-            get { return _data; }
-            set { _data = value.Date; }
-        }
-
-        private DateTime _dataOra = DateTime.Now;
-        public DateTime DataOra
-        {
-            get { return _dataOra; }
-            set { _dataOra = Data.Add(value.TimeOfDay); }
-        }
-        #endregion
-
+        
         [Searchable]
         public Donatore Donatore { get; set; }
         public TipoDonazione TipoDonazione { get; set; }
@@ -51,6 +35,8 @@ namespace BloodBank.ViewModel.ViewModels.Donazioni
         public Analisi Analisi { get; set; }
         public Questionario Questionario { get; set; }
         public List<SaccaSangue> SaccheSangue { get; set; }
+        public DateTime Data { get; set; }
+        public DateTime DataOra { get; set; }
 
         #endregion Properties
 
