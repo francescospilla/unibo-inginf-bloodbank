@@ -59,7 +59,9 @@
     <Compile Include="Models\Sangue\ComponenteEmatico.cs" />
     <Compile Include="Models\Sangue\GruppoSanguigno.cs" />
     <Compile Include="Models\Sangue\SaccaSangue.cs" />
+    <Compile Include="Service\AnalisiFactory.cs" />
     <Compile Include="Service\DataService.cs" />
+    <Compile Include="Service\DonazioneFactory.cs" />
     <Compile Include="Service\IDataService.cs" />
     <Compile Include="Models\Tests\Analisi.cs" />
     <Compile Include="Models\Tests\ListaVoci.cs" />
@@ -67,6 +69,10 @@
     <Compile Include="Models\Tests\Test.cs" />
     <Compile Include="Models\Tests\VisitaMedica.cs" />
     <Compile Include="Service\IFactory.cs" />
+    <Compile Include="Service\ListaVociFactory.cs" />
+    <Compile Include="Service\QuestionarioFactory.cs" />
+    <Compile Include="Service\SaccaSangueFactory.cs" />
+    <Compile Include="Service\VisitaMedicaFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="FodyWeavers.xml" />

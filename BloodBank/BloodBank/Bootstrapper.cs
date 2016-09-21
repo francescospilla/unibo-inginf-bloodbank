@@ -38,6 +38,9 @@ namespace BloodBank {
             kernel.Bind<IDataService<Voce<Analisi>>, VoceAnalisiDataService>().To<VoceAnalisiDataService>().InSingletonScope();
             kernel.Bind<IDataService<Voce<Questionario>>, VoceQuestionarioDataService>().To<VoceQuestionarioDataService>().InSingletonScope();
 
+            kernel.Bind<ListaVociFactory<Analisi>>().To<AnalisiFactory>().InSingletonScope();
+            kernel.Bind<ListaVociFactory<Questionario>>().To<QuestionarioFactory>().InSingletonScope();
+
 
             kernel.ConfigureForFluentValidation(typeof(ValidatorExtensions));
         }
