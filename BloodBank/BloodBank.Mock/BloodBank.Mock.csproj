@@ -43,8 +43,8 @@
     <Compile Include="Donazioni\DonazioneMockDataService.cs" />
     <Compile Include="Indagini\IndagineAnalisiMockDataService.cs" />
     <Compile Include="Indagini\IndagineQuestionarioMockDataService.cs" />
-    <Compile Include="Indagini\ListaIndaginiMockAnalisiDataService.cs" />
-    <Compile Include="Indagini\ListaIndaginiMockQuestionarioDataService.cs" />
+    <Compile Include="Indagini\ListaIndaginiAnalisiMockDataService.cs" />
+    <Compile Include="Indagini\ListaIndaginiQuestionarioMockDataService.cs" />
     <Compile Include="Test\AnalisiMockDataService.cs" />
     <Compile Include="Persone\MedicoMockDataService.cs" />
     <Compile Include="MockDataService.cs" />

@@ -22,7 +22,7 @@ namespace BloodBank.Mock.Indagini {
             A5 = new IndagineBoolean<Analisi>("HIVAb 1-2 (per l'AIDS)", Idoneità.NonIdoneo, false);
             A6 = new IndagineBoolean<Analisi>("HCVAb e costituenti virali (per l'epatite C)", Idoneità.NonIdoneo, false);
 
-            _models = new ObservableCollection<object> { A1, A2, A3, A4, A5, A6 };
+            _models = new ObservableCollection<Indagine<Analisi>> { A1, A2, A3, A4, A5, A6 };
         }
 
     }

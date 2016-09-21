@@ -29,7 +29,7 @@ namespace BloodBank.Mock.Test {
         internal Questionario Q5;
 
         public QuestionarioMockDataService(DonatoreMockDataService d, VoceQuestionarioMockDataService vq, IKernel kernel) {
-            _models = new ObservableCollection<object>();
+            _models = new ObservableCollection<Questionario>();
 
             IQuestionarioFactory factory = kernel.Get<IQuestionarioFactory>(new ConstructorArgument("dataService", this));
 
@@ -48,7 +48,7 @@ namespace BloodBank.Mock.Test {
             Q4 = factory.CreateModel(d.D4, "Descrizione Questionario 4", new DateTime(2016, 07, 02, 14, 40, 00), Lvq4);
             Q5 = factory.CreateModel(d.D5, "Descrizione Questionario 5", new DateTime(2016, 09, 14, 09, 25, 00), Lvq1);
 
-            _models = new ObservableCollection<object>(_models.Cast<Questionario>().OrderBy(test => test.Data));
+            _models = new ObservableCollection<Questionario>(_models.Cast<Questionario>().OrderBy(test => test.Data));
 
         }
 

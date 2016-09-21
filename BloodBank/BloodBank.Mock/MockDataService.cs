@@ -6,9 +6,9 @@ using BloodBank.Model.Service;
 namespace BloodBank.Mock {
 
     public abstract class MockDataService<TModel> : IDataService<TModel> where TModel : class {
-        protected ObservableCollection<object> _models;
+        protected ObservableCollection<TModel> _models;
 
-        public void AddModel(object model) {
+        public void AddModel(TModel model) {
             _models.Add(model);
         }
 
@@ -16,7 +16,7 @@ namespace BloodBank.Mock {
             return _models.Cast<TModel>();
         }
 
-        public ObservableCollection<object> GetObservableCollection() {
+        public ObservableCollection<TModel> GetObservableCollection() {
             return _models;
         }
     }

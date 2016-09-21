@@ -15,7 +15,7 @@ namespace BloodBank.Mock.Donazioni {
         internal Donazione Donazione4;
 
         public DonazioneMockDataService(DonatoreMockDataService d, VisitaMedicaMockDataService v, AnalisiMockDataService a, QuestionarioMockDataService q, IKernel kernel) {
-            _models = new ObservableCollection<object>();
+            _models = new ObservableCollection<Donazione>();
 
             IDonazioneFactory factory = kernel.Get<IDonazioneFactory>(new ConstructorArgument("dataService", this));
             

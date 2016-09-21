@@ -40,7 +40,7 @@ namespace BloodBank.Mock.Persone {
             D13 = new Donatore(new Contatto("Marta", "Martinelli", Sesso.Femmina, new DateTime(1926, 05, 03), "MOEXFV77A48L614A", "Via Battibecco", "Bologna", "Italia", "12341"), GruppoSanguigno.AB_Pos, false);
             D14 = new Donatore(new Contatto("Xing", "Li", Sesso.Femmina, new DateTime(2004, 06, 01), "VXGFFM39D17F716B", "Wood Duck Drive", "Sand River", "Indiana", "46563"), GruppoSanguigno.AB_Pos, false);
 
-            _models = new ObservableCollection<object> {D1, D2, D3, D4, D5, D6, D7, D8, D9, D10, D11, D12, D13, D14};
+            _models = new ObservableCollection<Donatore> {D1, D2, D3, D4, D5, D6, D7, D8, D9, D10, D11, D12, D13, D14};
         }
     }
 }

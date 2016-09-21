@@ -33,7 +33,7 @@ namespace BloodBank.Mock.Indagini {
             Vq11 = new Voce<Questionario, double>(iq.Q6, 5.6);
             Vq12 = new Voce<Questionario, double>(iq.Q6, 15.0);
 
-            _models = new ObservableCollection<object> {Vq1, Vq1, Vq2, Vq3, Vq4, Vq5, Vq6, Vq7, Vq8, Vq9, Vq10, Vq11, Vq12};
+            _models = new ObservableCollection<Voce<Questionario>> {Vq1, Vq1, Vq2, Vq3, Vq4, Vq5, Vq6, Vq7, Vq8, Vq9, Vq10, Vq11, Vq12};
         }
 
     }

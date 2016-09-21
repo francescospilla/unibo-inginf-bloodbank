@@ -22,7 +22,7 @@ namespace BloodBank.Mock.Test {
         internal VisitaMedica V10;
 
         public VisitaMedicaMockDataService(DonatoreMockDataService d, MedicoMockDataService m, IKernel kernel) {
-            _models = new ObservableCollection<object>();
+            _models = new ObservableCollection<VisitaMedica>();
 
             IVisitaMedicaFactory factory = kernel.Get<IVisitaMedicaFactory>(new ConstructorArgument("dataService", this));
             
@@ -37,7 +37,7 @@ namespace BloodBank.Mock.Test {
             V9 = factory.CreateModel(d.D9, "Descrizione", new DateTime(2016, 09, 17, 16, 08, 52), Idoneità.NonIdoneo, m.M1, "Non credo vada proprio bene così però.");
             V10 = factory.CreateModel(d.D10, "Descrizione superbreve", new DateTime(2016, 04, 13, 14, 37, 43), Idoneità.NonIdoneo, m.M2, "Facciamo che torni un'altra volta.");
 
-            _models = new ObservableCollection<object>(_models.Cast<VisitaMedica>().OrderBy(test => test.Data));
+            _models = new ObservableCollection<VisitaMedica>(_models.Cast<VisitaMedica>().OrderBy(test => test.Data));
         }
 
     }

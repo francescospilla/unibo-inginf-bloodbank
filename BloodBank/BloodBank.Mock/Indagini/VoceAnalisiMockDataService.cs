@@ -32,7 +32,7 @@ namespace BloodBank.Mock.Indagini {
             Va11 = new Voce<Analisi, bool>(ia.A6, true);
             Va12 = new Voce<Analisi, bool>(ia.A6, false);
 
-            _models = new ObservableCollection<object> {Va1, Va2, Va3, Va4, Va5, Va6, Va7, Va8, Va9, Va10, Va11, Va12};
+            _models = new ObservableCollection<Voce<Analisi>> {Va1, Va2, Va3, Va4, Va5, Va6, Va7, Va8, Va9, Va10, Va11, Va12};
         }
 
     }

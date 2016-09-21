@@ -27,7 +27,7 @@ namespace BloodBank.Mock.Test {
         internal Analisi A4;
 
         public AnalisiMockDataService(DonatoreMockDataService d, VoceAnalisiMockDataService va, IKernel kernel) {
-            _models = new ObservableCollection<object>();
+            _models = new ObservableCollection<Analisi>();
 
             IAnalisiFactory factory = kernel.Get<IAnalisiFactory>(new ConstructorArgument("dataService", this));
 
@@ -44,7 +44,7 @@ namespace BloodBank.Mock.Test {
             A3 = factory.CreateModel(d.D3, "Descrizione Analisi 3", new DateTime(2016, 05, 15, 17, 03, 00), Lva3);
             A4 = factory.CreateModel(d.D4, "Descrizione Analisi 4", new DateTime(2016, 07, 02, 15, 00, 12), Lva1);
 
-            _models = new ObservableCollection<object>(_models.Cast<Analisi>().OrderBy(test => test.Data));
+            _models = new ObservableCollection<Analisi>(_models.Cast<Analisi>().OrderBy(test => test.Data));
         }
 
 
