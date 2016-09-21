@@ -57,7 +57,7 @@ namespace BloodBank.ViewModel.Service {
             _modelService.GetObservableCollection().Add(model);
         }
 
-        public void AddModelAndExistingViewModel(TModel model, object viewModel) {
+        public void AddModelAndExistingViewModel(TModel model, IScreen viewModel) {
             Inizialize();
             
             _viewModelList.Add((TViewModel) viewModel);
