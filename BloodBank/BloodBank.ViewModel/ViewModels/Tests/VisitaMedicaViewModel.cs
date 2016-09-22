@@ -41,28 +41,35 @@ namespace BloodBank.ViewModel.ViewModels.Tests {
         public string StringaRicerca => this.PropertyList(typeof(SearchableAttribute));
 
         #region Data e Ora
+
         private DateTime? _data = DateTime.Today;
+
         public DateTime? Data {
             get { return _data; }
-            set {
-                _data = value?.Date;
-                if (Data.HasValue && DataOra.HasValue)
-                    _dataOra = Data.Value.Add(DataOra.Value.TimeOfDay);
-                ValidateProperty(() => DataOra);
-            }
+            set { SetData(value); }
         }
 
         private DateTime? _dataOra = DateTime.Now;
+
         public DateTime? DataOra {
             get { return _dataOra; }
-            set {
-                if (Data.HasValue && value.HasValue)
-                    _dataOra = Data.Value.Add(value.Value.TimeOfDay);
-                else
-                    _dataOra = value;
-                ValidateProperty(() => Data);
-            }
+            set { SetDataOra(value); }
         }
+
+        private void SetData(DateTime? value) {
+            _data = value?.Date;
+            SetDataOra(DataOra);
+            ValidateProperty(() => DataOra);
+        }
+
+        private void SetDataOra(DateTime? value) {
+            if (Data.HasValue && value.HasValue)
+                _dataOra = Data.Value.Add(value.Value.TimeOfDay);
+            else
+                _dataOra = value;
+            ValidateProperty(() => Data);
+        }
+
         #endregion
 
         private Donatore _donatore;
