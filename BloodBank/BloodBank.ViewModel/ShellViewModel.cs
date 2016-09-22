@@ -15,7 +15,7 @@ namespace BloodBank.ViewModel {
     [ImplementPropertyChanged]
     public class ShellViewModel : Conductor<NavigationMenuItem>.Collection.OneActive, IHandle<NavMenuEvent>, IHandle<DialogEvent> {
 
-        public ShellViewModel(IEventAggregator eventAggregator, DonatoriViewModel donatoriViewModel, DonazioniViewModel donazioniViewModel, SaccheSangueViewModel saccheSangueViewModel, ListeIndaginiViewModel<Questionario> listeIndaginiQuestionarioViewModel, VisiteMedicheViewModel visiteMedicheViewModel, AnalisiViewModel analisiViewModel, QuestionariViewModel questionariViewModel, IndaginiViewModel indaginiViewModel) {
+        public ShellViewModel(IEventAggregator eventAggregator, DonatoriViewModel donatoriViewModel, DonazioniViewModel donazioniViewModel, SaccheSangueViewModel saccheSangueViewModel, ListeIndaginiViewModel<Analisi> listeIndaginiAnalisIndaginiViewModel, ListeIndaginiViewModel<Questionario> listeIndaginiQuestionarioViewModel, VisiteMedicheViewModel visiteMedicheViewModel, AnalisiViewModel analisiViewModel, QuestionariViewModel questionariViewModel, IndaginiViewModel indaginiViewModel) {
 
             eventAggregator.Subscribe(this);
 
@@ -26,7 +26,8 @@ namespace BloodBank.ViewModel {
             AddNewNavigationMenuItem(analisiViewModel, "Analisi", "Hospital");
             AddNewNavigationMenuItem(questionariViewModel, "Questionari", "Book");
             AddNewNavigationMenuItem(saccheSangueViewModel, "Sacche di Sangue", "Water");
-            AddNewNavigationMenuItem(listeIndaginiQuestionarioViewModel, "Questionari", "Pencil");
+            AddNewNavigationMenuItem(listeIndaginiAnalisIndaginiViewModel, "Configura Analisi", "Pencil");
+            AddNewNavigationMenuItem(listeIndaginiQuestionarioViewModel, "Configura Questionari", "Pencil");
             AddNewNavigationMenuItem(visiteMedicheViewModel, "Visite Mediche", "Stethoscope");            
             AddNewNavigationMenuItem(indaginiViewModel, "Indagini", "Help");
 
