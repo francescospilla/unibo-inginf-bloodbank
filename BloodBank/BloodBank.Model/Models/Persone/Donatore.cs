@@ -29,7 +29,13 @@ namespace BloodBank.Model.Models.Persone
         }
 
         public GruppoSanguigno GruppoSanguigno { get; }
-        public Idoneità? Idoneità { get; private set; }
+
+        private Idoneità? _idoneità;
+        public Idoneità? Idoneità {
+            get { return DataNascita.Age() > RangeEtà.Item2 ? Models.Idoneità.NonIdoneo : _idoneità; }
+            private set { _idoneità = value; }
+        }
+
         public DateTime? DataProssimaDonazioneConsentita { get; private set; }
         public bool Attivo { get; set; }
 
