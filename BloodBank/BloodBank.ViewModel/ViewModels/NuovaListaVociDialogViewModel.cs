@@ -27,7 +27,7 @@ namespace BloodBank.ViewModel.ViewModels {
 
         #region Constructors
 
-        public NuovaListaVociDialogViewModel(IEventAggregator eventAggregator, IDataService<Donatore> donatoreDataService, IDataService<ListaIndagini<U>> listaIndaginiDataService, VoceViewModelFactory<U> voceViewModelFactory, IListaVociFactory<U> listaVociFactory, DonatoreViewModel donatoreViewModel, ListaIndaginiViewModel<U> listaIndaginiViewModel) {
+        public NuovaListaVociDialogViewModel(IEventAggregator eventAggregator, IDataService<Donatore> donatoreDataService, IDataService<ListaIndagini<U>> listaIndaginiDataService, VoceViewModelFactory<U> voceViewModelFactory, IListaVociFactory<U> listaVociFactory, DonatoreViewModel donatoreViewModel, ListaIndaginiViewModel<U> listaIndaginiViewModel, IModelValidator<NuovaListaVociDialogViewModel<U>> validator) : base(validator){
             _eventAggregator = eventAggregator;
             _donatoreDataService = donatoreDataService;
             _listaIndaginiDataService = listaIndaginiDataService;
@@ -49,7 +49,7 @@ namespace BloodBank.ViewModel.ViewModels {
         private Donatore _selectedDonatore;
         public Donatore SelectedDonatore {
             get { return _selectedDonatore; }
-            set { _selectedDonatore = value; DonatoreViewModel.Model = _selectedDonatore; }
+            set { _selectedDonatore = value; DonatoreViewModel.Model = _selectedDonatore; ValidateProperty(() => Data); ValidateProperty(() => DataOra); }
         }
 
         private ListaIndagini<U> _selectedListaIndagini;
@@ -68,20 +68,35 @@ namespace BloodBank.ViewModel.ViewModels {
         public bool CanMoveToLastPage => VociViewModelEnumerable != null && VociViewModelEnumerable.All(vm => vm.CanSave);
 
         #region Data e Ora
-        private DateTime _data = DateTime.Today;
-        public DateTime Data {
+
+        private DateTime? _data = DateTime.Today;
+        public DateTime? Data {
             get { return _data; }
-            set { _data = value.Date; }
+            set { SetData(value); }
         }
 
-        private DateTime _dataOra = DateTime.Now;
-        public DateTime DataOra {
+        private DateTime? _dataOra = DateTime.Now;
+        public DateTime? DataOra {
             get { return _dataOra; }
-            set { _dataOra = Data.Add(value.TimeOfDay); }
+            set { SetDataOra(value); }
         }
+
+        private void SetData(DateTime? value) {
+            _data = value?.Date;
+            SetDataOra(DataOra);
+            ValidateProperty(() => DataOra);
+        }
+
+        private void SetDataOra(DateTime? value) {
+            if (Data.HasValue && value.HasValue)
+                _dataOra = Data.Value.Add(value.Value.TimeOfDay);
+            else
+                _dataOra = value;
+            ValidateProperty(() => Data);
+        }
+
         #endregion
-
-
+        
         #endregion
 
         public IEnumerable<Donatore> DonatoreEnumerable { get; }
@@ -133,7 +148,7 @@ namespace BloodBank.ViewModel.ViewModels {
             if (_stepCorrente != Step.Riepilogo)
                 throw new InvalidOperationException("stepCorrente != Step.Riepilogo");
 
-            _listaVociFactory.CreateModel(SelectedDonatore, SelectedListaIndagini.Nome, DataOra, GeneratedListVoci);
+            _listaVociFactory.CreateModel(SelectedDonatore, SelectedListaIndagini.Nome, DataOra.GetValueOrDefault(), GeneratedListVoci);
             _eventAggregator.Publish(new DialogEvent(false, null));
 
         }

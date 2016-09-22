@@ -63,6 +63,7 @@
     <Compile Include="Events\ViewModelCollectionChangedEvent.cs" />
     <Compile Include="Service\VoceViewModelFactory.cs" />
     <Compile Include="Validation\Indagini\VoceValidator.cs" />
+    <Compile Include="Validation\Tests\NuovaListaVociValidator.cs" />
     <Compile Include="ViewModels\Donazioni\DonazioneViewModel.cs" />
     <Compile Include="ViewModels\NuovaDonazioneDialogViewModel.cs" />
     <Compile Include="ViewModels\NuovaListaVociDialogViewModel.cs" />

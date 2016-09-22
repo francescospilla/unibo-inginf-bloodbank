@@ -44,14 +44,12 @@ namespace BloodBank.ViewModel.ViewModels.Tests {
         #region Data e Ora
 
         private DateTime? _data = DateTime.Today;
-
         public DateTime? Data {
             get { return _data; }
             set { SetData(value); }
         }
 
         private DateTime? _dataOra = DateTime.Now;
-
         public DateTime? DataOra {
             get { return _dataOra; }
             set { SetDataOra(value); }
