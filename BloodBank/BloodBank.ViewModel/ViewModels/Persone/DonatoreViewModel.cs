@@ -73,17 +73,17 @@ namespace BloodBank.ViewModel.ViewModels.Persone {
         #region Mappings
 
         protected override void SyncModelToViewModel() {
-            Nome = Model.Nome;
-            Cognome = Model.Cognome;
-            Sesso = Model.Sesso;
-            DataNascita = Model.DataNascita;
-            CodiceFiscale = Model.CodiceFiscale;
-            Indirizzo = Model.Indirizzo;
-            Città = Model.Città;
-            Stato = Model.Stato;
-            CodicePostale = Model.CodicePostale;
-            Telefono = Model.Telefono;
-            Email = Model.Email;
+            Nome = Model.Contatto.Nome;
+            Cognome = Model.Contatto.Cognome;
+            Sesso = Model.Contatto.Sesso;
+            DataNascita = Model.Contatto.DataNascita;
+            CodiceFiscale = Model.Contatto.CodiceFiscale;
+            Indirizzo = Model.Contatto.Indirizzo;
+            Città = Model.Contatto.Città;
+            Stato = Model.Contatto.Stato;
+            CodicePostale = Model.Contatto.CodicePostale;
+            Telefono = Model.Contatto.Telefono;
+            Email = Model.Contatto.Email;
             GruppoSanguigno = Model.GruppoSanguigno;
             Idoneità = Model.Idoneità;
             Attivo = Model.Attivo;
@@ -100,12 +100,12 @@ namespace BloodBank.ViewModel.ViewModels.Persone {
         }
 
         protected override void SyncViewModelToModel() {
-            Model.Indirizzo = Indirizzo;
-            Model.Città = Città;
-            Model.Stato = Stato;
-            Model.CodicePostale = CodicePostale;
-            Model.Telefono = Telefono;
-            Model.Email = Email;
+            Model.Contatto.Indirizzo = Indirizzo;
+            Model.Contatto.Città = Città;
+            Model.Contatto.Stato = Stato;
+            Model.Contatto.CodicePostale = CodicePostale;
+            Model.Contatto.Telefono = Telefono;
+            Model.Contatto.Email = Email;
             Model.Attivo = Attivo;
         }
 

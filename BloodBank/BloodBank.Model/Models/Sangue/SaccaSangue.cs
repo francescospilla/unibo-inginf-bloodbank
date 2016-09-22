@@ -72,7 +72,7 @@ namespace BloodBank.Model.Models.Sangue
 
             public SaccaSangue CreateModel(Donazione donazione, GruppoSanguigno gruppo, ComponenteEmatico componente, DateTime dataPrelievo) {
                 var model = new SaccaSangue(donazione, gruppo, componente, dataPrelievo);
-                donazione.SaccheSangue.Add(model);
+                donazione.AggiungiSaccaSangue(model);
                 _dataService.AddModel(model);
                 return model;
             }

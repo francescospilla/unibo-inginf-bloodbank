@@ -17,7 +17,7 @@ namespace BloodBank.ViewModel.Validation.Persone {
                 .NotEmpty()
                 .Length(CodiceFiscaleValidator.ExpectedLength)
                 .SetValidator(codiceFiscaleValidator)
-                .MustBeUnique(m => m.CodiceFiscale, vm => vm.CodiceFiscale, dataService.GetModels, vm => vm.Model, vm => vm.IsInitialized);
+                .MustBeUnique(m => m.Contatto.CodiceFiscale, vm => vm.CodiceFiscale, dataService.GetModels, vm => vm.Model, vm => vm.IsInitialized);
             RuleFor(vm => vm.DataNascita).NotNull().LessThanOrEqualTo(vm => DateTime.Now);
             RuleFor(vm => vm.Indirizzo).NotEmpty();
             RuleFor(vm => vm.Città).NotEmpty();

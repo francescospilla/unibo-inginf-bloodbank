@@ -8,19 +8,18 @@ using BloodBank.Model.Service;
 namespace BloodBank.Model.Models.Tests {
 
     public abstract class ListaVoci : Test {
-        private readonly IEnumerable<Voce> _listaVoci;
-
         protected ListaVoci(Donatore donatore, string descrizioneBreve, DateTime data, IEnumerable<Voce> listaVoci)
             : base(donatore, data, descrizioneBreve) {
-            _listaVoci = listaVoci;
-            Idoneità = _listaVoci.Select(e => e.Idoneità).CalculateIdoneitàFromList();
+            Voci = listaVoci;
+            Idoneità = Voci.Select(e => e.Idoneità).CalculateIdoneitàFromList();
         }
 
-        public IEnumerable<Voce> Voci => _listaVoci;
+        public IEnumerable<Voce> Voci { get; }
+
         public override Idoneità Idoneità { get; }
 
         protected bool Equals(ListaVoci other) {
-            return base.Equals(other) && Equals(_listaVoci, other._listaVoci);
+            return base.Equals(other) && Equals(Voci, other.Voci);
         }
 
         public override bool Equals(object obj) {
@@ -32,7 +31,7 @@ namespace BloodBank.Model.Models.Tests {
 
         public override int GetHashCode() {
             unchecked {
-                return (base.GetHashCode() * 397) ^ (_listaVoci?.GetHashCode() ?? 0);
+                return (base.GetHashCode() * 397) ^ (Voci?.GetHashCode() ?? 0);
             }
         }
 

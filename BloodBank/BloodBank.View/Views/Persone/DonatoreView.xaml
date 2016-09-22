@@ -110,7 +110,7 @@
                                  Text="{Binding Path=Email, UpdateSourceTrigger=PropertyChanged}">
         </TextBox>
 
-        <Grid Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="4" components:LayoutSetter.Margin="10">
+        <Grid Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="4" components:LayoutSetter.Margin="10" Margin="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />

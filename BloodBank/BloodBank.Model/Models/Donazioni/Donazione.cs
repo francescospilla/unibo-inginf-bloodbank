@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using BloodBank.Model.Models.Persone;
 using BloodBank.Model.Models.Sangue;
@@ -32,7 +33,7 @@ namespace BloodBank.Model.Models.Donazioni {
             VisitaMedica = visitaMedica;
             Analisi = analisi;
             Questionario = questionario;
-            SaccheSangue = new List<SaccaSangue>();
+            _saccheSangue = new List<SaccaSangue>();
             DataProssimaDonazioneConsentita = data.AddDays(tipoDonazione.GiorniDiRiposo);
         }
 
@@ -42,11 +43,13 @@ namespace BloodBank.Model.Models.Donazioni {
         public VisitaMedica VisitaMedica { get; }
         public Analisi Analisi { get; }
         public Questionario Questionario { get; }
-        public List<SaccaSangue> SaccheSangue { get; }
+
+        private readonly List<SaccaSangue> _saccheSangue;
+        public IEnumerable<SaccaSangue> SaccheSangue => new ReadOnlyCollection<SaccaSangue>(_saccheSangue);
 
         public DateTime DataProssimaDonazioneConsentita { get; }
 
-        public void EffettuaPrelievo(ISaccaSangueFactory saccaSangueFactory) {
+        private void EffettuaPrelievo(ISaccaSangueFactory saccaSangueFactory) {
             // Contract.Requires<InvalidOperationException>(SaccheSangue.Count == 0, "SaccheSangue.Count == 0");
 
             foreach (ComponenteEmatico componente in TipoDonazione.ComponentiDerivati)
@@ -54,6 +57,10 @@ namespace BloodBank.Model.Models.Donazioni {
                     saccaSangueFactory.CreateModel(this, Donatore.GruppoSanguigno, componente, Data);
 
             // Contract.Ensures(SaccheSangue.Count > 0, "SaccheSangue.Count > 0");
+        }
+
+        public void AggiungiSaccaSangue(SaccaSangue saccaSangue) {
+            _saccheSangue.Add(saccaSangue);
         }
 
         private static bool AreDateTestValide(DateTime dataDonazione, params DateTime[] dateTest) {
@@ -83,7 +90,7 @@ namespace BloodBank.Model.Models.Donazioni {
 
         public class DonazioneFactory : IDonazioneFactory {
             private readonly IDataService<Donazione> _dataService;
-            private readonly SaccaSangue.SaccaSangueFactory _saccaSangueFactory;
+            private readonly ISaccaSangueFactory _saccaSangueFactory;
 
             public DonazioneFactory(IDataService<Donazione> dataService, SaccaSangue.SaccaSangueFactory saccaSangueFactory) {
                 _dataService = dataService;

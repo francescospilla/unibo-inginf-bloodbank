@@ -23,8 +23,8 @@ namespace BloodBank.ViewModel.ViewModels.Donazioni
 
         public new string DisplayName => IsInitialized ? DonazioneNomeCognome : "Donazioni...";
 
-        public string DonazioneNomeCognome => "Donazione " +  Donatore.Nome + " " + Donatore.Cognome;
-        public string CognomeNome => Donatore.Cognome + " " + Donatore.Nome;
+        public string DonazioneNomeCognome => "Donazione " +  Donatore.Contatto.Nome + " " + Donatore.Contatto.Cognome;
+        public string CognomeNome => Donatore.Contatto.Cognome + " " + Donatore.Contatto.Nome;
 
         public string StringaRicerca => this.PropertyList(typeof(SearchableAttribute));
         
@@ -34,7 +34,7 @@ namespace BloodBank.ViewModel.ViewModels.Donazioni
         public VisitaMedica VisitaMedica { get; set; }
         public Analisi Analisi { get; set; }
         public Questionario Questionario { get; set; }
-        public List<SaccaSangue> SaccheSangue { get; set; }
+        public IEnumerable<SaccaSangue> SaccheSangue { get; set; }
         public DateTime Data { get; set; }
         public DateTime DataOra { get; set; }
 

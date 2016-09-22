@@ -15,7 +15,8 @@ namespace BloodBank.Model.Models.Indagini
     public abstract class Voce<U> : Voce where U : ListaVoci
     { }
 
-    [ImplementPropertyChanged] public class Voce<U, T> : Voce<U> where T : IComparable<T> where U : ListaVoci
+    [ImplementPropertyChanged]
+    public class Voce<U, T> : Voce<U> where T : IComparable<T> where U : ListaVoci
     {
 
         public Voce(Indagine<U, T> indagine, T risultato)

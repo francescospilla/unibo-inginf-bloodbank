@@ -58,7 +58,7 @@
                         <md:TimePicker Grid.Column="1" x:Name="TimePickerDataListaVoci" md:HintAssist.Hint="Ora del Test" Is24Hours="True" SelectedTime="{Binding Path=DataOra, UpdateSourceTrigger=PropertyChanged}"  />
                     </Grid>
 
-                    <ContentControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" s:View.Model="{Binding DonatoreViewModel}" components:ReadOnlyPanel.IsReadOnly="True" Margin="10"/>
+                    <ContentControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" s:View.Model="{Binding DonatoreViewModel}" Visibility="{Binding SelectedDonatore, Converter={StaticResource NullToVisibility}}" components:ReadOnlyPanel.IsReadOnly="True" />
 
                 </Grid>
             </xctk:WizardPage>
@@ -76,8 +76,8 @@
                     </Grid.ColumnDefinitions>
 
                     <ComboBox Grid.Row="0" Grid.Column="1" md:HintAssist.Hint="ListaIndagini" ItemsSource="{Binding ListaIndaginiEnumerable}" SelectedItem="{Binding SelectedListaIndagini}" />
-                    
-                    <ContentControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" s:View.Model="{Binding ListaIndaginiViewModel}" components:ReadOnlyPanel.IsReadOnly="True" Margin="10"/>
+
+                    <ContentControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" s:View.Model="{Binding ListaIndaginiViewModel}" Visibility="{Binding SelectedListaIndagini, Converter={StaticResource NullToVisibility}}" components:ReadOnlyPanel.IsReadOnly="True" />
                 
                 </Grid>
             </xctk:WizardPage>
@@ -101,12 +101,12 @@
 
                     <md:PackIcon Grid.Row="1" Grid.Column="0" Kind="Account" Foreground="{Binding ElementName=TextBoxNomeDonatore, Path=BorderBrush}" />
                     <TextBox Grid.Row="1" Grid.Column="1" x:Name="TextBoxNomeDonatore" md:HintAssist.Hint="Nome Donatore" IsEnabled="False"
-                                 Text="{Binding Path=SelectedDonatore.Model, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}">
+                                 Text="{Binding Path=SelectedDonatore, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}">
                     </TextBox>
 
                     <md:PackIcon Grid.Row="2" Grid.Column="0" Kind="TagOutline" Foreground="{Binding ElementName=TextBoxListaIndagini, Path=BorderBrush}" />
                     <TextBox Grid.Row="2" Grid.Column="1" x:Name="TextBoxListaIndagini" md:HintAssist.Hint="Test selezionato" IsEnabled="False"
-                                 Text="{Binding Path=SelectedListaIndagini.Model, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" VerticalContentAlignment="Top"  TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True">
+                                 Text="{Binding Path=SelectedListaIndagini, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" VerticalContentAlignment="Top"  TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True">
                     </TextBox>
 
                     <md:PackIcon Grid.Row="3" Grid.Column="0" Kind="Calendar" Foreground="{Binding ElementName=TextBoxData, Path=BorderBrush}" />
