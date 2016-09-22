@@ -22,6 +22,7 @@ namespace BloodBank.Mock.Persone {
         // Questi donatori non sono idonei
         internal Donatore D13;
         internal Donatore D14;
+        internal Donatore D15;
 
         public DonatoreMockDataService() {
             D1 = new Donatore(new Contatto("Pasquale", "Cafiero", Sesso.Maschio, new DateTime(1971, 12, 24), "DQCSRN36T14A704A", "Via Capo di Monte, 33", "Bologna", "Italia", "40135"), GruppoSanguigno.AB_Neg, true);
@@ -39,8 +40,9 @@ namespace BloodBank.Mock.Persone {
             // Questi donatori non sono idonei
             D13 = new Donatore(new Contatto("Marta", "Martinelli", Sesso.Femmina, new DateTime(1926, 05, 03), "MOEXFV77A48L614A", "Via Battibecco", "Bologna", "Italia", "12341"), GruppoSanguigno.AB_Pos, false);
             D14 = new Donatore(new Contatto("Xing", "Li", Sesso.Femmina, new DateTime(2004, 06, 01), "VXGFFM39D17F716B", "Wood Duck Drive", "Sand River", "Indiana", "46563"), GruppoSanguigno.AB_Pos, false);
+            D15 = new Donatore(new Contatto("Xing", "Lian", Sesso.Maschio, new DateTime(1930, 06, 01), "BVRGNM33H14H298O", "Wood Duck Drive", "Sand River", "Indiana", "46563"), GruppoSanguigno.AB_Pos, true);
 
-            _models = new ObservableCollection<Donatore> {D1, D2, D3, D4, D5, D6, D7, D8, D9, D10, D11, D12, D13, D14};
+            _models = new ObservableCollection<Donatore> {D1, D2, D3, D4, D5, D6, D7, D8, D9, D10, D11, D12, D13, D14, D15};
         }
     }
 }
