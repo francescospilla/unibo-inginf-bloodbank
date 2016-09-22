@@ -18,8 +18,8 @@ namespace BloodBank.ViewModel.Service {
             _eventAggregator = eventAggregator;
         }
 
-        public IEnumerable<VoceViewModel> CreateViewModelsFrom(ListaIndaginiViewModel<U> selectedListaIndagini) {
-            return selectedListaIndagini.Model.Cast<Indagine<U>>().Select(CreateViewModelFrom).ToList();
+        public IEnumerable<VoceViewModel> CreateViewModelsFrom(ListaIndagini<U> selectedListaIndagini) {
+            return selectedListaIndagini.Cast<Indagine<U>>().Select(CreateViewModelFrom).ToList();
         }
 
         private VoceViewModel CreateViewModelFrom(Indagine<U> indagine){

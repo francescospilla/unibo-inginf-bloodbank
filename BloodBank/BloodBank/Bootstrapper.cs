@@ -25,9 +25,7 @@ namespace BloodBank {
 
         protected override void ConfigureIoC(IKernel kernel) {
             base.ConfigureIoC(kernel);
-
-            kernel.Bind(typeof(IDataService<,>)).To(typeof(DataService<,>)).InSingletonScope();
-            
+          
             kernel.Bind<IDataService<Donatore>, DonatoreMockDataService>().To<DonatoreMockDataService>().InSingletonScope();
             kernel.Bind<IDataService<Donazione>, DonazioneMockDataService>().To<DonazioneMockDataService>().InSingletonScope();
             kernel.Bind<IDataService<Indagine<Analisi>>, IndagineAnalisiMockDataService>().To<IndagineAnalisiMockDataService>().InSingletonScope();

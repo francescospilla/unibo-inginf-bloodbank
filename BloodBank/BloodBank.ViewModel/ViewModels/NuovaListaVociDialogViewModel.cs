@@ -20,32 +20,48 @@ namespace BloodBank.ViewModel.ViewModels {
     [AssociatedView("NuovaListaVociDialogView")]
     public class NuovaListaVociDialogViewModel<U> : Screen where U : ListaVoci {
         private readonly IEventAggregator _eventAggregator;
-        private readonly IDataService<Donatore, DonatoreViewModel> _donatoreDataService;
-        private readonly IDataService<ListaIndagini<U>, ListaIndaginiViewModel<U>> _listaIndaginiDataService;
+        private readonly IDataService<Donatore> _donatoreDataService;
+        private readonly IDataService<ListaIndagini<U>> _listaIndaginiDataService;
         private readonly VoceViewModelFactory<U> _voceViewModelFactory;
         private readonly IListaVociFactory<U> _listaVociFactory; 
 
         #region Constructors
 
-        public NuovaListaVociDialogViewModel(IEventAggregator eventAggregator, IDataService<Donatore, DonatoreViewModel> donatoreDataService, IDataService<ListaIndagini<U>, ListaIndaginiViewModel<U>> listaIndaginiDataService, VoceViewModelFactory<U> voceViewModelFactory, IListaVociFactory<U> listaVociFactory) {
+        public NuovaListaVociDialogViewModel(IEventAggregator eventAggregator, IDataService<Donatore> donatoreDataService, IDataService<ListaIndagini<U>> listaIndaginiDataService, VoceViewModelFactory<U> voceViewModelFactory, IListaVociFactory<U> listaVociFactory, DonatoreViewModel donatoreViewModel, ListaIndaginiViewModel<U> listaIndaginiViewModel) {
             _eventAggregator = eventAggregator;
             _donatoreDataService = donatoreDataService;
             _listaIndaginiDataService = listaIndaginiDataService;
             _voceViewModelFactory = voceViewModelFactory;
-            _listaVociFactory = listaVociFactory;
 
-            DonatoreEnumerable = _donatoreDataService.GetViewModels().Where(vm => vm.Idoneità != Idoneità.NonIdoneo && vm.Attivo);
-            ListaIndaginiEnumerable = _listaIndaginiDataService.GetViewModels();
+            DonatoreViewModel = donatoreViewModel;
+            ListaIndaginiViewModel = listaIndaginiViewModel;
+
+            _listaVociFactory = listaVociFactory;
+            
+            DonatoreEnumerable = _donatoreDataService.GetModels().Where(m => m.Idoneità != Idoneità.NonIdoneo && m.Attivo);
+            ListaIndaginiEnumerable = _listaIndaginiDataService.GetModels();
         }
 
         #endregion
 
         #region Properties
 
-        public DonatoreViewModel SelectedDonatore { get; set; }
-        public ListaIndaginiViewModel<U> SelectedListaIndagini { get; set; }
+        private Donatore _selectedDonatore;
+        public Donatore SelectedDonatore {
+            get { return _selectedDonatore; }
+            set { _selectedDonatore = value; DonatoreViewModel.Model = _selectedDonatore; }
+        }
+
+        private ListaIndagini<U> _selectedListaIndagini;
+        public ListaIndagini<U> SelectedListaIndagini {
+            get { return _selectedListaIndagini; }
+            set { _selectedListaIndagini = value; ListaIndaginiViewModel.Model = _selectedListaIndagini; }
+        }
+
         public IEnumerable<Voce<U>> GeneratedListVoci { get; set; }
 
+        public DonatoreViewModel DonatoreViewModel { get; }
+        public ListaIndaginiViewModel<U> ListaIndaginiViewModel { get; }
 
         public bool CanMoveTo2ndPage => SelectedDonatore != null;
         public bool CanMoveTo3rdPage => SelectedListaIndagini != null;
@@ -68,8 +84,8 @@ namespace BloodBank.ViewModel.ViewModels {
 
         #endregion
 
-        public IEnumerable<DonatoreViewModel> DonatoreEnumerable { get; }
-        public IEnumerable<ListaIndaginiViewModel<U>> ListaIndaginiEnumerable { get; }
+        public IEnumerable<Donatore> DonatoreEnumerable { get; }
+        public IEnumerable<ListaIndagini> ListaIndaginiEnumerable { get; }
         public IEnumerable<VoceViewModel> VociViewModelEnumerable { get; private set; }
 
 
@@ -117,7 +133,7 @@ namespace BloodBank.ViewModel.ViewModels {
             if (_stepCorrente != Step.Riepilogo)
                 throw new InvalidOperationException("stepCorrente != Step.Riepilogo");
 
-            _listaVociFactory.CreateModel(SelectedDonatore.Model, SelectedListaIndagini.Nome, DataOra, GeneratedListVoci);
+            _listaVociFactory.CreateModel(SelectedDonatore, SelectedListaIndagini.Nome, DataOra, GeneratedListVoci);
             _eventAggregator.Publish(new DialogEvent(false, null));
 
         }

@@ -45,7 +45,8 @@
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
-                    <ComboBox Grid.Row="0" Grid.Column="0" DisplayMemberPath="Model" md:HintAssist.Hint="Donatore" ItemsSource="{Binding DonatoreEnumerable}" SelectedItem="{Binding SelectedDonatore}" />
+                    
+                    <ComboBox Grid.Row="0" Grid.Column="0" md:HintAssist.Hint="Donatore" ItemsSource="{Binding DonatoreEnumerable}" SelectedItem="{Binding SelectedDonatore}" />
 
                     <md:PackIcon Grid.Row="0" Grid.Column="1" Kind="Calendar" Foreground="{Binding ElementName=DatePickerDataListaVoci, Path=BorderBrush}" />
                     <Grid Grid.Row="0" Grid.Column="2">
@@ -57,7 +58,7 @@
                         <md:TimePicker Grid.Column="1" x:Name="TimePickerDataListaVoci" md:HintAssist.Hint="Ora del Test" Is24Hours="True" SelectedTime="{Binding Path=DataOra, UpdateSourceTrigger=PropertyChanged}"  />
                     </Grid>
 
-                    <ContentControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" s:View.Model="{Binding SelectedDonatore}" components:ReadOnlyPanel.IsReadOnly="True" Margin="10"/>
+                    <ContentControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" s:View.Model="{Binding DonatoreViewModel}" components:ReadOnlyPanel.IsReadOnly="True" Margin="10"/>
 
                 </Grid>
             </xctk:WizardPage>
@@ -74,9 +75,9 @@
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
 
-                    <ComboBox Grid.Row="0" Grid.Column="1" md:HintAssist.Hint="ListaIndagini" DisplayMemberPath="Model" ItemsSource="{Binding ListaIndaginiEnumerable}" SelectedItem="{Binding SelectedListaIndagini}" />
+                    <ComboBox Grid.Row="0" Grid.Column="1" md:HintAssist.Hint="ListaIndagini" ItemsSource="{Binding ListaIndaginiEnumerable}" SelectedItem="{Binding SelectedListaIndagini}" />
                     
-                    <ContentControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" s:View.Model="{Binding SelectedListaIndagini}" components:ReadOnlyPanel.IsReadOnly="True" Margin="10"/>
+                    <ContentControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" s:View.Model="{Binding ListaIndaginiViewModel}" components:ReadOnlyPanel.IsReadOnly="True" Margin="10"/>
                 
                 </Grid>
             </xctk:WizardPage>

@@ -48,8 +48,8 @@
                     </Grid.ColumnDefinitions>
 
                     <Label Grid.Row="0" Grid.Column="0" Margin="10 20">Donatore:</Label>
-                    <ComboBox Grid.Row="0" Grid.Column="1" DisplayMemberPath="Model" ItemsSource="{Binding DonatoreEnumerable}" SelectedItem="{Binding SelectedDonatore}" />
-                    <ContentControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" s:View.Model="{Binding SelectedDonatore}" components:ReadOnlyPanel.IsReadOnly="True" Margin="20"/>
+                    <ComboBox Grid.Row="0" Grid.Column="1" ItemsSource="{Binding DonatoreEnumerable}" SelectedItem="{Binding SelectedDonatore}" />
+                    <ContentControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" s:View.Model="{Binding DonatoreViewModel}" components:ReadOnlyPanel.IsReadOnly="True" Margin="20"/>
                 </Grid>
             </xctk:WizardPage>
             <xctk:WizardPage Title="Seleziona Questionario" Description="Vengono mostrati nella lista sottostante i Questionari compilati dal Donatore precedentemente selezionato in data odierna con esito Idoneo." CanSelectNextPage="{Binding CanMoveTo3rdPage}">
@@ -76,7 +76,7 @@
                             </DataTemplate>
                         </ComboBox.ItemTemplate>
                     </ComboBox>
-                    <ContentControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" s:View.Model="{Binding SelectedListaVociQuestionario}" components:ReadOnlyPanel.IsReadOnly="True" Margin="20"/>
+                    <ContentControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" s:View.Model="{Binding QuestionarioViewModel}" components:ReadOnlyPanel.IsReadOnly="True" Margin="20"/>
                 </Grid>
             </xctk:WizardPage>
             <xctk:WizardPage Title="Seleziona Analisi" Description="Vengono mostrate nella lista sottostante le Analisi effettuate dal Donatore precedentemente selezionato in data odierna con esito Idoneo." CanSelectNextPage="{Binding CanMoveTo4thPage}">
@@ -103,7 +103,7 @@
                             </DataTemplate>
                         </ComboBox.ItemTemplate>
                     </ComboBox>
-                    <ContentControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" s:View.Model="{Binding SelectedListaVociAnalisi}" components:ReadOnlyPanel.IsReadOnly="True" Margin="20"/>
+                    <ContentControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" s:View.Model="{Binding AnalisiViewModel}" components:ReadOnlyPanel.IsReadOnly="True" Margin="20"/>
                 </Grid>
             </xctk:WizardPage>
             <xctk:WizardPage Title="Seleziona Visita Medica" Description="Vengono mostrate nella lista sottostante le Visite Mediche effettuate dal Donatore precedentemente selezionato in data odierna con esito Idoneo." CanSelectNextPage="{Binding CanMoveTo5thPage}">
@@ -130,7 +130,7 @@
                             </DataTemplate>
                         </ComboBox.ItemTemplate>
                     </ComboBox>
-                    <ContentControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" s:View.Model="{Binding SelectedVisitaMedica}" components:ReadOnlyPanel.IsReadOnly="True" Margin="20"/>
+                    <ContentControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" s:View.Model="{Binding VisitaMedicaViewModel}" components:ReadOnlyPanel.IsReadOnly="True" Margin="20"/>
                 </Grid>
             </xctk:WizardPage>
             <xctk:WizardPage Title="Selezionare il Tipo di Donazione che si intende fare tra le possibilità sotto elencate." CanSelectNextPage="{Binding CanMoveToLastPage}">

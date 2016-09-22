@@ -61,14 +61,12 @@
     <Compile Include="Components\WorkspaceViewModel.cs" />
     <Compile Include="Events\DialogEvent.cs" />
     <Compile Include="Events\ViewModelCollectionChangedEvent.cs" />
-    <Compile Include="Service\IDataService.cs" />
     <Compile Include="Service\VoceViewModelFactory.cs" />
     <Compile Include="Validation\Indagini\VoceValidator.cs" />
     <Compile Include="ViewModels\Donazioni\DonazioneViewModel.cs" />
     <Compile Include="ViewModels\NuovaDonazioneDialogViewModel.cs" />
     <Compile Include="ViewModels\NuovaListaVociDialogViewModel.cs" />
     <Compile Include="ViewModels\Indagini\IndaginiViewModel.cs" />
-    <Compile Include="Service\DataService.cs" />
     <Compile Include="Validation\Persone\CodiceFiscaleValidator.cs" />
     <Compile Include="Validation\Persone\DonatoreValidator.cs" />
     <Compile Include="Validation\Persone\EtàValidator.cs" />

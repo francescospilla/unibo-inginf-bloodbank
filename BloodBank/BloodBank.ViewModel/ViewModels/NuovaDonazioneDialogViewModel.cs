@@ -18,36 +18,66 @@ namespace BloodBank.ViewModel.ViewModels {
     [ImplementPropertyChanged]
     public class NuovaDonazioneDialogViewModel : Screen {
         private readonly IEventAggregator _eventAggregator;
-        private readonly IDataService<Donatore, DonatoreViewModel> _donatoreDataService;
-        private readonly IDataService<VisitaMedica, VisitaMedicaViewModel> _visitaMedicaDataService;
-        private readonly IDataService<Questionario, ListaVociViewModel<Questionario>> _listaVociQuestionarioDataService;
-        private readonly IDataService<Analisi, ListaVociViewModel<Analisi>> _listaVociAnalisiDataService;
+        private readonly IDataService<Donatore> _donatoreDataService;
+        private readonly IDataService<VisitaMedica> _visitaMedicaDataService;
+        private readonly IDataService<Questionario> _listaVociQuestionarioDataService;
+        private readonly IDataService<Analisi> _listaVociAnalisiDataService;
         private readonly IDonazioneFactory _donazioneFactory;
 
         public NuovaDonazioneDialogViewModel(IEventAggregator eventAggregator,
-            IDataService<Donatore, DonatoreViewModel> donatoreDataService,
-            IDataService<Questionario, ListaVociViewModel<Questionario>> listaVociQuestionarioDataService,
-            IDataService<Analisi, ListaVociViewModel<Analisi>> listaVociAnalisiDataService,
-            IDataService<VisitaMedica, VisitaMedicaViewModel> visitaMedicaDataService, IDonazioneFactory donazioneFactory) {
+            IDataService<Donatore> donatoreDataService,
+            IDataService<Questionario> listaVociQuestionarioDataService,
+            IDataService<Analisi> listaVociAnalisiDataService,
+            IDataService<VisitaMedica> visitaMedicaDataService, IDonazioneFactory donazioneFactory, DonatoreViewModel donatoreViewModel, VisitaMedicaViewModel visitaMedicaViewModel, ListaVociViewModel<Questionario> questionarioViewModel, ListaVociViewModel<Analisi> analisiViewModel) {
             _eventAggregator = eventAggregator;
             _donatoreDataService = donatoreDataService;
             _listaVociQuestionarioDataService = listaVociQuestionarioDataService;
             _listaVociAnalisiDataService = listaVociAnalisiDataService;
             _visitaMedicaDataService = visitaMedicaDataService;
+
+            DonatoreViewModel = donatoreViewModel;
+            VisitaMedicaViewModel = visitaMedicaViewModel;
+            QuestionarioViewModel = questionarioViewModel;
+            AnalisiViewModel = analisiViewModel;
+
             _donazioneFactory = donazioneFactory;
 
-            DonatoreEnumerable =
-                _donatoreDataService.GetViewModels().Where(vm => vm.Idoneità == Idoneità.Idoneo && vm.Attivo && (vm.DataProssimaDonazioneConsentita == null || vm.DataProssimaDonazioneConsentita <= DateTime.Today));
+            DonatoreEnumerable = _donatoreDataService.GetModels().Where(m => m.Idoneità == Idoneità.Idoneo && m.Attivo && (m.DataProssimaDonazioneConsentita == null || m.DataProssimaDonazioneConsentita <= DateTime.Today));
         }
 
         #region Properties
 
-        public DonatoreViewModel SelectedDonatore { get; set; }
-        public ViewModel<Questionario> SelectedListaVociQuestionario { get; set; }
-        public ViewModel<Analisi> SelectedListaVociAnalisi { get; set; }
-        public VisitaMedicaViewModel SelectedVisitaMedica { get; set; }
+        private Donatore _selectedDonatore;
+        public Donatore SelectedDonatore {
+            get { return _selectedDonatore; }
+            set { _selectedDonatore = value; DonatoreViewModel.Model = SelectedDonatore; }
+        }
+
+        private Questionario _selectedListaVociQuestionario;
+        public Questionario SelectedListaVociQuestionario {
+            get { return _selectedListaVociQuestionario; }
+            set { _selectedListaVociQuestionario = value; QuestionarioViewModel.Model = SelectedListaVociQuestionario; }
+        }
+
+        private Analisi _selectedListaVociAnalisi;
+        public Analisi SelectedListaVociAnalisi {
+            get { return _selectedListaVociAnalisi; }
+            set { _selectedListaVociAnalisi = value; AnalisiViewModel.Model = SelectedListaVociAnalisi; }
+        }
+
+        private VisitaMedica _selectedVisitaMedica;
+        public VisitaMedica SelectedVisitaMedica {
+            get { return _selectedVisitaMedica; }
+            set { _selectedVisitaMedica = value; VisitaMedicaViewModel.Model = SelectedVisitaMedica; }
+        }
+
         public TipoDonazione SelectedTipoDonazione { get; set; }
         public DateTime DataDonazione { get; set; }
+        
+        public DonatoreViewModel DonatoreViewModel { get; }
+        public VisitaMedicaViewModel VisitaMedicaViewModel { get; }
+        public ListaVociViewModel<Questionario> QuestionarioViewModel { get; }
+        public ListaVociViewModel<Analisi> AnalisiViewModel { get; }
 
         public bool CanMoveTo2ndPage => SelectedDonatore != null;
         public bool CanMoveTo3rdPage => SelectedListaVociQuestionario != null;
@@ -57,10 +87,10 @@ namespace BloodBank.ViewModel.ViewModels {
 
         #endregion
 
-        public IEnumerable<DonatoreViewModel> DonatoreEnumerable { get; }
-        public IEnumerable<ListaVociViewModel<Questionario>> ListaVociQuestionarioEnumerable { get; private set; }
-        public IEnumerable<ListaVociViewModel<Analisi>> ListaVociAnalisiEnumerable { get; private set; }
-        public IEnumerable<VisitaMedicaViewModel> VisitaMedicaEnumerable { get; private set; }
+        public IEnumerable<Donatore> DonatoreEnumerable { get; }
+        public IEnumerable<Questionario> ListaVociQuestionarioEnumerable { get; private set; }
+        public IEnumerable<Analisi> ListaVociAnalisiEnumerable { get; private set; }
+        public IEnumerable<VisitaMedica> VisitaMedicaEnumerable { get; private set; }
         public IEnumerable<TipoDonazione> TipoDonazioneEnumerable => TipoDonazione.Values;
 
         #region Actions
@@ -68,9 +98,9 @@ namespace BloodBank.ViewModel.ViewModels {
         public void OnChangeToNextPage(object sender, EventArgs e) {
             if (SelectedDonatore == null)
                 return;
-            ListaVociAnalisiEnumerable = _listaVociAnalisiDataService.GetViewModels().Where(vm => vm.Model.Donatore.Equals(SelectedDonatore.Model) && vm.Model.Data.Date.Equals(DateTime.Today) && vm.Model.Idoneità == Idoneità.Idoneo);
-            ListaVociQuestionarioEnumerable = _listaVociQuestionarioDataService.GetViewModels().Where(vm => vm.Model.Donatore.Equals(SelectedDonatore.Model) && vm.Model.Data.Date.Equals(DateTime.Today) && vm.Model.Idoneità == Idoneità.Idoneo);
-            VisitaMedicaEnumerable = _visitaMedicaDataService.GetViewModels().Where(vm => vm.Model.Donatore.Equals(SelectedDonatore.Model) && vm.Model.Data.Date.Equals(DateTime.Today) && vm.Model.Idoneità == Idoneità.Idoneo);
+            ListaVociAnalisiEnumerable = _listaVociAnalisiDataService.GetModels().Where(m => m.Donatore.Equals(SelectedDonatore) && m.Data.Date.Equals(DateTime.Today) && m.Idoneità == Idoneità.Idoneo);
+            ListaVociQuestionarioEnumerable = _listaVociQuestionarioDataService.GetModels().Where(m => m.Donatore.Equals(SelectedDonatore) && m.Data.Date.Equals(DateTime.Today) && m.Idoneità == Idoneità.Idoneo);
+            VisitaMedicaEnumerable = _visitaMedicaDataService.GetModels().Where(m => m.Donatore.Equals(SelectedDonatore) && m.Data.Date.Equals(DateTime.Today) && m.Idoneità == Idoneità.Idoneo);
             DataDonazione = DateTime.Now;
         }
 
@@ -79,7 +109,7 @@ namespace BloodBank.ViewModel.ViewModels {
         }
 
         public void Finish() {
-            _donazioneFactory.CreateModel(SelectedDonatore.Model, SelectedTipoDonazione, DataDonazione, SelectedVisitaMedica.Model, SelectedListaVociAnalisi.Model, SelectedListaVociQuestionario.Model);
+            _donazioneFactory.CreateModel(SelectedDonatore, SelectedTipoDonazione, DataDonazione, SelectedVisitaMedica, SelectedListaVociAnalisi, SelectedListaVociQuestionario);
             _eventAggregator.Publish(new DialogEvent(false, null));
         }
 
