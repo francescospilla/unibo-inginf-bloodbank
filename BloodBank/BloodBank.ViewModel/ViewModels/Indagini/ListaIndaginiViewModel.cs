@@ -6,7 +6,9 @@ using BloodBank.Model.Models.Indagini;
 using BloodBank.Model.Models.Tests;
 using BloodBank.Model.Service;
 using BloodBank.ViewModel.Components;
+using BloodBank.ViewModel.Events;
 using BloodBank.ViewModel.Service;
+using BloodBank.ViewModel.ViewModels.Persone;
 using PropertyChanged;
 using Stylet;
 using Stylet.DictionaryViewManager;
@@ -19,12 +21,16 @@ namespace BloodBank.ViewModel.ViewModels.Indagini {
         private readonly IDataService<Indagine<U>> _indagineDataService;
 
         public ListaIndaginiViewModel(IEventAggregator eventAggregator, IDataService<Indagine<U>> indagineDataService,
-            IDataService<ListaIndagini<U>, ListaIndaginiViewModel<U>> dataService, IModelValidator<IListaIndagini> validator)
+            IDataService<ListaIndagini<U>> dataService, IModelValidator<IListaIndagini> validator)
             : base(eventAggregator, dataService, validator) {
             _indagineDataService = indagineDataService;
 
             RefreshCollections();
             NotifyPropertyChangedOnCollectionChanged();
+        }
+
+        protected override void PublishViewModel() {
+            EventAggregator.Publish(new ViewModelCollectionChangedEvent<ListaIndaginiViewModel<U>>(this));
         }
 
         #region Private Methods
@@ -185,10 +191,11 @@ namespace BloodBank.ViewModel.ViewModels.Indagini {
             RefreshCollections();
         }
 
-        protected override ListaIndagini<U> CreateModelFromViewModel() {
+        protected override ListaIndagini<U> CreateModelFromViewModel(out bool isModelAlreadyRegistered) {
             ListaIndagini<U> model = new ListaIndagini<U> {Nome = Nome};
             model.Clear();
             model.AddRange(Indagini);
+            isModelAlreadyRegistered = false;
             return model;
         }
 

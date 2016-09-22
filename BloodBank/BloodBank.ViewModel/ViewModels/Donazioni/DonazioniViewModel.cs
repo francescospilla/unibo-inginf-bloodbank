@@ -1,5 +1,6 @@
 ﻿using System;
 using BloodBank.Model.Models.Donazioni;
+using BloodBank.Model.Service;
 using BloodBank.ViewModel.Components;
 using BloodBank.ViewModel.Events;
 using BloodBank.ViewModel.Service;
@@ -13,9 +14,9 @@ namespace BloodBank.ViewModel.ViewModels.Donazioni
     public class DonazioniViewModel : WorkspaceViewModel<Donazione, DonazioneViewModel>
     {
         private readonly Func<NuovaDonazioneDialogViewModel> _dialogFactory;
-        private readonly IDataService<Donazione, DonazioneViewModel> _donazioneDataService;
+        private readonly IDataService<Donazione> _donazioneDataService;
 
-        public DonazioniViewModel(IEventAggregator eventAggregator, IDataService<Donazione, DonazioneViewModel> donazioneDataService, Func<DonazioneViewModel> viewModelFactory, Func<NuovaDonazioneDialogViewModel> dialogFactory) : base(eventAggregator, donazioneDataService, viewModelFactory)
+        public DonazioniViewModel(IEventAggregator eventAggregator, IDataService<Donazione> donazioneDataService, Func<DonazioneViewModel> viewModelFactory, Func<NuovaDonazioneDialogViewModel> dialogFactory) : base(eventAggregator, donazioneDataService, viewModelFactory)
         {
             _eventAggregator.Subscribe(this);
             _donazioneDataService = donazioneDataService;

@@ -8,6 +8,7 @@ using BloodBank.Model.Models.Persone;
 using BloodBank.Model.Models.Tests;
 using BloodBank.Model.Service;
 using BloodBank.ViewModel.Components;
+using BloodBank.ViewModel.Events;
 using BloodBank.ViewModel.Service;
 using PropertyChanged;
 using Stylet;
@@ -21,7 +22,7 @@ namespace BloodBank.ViewModel.ViewModels.Tests {
 
         #region Constructors
 
-        public VisitaMedicaViewModel(IEventAggregator eventAggregator, IDataService<Donatore> donatoreDataService, IDataService<VisitaMedica, VisitaMedicaViewModel> dataService, IDataService<Medico> medicoDataService, IModelValidator<VisitaMedicaViewModel> validator, IVisitaMedicaFactory visitaMedicaFactory) : base(eventAggregator, dataService, validator) {
+        public VisitaMedicaViewModel(IEventAggregator eventAggregator, IDataService<Donatore> donatoreDataService, IDataService<VisitaMedica> dataService, IDataService<Medico> medicoDataService, IModelValidator<VisitaMedicaViewModel> validator, IVisitaMedicaFactory visitaMedicaFactory) : base(eventAggregator, dataService, validator) {
             _donatoreDataService = donatoreDataService;
             _medicoDataService = medicoDataService;
             _visitaMedicaFactory = visitaMedicaFactory;
@@ -105,8 +106,13 @@ namespace BloodBank.ViewModel.ViewModels.Tests {
             Referto = Model.Referto;
         }
 
-        protected override VisitaMedica CreateModelFromViewModel() {
+        protected override VisitaMedica CreateModelFromViewModel(out bool isModelAlreadyRegistered) {
+            isModelAlreadyRegistered = true;
             return _visitaMedicaFactory.CreateModel(Donatore, DescrizioneBreve, DataOra.GetValueOrDefault(), Idoneità, Medico, Referto);
+        }
+
+        protected override void PublishViewModel() {
+            EventAggregator.Publish(new ViewModelCollectionChangedEvent<VisitaMedicaViewModel>(this));
         }
 
         #endregion Mappings

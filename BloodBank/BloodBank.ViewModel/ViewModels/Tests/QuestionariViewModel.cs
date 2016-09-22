@@ -14,7 +14,7 @@ namespace BloodBank.ViewModel.ViewModels.Tests
     {
         private readonly Func<NuovaListaVociDialogViewModel<Questionario>> _dialogFactory;
 
-        public QuestionariViewModel(IEventAggregator eventAggregator, IDataService<Questionario, ListaVociViewModel<Questionario>> dataService, Func<ListaVociViewModel<Questionario>> viewModelFactory, Func<NuovaListaVociDialogViewModel<Questionario>> dialogFactory) : base(eventAggregator, dataService, viewModelFactory) {
+        public QuestionariViewModel(IEventAggregator eventAggregator, IDataService<Questionario> dataService, Func<ListaVociViewModel<Questionario>> viewModelFactory, Func<NuovaListaVociDialogViewModel<Questionario>> dialogFactory) : base(eventAggregator, dataService, viewModelFactory) {
             _dialogFactory = dialogFactory;
         }
 

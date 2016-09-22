@@ -5,7 +5,9 @@ using BloodBank.Core.Extensions;
 using BloodBank.Model.Models;
 using BloodBank.Model.Models.Persone;
 using BloodBank.Model.Models.Sangue;
+using BloodBank.Model.Service;
 using BloodBank.ViewModel.Components;
+using BloodBank.ViewModel.Events;
 using BloodBank.ViewModel.Service;
 using PropertyChanged;
 using Stylet;
@@ -17,7 +19,7 @@ namespace BloodBank.ViewModel.ViewModels.Persone {
 
         #region Constructors
 
-        public DonatoreViewModel(IEventAggregator eventAggregator, IDataService<Donatore, DonatoreViewModel> dataService, IModelValidator<DonatoreViewModel> validator) : base(eventAggregator, dataService, validator) {
+        public DonatoreViewModel(IEventAggregator eventAggregator, IDataService<Donatore> dataService, IModelValidator<DonatoreViewModel> validator) : base(eventAggregator, dataService, validator) {
         }
 
         #endregion Constructors
@@ -88,8 +90,13 @@ namespace BloodBank.ViewModel.ViewModels.Persone {
             DataProssimaDonazioneConsentita = Model.DataProssimaDonazioneConsentita;
         }
 
-        protected override Donatore CreateModelFromViewModel() {
+        protected override Donatore CreateModelFromViewModel(out bool isModelAlreadyRegistered) {
+            isModelAlreadyRegistered = false;
             return new Donatore(new Contatto(Nome, Cognome, Sesso, DataNascita.GetValueOrDefault(), CodiceFiscale, Indirizzo, Città, Stato, CodicePostale, Telefono, Email), GruppoSanguigno, Attivo);
+        }
+
+        protected override void PublishViewModel() {
+            EventAggregator.Publish(new ViewModelCollectionChangedEvent<DonatoreViewModel>(this));
         }
 
         protected override void SyncViewModelToModel() {

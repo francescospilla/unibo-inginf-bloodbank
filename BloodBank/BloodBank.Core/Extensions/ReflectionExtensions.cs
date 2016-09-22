@@ -28,5 +28,14 @@ namespace BloodBank.Core.Extensions {
         public static Dictionary<string, object> ToPropertyDictionary(this object obj) {
             return obj.GetType().GetProperties(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic).ToDictionary(prop => prop.Name, prop => prop.GetValue(obj, null));
         }
+
+        public static bool IsDerivedOfGenericType(this Type type, Type genericType) {
+            if (type.IsGenericType && type.GetGenericTypeDefinition() == genericType)
+                return true;
+            if (type.BaseType != null) {
+                return IsDerivedOfGenericType(type.BaseType, genericType);
+            }
+            return false;
+        }
     }
 }

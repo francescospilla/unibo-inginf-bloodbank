@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using BloodBank.Model.Service;
 using BloodBank.ViewModel.Service;
 using PropertyChanged;
 using Stylet;
@@ -11,9 +12,9 @@ namespace BloodBank.ViewModel.Components {
 
     [ImplementPropertyChanged]
     public abstract class CreatableViewModel<TModel> : ViewModel<TModel> where TModel : class {
-        protected IDataService<TModel, ViewModel<TModel>> DataService;
+        protected IDataService<TModel> DataService;
 
-        protected CreatableViewModel(IEventAggregator eventAggregator, IDataService<TModel, ViewModel<TModel>> dataService, IModelValidator validator = null) : base(eventAggregator, validator) {
+        protected CreatableViewModel(IEventAggregator eventAggregator, IDataService<TModel> dataService, IModelValidator validator = null) : base(eventAggregator, validator) {
             DataService = dataService;
             if (validator != null) {
                 AutoValidate = true;
@@ -57,10 +58,13 @@ namespace BloodBank.ViewModel.Components {
         public virtual void Save() {
             if (Validator != null && !Validate()) return;
             if (!IsInitialized) {
-                Model = CreateModelFromViewModel();
+                bool isModelAlreadyRegistered;
+                Model = CreateModelFromViewModel(out isModelAlreadyRegistered);
                 // Fody can't weave other assemblies, so we have to manually raise this
                 NotifyOfPropertyChange(() => DisplayName);
-                DataService.AddModelAndExistingViewModel(Model, this);
+                if (!isModelAlreadyRegistered)
+                    DataService.AddModel(Model);
+                PublishViewModel();
             } else
                 throw new InvalidOperationException("Read-only viewModel is already initialized.");
             IsChanged = false;
@@ -70,6 +74,8 @@ namespace BloodBank.ViewModel.Components {
 
         #endregion
 
-        protected abstract TModel CreateModelFromViewModel();
+        protected abstract TModel CreateModelFromViewModel(out bool isModelAlreadyRegistered);
+
+        protected abstract void PublishViewModel();
     }
 }
