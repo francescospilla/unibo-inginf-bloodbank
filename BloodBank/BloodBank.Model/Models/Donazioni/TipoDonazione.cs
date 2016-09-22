@@ -23,7 +23,7 @@ namespace BloodBank.Model.Models.Donazioni {
         #region Static Members (Values)
 
         private static readonly HashSet<TipoDonazione> ValuesSet = new HashSet<TipoDonazione>();
-        public static IReadOnlyCollection<TipoDonazione> Values => ValuesSet;
+        public static IEnumerable<TipoDonazione> Values => ValuesSet;
 
         #endregion Static Members (Values)
 

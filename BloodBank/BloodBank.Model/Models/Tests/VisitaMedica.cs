@@ -20,7 +20,7 @@ namespace BloodBank.Model.Models.Tests
 
         public override Idoneità Idoneità { get; }
         public Medico Medico { get; }
-        public string Referto { get; set; }
+        public string Referto { get; }
 
         public class VisitaMedicaFactory : IVisitaMedicaFactory {
             private readonly IDataService<VisitaMedica> _dataService;

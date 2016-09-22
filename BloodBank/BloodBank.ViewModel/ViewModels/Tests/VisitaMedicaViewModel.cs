@@ -36,8 +36,8 @@ namespace BloodBank.ViewModel.ViewModels.Tests {
 
         public new string DisplayName => IsInitialized ? NomeCognomeIdoneità : "Nuova Visita Medica";
 
-        public string NomeCognomeIdoneità => Donatore.Nome + " " + Donatore.Cognome + " (" + Idoneità + ")";
-        public string CognomeNome => Donatore.Cognome + " " + Donatore.Nome;
+        public string NomeCognomeIdoneità => Donatore.Contatto.Nome + " " + Donatore.Contatto.Cognome + " (" + Idoneità + ")";
+        public string CognomeNome => Donatore.Contatto.Cognome + " " + Donatore.Contatto.Nome;
 
         public string StringaRicerca => this.PropertyList(typeof(SearchableAttribute));
 

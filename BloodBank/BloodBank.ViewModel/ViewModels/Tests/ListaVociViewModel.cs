@@ -25,7 +25,7 @@ namespace BloodBank.ViewModel.ViewModels.Tests
 
 
 
-        public string DataDonatore => Data.ToShortDateString() + " - " + Donatore.Nome + " " + Donatore.Cognome;
+        public string DataDonatore => Data.ToShortDateString() + " - " + Donatore.Contatto.Nome + " " + Donatore.Contatto.Cognome;
 
         public new string DisplayName => IsInitialized ? DataDonatore : "Nuovo test";
 
