@@ -1,11 +1,12 @@
 using System.Collections.ObjectModel;
+using System.Linq;
 using BloodBank.Model.Models;
 using BloodBank.Model.Models.Indagini;
 using BloodBank.Model.Models.Indagini.Tipi;
 using BloodBank.Model.Models.Tests;
 
 namespace BloodBank.Mock.Indagini {
-    public sealed class IndagineAnalisiMockDataService : MockDataService<Indagine<Analisi>> {
+    public sealed class IndagineAnalisiMockDataService : IndagineMockDataService<Analisi> {
 
         internal IndagineRange<Analisi, double> A1;
         internal IndagineRange<Analisi, int> A2;

@@ -28,8 +28,8 @@ namespace BloodBank {
           
             kernel.Bind<IDataService<Donatore>, DonatoreMockDataService>().To<DonatoreMockDataService>().InSingletonScope();
             kernel.Bind<IDataService<Donazione>, DonazioneMockDataService>().To<DonazioneMockDataService>().InSingletonScope();
-            kernel.Bind<IDataService<Indagine<Analisi>>, IndagineAnalisiMockDataService>().To<IndagineAnalisiMockDataService>().InSingletonScope();
-            kernel.Bind<IDataService<Indagine<Questionario>>, IndagineQuestionarioMockDataService>().To<IndagineQuestionarioMockDataService>().InSingletonScope();
+            kernel.Bind<IDataService<Indagine>, IDataService<Indagine<Analisi>>, IndagineAnalisiMockDataService>().To<IndagineAnalisiMockDataService>().InSingletonScope();
+            kernel.Bind<IDataService<Indagine>, IDataService<Indagine<Questionario>>, IndagineQuestionarioMockDataService>().To<IndagineQuestionarioMockDataService>().InSingletonScope();
             kernel.Bind<IDataService<ListaIndagini<Analisi>>, ListaIndaginiAnalisiMockDataService>().To<ListaIndaginiAnalisiMockDataService>().InSingletonScope();
             kernel.Bind<IDataService<ListaIndagini<Questionario>>, ListaIndaginiQuestionarioMockDataService>().To<ListaIndaginiQuestionarioMockDataService>().InSingletonScope();
             kernel.Bind<IDataService<Analisi>, AnalisiMockDataService>().To<AnalisiMockDataService>().InSingletonScope();

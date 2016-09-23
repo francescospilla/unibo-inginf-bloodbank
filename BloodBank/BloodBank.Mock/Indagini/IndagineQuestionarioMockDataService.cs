@@ -6,7 +6,7 @@ using BloodBank.Model.Models.Tests;
 
 namespace BloodBank.Mock.Indagini {
 
-    public sealed class IndagineQuestionarioMockDataService : MockDataService<Indagine<Questionario>> {
+    public sealed class IndagineQuestionarioMockDataService : IndagineMockDataService<Questionario> {
 
         internal IndagineBoolean<Questionario> Q1;
         internal IndagineBoolean<Questionario> Q2;

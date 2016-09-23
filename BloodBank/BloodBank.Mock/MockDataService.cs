@@ -16,7 +16,7 @@ namespace BloodBank.Mock {
 
         }
 
-        IEnumerable<TModel> IDataService<TModel>.GetModels() {
+        public IEnumerable<TModel> GetModels() {
             return new ReadOnlyCollection<TModel>(_models);
         }
 
