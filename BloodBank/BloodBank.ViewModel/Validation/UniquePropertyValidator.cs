@@ -5,14 +5,14 @@ using FluentValidation.Validators;
 
 namespace BloodBank.ViewModel.Validation {
 
-    public class UniquePropertyValidator<T, U> : PropertyValidator {
-        private readonly Func<U, object> _propertyAccessorFromModelFunc;
-        private readonly Func<T, object> _propertyAccessorFromViewModelFunc;
+    public class UniquePropertyValidator<T, TProperty, U> : PropertyValidator {
+        private readonly Func<U, TProperty> _propertyAccessorFromModelFunc;
+        private readonly Func<T, TProperty> _propertyAccessorFromViewModelFunc;
         private readonly Func<T, U> _modelAccessorFromViewModelFunc;
         private readonly Func<IEnumerable<U>> _modelCollectionAccessorFunc;
         private readonly Predicate<T> _whenPredicate;
 
-        public UniquePropertyValidator(Func<U, object> propertyAccessorFromModelFunc, Func<T, object> propertyAccessorFromViewModelFunc, Func<IEnumerable<U>> modelCollectionAccessorFunc, Func<T, U> modelAccessorFromViewModelFunc = null, Predicate<T> whenPredicate = null) : base("'{PropertyName}' non è univoco.")
+        public UniquePropertyValidator(Func<U, TProperty> propertyAccessorFromModelFunc, Func<T, TProperty> propertyAccessorFromViewModelFunc, Func<IEnumerable<U>> modelCollectionAccessorFunc, Func<T, U> modelAccessorFromViewModelFunc = null, Predicate<T> whenPredicate = null) : base("'{PropertyName}' non è univoco.")
         {
             _propertyAccessorFromModelFunc = propertyAccessorFromModelFunc;
             _propertyAccessorFromViewModelFunc = propertyAccessorFromViewModelFunc;
@@ -27,8 +27,8 @@ namespace BloodBank.ViewModel.Validation {
             T entity = (T)context.Instance;
             
             IEnumerable<U> entities = _modelCollectionAccessorFunc();
-            
-            object propertyValue = _propertyAccessorFromViewModelFunc(entity);
+
+            TProperty propertyValue = _propertyAccessorFromViewModelFunc(entity);
             
             U matchingEntity = entities.SingleOrDefault(e => Equals(propertyValue, _propertyAccessorFromModelFunc(e)));
 

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 
@@ -14,6 +15,9 @@ namespace BloodBank.Model.Service {
     public static class DataServiceExtension {
 
         public static IEnumerable<TModel> PoolAllModels<TModel>(this IEnumerable<IDataService<TModel>> dataServices) where TModel : class {
+            if (dataServices == null || !dataServices.Any())
+                throw new InvalidOperationException();
+
             return dataServices.Aggregate(new List<TModel>(), (list, service) => {
                 list.AddRange(service.GetModels());
                 return list;
