@@ -73,7 +73,7 @@
                 <ControlTemplate TargetType="{x:Type ContentControl}">
                     <ScrollViewer VerticalScrollBarVisibility="Auto">
                         <StackPanel Margin="0 10">
-                            <md:Card Margin="20 10" Padding="10 0 10 30" MaxWidth="1000">
+                            <md:Card Margin="20 10" Padding="10 0 10 30" MaxWidth="1200">
                                 <StackPanel>
                                     <ContentPresenter />
                                 </StackPanel>

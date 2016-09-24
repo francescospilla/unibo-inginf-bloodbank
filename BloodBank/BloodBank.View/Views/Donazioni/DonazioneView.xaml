@@ -4,8 +4,6 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:md="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
-             xmlns:s="https://github.com/canton7/Stylet"
-             xmlns:components="clr-namespace:BloodBank.View.Components"
              mc:Ignorable="d" d:DesignHeight="600" d:DesignWidth="800">
 
     <UserControl.Resources>
@@ -46,8 +44,6 @@
             <RowDefinition Height="20" />
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto" />
             <RowDefinition Height="20" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -62,58 +58,53 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <TextBox Grid.Column="0"  x:Name="TextBoxDataDonazione" md:HintAssist.Hint="Data Donazione" Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsEnabled="False" Text="{Binding Path=Data, StringFormat=d}">
-            </TextBox>
-            <TextBox Grid.Column="1" x:Name="TextBoxOraDonazione" md:HintAssist.Hint="Ora Donazione" Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsEnabled="False" Text="{Binding Path=DataOra, StringFormat=t}">
-            </TextBox>
+            <TextBox Grid.Column="0" x:Name="TextBoxDataDonazione" md:HintAssist.Hint="Data Donazione" IsEnabled="False" Text="{Binding Path=Data, StringFormat=d, Mode=OneWay}" />
+            <TextBox Grid.Column="1" x:Name="TextBoxOraDonazione" md:HintAssist.Hint="Ora Donazione" IsEnabled="False" Text="{Binding Path=DataOra, StringFormat=t, Mode=OneWay}" />
         </Grid>
 
 
         <md:PackIcon Grid.Row="1" Grid.Column="0" Kind="Account" Foreground="{Binding ElementName=TextBoxNomeDonatore, Path=BorderBrush}" />
         <TextBox Grid.Row="1" Grid.Column="1" x:Name="TextBoxNomeDonatore" md:HintAssist.Hint="Nome Donatore" IsEnabled="False"
-                                 Text="{Binding Path=Donatore, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}">
-        </TextBox>
+                                 Text="{Binding Path=Donatore, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" />
 
         <md:PackIcon Grid.Row="2" Grid.Column="0" Kind="TagOutline" Foreground="{Binding ElementName=TextBoxTipoDonazione, Path=BorderBrush}" />
         <TextBox Grid.Row="2" Grid.Column="1" x:Name="TextBoxTipoDonazione" md:HintAssist.Hint="Tipo Donazione" IsEnabled="False"
-                                 Text="{Binding Path=TipoDonazione, UpdateSourceTrigger=PropertyChanged, Mode=OneWay, Converter={StaticResource EnumToString}}"  TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True">
-        </TextBox>
+                                 Text="{Binding Path=TipoDonazione, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" />
 
         <md:PackIcon Grid.Row="2" Grid.Column="2" Kind="Water" Foreground="{Binding ElementName=TextBoxGruppoSanguigno, Path=BorderBrush}" />
-        <TextBox Grid.Row="2" Grid.Column="3" x:Name="TextBoxGruppoSanguigno" md:HintAssist.Hint="Gruppo Sanguigno" IsEnabled="False"
-                                 Text="{Binding Path=Donatore.GruppoSanguigno, UpdateSourceTrigger=PropertyChanged, Mode=OneWay, Converter={StaticResource EnumToString}}"  TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True">
-        </TextBox>
+        <TextBox Grid.Row="2" Grid.Column="3" x:Name="TextBoxGruppoSanguigno" md:HintAssist.Hint="Gruppo Sanguigno" IsEnabled="False" Text="{Binding Path=Donatore.GruppoSanguigno, UpdateSourceTrigger=PropertyChanged, Mode=OneWay, Converter={StaticResource EnumToString}}" />
 
         <TextBlock Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"  Text="Test associati" Style="{StaticResource MaterialDesignDisplay1TextBlock}" />
         <Grid Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="4">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition />
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="3*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition />
                 <RowDefinition />
                 <RowDefinition />
             </Grid.RowDefinitions>
-            
+
             <Label Grid.Row="0" Grid.Column="0" Content="Visita Medica"  Foreground="{Binding ElementName=TextBoxDataVisitaMedica, Path=BorderBrush}"  VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0 0 0 7" />
-            <TextBox Grid.Row="0" Grid.Column="1" x:Name="TextBoxDataVisitaMedica" md:HintAssist.Hint="Data" IsEnabled="False" Text="{Binding Path=VisitaMedica.Data, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"/>
-            <TextBox Grid.Row="0" Grid.Column="2" x:Name="TextBoxDescrizioneVisitaMedica" md:HintAssist.Hint="Descrizione" IsEnabled="False" Text="{Binding Path=VisitaMedica.DescrizioneBreve, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" />
-            
+            <TextBox Grid.Row="0" Grid.Column="2" x:Name="TextBoxDataVisitaMedica" md:HintAssist.Hint="Data" IsEnabled="False" Text="{Binding Path=VisitaMedica.Data, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"/>
+            <TextBox Grid.Row="0" Grid.Column="3" x:Name="TextBoxDescrizioneVisitaMedica" md:HintAssist.Hint="Descrizione" IsEnabled="False" Text="{Binding Path=VisitaMedica.DescrizioneBreve, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" />
+
             <Label Grid.Row="1" Grid.Column="0" Content="Analisi" Foreground="{Binding ElementName=TextBoxDataAnalisi, Path=BorderBrush}" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0 0 0 7" />
-            <TextBox Grid.Row="1" Grid.Column="1" x:Name="TextBoxDataAnalisi" md:HintAssist.Hint="Data" IsEnabled="False" Text="{Binding Path=Analisi.Data, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" />
-            <TextBox Grid.Row="1" Grid.Column="2" x:Name="TextBoxDescrizioneAnalisi" md:HintAssist.Hint="Descrizione" IsEnabled="False" Text="{Binding Path=Analisi.DescrizioneBreve, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" />
-           
+            <TextBox Grid.Row="1" Grid.Column="2" x:Name="TextBoxDataAnalisi" md:HintAssist.Hint="Data" IsEnabled="False" Text="{Binding Path=Analisi.Data, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" />
+            <TextBox Grid.Row="1" Grid.Column="3" x:Name="TextBoxDescrizioneAnalisi" md:HintAssist.Hint="Descrizione" IsEnabled="False" Text="{Binding Path=Analisi.DescrizioneBreve, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" />
+
             <Label Grid.Row="2" Grid.Column="0" Content="Questionario" Foreground="{Binding ElementName=TextBoxDataQuestionario, Path=BorderBrush}"  VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0 0 0 7" />
-            <TextBox Grid.Row="2" Grid.Column="1" x:Name="TextBoxDataQuestionario" md:HintAssist.Hint="Data Questionario" IsEnabled="False" Text="{Binding Path=Questionario.Data, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" />
-            <TextBox Grid.Row="2" Grid.Column="2" x:Name="TextBoxDescrizioneQuestionario" md:HintAssist.Hint="Descrizione Questionario" IsEnabled="False" Text="{Binding Path=Questionario.DescrizioneBreve, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" />
+            <TextBox Grid.Row="2" Grid.Column="2" x:Name="TextBoxDataQuestionario" md:HintAssist.Hint="Data Questionario" IsEnabled="False" Text="{Binding Path=Questionario.Data, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" />
+            <TextBox Grid.Row="2" Grid.Column="3" x:Name="TextBoxDescrizioneQuestionario" md:HintAssist.Hint="Descrizione Questionario" IsEnabled="False" Text="{Binding Path=Questionario.DescrizioneBreve, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" />
 
         </Grid>
 
 
-        <TextBlock Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2"  Text="Sacche di Sangue associate" Style="{StaticResource MaterialDesignDisplay1TextBlock}" />
-        <ItemsControl Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="4" ItemsSource="{Binding Path=SaccheSangue}" >
+        <TextBlock Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2"  Text="Sacche di Sangue associate" Style="{StaticResource MaterialDesignDisplay1TextBlock}" />
+        <ItemsControl Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="4" ItemsSource="{Binding Path=SaccheSangue}" >
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <Grid>

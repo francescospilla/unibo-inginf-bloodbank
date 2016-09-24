@@ -40,21 +40,22 @@
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <Border BorderThickness="0 0 0 1" BorderBrush="{DynamicResource MaterialDesignDivider}" Width="Auto">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="Auto" />
-                                        <ColumnDefinition Width="Auto" />
-                                    </Grid.ColumnDefinitions>
-                                    <StackPanel Grid.Column="0" Margin="8">
-                                        <TextBlock Text="{Binding Data, StringFormat=d}" />
-                                        <TextBlock FontWeight="Bold" Text="{Binding Donatore}" />
-                                        <TextBlock Text="{Binding TipoDonazione}" />
-                                        <TextBlock Text="{Binding Donatore.GruppoSanguigno, Converter={StaticResource EnumToString}}" />
-                                    </StackPanel>
-                                    <md:PackIcon Grid.Column="1" Margin="8" Style="{StaticResource EditableInitializedHelperIconStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                                    <md:PackIcon Grid.Column="2" Margin="8 8 16 8" Style="{StaticResource EditableHelperIconStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                                </Grid>
+                                <StackPanel Margin="8">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition />
+                                            <RowDefinition />
+                                        </Grid.RowDefinitions>
+                                        <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding Data, StringFormat=d}" FontWeight="Bold" />
+                                        <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding TipoDonazione}" TextAlignment="Right" />
+                                        <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding Donatore, StringFormat=- {0}}" />
+                                        <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Donatore.GruppoSanguigno, Converter={StaticResource EnumToString}}" TextAlignment="Right" />
+                                    </Grid>
+                                </StackPanel>
                             </Border>
                         </DataTemplate>
                     </ListBox.ItemTemplate>

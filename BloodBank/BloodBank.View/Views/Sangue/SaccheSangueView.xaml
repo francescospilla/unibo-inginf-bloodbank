@@ -53,16 +53,9 @@
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <Border BorderThickness="0 0 0 1" BorderBrush="{DynamicResource MaterialDesignDivider}" Width="Auto">
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*" />
-                                            <ColumnDefinition Width="Auto" />
-                                        </Grid.ColumnDefinitions>
-                                        <StackPanel Grid.Column="0" Margin="8">
-                                            <TextBlock FontWeight="Bold" Text="{Binding CompEmGruppoSanguigno}" />
-                                        </StackPanel>
-                                        <md:PackIcon Grid.Column="1" Margin="16 8" Style="{StaticResource EditableHelperIconStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                                    </Grid>
+                                    <StackPanel Margin="8">
+                                        <TextBlock FontWeight="Bold" Text="{Binding CompEmGruppoSanguigno}" />
+                                    </StackPanel>
                                     <Border.InputBindings>
                                         <MouseBinding MouseAction="LeftDoubleClick" Command="{s:Action AddTab}" CommandParameter="{Binding }" />
                                     </Border.InputBindings>
