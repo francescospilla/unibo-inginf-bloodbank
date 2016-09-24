@@ -42,13 +42,12 @@
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />
-                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="20" />
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
                     
                     <ComboBox Grid.Row="0" Grid.Column="0" md:HintAssist.Hint="Donatore" ItemsSource="{Binding DonatoreEnumerable}" SelectedItem="{Binding SelectedDonatore}" />
 
-                    <md:PackIcon Grid.Row="0" Grid.Column="1" Kind="Calendar" Foreground="{Binding ElementName=DatePickerDataListaVoci, Path=BorderBrush}" />
                     <Grid Grid.Row="0" Grid.Column="2">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />

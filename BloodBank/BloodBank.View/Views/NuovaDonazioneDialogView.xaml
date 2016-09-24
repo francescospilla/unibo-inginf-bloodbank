@@ -41,15 +41,11 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="2*" />
                     </Grid.ColumnDefinitions>
-
-                    <Label Grid.Row="0" Grid.Column="0" Margin="10 20">Donatore:</Label>
-                    <ComboBox Grid.Row="0" Grid.Column="1" ItemsSource="{Binding DonatoreEnumerable}" SelectedItem="{Binding SelectedDonatore}" />
-                    <ContentControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" s:View.Model="{Binding DonatoreViewModel}" Visibility="{Binding SelectedDonatore, Converter={StaticResource NullToVisibility}}" components:ReadOnlyPanel.IsReadOnly="True" />
+                    <ComboBox Grid.Row="0" Grid.Column="0" md:HintAssist.Hint="Donatore" ItemsSource="{Binding DonatoreEnumerable}" SelectedItem="{Binding SelectedDonatore}" />
+                    <ContentControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" s:View.Model="{Binding DonatoreViewModel}" Visibility="{Binding SelectedDonatore, Converter={StaticResource NullToVisibility}}" components:ReadOnlyPanel.IsReadOnly="True" />
                 </Grid>
             </xctk:WizardPage>
             <xctk:WizardPage Title="Seleziona Questionario" Description="Vengono mostrati nella lista sottostante i Questionari compilati dal Donatore precedentemente selezionato in data odierna con esito Idoneo." CanSelectNextPage="{Binding CanMoveTo3rdPage}">
@@ -59,14 +55,11 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="2*" />
                     </Grid.ColumnDefinitions>
 
-                    <Label Grid.Row="0" Grid.Column="0" Margin="10 20">Questionario:</Label>
-                    <ComboBox Grid.Row="0" Grid.Column="1" ItemsSource="{Binding ListaVociQuestionarioEnumerable}" SelectedItem="{Binding SelectedListaVociQuestionario}" >
+                    <ComboBox Grid.Row="0" Grid.Column="0" md:HintAssist.Hint="Questionario" ItemsSource="{Binding ListaVociQuestionarioEnumerable}" SelectedItem="{Binding SelectedListaVociQuestionario}" >
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Margin="8">
@@ -76,7 +69,7 @@
                             </DataTemplate>
                         </ComboBox.ItemTemplate>
                     </ComboBox>
-                    <ContentControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" s:View.Model="{Binding QuestionarioViewModel}" Visibility="{Binding SelectedListaVociQuestionario, Converter={StaticResource NullToVisibility}}" components:ReadOnlyPanel.IsReadOnly="True" />
+                    <ContentControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" s:View.Model="{Binding QuestionarioViewModel}" Visibility="{Binding SelectedListaVociQuestionario, Converter={StaticResource NullToVisibility}}" components:ReadOnlyPanel.IsReadOnly="True" />
                 </Grid>
             </xctk:WizardPage>
             <xctk:WizardPage Title="Seleziona Analisi" Description="Vengono mostrate nella lista sottostante le Analisi effettuate dal Donatore precedentemente selezionato in data odierna con esito Idoneo." CanSelectNextPage="{Binding CanMoveTo4thPage}">
@@ -86,14 +79,11 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="2*" />
                     </Grid.ColumnDefinitions>
 
-                    <Label Grid.Row="0" Grid.Column="0" Margin="10 20">Analisi:</Label>
-                    <ComboBox Grid.Row="0" Grid.Column="1" ItemsSource="{Binding ListaVociAnalisiEnumerable}" SelectedItem="{Binding SelectedListaVociAnalisi}" >
+                    <ComboBox Grid.Row="0" Grid.Column="0" ItemsSource="{Binding ListaVociAnalisiEnumerable}" SelectedItem="{Binding SelectedListaVociAnalisi}" >
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Margin="8">
@@ -103,7 +93,7 @@
                             </DataTemplate>
                         </ComboBox.ItemTemplate>
                     </ComboBox>
-                    <ContentControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" s:View.Model="{Binding AnalisiViewModel}" Visibility="{Binding SelectedListaVociAnalisi, Converter={StaticResource NullToVisibility}}" components:ReadOnlyPanel.IsReadOnly="True" />
+                    <ContentControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" s:View.Model="{Binding AnalisiViewModel}" Visibility="{Binding SelectedListaVociAnalisi, Converter={StaticResource NullToVisibility}}" components:ReadOnlyPanel.IsReadOnly="True" />
                 </Grid>
             </xctk:WizardPage>
             <xctk:WizardPage Title="Seleziona Visita Medica" Description="Vengono mostrate nella lista sottostante le Visite Mediche effettuate dal Donatore precedentemente selezionato in data odierna con esito Idoneo." CanSelectNextPage="{Binding CanMoveTo5thPage}">
@@ -113,14 +103,11 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="2*" />
                     </Grid.ColumnDefinitions>
 
-                    <Label Grid.Row="0" Grid.Column="0" Margin="10 20">Visita Medica:</Label>
-                    <ComboBox Grid.Row="0" Grid.Column="1" ItemsSource="{Binding VisitaMedicaEnumerable}" SelectedItem="{Binding SelectedVisitaMedica}">
+                    <ComboBox Grid.Row="0" Grid.Column="0" md:HintAssist.Hint="Visita Medica" ItemsSource="{Binding VisitaMedicaEnumerable}" SelectedItem="{Binding SelectedVisitaMedica}">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Margin="8">
@@ -130,7 +117,7 @@
                             </DataTemplate>
                         </ComboBox.ItemTemplate>
                     </ComboBox>
-                    <ContentControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" s:View.Model="{Binding VisitaMedicaViewModel}" Visibility="{Binding SelectedVisitaMedica, Converter={StaticResource NullToVisibility}}" components:ReadOnlyPanel.IsReadOnly="True" />
+                    <ContentControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" s:View.Model="{Binding VisitaMedicaViewModel}" Visibility="{Binding SelectedVisitaMedica, Converter={StaticResource NullToVisibility}}" components:ReadOnlyPanel.IsReadOnly="True" />
                 </Grid>
             </xctk:WizardPage>
             <xctk:WizardPage Title="Selezionare il Tipo di Donazione che si intende fare tra le possibilità sotto elencate." CanSelectNextPage="{Binding CanMoveToLastPage}">
@@ -140,14 +127,11 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="2*" />
                     </Grid.ColumnDefinitions>
 
-                    <Label Grid.Row="0" Grid.Column="0" Margin="10 20">Tipo di Donazione:</Label>
-                    <ComboBox Grid.Row="0" Grid.Column="1" x:Name="ComboBoxTipoDonazione" md:HintAssist.Hint="Tipo Donazione" ItemsSource="{Binding Path=TipoDonazioneEnumerable}" IsEnabled="{Binding IsInitialized, Converter={StaticResource BoolInverter}}"
+                    <ComboBox Grid.Row="0" Grid.Column="0" x:Name="ComboBoxTipoDonazione" md:HintAssist.Hint="Tipo di Donazione" ItemsSource="{Binding Path=TipoDonazioneEnumerable}" IsEnabled="{Binding IsInitialized, Converter={StaticResource BoolInverter}}"
                                   SelectedItem="{Binding Path=SelectedTipoDonazione, UpdateSourceTrigger=PropertyChanged}" />
                 </Grid>
             </xctk:WizardPage>
