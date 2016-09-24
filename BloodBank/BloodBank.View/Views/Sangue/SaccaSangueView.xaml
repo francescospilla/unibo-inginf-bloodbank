@@ -31,7 +31,7 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="Dati Sacca" Style="{StaticResource MaterialDesignDisplay1TextBlock}" />
+        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="Sacca di Sangue" Style="{StaticResource MaterialDesignDisplay1TextBlock}" />
 
         <md:PackIcon Grid.Row="1" Grid.Column="0" Kind="Fingerprint" Foreground="{Binding ElementName=TextBoxId, Path=BorderBrush}" VerticalAlignment="Bottom" Margin="0 0 0 7" HorizontalAlignment="Center" />
         <TextBox Grid.Row="1" Grid.Column="1" x:Name="TextBoxId" md:HintAssist.Hint="Id" Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsEnabled="False"

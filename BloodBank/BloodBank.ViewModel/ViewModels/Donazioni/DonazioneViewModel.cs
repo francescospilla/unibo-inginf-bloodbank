@@ -21,7 +21,7 @@ namespace BloodBank.ViewModel.ViewModels.Donazioni
 
         #region Properties
 
-        public new string DisplayName => IsInitialized ? DonazioneNomeCognome : "Donazioni...";
+        public new string DisplayName => IsInitialized ? DonazioneNomeCognome : "Nuova donazione";
 
         public string DonazioneNomeCognome => "Donazione " +  Donatore.Contatto.Nome + " " + Donatore.Contatto.Cognome;
         public string CognomeNome => Donatore.Contatto.Cognome + " " + Donatore.Contatto.Nome;

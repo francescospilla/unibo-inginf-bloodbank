@@ -34,7 +34,7 @@ namespace BloodBank.ViewModel.ViewModels.Tests {
 
         #region Properties
 
-        public new string DisplayName => IsInitialized ? NomeCognomeIdoneità : "Nuova Visita Medica";
+        public new string DisplayName => IsInitialized ? NomeCognomeIdoneità : "Nuova visita medica";
 
         public string NomeCognomeIdoneità => Donatore.Contatto.Nome + " " + Donatore.Contatto.Cognome + " (" + Idoneità + ")";
         public string CognomeNome => Donatore.Contatto.Cognome + " " + Donatore.Contatto.Nome;

@@ -23,13 +23,13 @@ namespace BloodBank.ViewModel {
 
             AddNewNavigationMenuItem(donatoriViewModel, "Donatori", "AccountMultiple");
             AddNewNavigationMenuItem(donazioniViewModel, "Donazioni", "Heart");
-            AddNewNavigationMenuItem(analisiViewModel, "Analisi", "Hospital");
-            AddNewNavigationMenuItem(questionariViewModel, "Questionari", "Book");
             AddNewNavigationMenuItem(saccheSangueViewModel, "Sacche di Sangue", "Water");
-            AddNewNavigationMenuItem(listeIndaginiAnalisIndaginiViewModel, "Configura Analisi", "Pencil");
-            AddNewNavigationMenuItem(listeIndaginiQuestionarioViewModel, "Configura Questionari", "Pencil");
-            AddNewNavigationMenuItem(visiteMedicheViewModel, "Visite Mediche", "Stethoscope");            
-            AddNewNavigationMenuItem(indaginiViewModel, "Indagini", "Help");
+            AddNewNavigationMenuItem(questionariViewModel, "Questionari", "Book");
+            AddNewNavigationMenuItem(analisiViewModel, "Analisi", "Hospital");
+            AddNewNavigationMenuItem(visiteMedicheViewModel, "Visite Mediche", "Stethoscope");
+            AddNewNavigationMenuItem(indaginiViewModel, "Configura Indagini", "Settings");
+            AddNewNavigationMenuItem(listeIndaginiAnalisIndaginiViewModel, "Configura Analisi", "Settings");
+            AddNewNavigationMenuItem(listeIndaginiQuestionarioViewModel, "Configura Questionari", "Settings");
 
         }
         
