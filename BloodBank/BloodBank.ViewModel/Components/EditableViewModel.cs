@@ -13,6 +13,7 @@ namespace BloodBank.ViewModel.Components {
     public abstract class EditableViewModel<TModel> : CreatableViewModel<TModel> where TModel : class {
 
         protected EditableViewModel(IEventAggregator eventAggregator, IDataService<TModel> dataService, IModelValidator validator = null) : base(eventAggregator, dataService, validator) {
+            this.Bind(model => model.IsChanged, (sender, args) => NotifyOfPropertyChange(() => CanCancel));
         }
 
         protected override void OnValidationStateChanged(IEnumerable<string> changedProperties) {
