@@ -17,7 +17,7 @@ namespace BloodBank.Mock.Indagini {
 
         public IndagineAnalisiMockDataService() {
             A1 = new IndagineRange<Analisi, double>("Esame emocromocitometrico completo (milioni per ml di sangue)", Idoneità.Sospeso, 3.8, 5.9);
-            A2 = new IndagineRange<Analisi, int>("Transaminasi ALT con metodo ottimizzato (U/I)", Idoneità.NonIdoneo, 40, int.MaxValue);
+            A2 = new IndagineRange<Analisi, int>("Transaminasi ALT con metodo ottimizzato (U/L)", Idoneità.NonIdoneo, 40, int.MaxValue);
             A3 = new IndagineBoolean<Analisi>("Sierodiagnosi per la Lue (per sifilide)", Idoneità.NonIdoneo, false);
             A4 = new IndagineBoolean<Analisi>("HBsAg (per l'epatite B)", Idoneità.NonIdoneo, false);
             A5 = new IndagineBoolean<Analisi>("HIVAb 1-2 (per l'AIDS)", Idoneità.NonIdoneo, false);
