@@ -50,7 +50,7 @@
 
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="Donazione" Style="{StaticResource MaterialDesignDisplay1TextBlock}" />
+        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Text="Donazione" Style="{StaticResource MaterialDesignDisplay1TextBlock}" />
 
         <md:PackIcon Grid.Row="1" Grid.Column="2" Kind="Calendar" Foreground="{Binding ElementName=TextBoxDataDonazione, Path=BorderBrush}" />
         <Grid Grid.Row="1" Grid.Column="3">
@@ -63,8 +63,8 @@
         </Grid>
 
 
-        <md:PackIcon Grid.Row="1" Grid.Column="0" Kind="Account" Foreground="{Binding ElementName=TextBoxNomeDonatore, Path=BorderBrush}" />
-        <TextBox Grid.Row="1" Grid.Column="1" x:Name="TextBoxNomeDonatore" md:HintAssist.Hint="Nome Donatore" IsEnabled="False"
+        <md:PackIcon Grid.Row="1" Grid.Column="0" Kind="Account" Foreground="{Binding ElementName=TextBoxDonatore, Path=BorderBrush}" />
+        <TextBox Grid.Row="1" Grid.Column="1" x:Name="TextBoxDonatore" md:HintAssist.Hint="Donatore" IsEnabled="False"
                                  Text="{Binding Path=Donatore, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" />
 
         <md:PackIcon Grid.Row="2" Grid.Column="0" Kind="TagOutline" Foreground="{Binding ElementName=TextBoxTipoDonazione, Path=BorderBrush}" />
@@ -74,7 +74,7 @@
         <md:PackIcon Grid.Row="2" Grid.Column="2" Kind="Water" Foreground="{Binding ElementName=TextBoxGruppoSanguigno, Path=BorderBrush}" />
         <TextBox Grid.Row="2" Grid.Column="3" x:Name="TextBoxGruppoSanguigno" md:HintAssist.Hint="Gruppo Sanguigno" IsEnabled="False" Text="{Binding Path=Donatore.GruppoSanguigno, UpdateSourceTrigger=PropertyChanged, Mode=OneWay, Converter={StaticResource EnumToString}}" />
 
-        <TextBlock Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"  Text="Test associati" Style="{StaticResource MaterialDesignDisplay1TextBlock}" />
+        <TextBlock Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="4"  Text="Test associati" Style="{StaticResource MaterialDesignDisplay1TextBlock}" />
         <Grid Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="4">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
@@ -103,7 +103,7 @@
         </Grid>
 
 
-        <TextBlock Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2"  Text="Sacche di Sangue associate" Style="{StaticResource MaterialDesignDisplay1TextBlock}" />
+        <TextBlock Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="4"  Text="Sacche di Sangue associate" Style="{StaticResource MaterialDesignDisplay1TextBlock}" />
         <ItemsControl Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="4" ItemsSource="{Binding Path=SaccheSangue}" >
             <ItemsControl.ItemTemplate>
                 <DataTemplate>

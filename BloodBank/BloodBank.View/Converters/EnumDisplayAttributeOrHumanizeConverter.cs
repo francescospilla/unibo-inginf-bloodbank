@@ -9,7 +9,8 @@ namespace BloodBank.View.Converters {
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture) {
             Enum myEnum = value as Enum;
-            return myEnum != null ? myEnum.NameOrDescription() ?? myEnum.ToString() : value?.ToString();
+            
+            return myEnum?.NameOrDescriptionOrToString() ?? value;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) {

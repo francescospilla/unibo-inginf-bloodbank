@@ -56,7 +56,7 @@
         <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="Visita Medica" Style="{StaticResource MaterialDesignDisplay1TextBlock}" />
 
         <md:PackIcon Grid.Row="1" Grid.Column="0" Kind="Stethoscope" Foreground="{Binding ElementName=ComboBoxMedico, Path=BorderBrush}" />
-        <ComboBox Grid.Row="1" Grid.Column="1" x:Name="ComboBoxMedico" md:HintAssist.Hint="Nome Medico" ItemsSource="{Binding Path=MedicoEnumerable}" IsEnabled="{Binding IsInitialized, Converter={StaticResource BoolInverter}}"
+        <ComboBox Grid.Row="1" Grid.Column="1" x:Name="ComboBoxMedico" md:HintAssist.Hint="Medico" ItemsSource="{Binding Path=MedicoEnumerable}" IsEnabled="{Binding IsInitialized, Converter={StaticResource BoolInverter}}"
                                   SelectedItem="{Binding Path=Medico, UpdateSourceTrigger=PropertyChanged}">
         </ComboBox>
 
@@ -70,8 +70,8 @@
             <md:TimePicker Grid.Column="1" x:Name="TimePickerOraVisitaMedica" md:HintAssist.Hint="Ora della Visita" IsEnabled="{Binding IsInitialized, Converter={StaticResource BoolInverter}}" Is24Hours="True" SelectedTime="{Binding Path=DataOra, UpdateSourceTrigger=PropertyChanged}"  />
         </Grid>
 
-        <md:PackIcon Grid.Row="2" Grid.Column="0" Kind="Account" Foreground="{Binding ElementName=ComboBoxNomeDonatore, Path=BorderBrush}" />
-        <ComboBox Grid.Row="2" Grid.Column="1" x:Name="ComboBoxNomeDonatore" md:HintAssist.Hint="Nome Paziente" ItemsSource="{Binding Path=DonatoreEnumerable}" IsEnabled="{Binding IsInitialized, Converter={StaticResource BoolInverter}}"
+        <md:PackIcon Grid.Row="2" Grid.Column="0" Kind="Account" Foreground="{Binding ElementName=ComboBoxDonatore, Path=BorderBrush}" />
+        <ComboBox Grid.Row="2" Grid.Column="1" x:Name="ComboBoxDonatore" md:HintAssist.Hint="Donatore" ItemsSource="{Binding Path=DonatoreEnumerable}" IsEnabled="{Binding IsInitialized, Converter={StaticResource BoolInverter}}"
                                   SelectedItem="{Binding Path=Donatore, UpdateSourceTrigger=PropertyChanged}">
         </ComboBox>
 

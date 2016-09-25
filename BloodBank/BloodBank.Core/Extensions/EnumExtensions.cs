@@ -17,6 +17,10 @@ namespace BloodBank.Core.Extensions {
             return attribute?.Name ?? attribute?.Description;
         }
 
+        public static string NameOrDescriptionOrToString(this Enum enumObj) {
+            return enumObj.NameOrDescription() ?? enumObj.ToString();
+        }
+
         public static IEnumerable<T> Values<T>() {
             return Enum.GetValues(typeof(T)).Cast<T>();
         }
