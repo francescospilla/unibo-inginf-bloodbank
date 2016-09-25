@@ -28,7 +28,7 @@
 
         <!-- FilterControl theme Resources -->
         <ResourceDictionary Source="pack://application:,,,/BloodBank.View;component/Resources/FilterControl.xaml" />
-        
+
     </ResourceDictionary.MergedDictionaries>
 
 
@@ -64,6 +64,11 @@
     <!-- Material Design theme for Dragablz -->
     <Style TargetType="{x:Type dragablz:TabablzControl}" BasedOn="{StaticResource MaterialDesignTabablzControlStyle}">
         <Setter Property="EmptyHeaderSizingHint" Value="PreviousTab" />
+        <Setter Property="HeaderPrefixContent">
+            <Setter.Value>
+                <TextBlock Height="40" />
+            </Setter.Value>
+        </Setter>
     </Style>
 
     <!-- Card-styled ContentControl -->
@@ -93,7 +98,7 @@
         <Setter Property="HeaderItemTemplate">
             <Setter.Value>
                 <DataTemplate>
-                    <TextBlock Text="{Binding DisplayName}" />
+                    <TextBlock Text="{Binding DisplayName}" TextTrimming="CharacterEllipsis" MaxWidth="200" />
                 </DataTemplate>
             </Setter.Value>
         </Setter>
@@ -112,6 +117,11 @@
     </Style>
     <Style TargetType="{x:Type ListBox}" BasedOn="{StaticResource MaterialDesignListBox}">
         <Setter Property="ItemContainerStyle" Value="{StaticResource NoPaddingMaterialDesignListBoxItem}" />
+    </Style>
+    
+    <!-- Trim TextBlocks by default -->
+    <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
+        <Setter Property="TextTrimming" Value="CharacterEllipsis" />
     </Style>
 
     <!-- SpecialComboBox Material Design theme -->

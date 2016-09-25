@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -20,7 +21,11 @@ namespace BloodBank.Core.Extensions {
 
             StringBuilder sb = new StringBuilder();
             foreach (PropertyInfo p in props) {
-                sb.AppendLine(p.Name + ": " + p.GetValue(obj, null));
+                object value = p.GetValue(obj, null);
+                if (value is DateTime)
+                    sb.AppendLine("" + ((DateTime) value).ToShortDateString());
+                else
+                    sb.AppendLine("" + value);
             }
             return sb.ToString();
         }

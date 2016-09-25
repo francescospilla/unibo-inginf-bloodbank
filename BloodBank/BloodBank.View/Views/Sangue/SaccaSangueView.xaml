@@ -12,7 +12,6 @@
              mc:Ignorable="d" d:DesignHeight="600" d:DesignWidth="800">
 
     <UserControl.Resources>
-        <converters:BoolToStringConverter x:Key="DisponibileToString" TrueValue="Disponibile" FalseValue="Non disponibile" />
     </UserControl.Resources>
 
     <Grid components:LayoutSetter.Margin="10">

@@ -23,33 +23,27 @@ namespace BloodBank.ViewModel.ViewModels.Tests
         {
         }
 
-
-
-        public string DataDonatore => Data.ToShortDateString() + " - " + Donatore.Contatto.Nome + " " + Donatore.Contatto.Cognome;
-
-        public new string DisplayName => IsInitialized ? DataDonatore : "Nuovo test";
-
         public string StringaRicerca => this.PropertyList(typeof(SearchableAttribute));
 
-        [Searchable]
-		
         #region Properties
 
+        [Searchable]
         public Donatore Donatore { get; set; }
+        [Searchable]
         public string DescrizioneBreve { get; set; }
+        [Searchable]
         public Idoneità Idoneità { get; set; }
         public IEnumerable<Voce> Voci { get; set; }
+        [Searchable]
         public DateTime Data { get; set; }
         public DateTime DataOra { get; set; }
-
-        public string Type => typeof(U).ToString().Split('.').Last();
         
         #endregion Properties
 
         protected override void SyncModelToViewModel()
         {
             Donatore = Model.Donatore;
-            Data = Model.Data;
+            Data = Model.Data.Date;
             DataOra = Model.Data;
             DescrizioneBreve = Model.DescrizioneBreve;
             Idoneità = Model.Idoneità;

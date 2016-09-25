@@ -34,16 +34,15 @@ namespace BloodBank.ViewModel.ViewModels.Tests {
 
         #region Properties
 
-        public new string DisplayName => IsInitialized ? NomeCognomeIdoneità : "Nuova visita medica";
+        public new string DisplayName => IsInitialized ? DataDonatore : "Nuova visita medica";
 
-        public string NomeCognomeIdoneità => Donatore.Contatto.Nome + " " + Donatore.Contatto.Cognome + " (" + Idoneità + ")";
-        public string CognomeNome => Donatore.Contatto.Cognome + " " + Donatore.Contatto.Nome;
-
+        public string DataDonatore => Data.GetValueOrDefault().ToShortDateString() + " - " + Donatore.Contatto.Nome + " " + Donatore.Contatto.Cognome;
         public string StringaRicerca => this.PropertyList(typeof(SearchableAttribute));
 
         #region Data e Ora
 
         private DateTime? _data = DateTime.Today;
+        [Searchable]
         public DateTime? Data {
             get { return _data; }
             set { SetData(value); }
@@ -80,8 +79,11 @@ namespace BloodBank.ViewModel.ViewModels.Tests {
             }
         }
 
+        [Searchable]
         public string DescrizioneBreve { get; set; }
+        [Searchable]
         public Idoneità Idoneità { get; set; }
+        [Searchable]
         public Medico Medico { get; set; }
         public string Referto { get; set; }
 
@@ -97,7 +99,7 @@ namespace BloodBank.ViewModel.ViewModels.Tests {
             DonatoreEnumerable = _donatoreDataService.GetModels();
             Donatore = Model.Donatore;
             DescrizioneBreve = Model.DescrizioneBreve;
-            Data = Model.Data;
+            Data = Model.Data.Date;
             DataOra = Model.Data;
             Idoneità = Model.Idoneità;
             Medico = Model.Medico;

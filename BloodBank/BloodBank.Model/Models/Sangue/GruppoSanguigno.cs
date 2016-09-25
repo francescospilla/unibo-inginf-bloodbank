@@ -6,10 +6,10 @@ namespace BloodBank.Model.Models.Sangue {
 
     public enum GruppoSanguigno {
 
-        [Display(Name = "0 Negativo")]
+        [Display(Name = "O Negativo")]
         O_Neg,
 
-        [Display(Name = "0 Positivo")]
+        [Display(Name = "O Positivo")]
         O_Pos,
 
         [Display(Name = "A Negativo")]

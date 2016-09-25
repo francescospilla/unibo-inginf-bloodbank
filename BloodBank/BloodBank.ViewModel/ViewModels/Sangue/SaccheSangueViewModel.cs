@@ -7,7 +7,7 @@ using Stylet;
 
 namespace BloodBank.ViewModel.ViewModels.Sangue
 {
-    public class SaccheSangueViewModel : TabWorkspaceViewModel<SaccaSangue, SaccaSangueViewModel>
+    public class SaccheSangueViewModel : WorkspaceViewModel<SaccaSangue, SaccaSangueViewModel>
     {
         public SaccheSangueViewModel(IEventAggregator eventAggregator, IDataService<SaccaSangue> dataService, Func<SaccaSangueViewModel> viewModelFactory) : base(eventAggregator, dataService, viewModelFactory)
         {

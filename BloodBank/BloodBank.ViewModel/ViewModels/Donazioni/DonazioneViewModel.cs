@@ -21,20 +21,20 @@ namespace BloodBank.ViewModel.ViewModels.Donazioni
 
         #region Properties
 
-        public new string DisplayName => IsInitialized ? DonazioneNomeCognome : "Nuova donazione";
-
-        public string DonazioneNomeCognome => "Donazione " +  Donatore.Contatto.Nome + " " + Donatore.Contatto.Cognome;
-        public string CognomeNome => Donatore.Contatto.Cognome + " " + Donatore.Contatto.Nome;
-
         public string StringaRicerca => this.PropertyList(typeof(SearchableAttribute));
         
         [Searchable]
         public Donatore Donatore { get; set; }
+        [Searchable]
         public TipoDonazione TipoDonazione { get; set; }
         public VisitaMedica VisitaMedica { get; set; }
         public Analisi Analisi { get; set; }
         public Questionario Questionario { get; set; }
         public IEnumerable<SaccaSangue> SaccheSangue { get; set; }
+
+        [Searchable]
+        public GruppoSanguigno GruppoSanguigno => Donatore.GruppoSanguigno;
+        [Searchable]
         public DateTime Data { get; set; }
         public DateTime DataOra { get; set; }
 
@@ -43,7 +43,7 @@ namespace BloodBank.ViewModel.ViewModels.Donazioni
         protected override void SyncModelToViewModel()
         {
             Donatore = Model.Donatore;
-            Data = Model.Data;
+            Data = Model.Data.Date;
             DataOra = Model.Data;
             TipoDonazione = Model.TipoDonazione;
             VisitaMedica = Model.VisitaMedica;

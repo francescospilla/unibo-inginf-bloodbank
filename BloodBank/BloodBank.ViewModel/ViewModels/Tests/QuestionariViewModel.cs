@@ -10,7 +10,7 @@ using Stylet.DictionaryViewManager;
 namespace BloodBank.ViewModel.ViewModels.Tests
 {
     [AssociatedView("ListeVociView")]
-    public class QuestionariViewModel : TabWorkspaceViewModel<Questionario, ListaVociViewModel<Questionario>> 
+    public class QuestionariViewModel : WorkspaceViewModel<Questionario, ListaVociViewModel<Questionario>> 
     {
         private readonly Func<NuovaListaVociDialogViewModel<Questionario>> _dialogFactory;
 
@@ -23,7 +23,7 @@ namespace BloodBank.ViewModel.ViewModels.Tests
         public void OpenNewDialog() {
             var dialog = _dialogFactory();
             DialogEvent e = new DialogEvent(true, dialog);
-            _eventAggregator.Publish(e);
+            EventAggregator.Publish(e);
         }
 
         #endregion

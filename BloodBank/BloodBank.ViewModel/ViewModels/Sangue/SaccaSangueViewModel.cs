@@ -19,9 +19,6 @@ namespace BloodBank.ViewModel.ViewModels.Sangue {
 
         #region Properties
 
-        public new string DisplayName => IsInitialized ? IdSacca : "Nuova sacca";
-        public string CompEmGruppoSanguigno => Componente + " " + Gruppo;
-
         public string IdSacca => Id.ToString();
 
         public string StringaRicerca => this.PropertyList(typeof(SearchableAttribute));
@@ -29,7 +26,6 @@ namespace BloodBank.ViewModel.ViewModels.Sangue {
 
         [Searchable]
         public Guid Id { get; set; }
-        [Searchable]
         public Donazione Donazione { get; set; }
         [Searchable]
         public DateTime DataScadenza { get; set; }
@@ -41,6 +37,7 @@ namespace BloodBank.ViewModel.ViewModels.Sangue {
         public bool Scaduta { get; set; }
         [Searchable]
         public string DisponibileString => !Disponibile ? "Non Disponibile" : Scaduta ? "Scaduta" : "Disponibile";
+        [Searchable]
         public DateTime Data { get; set; }
         public DateTime DataOra { get; set; }
 
@@ -52,7 +49,7 @@ namespace BloodBank.ViewModel.ViewModels.Sangue {
         protected override void SyncModelToViewModel() {
             Id = Model.Id;
             Donazione = Model.Donazione;
-            Data = Model.DataPrelievo;
+            Data = Model.DataPrelievo.Date;
             DataOra = Model.DataPrelievo;
             DataScadenza = Model.DataScadenza;
             Gruppo = Model.Gruppo;

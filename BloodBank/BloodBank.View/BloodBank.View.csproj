@@ -73,6 +73,7 @@
     <Compile Include="Components\PushBinding\PushBindingCollection.cs" />
     <Compile Include="Components\PushBinding\PushBindingManager.cs" />
     <Compile Include="Components\ReadOnlyPanel.cs" />
+    <Compile Include="Components\ListBoxExt.cs" />
     <Compile Include="Converters\BoolInverterConverter.cs" />
     <Compile Include="Converters\BoolToStringConverter.cs" />
     <Compile Include="Converters\NullToValueConverter.cs" />

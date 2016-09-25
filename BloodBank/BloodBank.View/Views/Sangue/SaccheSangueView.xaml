@@ -5,74 +5,68 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:controls="clr-namespace:BloodBank.View.UserControls"
              xmlns:s="https://github.com/canton7/Stylet"
-             xmlns:dragablz="http://dragablz.net/winfx/xaml/dragablz"
-             xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:componentModel="clr-namespace:System.ComponentModel;assembly=WindowsBase"
              xmlns:system="clr-namespace:System;assembly=mscorlib"
+             xmlns:components="clr-namespace:BloodBank.View.Components"
              mc:Ignorable="d" d:DesignHeight="600" d:DesignWidth="800">
 
     <UserControl.Resources>
-        <CollectionViewSource IsLiveSortingRequested="True" Source="{Binding ListItems}" x:Key="ListaSaccheSangueOrdinata">
+        <CollectionViewSource IsLiveSortingRequested="True" Source="{Binding Items}" x:Key="ListaSaccheSangueOrdinata">
             <CollectionViewSource.LiveSortingProperties>
+                <system:String>Data</system:String>
                 <system:String>DataScadenza</system:String>
             </CollectionViewSource.LiveSortingProperties>
             <CollectionViewSource.SortDescriptions>
+                <componentModel:SortDescription  PropertyName="Data" />
                 <componentModel:SortDescription  PropertyName="DataScadenza" />
             </CollectionViewSource.SortDescriptions>
         </CollectionViewSource>
     </UserControl.Resources>
 
     <DockPanel>
-        <controls:AppBar Title="{Binding DisplayName}" NavMenuButtonClickAction="{s:Action OpenNavMenu}" Shadow="Depth0" DockPanel.Dock="Top"  Panel.ZIndex="1" />
+        <controls:AppBar Title="{Binding DisplayName}" NavMenuButtonClickAction="{s:Action OpenNavMenu}" DockPanel.Dock="Top"  Panel.ZIndex="1" />
 
-        <Grid DockPanel.Dock="Left">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition />
-            </Grid.RowDefinitions>
+        <Border Width="250" Background="{DynamicResource MaterialDesignPaper}" BorderThickness="0,0,1,0" BorderBrush="{DynamicResource PrimaryHueMidBrush}" Padding="0 6 0 0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
 
-            <Border BorderThickness="1" BorderBrush="{DynamicResource PrimaryHueMidBrush}" Panel.ZIndex="1">
-                <Border.Effect>
-                    <DropShadowEffect BlurRadius="5" ShadowDepth="2" Direction="270" Opacity=".5" />
-                </Border.Effect>
-                <md:ColorZone Mode="Standard" Background="{DynamicResource PrimaryHueMidBrush}" Height="38" />
-            </Border>
-
-            <Border Grid.Row="1" Width="250" Background="{DynamicResource MaterialDesignPaper}" BorderThickness="0,0,1,0" BorderBrush="{DynamicResource PrimaryHueMidBrush}" Padding="0 6 0 0">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
-
-                    <controls:FilterControl Header="Ricerca..."
+                <controls:FilterControl Header="Ricerca..."
                             TargetControl="{Binding ElementName=ListaSaccheSangueListBox}"
                             FilterTextBindingPath="StringaRicerca" />
 
-                    <ListBox Grid.Row="1" x:Name="ListaSaccheSangueListBox" ItemsSource="{Binding Source={StaticResource ListaSaccheSangueOrdinata}}" HorizontalContentAlignment="Stretch" Margin="0 10 0 0">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <Border BorderThickness="0 0 0 1" BorderBrush="{DynamicResource MaterialDesignDivider}" Width="Auto">
-                                    <StackPanel Margin="8">
-                                        <TextBlock FontWeight="Bold" Text="{Binding CompEmGruppoSanguigno}" />
-                                    </StackPanel>
-                                    <Border.InputBindings>
-                                        <MouseBinding MouseAction="LeftDoubleClick" Command="{s:Action AddTab}" CommandParameter="{Binding }" />
-                                    </Border.InputBindings>
-                                </Border>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
-                </Grid>
-            </Border>
-        </Grid>
+                <ListBox Grid.Row="1" x:Name="ListaSaccheSangueListBox" ItemsSource="{Binding Source={StaticResource ListaSaccheSangueOrdinata}}" SelectedItem="{Binding ActiveItem}" components:ListBoxExt.ScrollSelectedIntoView="True" HorizontalContentAlignment="Stretch" Margin="0 10 0 0">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderThickness="0 0 0 1" BorderBrush="{DynamicResource MaterialDesignDivider}" Width="Auto">
+                                <StackPanel Margin="8">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="10" />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition />
+                                            <RowDefinition />
+                                        </Grid.RowDefinitions>
+                                        <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding Data, StringFormat=d}" FontWeight="Bold" />
+                                        <TextBlock Grid.Row="0" Grid.Column="2" Text="{Binding Componente}" TextAlignment="Right" />
+                                        <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding DataScadenza, StringFormat='&#4962; Scadenza: {0:d}'}" />
+                                        <TextBlock Grid.Row="1" Grid.Column="2" Text="{Binding Gruppo, Converter={StaticResource EnumToString}}" TextAlignment="Right" />
+                                    </Grid>
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Grid>
+        </Border>
 
         <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="13*" />
-                <RowDefinition Height="171*" />
-            </Grid.RowDefinitions>
-            <dragablz:TabablzControl Style="{StaticResource StyletConductorTabablzControl}" BorderThickness="0" ShowDefaultCloseButton="True" Grid.RowSpan="2" />
+            <ContentControl Style="{StaticResource CardContentControlStyle}" s:View.Model="{Binding ActiveItem}" Visibility="{Binding ActiveItem, Converter={StaticResource NullToVisibility}}" />
         </Grid>
     </DockPanel>
 </UserControl>
