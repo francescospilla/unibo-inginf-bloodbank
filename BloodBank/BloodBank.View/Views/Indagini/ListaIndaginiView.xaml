@@ -53,7 +53,9 @@
             </StackPanel>
         </Grid>
 
-        <TextBox Grid.Row="2" Grid.ColumnSpan="3" Text="{Binding Nome, UpdateSourceTrigger=PropertyChanged}" md:HintAssist.Hint="Nome" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10 0" />
+        <TextBox Grid.Row="2" Grid.ColumnSpan="2" Text="{Binding Nome, UpdateSourceTrigger=PropertyChanged}" md:HintAssist.Hint="Nome" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10 0" />
+
+        <TextBox Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Text="{Binding DataUltimaModifica, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" md:HintAssist.Hint="Data ultima modifica" Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsEnabled="False" Margin="10 0" />
 
         <GroupBox Grid.Row="4" Grid.Column="0" Header="Disponibili:" Style="{DynamicResource MaterialDesignCardGroupBox}" Margin="16" Padding="0">
             <GroupBox.HeaderTemplate>
@@ -109,12 +111,12 @@
             </ListBox>
         </GroupBox>
 
-        <StackPanel Grid.Row="4" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,140,9.5,170">
+        <StackPanel Grid.Row="4" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Button ToolTip="Seleziona" Margin="10" Content="&gt;" Command="{s:Action TrasferisciIndaginiDa}" />
             <Button ToolTip="Deseleziona" Margin="10" Content="&lt;" Command="{s:Action TrasferisciIndaginiA}" />
         </StackPanel>
 
-        <StackPanel Grid.Row="4" Grid.Column="3"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,140,10,170">
+        <StackPanel Grid.Row="4" Grid.Column="3"  HorizontalAlignment="Center" VerticalAlignment="Center">
             <Button ToolTip="Sposta su" Margin="10" Content="∧" Command="{s:Action MoveUpIndagini}" />
             <Button ToolTip="Sposta giù" Margin="10" Content="∨" Command="{s:Action MoveDownIndagini}" />
         </StackPanel>

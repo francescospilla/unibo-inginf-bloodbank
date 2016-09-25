@@ -7,6 +7,7 @@ using PropertyChanged;
 
 namespace BloodBank.Model.Models.Indagini {
 
+    [ImplementPropertyChanged]
     public abstract class ListaIndagini : IEnumerable<Indagine>, IListaIndagini {
         private readonly List<Indagine> _indagini;
 
@@ -81,7 +82,7 @@ namespace BloodBank.Model.Models.Indagini {
         }
     }
 
-    [ImplementPropertyChanged] public class ListaIndagini<U> : ListaIndagini where U : ListaVoci {
+    public class ListaIndagini<U> : ListaIndagini where U : ListaVoci {
         public Type Tipo { get; } = typeof(U);
 
         public ListaIndagini(string nome = null) : base(nome) {

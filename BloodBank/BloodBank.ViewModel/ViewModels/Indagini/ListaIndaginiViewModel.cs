@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using BloodBank.Model.Models.Indagini;
 using BloodBank.Model.Models.Tests;
@@ -33,6 +34,10 @@ namespace BloodBank.ViewModel.ViewModels.Indagini {
             EventAggregator.Publish(new ViewModelCollectionChangedEvent<ListaIndaginiViewModel<U>>(this));
         }
 
+        protected override void SyncFromModelOnPropertyChanged(object sender, PropertyChangedEventArgs args) {
+            DataUltimaModifica = Model.DataUltimaModifica;
+        }
+
         #region Private Methods
 
         private void NotifyPropertyChangedOnCollectionChanged() {
@@ -56,8 +61,8 @@ namespace BloodBank.ViewModel.ViewModels.Indagini {
             get { return _indagini; }
         }
 
-        public DateTime DataCreazione { get; private set; }
-        public DateTime DataUltimaModifica { get; private set; }
+        public DateTime DataCreazione { get; private set; } = DateTime.Now;
+        public DateTime DataUltimaModifica { get; private set; } = DateTime.Now;
 
         #endregion Model Properties
 

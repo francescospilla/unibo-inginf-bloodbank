@@ -25,8 +25,12 @@ namespace BloodBank.ViewModel.Components
                 SyncModelToViewModel();
                 INotifyPropertyChanged notifyPropertyChanged = Model as INotifyPropertyChanged;
                 if (notifyPropertyChanged != null)
-                    notifyPropertyChanged.PropertyChanged += (sender, args) => { SyncModelToViewModel(); };
+                    notifyPropertyChanged.PropertyChanged += SyncFromModelOnPropertyChanged;
             }
+        }
+
+        protected virtual void SyncFromModelOnPropertyChanged(object sender, PropertyChangedEventArgs args) {
+            SyncModelToViewModel();
         }
 
         public bool IsInitialized { get { return Model != null; } }
