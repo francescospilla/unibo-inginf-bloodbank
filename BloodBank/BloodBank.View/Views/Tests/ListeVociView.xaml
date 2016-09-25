@@ -53,16 +53,25 @@
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <Border BorderThickness="0 0 0 1" BorderBrush="{DynamicResource MaterialDesignDivider}" Width="Auto">
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*" />
-                                            <ColumnDefinition Width="Auto" />
-                                        </Grid.ColumnDefinitions>
-                                        <StackPanel Grid.Column="0" Margin="8">
-                                            <TextBlock FontWeight="Bold" Text="{Binding DataDonatore}" />
-                                        </StackPanel>
-                                        <md:PackIcon Grid.Column="1" Margin="16 8" Style="{StaticResource EditableHelperIconStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                                    </Grid>
+                                    <StackPanel Margin="8">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition />
+                                                <ColumnDefinition />
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition />
+                                                <RowDefinition />
+                                            </Grid.RowDefinitions>
+                                            <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
+                                                <TextBlock Text="{Binding DataOra, StringFormat=d}" FontWeight="Bold" />
+                                                <TextBlock Text=" - " />
+                                                <TextBlock Text="{Binding DataOra, StringFormat=t}" />
+                                            </StackPanel>
+                                            <TextBlock Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Text="{Binding DescrizioneBreve}" MaxHeight="40" TextAlignment="Right" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" />
+                                            <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding Donatore, StringFormat=- {0}}" />
+                                        </Grid>
+                                    </StackPanel>
                                     <Border.InputBindings>
                                         <MouseBinding MouseAction="LeftDoubleClick" Command="{s:Action AddTab}" CommandParameter="{Binding }" />
                                     </Border.InputBindings>

@@ -64,7 +64,7 @@
                                             <TextBlock FontWeight="Bold" Text="{Binding NomeCognome}" />
                                             <TextBlock Text="{Binding CodiceFiscale}" />
                                         </StackPanel>
-                                        <md:PackIcon Grid.Column="1" Margin="16 8" Style="{StaticResource EditableHelperIconStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                        <md:PackIcon Grid.Column="1" Margin="4 4 8 4" Style="{StaticResource EditableHelperIconStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" />
                                     </Grid>
                                     <Border.InputBindings>
                                         <MouseBinding MouseAction="LeftDoubleClick" Command="{s:Action AddTab}" CommandParameter="{Binding }" />

@@ -33,11 +33,11 @@
                                         <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
                                     <StackPanel Grid.Column="0" Margin="8">
-                                        <TextBlock FontWeight="Bold" Text="{Binding Nome}" />
+                                        <TextBlock FontWeight="Bold" Text="{Binding Nome}" TextTrimming="CharacterEllipsis" TextWrapping="Wrap" MaxHeight="40" />
                                         <TextBlock Text="{Binding CountElementi, StringFormat={}{0} elementi}" />
                                     </StackPanel>
-                                    <md:PackIcon Grid.Column="1" Margin="8" Style="{StaticResource EditableInitializedHelperIconStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                                    <md:PackIcon Grid.Column="2" Margin="8 8 16 8" Style="{StaticResource EditableHelperIconStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                    <md:PackIcon Grid.Column="1" Margin="4" Style="{StaticResource EditableInitializedHelperIconStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                    <md:PackIcon Grid.Column="2" Margin="4 4 8 4" Style="{StaticResource EditableHelperIconStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" />
                                 </Grid>
                             </Border>
                         </DataTemplate>
