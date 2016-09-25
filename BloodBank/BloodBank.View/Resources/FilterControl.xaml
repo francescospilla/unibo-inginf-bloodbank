@@ -64,7 +64,7 @@
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
                             <Button Style="{DynamicResource MaterialDesignToolButton}" VerticalAlignment="Center">
-                                <md:PackIcon Kind="Magnify" Opacity=".56" />
+                                <md:PackIcon Kind="Magnify" Opacity=".56"/>
                             </Button>
                             <TextBox Style="{StaticResource FilterTextBoxStyle}" md:HintAssist.Hint="Ricerca" md:TextFieldAssist.DecorationVisibility="Hidden" BorderThickness="0"
                                      x:Name="PART_FilterBox"  AutoWordSelection="True"

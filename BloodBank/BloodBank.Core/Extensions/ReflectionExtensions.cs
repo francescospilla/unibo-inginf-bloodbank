@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -22,12 +23,30 @@ namespace BloodBank.Core.Extensions {
             StringBuilder sb = new StringBuilder();
             foreach (PropertyInfo p in props) {
                 object value = p.GetValue(obj, null);
-                if (value is DateTime)
-                    sb.AppendLine("" + ((DateTime) value).ToShortDateString());
+                if (value is IEnumerable<object>)
+                    sb.AppendLine(string.Join(", ", (IEnumerable)value));
+                else if (value is DateTime)
+                    sb.AppendLine("" + ((DateTime)value).ToShortDateString());
                 else
                     sb.AppendLine("" + value);
             }
             return sb.ToString();
+        }
+
+        public static IEnumerable<string> PropertyNames(this Type obj, Type customAttributeType) {
+            IEnumerable<PropertyInfo> props = obj.GetProperties();
+            if (customAttributeType != null)
+                props = props.Where(p => Attribute.IsDefined(p, customAttributeType));
+            return props.Select(p => {
+                Type type = p.PropertyType;
+                type = Nullable.GetUnderlyingType(type) ?? type;
+                IEnumerable values = type.IsEnum ? Enum.GetValues(type) : null;
+                values = values ?? (type == typeof(bool) ? new[] {"True", "False"} : null);
+                values = values ?? (IEnumerable)type.GetProperty("Values")?.GetValue(null, null);
+
+                string stringValues = values?.Cast<object>().Aggregate((x, y) => x + ", " + y).ToString();
+                return stringValues != null ? p.Name.ToSentenceCase() + " (" + stringValues + ")" : p.Name.ToSentenceCase();
+            }).OrderBy(name => name);
         }
 
         public static Dictionary<string, object> ToPropertyDictionary(this object obj) {

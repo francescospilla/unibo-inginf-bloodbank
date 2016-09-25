@@ -1,9 +1,12 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using BloodBank.Core.Attributes;
 using BloodBank.Core.Extensions;
 using BloodBank.Model.Service;
 using BloodBank.ViewModel.Events;
 using BloodBank.ViewModel.Service;
+using BloodBank.ViewModel.ViewModels.Sangue;
 using PropertyChanged;
 using Stylet;
 
@@ -14,6 +17,8 @@ namespace BloodBank.ViewModel.Components {
         protected readonly IEventAggregator EventAggregator;
         protected readonly IDataService<TModel> DataService;
         protected readonly Func<TViewModel> ViewModelFactory;
+        
+        public static IEnumerable<string> HelpRicerca => typeof(TViewModel).PropertyNames(typeof(SearchableAttribute));
 
         public TabWorkspaceViewModel(IEventAggregator eventAggregator, IDataService<TModel> dataService, Func<TViewModel> viewModelFactory) {
             EventAggregator = eventAggregator;
@@ -35,8 +40,9 @@ namespace BloodBank.ViewModel.Components {
             }
 
             EventAggregator.Subscribe(this);
-
             AddTab();
+            ActiveItem = null;
+
         }
 
         public BindableCollection<TViewModel> ListItems { get; }

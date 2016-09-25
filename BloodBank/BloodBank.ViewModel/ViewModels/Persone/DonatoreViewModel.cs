@@ -59,8 +59,8 @@ namespace BloodBank.ViewModel.ViewModels.Persone {
         public GruppoSanguigno GruppoSanguigno { get; set; }
         [Searchable]
         public Idoneità? Idoneità { get; set; }
-        public bool Attivo { get; set; }
         [Searchable]
+        public bool Attivo { get; set; }
         public DateTime? DataProssimaDonazioneConsentita { get; set; }
 
         #endregion Properties

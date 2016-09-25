@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using BloodBank.Core.Attributes;
+using BloodBank.Core.Extensions;
 using BloodBank.Model.Models.Sangue;
 using BloodBank.Model.Service;
 using BloodBank.ViewModel.Components;
@@ -11,6 +14,7 @@ namespace BloodBank.ViewModel.ViewModels.Sangue
     {
         public SaccheSangueViewModel(IEventAggregator eventAggregator, IDataService<SaccaSangue> dataService, Func<SaccaSangueViewModel> viewModelFactory) : base(eventAggregator, dataService, viewModelFactory)
         {
+
         }
     }
 }

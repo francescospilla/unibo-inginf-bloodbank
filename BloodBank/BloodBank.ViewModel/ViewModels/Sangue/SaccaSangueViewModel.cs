@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using BloodBank.Core.Attributes;
 using BloodBank.Core.Extensions;
 using BloodBank.Model.Models.Donazioni;
@@ -19,10 +20,10 @@ namespace BloodBank.ViewModel.ViewModels.Sangue {
 
         #region Properties
 
-        public string IdSacca => Id.ToString();
-
         public string StringaRicerca => this.PropertyList(typeof(SearchableAttribute));
 
+        [Searchable]
+        public string Disponibilità => !Disponibile ? "Non Disponibile" : Scaduta ? "Scaduta" : "Disponibile";
 
         [Searchable]
         public Guid Id { get; set; }
@@ -35,8 +36,6 @@ namespace BloodBank.ViewModel.ViewModels.Sangue {
         public ComponenteEmatico Componente { get; set; }
         public bool Disponibile { get; set; }
         public bool Scaduta { get; set; }
-        [Searchable]
-        public string DisponibileString => !Disponibile ? "Non Disponibile" : Scaduta ? "Scaduta" : "Disponibile";
         [Searchable]
         public DateTime Data { get; set; }
         public DateTime DataOra { get; set; }

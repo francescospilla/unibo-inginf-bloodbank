@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using BloodBank.Core.Attributes;
+using BloodBank.Core.Extensions;
 using BloodBank.Model.Models.Indagini;
 using BloodBank.Model.Models.Tests;
 using BloodBank.Model.Service;
@@ -54,9 +56,11 @@ namespace BloodBank.ViewModel.ViewModels.Indagini {
 
         #region Model Properties
 
+        [Searchable]
         public string Nome { get; set; }
         private readonly BindableCollection<Indagine> _indagini = new BindableCollection<Indagine>();
 
+        [Searchable]
         public IEnumerable<Indagine> Indagini {
             get { return _indagini; }
         }
@@ -68,6 +72,7 @@ namespace BloodBank.ViewModel.ViewModels.Indagini {
 
         #region Other Properties
 
+        public string StringaRicerca => this.PropertyList(typeof (SearchableAttribute));
         public string Type => typeof(U).ToString().Split('.').Last();
         public BindableCollection<Indagine> IndaginiNonSelezionate { get; } = new BindableCollection<Indagine>();
 

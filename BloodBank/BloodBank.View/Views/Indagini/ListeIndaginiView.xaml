@@ -21,7 +21,26 @@
 
                 <controls:FilterControl Header="Ricerca..."
                             TargetControl="{Binding ElementName=QuestionariListBox}"
-                            FilterTextBindingPath="Nome" />
+                            FilterTextBindingPath="StringaRicerca">
+                    <controls:FilterControl.ToolTip>
+                        <StackPanel>
+                            <TextBlock Style="{DynamicResource MaterialDesignBody2TextBlock}" TextAlignment="Center">Help Ricerca</TextBlock>
+                            <TextBlock  Margin="0 16 0 0">Puoi filtrare i risultati secondo i seguenti parametri:</TextBlock>
+                            <ItemsControl ItemsSource="{Binding HelpRicerca}" Margin="0 8 0 0">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <BulletDecorator>
+                                            <BulletDecorator.Bullet>
+                                                <Polygon Points="0, 3 3, 0 6, 3 3, 6" Margin="3 0"  Fill="White" />
+                                            </BulletDecorator.Bullet>
+                                            <TextBlock Margin="7 0 0 0"  Text="{Binding }" />
+                                        </BulletDecorator>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
+                    </controls:FilterControl.ToolTip>
+                </controls:FilterControl>
 
                 <ListBox Grid.Row="1" x:Name="QuestionariListBox" ItemsSource="{Binding Items}" HorizontalContentAlignment="Stretch" Margin="0 10 0 0" SelectedItem="{Binding ActiveItem}" components:ListBoxExt.ScrollSelectedIntoView="True">
                     <ListBox.ItemTemplate>
