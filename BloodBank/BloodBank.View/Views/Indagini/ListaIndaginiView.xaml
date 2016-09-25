@@ -8,8 +8,21 @@
              xmlns:s="https://github.com/canton7/Stylet"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:components="clr-namespace:BloodBank.View.Components"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
+             xmlns:componentModel="clr-namespace:System.ComponentModel;assembly=WindowsBase"
              mc:Ignorable="d"
              d:DesignHeight="600" d:DesignWidth="800">
+
+    <UserControl.Resources>
+        <CollectionViewSource IsLiveSortingRequested="True" Source="{Binding IndaginiNonSelezionate}" x:Key="ListaIndaginiNonSelezionateOrdinataPerId">
+            <CollectionViewSource.LiveSortingProperties>
+                <system:String>Id</system:String>
+            </CollectionViewSource.LiveSortingProperties>
+            <CollectionViewSource.SortDescriptions>
+                <componentModel:SortDescription PropertyName="Id" />
+            </CollectionViewSource.SortDescriptions>
+        </CollectionViewSource>
+    </UserControl.Resources>
 
     <Grid components:LayoutSetter.Margin="10" x:Name="ViewModelRootPanel">
         <Grid.ColumnDefinitions>
@@ -49,7 +62,7 @@
                 </DataTemplate>
             </GroupBox.HeaderTemplate>
 
-            <ListBox x:Name="OggettiIndagineNotSelezionateListBox" ItemsSource="{Binding IndaginiNonSelezionate}" SelectionMode="Extended" Background="{DynamicResource MaterialDesignBackground}" SelectionChanged="{s:Action NotifySelectionChanged}">
+            <ListBox x:Name="OggettiIndagineNotSelezionateListBox" ItemsSource="{Binding Source={StaticResource ListaIndaginiNonSelezionateOrdinataPerId}}" SelectionMode="Extended" Background="{DynamicResource MaterialDesignBackground}" SelectionChanged="{s:Action NotifySelectionChanged}">
                 <components:PushBindingManager.PushBindings>
                     <components:PushBinding TargetProperty="SelectedItems" Path="IndaginiNonSelezionateSelectedItems" />
                 </components:PushBindingManager.PushBindings>
@@ -57,12 +70,12 @@
                     <DataTemplate>
                         <Grid Margin="8">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition SharedSizeGroup="Checkerz" />
+                                <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
 
                             <CheckBox Grid.Column="0" VerticalAlignment="Center" IsChecked="{Binding IsSelected, RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}, Mode=FindAncestor}}" />
-                            <TextBlock Grid.Column="1" Text="{Binding }" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" Margin="4 0 0 0" />
+                            <TextBlock Grid.Column="1" Text="{Binding }" VerticalAlignment="Center" TextWrapping="Wrap" Margin="4 0 0 0" />
                         </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
@@ -84,12 +97,12 @@
                     <DataTemplate>
                         <Grid Margin="8">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition SharedSizeGroup="Checkerz" />
+                                <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
 
                             <CheckBox Grid.Column="0" VerticalAlignment="Center" IsChecked="{Binding IsSelected, RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}, Mode=FindAncestor}}" />
-                            <TextBlock Grid.Column="1" Text="{Binding }" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" Margin="4 0 0 0" />
+                            <TextBlock Grid.Column="1" Text="{Binding }" VerticalAlignment="Center" TextWrapping="Wrap" Margin="4 0 0 0" />
                         </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
