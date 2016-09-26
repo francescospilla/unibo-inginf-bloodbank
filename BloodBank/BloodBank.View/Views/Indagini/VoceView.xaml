@@ -28,7 +28,7 @@
         </Grid.ColumnDefinitions>
 
         <TextBox Grid.Column="0" md:HintAssist.Hint="Indagine" TextWrapping="Wrap" Text="{Binding Indagine.Testo, Mode=OneWay}" IsEnabled="False" />
-        <userControls:FilteredEditableComboBox Grid.Column="1" Width="150" md:HintAssist.Hint="Risposta" ItemsSource="{Binding Path=RisultatoEnumerable}" SelectedItem="{Binding Path=Risposta, UpdateSourceTrigger=PropertyChanged}">
+        <userControls:FilteredEditableComboBox Grid.Column="1" Width="150" md:HintAssist.Hint="Risposta" ItemsSource="{Binding Path=RisultatoEnumerable}" SelectedItem="{Binding Path=Risposta, UpdateSourceTrigger=PropertyChanged}" Loaded="ComboBox_OnLoaded">
             <userControls:FilteredEditableComboBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <VirtualizingStackPanel />
