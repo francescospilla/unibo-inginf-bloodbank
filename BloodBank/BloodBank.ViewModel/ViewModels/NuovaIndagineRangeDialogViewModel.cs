@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using BloodBank.Core.Extensions;
 using BloodBank.Model.Models.Indagini;
 using BloodBank.Model.Models.Indagini.Tipi;
@@ -47,6 +48,7 @@ namespace BloodBank.ViewModel.ViewModels {
             _dataService = dataService;
         }
 
+        public string Type => typeof(U).ToString().Split('.').Last();
         public override IEnumerable<T> RangeEnumerable => typeof(T).Enumerable() as IEnumerable<T>;
 
         protected override Indagine CreateModelFromViewModel() {

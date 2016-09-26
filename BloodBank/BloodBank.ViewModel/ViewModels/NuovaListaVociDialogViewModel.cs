@@ -67,6 +67,8 @@ namespace BloodBank.ViewModel.ViewModels {
         public bool CanMoveTo3rdPage => SelectedListaIndagini != null;
         public bool CanMoveToLastPage => VociViewModelEnumerable != null && VociViewModelEnumerable.All(vm => vm.CanSave);
 
+        public string Type => typeof(U).ToString().Split('.').Last();
+        
         #region Data e Ora
 
         private DateTime? _data = DateTime.Today;

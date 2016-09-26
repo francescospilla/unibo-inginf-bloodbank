@@ -39,7 +39,8 @@
 
 
 
-        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="Nuova Indagine Boolean" Style="{StaticResource MaterialDesignDisplay1TextBlock}" />
+        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="Nuova Indagine Boolean" Style="{StaticResource MaterialDesignDisplay1TextBlock}" VerticalAlignment="Bottom" />
+        <TextBlock Grid.Row="0" Grid.Column="3" Text="{Binding Path=Type, StringFormat=(per {0})}" Style="{StaticResource MaterialDesignHeadlineTextBlock}" VerticalAlignment="Bottom" HorizontalAlignment="Right" TextAlignment="Right" />
 
         <md:PackIcon Grid.Row="1" Grid.Column="0" Kind="Pencil" Foreground="{Binding ElementName=TextBoxTesto, Path=BorderBrush}" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="10,25,10,0" />
         <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" MinLines="2" x:Name="TextBoxTesto" md:HintAssist.Hint="Inserire il testo dell'indagine"

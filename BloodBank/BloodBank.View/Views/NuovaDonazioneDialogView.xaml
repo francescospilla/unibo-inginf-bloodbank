@@ -33,8 +33,8 @@
     </UserControl.Resources>
 
     <ScrollViewer VerticalScrollBarVisibility="Auto">
-        <xctk:Wizard Next="{s:Action OnChangeToNextPage}" Finish="{s:Action Finish}" Cancel="{s:Action Cancel}">
-            <xctk:WizardPage Title="Selezione Donatore" Description="Scegliere fra i Donatori disponibili quello su cui effettuare la Donazione. Vengono mostrati solo i Donatori Attivi e Idonei." CanSelectNextPage="{Binding CanMoveTo2ndPage}">
+        <xctk:Wizard Next="{s:Action OnChangeToNextPage}" Finish="{s:Action Finish}" Cancel="{s:Action Cancel}" MaxWidth="800">
+            <xctk:WizardPage Title="Selezione Donatore" Description="Scegliere fra i Donatori disponibili quello che intende effettuare la Donazione. Vengono mostrati solo i Donatori Attivi e Idonei." CanSelectNextPage="{Binding CanMoveTo2ndPage}">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
@@ -150,7 +150,7 @@
 
                     <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource MaterialDesignHeadlineTextBlock}" Margin="0 4 0 4">Riepilogo:</TextBlock>
 
-                    <md:PackIcon Grid.Row="1" Grid.Column="0" Kind="Account" Foreground="{Binding ElementName=TextBoxNomeDonatore, Path=BorderBrush}" />
+                    <md:PackIcon Grid.Row="1" Grid.Column="0" Kind="Account" Foreground="{Binding ElementName=TextBoxDonatore, Path=BorderBrush}" />
                     <TextBox Grid.Row="1" Grid.Column="1" x:Name="TextBoxDonatore" md:HintAssist.Hint="Donatore" IsEnabled="False"
                                  Text="{Binding Path=SelectedDonatore, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}">
                     </TextBox>

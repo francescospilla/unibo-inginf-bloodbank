@@ -33,8 +33,8 @@
     </UserControl.Resources>
 
     <ScrollViewer VerticalScrollBarVisibility="Auto">
-        <xctk:Wizard Previous="{s:Action OnChangeToPreviousPage}" Next="{s:Action OnChangeToNextPage}" Finish="{s:Action Finish}" Cancel="{s:Action Cancel}">
-            <xctk:WizardPage Title="Selezione Donatore" CanSelectNextPage="{Binding CanMoveTo2ndPage}">
+        <xctk:Wizard Previous="{s:Action OnChangeToPreviousPage}" Next="{s:Action OnChangeToNextPage}" Finish="{s:Action Finish}" Cancel="{s:Action Cancel}"  MaxWidth="800">
+            <xctk:WizardPage Title="Selezione Donatore" Description="Scegliere fra i Donatori disponibili quello che intende effettuare il Testo. Vengono mostrati solo i Donatori Attivi e la cui Idoneità è diversa da 'Non Idoneo'." CanSelectNextPage="{Binding CanMoveTo2ndPage}">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
@@ -61,7 +61,7 @@
 
                 </Grid>
             </xctk:WizardPage>
-            <xctk:WizardPage Title="Seleziona ListaIndagini" CanSelectNextPage="{Binding CanMoveTo3rdPage}">
+            <xctk:WizardPage Title="{Binding Path=Type, StringFormat=Seleziona {0}}" Description="{Binding Type, StringFormat='Scegliere il {0} da far compilare al Donatore.'}" CanSelectNextPage="{Binding CanMoveTo3rdPage}">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
@@ -74,13 +74,13 @@
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
 
-                    <ComboBox Grid.Row="0" Grid.Column="1" md:HintAssist.Hint="ListaIndagini" ItemsSource="{Binding ListaIndaginiEnumerable}" SelectedItem="{Binding SelectedListaIndagini}" />
+                    <ComboBox Grid.Row="0" Grid.Column="1" md:HintAssist.Hint="{Binding Path=Type}" ItemsSource="{Binding ListaIndaginiEnumerable}" SelectedItem="{Binding SelectedListaIndagini}" />
 
                     <ContentControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" s:View.Model="{Binding ListaIndaginiViewModel}" Visibility="{Binding SelectedListaIndagini, Converter={StaticResource NullToVisibility}}" components:ReadOnlyPanel.IsReadOnly="True" />
                 
                 </Grid>
             </xctk:WizardPage>
-            <xctk:WizardPage Title="Compila ListaIndagini" CanSelectNextPage="{Binding CanMoveToLastPage}">
+            <xctk:WizardPage Title="{Binding Path=Type, StringFormat=Compila {0}}" Description="{Binding Type, StringFormat='Compilare il {0}.'}" CanSelectNextPage="{Binding CanMoveToLastPage}">
                 <ItemsControl ItemsSource="{Binding Path=VociViewModelEnumerable}" Style="{StaticResource StyletConductorItemsControl}" />
             </xctk:WizardPage>
             <xctk:WizardPage Title="Riepilogo" CanFinish="True">
@@ -93,7 +93,7 @@
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
 
                     <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource MaterialDesignHeadlineTextBlock}" Margin="0 4 0 4">Riepilogo:</TextBlock>
