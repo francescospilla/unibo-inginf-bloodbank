@@ -24,7 +24,7 @@ namespace BloodBank.Core.Extensions {
             foreach (PropertyInfo p in props) {
                 object value = p.GetValue(obj, null);
                 if (value is IEnumerable<object>)
-                    sb.AppendLine(string.Join(", ", (IEnumerable)value));
+                    sb.AppendLine(((IEnumerable) value).Cast<object>().Aggregate((x, y) => x + ", " + y).ToString());
                 else if (value is DateTime)
                     sb.AppendLine("" + ((DateTime)value).ToShortDateString());
                 else
