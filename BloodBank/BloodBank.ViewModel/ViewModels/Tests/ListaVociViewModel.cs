@@ -37,6 +37,7 @@ namespace BloodBank.ViewModel.ViewModels.Tests
         [Searchable]
         public DateTime Data { get; set; }
         public DateTime DataOra { get; set; }
+        public string Type => typeof(U).ToString().Split('.').Last();
         
         #endregion Properties
 
