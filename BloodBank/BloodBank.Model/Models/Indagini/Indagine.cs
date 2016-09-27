@@ -11,8 +11,10 @@ namespace BloodBank.Model.Models.Indagini {
         public string Testo { get; }
         protected Idoneità IdoneitàFallimento { get; }
 
-        protected Indagine(string testo, Idoneità idoneitàFallimento)
-        {
+        protected Indagine(string testo, Idoneità idoneitàFallimento) {
+            if (string.IsNullOrWhiteSpace(testo))
+                throw new ArgumentException("Almeno un parametro non-opzionale del costruttore è null o vuoto.");
+
             Id = Interlocked.Increment(ref _staticCounter);
             Testo = testo;
             IdoneitàFallimento = idoneitàFallimento;
@@ -39,8 +41,7 @@ namespace BloodBank.Model.Models.Indagini {
 
     public abstract class Indagine<U> : Indagine where U : ListaVoci {
 
-        protected Indagine(string testo, Idoneità idoneitàFallimento) : base(testo, idoneitàFallimento)
-        {
+        protected Indagine(string testo, Idoneità idoneitàFallimento) : base(testo, idoneitàFallimento) {
         }
     }
 

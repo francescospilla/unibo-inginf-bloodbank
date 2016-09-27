@@ -10,7 +10,12 @@ namespace BloodBank.Model.Models.Tests {
     public abstract class ListaVoci : Test {
         protected ListaVoci(Donatore donatore, string descrizioneBreve, DateTime data, IEnumerable<Voce> listaVoci)
             : base(donatore, data, descrizioneBreve) {
-            Voci = listaVoci;
+            IEnumerable<Voce> enumerable = listaVoci as Voce[] ?? listaVoci.ToArray();
+
+            if (listaVoci == null || !enumerable.Any())
+                throw new ArgumentException("Almeno un parametro non-opzionale del costruttore è null o vuoto.");
+
+            Voci = enumerable;
             Idoneità = Voci.Select(e => e.Idoneità).CalculateIdoneitàFromList();
         }
 

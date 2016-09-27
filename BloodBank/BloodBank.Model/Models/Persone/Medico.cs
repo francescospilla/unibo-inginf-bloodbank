@@ -8,6 +8,9 @@ namespace BloodBank.Model.Models.Persone {
         public Contatto Contatto { get; }
 
         public Medico(Contatto contatto) {
+            if (contatto == null)
+                throw new ArgumentNullException(nameof(contatto));
+
             Contatto = contatto;
         }
 

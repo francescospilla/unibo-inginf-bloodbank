@@ -208,7 +208,7 @@ namespace BloodBank.ViewModel.ViewModels.Indagini {
         }
 
         protected override ListaIndagini<U> CreateModelFromViewModel(out bool isModelAlreadyRegistered) {
-            ListaIndagini<U> model = new ListaIndagini<U> {Nome = Nome};
+            ListaIndagini<U> model = new ListaIndagini<U>(Nome);
             model.Clear();
             model.AddRange(Indagini);
             isModelAlreadyRegistered = false;

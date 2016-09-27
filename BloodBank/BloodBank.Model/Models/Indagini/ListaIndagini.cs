@@ -12,6 +12,9 @@ namespace BloodBank.Model.Models.Indagini {
         private readonly List<Indagine> _indagini;
 
         protected ListaIndagini(string nome) {
+            if (string.IsNullOrWhiteSpace(nome))
+                throw new ArgumentException("Almeno un parametro non-opzionale del costruttore è null o vuoto.");
+
             Nome = nome;
             _indagini = new List<Indagine>();
             DataCreazione = DateTime.Now;
@@ -85,7 +88,7 @@ namespace BloodBank.Model.Models.Indagini {
     public class ListaIndagini<U> : ListaIndagini where U : ListaVoci {
         public Type Tipo { get; } = typeof(U);
 
-        public ListaIndagini(string nome = null) : base(nome) {
+        public ListaIndagini(string nome) : base(nome) {
         }
     }
 }

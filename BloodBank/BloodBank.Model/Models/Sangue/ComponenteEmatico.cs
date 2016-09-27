@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using BloodBank.Core.Extensions;
 
 namespace BloodBank.Model.Models.Sangue {
 
@@ -10,6 +11,16 @@ namespace BloodBank.Model.Models.Sangue {
 
         private ComponenteEmatico(string nome, int durataGiorni,
             Dictionary<GruppoSanguigno, IReadOnlyCollection<GruppoSanguigno>> compatibilità) {
+
+            if (string.IsNullOrWhiteSpace(nome))
+                throw new ArgumentNullException(nameof(nome));
+            if (durataGiorni <= 0)
+                throw new ArgumentOutOfRangeException("Il parametro " + nameof(durataGiorni) + " deve essere un intero positivo.");
+            if (compatibilità != null && !compatibilità.Keys.Any())
+                throw new ArgumentException("Il dizionario della compatibilità, se non null, deve essere non vuoto");
+            if (compatibilità != null && EnumExtensions.Values<GruppoSanguigno>().Except(compatibilità.Keys).Any())
+                throw new ArgumentException("Il dizionario della compatibilità, se non null, deve contenere come chiavi tutti i GruppiSanguigni.");
+
             Nome = nome;
             DurataGiorni = durataGiorni;
             _compatibilità = compatibilità;

@@ -22,6 +22,13 @@ namespace BloodBank.Model.Models.Persone
 
         public Donatore(Contatto contatto, GruppoSanguigno gruppoSanguigno, bool attivo)
         {
+            if (contatto == null)
+                throw new ArgumentNullException(nameof(contatto));
+
+            // CHECK IGNORATO per necessità di Mocking/Prototipo
+            /* if (contatto.DataNascita.Age() < RangeEtà.Item1 || contatto.DataNascita.Age() > RangeEtà.Item2)
+                throw new ArgumentException("L'età del donatore è al di fuori del range consentito."); */
+
             Contatto = contatto;
             GruppoSanguigno = gruppoSanguigno;
             Attivo = attivo;

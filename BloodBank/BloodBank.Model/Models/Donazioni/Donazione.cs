@@ -15,17 +15,23 @@ namespace BloodBank.Model.Models.Donazioni {
 
         private Donazione(Donatore donatore, TipoDonazione tipoDonazione, DateTime data, VisitaMedica visitaMedica,
             Analisi analisi, Questionario questionario) {
-            // Contract.Requires<ArgumentNullException>(donatore != null && data != null && visitaMedica != null && analisi != null && questionario != null, "Tutti i parametri devono essere diversi da null.");
+
+            if (donatore == null || data == null || visitaMedica == null || analisi == null || questionario == null)
+                throw new ArgumentException("Almeno un parametro non-opzionale del costruttore è null.");
 
             if (donatore.Idoneità != Idoneità.Idoneo)
-                throw new ArgumentException("Non si può effettuare la donazione se il donatore non è " + Idoneità.Idoneo);
+                throw new ArgumentException("Non si può effettuare la donazione se il donatore non è " + Idoneità.Idoneo + ".");
             if (!donatore.Attivo)
-                throw new ArgumentException("Non si può effettuare la donazione se il donatore non è attivo");
+                throw new ArgumentException("Non si può effettuare la donazione se il donatore non è attivo.");
 
+            if (data >= DateTime.Now)
+                throw new ArgumentException("La data della donazione non può essere futura");
             if (data <= donatore.ListaDonazioni.LastOrDefault()?.Data)
-                throw new ArgumentException("Sono già presenti donazioni successive a questa data");
+                throw new ArgumentException("Sono già presenti donazioni successive a questa data.");
             if (!AreDateTestValide(data, visitaMedica.Data, analisi.Data, questionario.Data))
-                throw new ArgumentException("Non si può effettuare la donazione se i test associati non sono stati effettuati il giorno stesso");
+                throw new ArgumentException("Non si può effettuare la donazione se i test associati non sono stati effettuati il giorno stesso.");
+            if (donatore.DataProssimaDonazioneConsentita.HasValue && data <= donatore.DataProssimaDonazioneConsentita)
+                throw new ArgumentException("Non è possibile effettuare una donazione se non si è superata DataProssimaDonazioneConsentita.");
 
             Donatore = donatore;
             TipoDonazione = tipoDonazione;
@@ -50,13 +56,11 @@ namespace BloodBank.Model.Models.Donazioni {
         public DateTime DataProssimaDonazioneConsentita { get; }
 
         private void EffettuaPrelievo(ISaccaSangueFactory saccaSangueFactory) {
-            // Contract.Requires<InvalidOperationException>(SaccheSangue.Count == 0, "SaccheSangue.Count == 0");
 
             foreach (ComponenteEmatico componente in TipoDonazione.ComponentiDerivati)
                 for (int i = 0; i < TipoDonazione.QuantitàComponente(componente); i++)
                     saccaSangueFactory.CreateModel(this, Donatore.GruppoSanguigno, componente, Data);
 
-            // Contract.Ensures(SaccheSangue.Count > 0, "SaccheSangue.Count > 0");
         }
 
         public void AggiungiSaccaSangue(SaccaSangue saccaSangue) {

@@ -13,6 +13,9 @@ namespace BloodBank.Model.Models.Tests
         private VisitaMedica(Donatore donatore, string descrizioneBreve, DateTime data, Idoneità idoneità, Medico medico, string referto)
             : base(donatore, data, descrizioneBreve)
         {
+            if (medico == null || string.IsNullOrWhiteSpace(referto))
+                throw new ArgumentException("Almeno un parametro non-opzionale del costruttore è null o vuoto.");
+
             Idoneità = idoneità;
             Medico = medico;
             Referto = referto;

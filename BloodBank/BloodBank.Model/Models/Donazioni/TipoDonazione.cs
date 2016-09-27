@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using BloodBank.Model.Models.Sangue;
 
 namespace BloodBank.Model.Models.Donazioni {
@@ -9,8 +11,14 @@ namespace BloodBank.Model.Models.Donazioni {
         #region Private Constructor
 
         private TipoDonazione(string nome, int giorniDiRiposo, IDictionary<ComponenteEmatico, int> componentiDerivati) {
-            //Contract.Requires<ArgumentOutOfRangeException>(giorniDiRiposo > 0, "Il parametro " + nameof(giorniDiRiposo) + " deve essere un intero positivo.");
-           // Contract.Requires<ArgumentOutOfRangeException>(componentiDerivati.Values.All(quantità => quantità > 0), "Ogni parametro " + nameof(componentiDerivati.Values) + " deve essere un intero positivo.");
+            if (string.IsNullOrWhiteSpace(nome))
+                throw new ArgumentNullException(nameof(nome));
+            if (giorniDiRiposo <= 0)
+                throw new ArgumentOutOfRangeException("Il parametro " + nameof(giorniDiRiposo) + " deve essere un intero positivo.");
+            if (componentiDerivati == null || !componentiDerivati.Keys.Any())
+                throw new ArgumentException("Il dizionario dei componenti derivati deve essere non nullo e non vuoto");
+            if (!componentiDerivati.Values.All(quantità => quantità > 0))
+                throw new ArgumentException("Ogni parametro " + nameof(QuantitàComponente) + " nel dizionario deve essere un intero positivo.");
 
             Nome = nome;
             GiorniDiRiposo = giorniDiRiposo;

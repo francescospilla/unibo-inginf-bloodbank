@@ -1,5 +1,6 @@
 ﻿using System;
 using BloodBank.Model.Models.Donazioni;
+using BloodBank.Model.Models.Persone;
 using BloodBank.Model.Service;
 using PropertyChanged;
 
@@ -12,6 +13,11 @@ namespace BloodBank.Model.Models.Sangue
 
         private SaccaSangue(Donazione donazione, GruppoSanguigno gruppo, ComponenteEmatico componente, DateTime dataPrelievo)
         {
+            if( donazione == null || componente == null)
+                throw new ArgumentException("Almeno un parametro non-opzionale del costruttore è null.");
+            if (dataPrelievo.Date != donazione.Data.Date)
+                throw new ArgumentException("Donazione e prelievo devono essere stati effettuati lo stesso giorno.");
+
             Id = Guid.NewGuid();
             Donazione = donazione;
             DataPrelievo = dataPrelievo;

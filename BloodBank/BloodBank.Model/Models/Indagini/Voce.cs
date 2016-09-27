@@ -21,6 +21,9 @@ namespace BloodBank.Model.Models.Indagini
 
         public Voce(Indagine<U, T> indagine, T risultato)
         {
+            if (indagine == null || risultato == null)
+                throw new ArgumentException("Almeno un parametro non-opzionale del costruttore Ë null.");
+
             Indagine = indagine;
             Risultato = risultato;
             Idoneit‡ = Indagine.GetIdoneit‡FromRisultato(risultato);

@@ -9,6 +9,7 @@ using BloodBank.Model.Models.Donazioni;
 using BloodBank.Model.Models.Persone;
 using BloodBank.Model.Models.Sangue;
 using BloodBank.Model.Service;
+using Castle.Core.Logging;
 using Ninject.Activation.Strategies;
 
 namespace BloodBank {
