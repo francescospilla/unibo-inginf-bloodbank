@@ -28,6 +28,12 @@ namespace BloodBank.ViewModel.ViewModels.Indagini {
             : base(eventAggregator, dataService, validator) {
             _indagineDataService = indagineDataService;
 
+            _indagineDataService.GetObservableCollection().CollectionChanged += (sender, args) => {
+                foreach (Indagine<U> item in args.NewItems) {
+                    IndaginiNonSelezionate.Add(item);
+                }
+            };
+
             RefreshCollections();
             NotifyPropertyChangedOnCollectionChanged();
         }
