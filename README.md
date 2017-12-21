@@ -15,6 +15,14 @@ Infine, il progetto permette di visualizzare tutte le **sacche di componenti ema
 
 Un'analisi più approfondita dei requisiti del sistema modellato dal progetto è disponibile [qui](https://gitlab.com/francesco.spilla/university-sweng-bloodbank/raw/master/docs/documento-dei-requisiti.pdf).
 
+## Screenshots
+<img src="docs/screenshots/menu.png" width="350px" />
+<img src="docs/screenshots/donatori.png" width="350px" />
+<img src="docs/screenshots/donazioni.png" width="350px" />
+<img src="docs/screenshots/questionario.png" width="350px" />
+<img src="docs/screenshots/analisi.png" width="350px" />
+<img src="docs/screenshots/indagini.png" width="350px" />
+
 ## Getting Started
 
 Scaricare il codice sorgente da questo repository con `git clone https://gitlab.com/francesco.spilla/university-sweng-bloodbank.git` e compilare `BloodBank.sln` con [Visual Studio 2017](https://www.visualstudio.com/) (o più recenti). In alternativa, sono disponibili i [binari](https://gitlab.com/francesco.spilla/university-sweng-bloodbank/tags/demo) già compilati. 
